@@ -1,30 +1,21 @@
-body
+html,body
 {
 	background-color:#FFFFFF;
-    
-        
+        overflow: auto;
+        height: 100%;
 }
 
-h1,h5 
+h1 
 {
-	font-family: Verdana, helvetica, serif;
-        
+	font-family: Purisa, helvetica, serif;
+        position:fixed; 
 	
 }
 
-h3
+h5 
 {
-    color:#999999;
- 
-}
-
-#est-dados
-{
-   position:fixed;
-   top:23%;
-  
-  
-
+	font-family: Purisa, helvetica, serif;
+	
 }
 
 textarea
@@ -34,64 +25,66 @@ textarea
 
 }
 
+video
+{
+  width:1220px; 
+  height:440px;
+  position: fixed;
+  top:25%;
+  left:5%;
+
+}
 
 #wrap 
 {
   text-align: left;
   margin: 0 auto;
   width: 710px; 
-  
 }
 
-#princ_index
+
+
+#cop
 {
-  margin: 0 auto;
-  width: 710px; 
-}
+    position: fixed;
+    top: 90%;
+    left:40%;
 
+}
 
 #back_header
 {
     width:100%;
     height:10%;
-    background-color:#008B8B;
+    background-color:#999999;
     position: fixed;
     top: 5%;
     left:0%;
 }
 
-
-#ativ
+#back_last
 {
-  position: fixed;
-  top: 75%;
-  left:10%;
-  color:#333333;
+    width:50%;
+    height:0.1%;
+    background-color:#000000;
+    position: fixed;
+    top: 90%;
+    left:23%;
 
 }
 
-#ativ-exerc
+#ipe
 {
-  position: fixed;
-  top: 80%;
-  left:10%;
-  color:#333333;
-  
-
+   position: fixed;
+   top: 15%;
+   left:14%;
 }
 
-#colorLink
+#alinha
 {
-  background-color:#CCCCCC;
-  height:5%;
-  width:100%;
-  border:0%;
-  border-width:0px;
- border-color:#999999;
- -webkit-border-radius: 0.4em;
- -moz-border-radius: 0.4em;
-
-
+   position: fixed;
+   top: 30%;
+   left:28%;
 }
 
 .botaoConfirma
@@ -211,90 +204,9 @@ nav
 #menuLinks
 {
     cursor:pointer;
-    font-family: Verdana,helvetica, serif;
-   
+    position: relative
+
 }
-
-#Aloc
-{
-   color:#FF0000;
-   
-}
-
-#vet
-{
-  position: fixed;
-  top: 30%;
-  left:9%;
-    
-   
-}
-
-
-#alinhaLink
-{
-    position: fixed;
-    top: 32%;
-    left:9%;
-}
-
-
-#menuAlocacao
-{
-  visibility: hidden;
-  
-}
-
-
-#menuRecursi
-{
-  visibility: hidden;
-  
-}
-
-
-#menuLista
-{
-  visibility: hidden;
-  
-}
-
-#menuFila
-{
-  visibility: hidden;
-  
-}
-
-#menuPilha
-{
-  visibility: hidden;
-  
-}
-
-#menuArvore
-{
-  visibility: hidden;
-  
-}
-
-#menuMetOrd
-{
-  visibility: hidden;
-  
-}
-
-#menuMetPesq
-{
-  visibility: hidden;
-  
-}
-
-#menuVetor
-{
-  visibility: hidden;
-  
-}
-
 
 
 a
@@ -359,18 +271,6 @@ a.ex:active
     
 }
 
-#back_cadastro_fim
-{
-    width:100%;
-    height:15px;
-    background-color:#466464;
-    position: fixed;
-    top: 80%;
-    left:0px;
-    
-}
-
-
 
 
 .inputStyleCadastro
@@ -386,7 +286,7 @@ a.ex:active
 	-moz-border-radius: 0.4em;
 }
 
-#cadastrar
+#cad
 {
 	font-family: Purisa, helvetica, serif;
         font-size:150%; 
@@ -411,7 +311,7 @@ select
 .botaoConfirmaCadastro
 {
 position:absolute;
-top:110%;
+top:460px;
 left:145px;
 margin:0px;
 padding:0px;
@@ -435,7 +335,7 @@ border-color:#999999;
 .botaoCancelaCadastro
 {
 position:absolute;
-top:110%;
+top:458px;
 left:330px;
 margin:0px;
 padding:0px;
@@ -478,30 +378,6 @@ border-color:#999999;
 -webkit-border-radius: 0.4em;
 -moz-border-radius: 0.4em;
 
-}
-
-
-.botaoOk
-{
-position:absolute;
-top:50%;
-left:40%;
-margin:0px;
-padding:0px;
-cursor:pointer;
-text-decoration: none;
-text-align:center;	
-color:#ffffff;
-background: #20B2AA url('botao_link.gif')no-repeat center center;	
-width:10%;  
-height:6%;
-border:0px;
-display:block;	
-font: bold 19px/24px arial, helvetica, sans-aerif;
-border-width:0px;
-border-color:#999999;
--webkit-border-radius: 0.4em;
--moz-border-radius: 0.4em;
 }
 
 
@@ -553,6 +429,21 @@ border-color:#999999;
   left:3%;
   background-color:#FF9900;
 }
+
+
+#header_5
+{
+ 
+  width:12%;
+  height:21%;
+  position: fixed;
+  top: 1%;   
+  left:1%;
+  background-color:#999999;
+}
+
+
+
 
 #header_logo
 {
@@ -881,37 +772,20 @@ border-color:#999999;
 #back_recem
 {
     width:100%;
-    height:14%;
-    background-color:#0066CC;
+    height:55px;
+    background-color:#CCCCCC;
     position: fixed;
-    top: 3%;
-    left:5%;
-    border-style:solid;
-    border-width:1px;
-    border-color:#E6E8FA;
-    
-}
-
-
-
-#back_mini
-{
-    width:0.1%;
-    height:6%;
-    background-color:#E6E8FA;
-    position: fixed;
-    top: 17%;
+    top: 40px;
     left:5%;
     
 }
-
 
 #fundo
 
 {
     width:100%;
     height:70%;
-    background-color:#FFFFFF;
+    background-color:#CCCCCC;
     position: fixed;
     top: 23%;
     left:5%;
@@ -922,23 +796,14 @@ border-color:#999999;
 
 {
     width:20%;
-    height:65%;
+    height:60%;
     background-color:#CCCCCC;
     position: fixed;
-    top: 25%;
+    top: 30%;
     left:7%;
 
 }
 
-#fundo_index
-
-{
-   
-    background-color:#CCCCCC;
-    height:100%; 
-    
-
-}
 
 #links
 
@@ -957,12 +822,12 @@ border-color:#999999;
 .ilscadastro
 {
 
-    font-family: Verdana, helvetica, serif;
+    font-family: Purisa, helvetica, serif;
     font-size:100%;
-    color:#F5F5F5;
+    color:black;
     position: fixed;
-    top: 17%;   
-    left:7%; 
+    top: 15%;   
+    left:5%; 
 
 
 }
@@ -972,30 +837,15 @@ border-color:#999999;
 
 {
 
-    font-family: Times New Roman, helvetica, serif;
-    font-size:300%;
-    color:white;
+    font-family: Purisa, helvetica, serif;
+    font-size:200%;
+    color:black;
     position: fixed;
-    top: 1%;   
-    left:10%;
+    top: 2%;   
+    left:50%;
 
 
 }
-
-#e-adapt
-
-{
-
-    font-family: Verdana, helvetica, serif;
-    font-size:800%;
-    color:gray;
-    position: fixed;
-    top: 30%;   
-    left:30%;
-
-
-}
-
 
 #fundoiframe
 {
@@ -1019,14 +869,12 @@ border-color:#999999;
 #perguntas
 {
     width:60%;
-    height:65%;
+    height:60%;
     position: fixed;
-    top: 25%;   
+    top: 30%;   
     left:30%;
-    background-color:#FFFFFF;
-    color:white;
-    border-style:solid;
-    border-width:5px;    
+    background-color:#CCCCFF;
+    color:white;    
 }
 
 
@@ -1038,7 +886,7 @@ padding:0px;
 cursor:pointer;
 text-decoration: none;
 text-align:center;	
-color:#FFFFF0;
+color:#000000;
 background:#4169E1 url('botao_link.gif')no-repeat center center;	
 width:180px;  
 height:25px;
@@ -1078,7 +926,7 @@ border-color:#999999;
 {
   position: fixed;
   top: 14%;
-  left:23%
+  left:29%
  
 }
 
@@ -1101,11 +949,12 @@ td
   height:0%;
 }
 
-#video
-{
-  width:50%;
-  height:50%;
-}
 
+#Slideshow1{ 
+	position: fixed;
+        left: 17%;  
+        top:28%;
+         
+}
 
 
