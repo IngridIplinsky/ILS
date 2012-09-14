@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dominio SYSTEM "dominio.dtd">
+<conteudo>
+
+	<nome> O nome do conteudo vem aqui </nome>
+	<tipo> O tipo da questao </tipo>
+	<preReq> O nome dos conteudos pre reuisito para a questao </preReq>
+
+	<exercicio>
+		
+		<idEx> O id do exercicio, que o identifica unicamente</idEx>
+		<nivel> O nivel pode ser facil, medio ou avancado </nivel>
+
+		<enunciado> O enunciado do exercicio vem aqui </enunciado>
+
+		<alternativa id="meuId"> 
+			<texto> O texto da alternativa</texto>
+			<codigo> O codigo da alternativa, se for o caso</codigo>
+		
+		</alternativa>
+
+		<resposta> O id da resposta correta</resposta>
+
+	</exercicio>
+
+</conteudo>
+

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dominio SYSTEM "dominio.dtd">
+<conteudo>
+
+	<idEx> 001v </idEx>
+		<nivel> facil </nivel>
+
+		<enunciado> Quero atribuir a uma variável X a quinta posição de um vetor V de 100 posições. Para isto: </enunciado>
+
+		<alternativa> 
+			<idAlt1>
+			<texto> </texto>
+			<codigo> X = V[5] </codigo>
+                        </idAlt1>   
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt2>
+			<texto> </texto>
+			<codigo> X = V[4] </codigo>
+                        </idAlt2> 	
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt3> 
+			<texto> Não é possível acessá-la diretamente, preciso fazer um laço que percorre até v[4]. </texto>
+			<codigo> </codigo>
+                        </idAlt3>	
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt4> 
+			<texto> Nenhuma das alternativas anteriores. </texto>
+			<codigo> </codigo>
+                        </idAlt4>	
+		</alternativa>
+		
+		<entradaTexto ativo="f" />
+		<entradaCodigo ativo="f"/>
+
+		<resposta> 001vb </resposta>
+
+
+		<resposta> 001vb </resposta>
+
+	</exercicio>
+
+</conteudo>
+

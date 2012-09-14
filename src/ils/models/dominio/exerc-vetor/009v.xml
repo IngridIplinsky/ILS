@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dominio SYSTEM "dominio.dtd">
+<conteudo>
+
+	<nome> vetor </nome>
+
+	<exercicio>
+		
+		<idEx> 009v </idEx>
+		<nivel> facil </nivel>
+
+		<enunciado> Dado um vetor B definido com: int B[20]; como preenchê-lo com números inteiros 1, 2, 3, ..., 20. </enunciado>
+
+		<alternativa> 
+			<idAlt1> 
+			<texto> </texto>
+			<codigo> (A) for (int i = 0; i &lt;= 20; i++) A[i] = i; </codigo>
+                        </idAlt1>  
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt2> 
+			<texto> </texto>
+			<codigo> (B) for (int i = 0; i &lt; 19; i++) A[i] = i; </codigo>
+                        </idAlt2>	
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt3> 
+			<texto> </texto>
+			<codigo> (C) for (int i = 1; i &lt; 19; i++) A[i] = i; </codigo>
+ 			</idAlt3>	
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt4> 
+			<texto> </texto>
+			<codigo> (D) for (int i = 1; i &lt;= 20; i++) A[i-1] = i </codigo>
+			</idAlt4>	
+		</alternativa>
+		
+		<entradaTexto ativo="f" />
+		<entradaCodigo ativo="f"/>
+
+		<resposta> 009vd </resposta>
+
+	</exercicio>
+
+</conteudo>
+
