@@ -1,21 +1,30 @@
-html,body
+body
 {
 	background-color:#FFFFFF;
-        overflow: auto;
-        height: 100%;
+    
+        
 }
 
-h1 
+h1,h5 
 {
-	font-family: Purisa, helvetica, serif;
-        position:fixed; 
+	font-family: Verdana, helvetica, serif;
+        
 	
 }
 
-h5 
+h3
 {
-	font-family: Purisa, helvetica, serif;
-	
+    color:#999999;
+ 
+}
+
+#est-dados
+{
+   position:fixed;
+   top:25%;
+   color:#5F9EA0;   
+  
+
 }
 
 textarea
@@ -25,66 +34,64 @@ textarea
 
 }
 
-video
-{
-  width:1220px; 
-  height:440px;
-  position: fixed;
-  top:25%;
-  left:5%;
-
-}
 
 #wrap 
 {
   text-align: left;
   margin: 0 auto;
   width: 710px; 
+  
 }
 
-
-
-#cop
+#princ_index
 {
-    position: fixed;
-    top: 90%;
-    left:40%;
-
+  margin: 0 auto;
+  width: 710px; 
 }
+
 
 #back_header
 {
     width:100%;
     height:10%;
-    background-color:#999999;
+    background-color:#008B8B;
     position: fixed;
     top: 5%;
     left:0%;
 }
 
-#back_last
+
+#ativ
 {
-    width:50%;
-    height:0.1%;
-    background-color:#000000;
-    position: fixed;
-    top: 90%;
-    left:23%;
+  position: fixed;
+  top: 75%;
+  left:10%;
+  color:#FFA500;
 
 }
 
-#ipe
+#ativ-exerc
 {
-   position: fixed;
-   top: 15%;
-   left:14%;
+  position: fixed;
+  top: 80%;
+  left:10%;
+  color:#333333;
+  
+
 }
 
-#alinha
+#colorLink
 {
-   position: fixed;
-   top: 30%;
-   left:28%;
+  background-color:#CCCCCC;
+  height:5%;
+  width:100%;
+  border:0%;
+  border-width:0px;
+ border-color:#999999;
+ -webkit-border-radius: 0.4em;
+ -moz-border-radius: 0.4em;
+
+
 }
 
 .botaoConfirma
@@ -92,23 +99,24 @@ video
 position:fixed;
 top:8%;
 left:87%;
-margin:0%;
-padding:0%;
+margin:0px;
+padding:0px;
 cursor:pointer;
 text-decoration: none;
 text-align:center;	
 color:#ffffff;
-background: #000000 url('botao_link.gif')no-repeat center center;	
+background: #999999 url('botao_link.gif')no-repeat center center;	
 width:10%;  
-height:5%;
-border:0%;
+height:6%;
+border:0px;
 display:block;	
 font: bold 19px/24px arial, helvetica, sans-aerif;
 color:#FFFFFF;
-border-width:0%;
+border-width:0px;
 border-color:#999999;
--webkit-border-radius: 0.0em;
--moz-border-radius: 0.0em;
+-webkit-border-radius: 0.4em;
+-moz-border-radius: 0.4em;
+
 
 }
 
@@ -204,9 +212,166 @@ nav
 #menuLinks
 {
     cursor:pointer;
-    position: relative
+    font-family: Verdana,helvetica, serif;
+   
+}
+
+#i
+{
+   color:#FF0000;
+   
+}
+
+#vet
+{
+  position: fixed;
+  top: 32%;
+  left:9%;
+    
+   
+}
+
+
+#list
+
+
+{
+  position: fixed;
+  top: 37%;
+  left:9%;
+  visibility: hidden;
+}
+
+#fila
+
+
+{
+  position: fixed;
+  top: 43%;
+  left:9%;
+  visibility: hidden;
+}
+
+
+#pilha
+
+
+{
+  position: fixed;
+  top: 48%;
+  left:9%;
+  visibility: hidden;
+}
+
+#arvore
+
+{
+  position: fixed;
+  top: 53%;
+  left:9%;
+  visibility: hidden; 
+  
 
 }
+
+
+#metOrd
+
+{
+  position: fixed;
+  top: 58%;
+  left:9%;
+  visibility: hidden; 
+
+  
+
+}
+
+
+#metPesq
+
+{
+  position: fixed;
+  top: 63%;
+  left:9%;
+  visibility: hidden; 
+  
+
+}
+
+
+
+#alinhaLink
+{
+    position: fixed;
+    top: 32%;
+    left:9%;
+    color:#FF0000;
+   
+}
+
+
+
+#menuVetor
+{
+  visibility: hidden;
+  
+}
+
+
+
+#menuAlocacao
+{
+  visibility: hidden;
+  
+}
+
+
+
+#menuRecursi
+{
+  visibility: hidden;
+  
+}
+
+
+#menuLista
+{
+  visibility: hidden;
+  
+}
+
+#menuFila
+{
+  visibility: hidden;
+  
+}
+
+#menuPilha
+{
+  visibility: hidden;
+  
+}
+
+#menuArvore
+{
+  visibility: hidden;
+  
+}
+
+#menuMetOrd
+{
+  visibility: hidden;
+  
+}
+
+#menuMetPesq
+{
+  visibility: hidden;
+  
+}
+
+
 
 
 a
@@ -271,6 +436,18 @@ a.ex:active
     
 }
 
+#back_cadastro_fim
+{
+    width:100%;
+    height:15px;
+    background-color:#466464;
+    position: fixed;
+    top: 82%;
+    left:0px;
+    
+}
+
+
 
 
 .inputStyleCadastro
@@ -286,7 +463,7 @@ a.ex:active
 	-moz-border-radius: 0.4em;
 }
 
-#cad
+#cadastrar
 {
 	font-family: Purisa, helvetica, serif;
         font-size:150%; 
@@ -311,7 +488,7 @@ select
 .botaoConfirmaCadastro
 {
 position:absolute;
-top:460px;
+top:110%;
 left:145px;
 margin:0px;
 padding:0px;
@@ -335,7 +512,7 @@ border-color:#999999;
 .botaoCancelaCadastro
 {
 position:absolute;
-top:458px;
+top:110%;
 left:330px;
 margin:0px;
 padding:0px;
@@ -378,6 +555,30 @@ border-color:#999999;
 -webkit-border-radius: 0.4em;
 -moz-border-radius: 0.4em;
 
+}
+
+
+.botaoOk
+{
+position:absolute;
+top:50%;
+left:40%;
+margin:0px;
+padding:0px;
+cursor:pointer;
+text-decoration: none;
+text-align:center;	
+color:#ffffff;
+background: #20B2AA url('botao_link.gif')no-repeat center center;	
+width:10%;  
+height:6%;
+border:0px;
+display:block;	
+font: bold 19px/24px arial, helvetica, sans-aerif;
+border-width:0px;
+border-color:#999999;
+-webkit-border-radius: 0.4em;
+-moz-border-radius: 0.4em;
 }
 
 
@@ -429,21 +630,6 @@ border-color:#999999;
   left:3%;
   background-color:#FF9900;
 }
-
-
-#header_5
-{
- 
-  width:12%;
-  height:21%;
-  position: fixed;
-  top: 1%;   
-  left:1%;
-  background-color:#999999;
-}
-
-
-
 
 #header_logo
 {
@@ -631,7 +817,16 @@ border-color:#999999;
     left:42%;
 }
 
+#back_last
+{
+    width:50%;
+    height:0.3%;
+    background-color:#000000;
+    position: fixed;
+    top: 90%;
+    left:23%;
 
+}
 .botaoConfig
 {
 position: fixed;
@@ -772,20 +967,37 @@ border-color:#999999;
 #back_recem
 {
     width:100%;
-    height:55px;
-    background-color:#CCCCCC;
+    height:14%;
+    background-color:#0066CC;
     position: fixed;
-    top: 40px;
+    top: 3%;
+    left:5%;
+    border-style:solid;
+    border-width:1px;
+    border-color:#E6E8FA;
+    
+}
+
+
+
+#back_mini
+{
+    width:0.1%;
+    height:6%;
+    background-color:#E6E8FA;
+    position: fixed;
+    top: 17%;
     left:5%;
     
 }
+
 
 #fundo
 
 {
     width:100%;
     height:70%;
-    background-color:#CCCCCC;
+    background-color:#FFFFFF;
     position: fixed;
     top: 23%;
     left:5%;
@@ -796,14 +1008,23 @@ border-color:#999999;
 
 {
     width:20%;
-    height:60%;
+    height:65%;
     background-color:#CCCCCC;
     position: fixed;
-    top: 30%;
+    top: 25%;
     left:7%;
 
 }
 
+#fundo_index
+
+{
+   
+    background-color:#CCCCCC;
+    height:100%; 
+    
+
+}
 
 #links
 
@@ -822,12 +1043,12 @@ border-color:#999999;
 .ilscadastro
 {
 
-    font-family: Purisa, helvetica, serif;
+    font-family: Verdana, helvetica, serif;
     font-size:100%;
-    color:black;
+    color:#F5F5F5;
     position: fixed;
-    top: 15%;   
-    left:5%; 
+    top: 17%;   
+    left:7%; 
 
 
 }
@@ -837,15 +1058,30 @@ border-color:#999999;
 
 {
 
-    font-family: Purisa, helvetica, serif;
-    font-size:200%;
-    color:black;
+    font-family: Times New Roman, helvetica, serif;
+    font-size:300%;
+    color:white;
     position: fixed;
-    top: 2%;   
-    left:50%;
+    top: 1%;   
+    left:10%;
 
 
 }
+
+#e-adapt
+
+{
+
+    font-family: Verdana, helvetica, serif;
+    font-size:800%;
+    color:gray;
+    position: fixed;
+    top: 30%;   
+    left:30%;
+
+
+}
+
 
 #fundoiframe
 {
@@ -869,12 +1105,14 @@ border-color:#999999;
 #perguntas
 {
     width:60%;
-    height:60%;
+    height:65%;
     position: fixed;
-    top: 30%;   
+    top: 25%;   
     left:30%;
-    background-color:#CCCCFF;
-    color:white;    
+    background-color:#FFFFFF;
+    color:white;
+    border-style:solid;
+    border-width:5px;    
 }
 
 
@@ -886,7 +1124,7 @@ padding:0px;
 cursor:pointer;
 text-decoration: none;
 text-align:center;	
-color:#000000;
+color:#FFFFF0;
 background:#4169E1 url('botao_link.gif')no-repeat center center;	
 width:180px;  
 height:25px;
@@ -926,7 +1164,7 @@ border-color:#999999;
 {
   position: fixed;
   top: 14%;
-  left:29%
+  left:25%
  
 }
 
@@ -949,12 +1187,43 @@ td
   height:0%;
 }
 
+#video
+{
+  width:50%;
+  height:50%;
+}
 
-#Slideshow1{ 
+#Slideshow1
+{ 
 	position: fixed;
         left: 17%;  
         top:28%;
          
 }
+
+#a1
+{
+position:fixed;
+top:90%;
+left:80%;
+margin:1px;
+padding:0px;
+cursor:pointer;
+text-decoration: none;
+text-align:center;	
+color:#999999;
+background:#000000 url('botao_link.gif')no-repeat center center;	
+width:1%;  
+height:1%;
+border:5px;
+display:block;	
+font: bold 12px/24px arial, helvetica, sans-aerif;
+border-width:1px;
+border-color:#FFFFFF;
+-webkit-border-radius: 0.4em;
+-moz-border-radius: 0.4em;
+
+}
+
 
 
