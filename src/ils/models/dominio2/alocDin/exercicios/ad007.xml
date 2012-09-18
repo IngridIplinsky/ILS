@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+ xmlns="exercicio"
+ xmlns:xsi="exercicio"
+ xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+	
+		<conteudo> alocacao dinamica </conteudo>	
+		<idEx> ad007 </idEx>
+		<nivel> facil </nivel>
+		<tipo> me </tipo>
+		<preReq> </preReq>
+
+		<enunciado> 
+			<texto> Se quisermos alocar espaço para 100 inteiros, podemos usar: </texto>
+		</enunciado>
+
+		<alternativa valor="true"> 
+			<codigo> int &amp;ip; ip = (int &amp;) malloc(100*sizeof(int)); </codigo>
+		</alternativa>
+		
+		<alternativa> 
+			<codigo> int *ip; ip = (int *) malloc(100*sizeof(int)); </codigo>	
+		</alternativa>
+		
+		<alternativa> 
+			<codigo> int *ip; &amp;ip = (int *) sizeof(100*malloc(*int)); </codigo>
+		</alternativa>
+		
+		<alternativa> 
+			<codigo> int *ip; ip = (int *) sizeof(100*malloc(int)); </codigo>
+		</alternativa>
+
+		<resposta> </resposta>
+
+</exercicio>
+
+

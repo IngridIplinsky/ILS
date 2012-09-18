@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+ xmlns="exercicio"
+ xmlns:xsi="exercicio"
+ xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+		
+		<conteudo> fila </conteudo>	
+		<idEx> f009 </idEx>
+		<nivel> facil </nivel>
+		<tipo> me </tipo>
+		<preReq> </preReq>
+
+		<enunciado> 
+			<texto> Tem-se um código de fila em C: </texto>
+			<codigo>
+			Fila* f = (Fila*) malloc(sizeof(Fila));
+			f->ini = f->fim = 0;
+			</codigo>
+         	<texto> O trecho de código acima pode ser usado em qual operação de uma fila? </texto>
+         </enunciado>
+
+		<alternativa> 
+			<texto> Inserção </texto>
+		</alternativa>
+		
+		<alternativa> 
+			<texto> Alteração </texto>	
+		</alternativa>
+		
+		<alternativa> 
+			<texto> Remoção </texto>	
+		</alternativa>
+		
+		<alternativa valor="true"> 
+			<texto> Criação </texto>
+		</alternativa>
+
+		<resposta> </resposta>
+
+</exercicio>
+

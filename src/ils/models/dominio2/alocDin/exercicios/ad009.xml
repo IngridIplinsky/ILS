@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+ xmlns="exercicio"
+ xmlns:xsi="exercicio"
+ xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+		
+		<conteudo> alocacao dinamica </conteudo>
+		<idEx> ad009 </idEx>
+		<nivel> facil </nivel>
+		<tipo> me </tipo>
+		<preReq> </preReq>
+
+		<enunciado> 
+			<texto> Que função em C é capaz de limpar a memória alocada de um vetor V? </texto>
+		</enunciado>
+
+		<alternativa> 
+			<codigo> alloc(V) </codigo>
+		</alternativa>
+		
+		<alternativa> 
+			<codigo> malloc(V)</codigo>	
+		</alternativa>
+		
+		<alternativa> 
+			<codigo> sizeof(V)</codigo>	
+		</alternativa>
+		
+		<alternativa valor="true"> 
+			<codigo> free(V)</codigo>	
+		</alternativa>
+
+		<resposta> </resposta>
+
+</exercicio>
+

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+ xmlns="exercicio"
+ xmlns:xsi="exercicio"
+ xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+
+		<conteudo> lista </conteudo>	
+		<idEx> l004 </idEx>
+		<nivel> facil </nivel>
+		<tipo> me </tipo>
+		<preReq> alocacao dinamica, vetor, fila, pilha, metodos pesquisa </preReq>
+
+		<enunciado> 
+			<texto> Quais são as informações essenciais para reproduzir uma lista encadeada? </texto>  
+		</enunciado>
+
+		<alternativa> 
+			<texto> tamanho da lista e elemento do meio </texto>
+		</alternativa>
+		
+		<alternativa> 
+			<texto> o primeiro e último elementos </texto>	
+		</alternativa>
+		
+		<alternativa valor="true"> 
+			<texto> o primeiro elemento e o próximo </texto>
+		</alternativa>
+		
+		<alternativa> 
+			<texto> Nenhuma das anteriores. </texto>
+		</alternativa>
+
+		<resposta> </resposta>
+
+</exercicio>
+
