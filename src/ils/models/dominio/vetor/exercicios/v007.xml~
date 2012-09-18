@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+xmlns="http://www.w3schools.com"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+	
+		<conteudo> vetor </conteudo>	
+		<idEx> v007 </idEx>
+		<nivel> facil </nivel>
+		<tipo> me </tipo>
+		<preReq> </preReq>
+
+		<enunciado> Quero atribuir a uma variável X a quinta posição de um vetor V de 50 posições. Para isto: </enunciado>
+
+		<alternativa> 
+			<idAlt> v007a </idAlt>
+			<codigo> X = V[5] </codigo>
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt> v007b </idAlt>
+			<codigo> X = V[4] </codigo>	
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt> v007c </idAlt>
+			<texto> Não é possível acessá-la diretamente, preciso fazer um laço que percorre até v[4]. </texto>
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt> v007d </idAlt>
+			<texto> Nenhuma das alternativas anteriores. </texto>
+		</alternativa>
+
+		<resposta> v007b </resposta>
+
+</exercicio>
+
+

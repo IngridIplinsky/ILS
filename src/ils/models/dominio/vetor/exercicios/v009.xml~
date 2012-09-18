@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+ xmlns="exercicio"
+ xmlns:xsi="exercicio"
+ xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+		
+		<conteudo> vetor </conteudo>	
+		<idEx> v009 </idEx>
+		<nivel> facil </nivel>
+		<tipo> me </tipo>
+		<preReq> </preReq>
+
+		<enunciado> 
+			<texto> Dado um vetor B definido com: </texto>
+			</codigo> int B[20]; </codigo>
+			<texto> como preenchê-lo com números inteiros 1, 2, 3, ..., 20. </texto> 
+		</enunciado>
+
+		<alternativa> 
+			<codigo> for (int i = 0; i &lt;= 20; i++) A[i] = i; </codigo>
+		</alternativa>
+		
+		<alternativa> 
+			<codigo> for (int i = 0; i &lt; 19; i++) A[i] = i; </codigo>	
+		</alternativa>
+		
+		<alternativa> 
+			<codigo> for (int i = 1; i &lt; 19; i++) A[i] = i; </codigo>	
+		</alternativa>
+		
+		<alternativa valor="true"> 
+			<codigo> for (int i = 1; i &lt;= 20; i++) A[i-1] = i </codigo>	
+		</alternativa>
+
+		<resposta> </resposta>
+
+</exercicio>
+

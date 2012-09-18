@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+ xmlns="exercicio"
+ xmlns:xsi="exercicio"
+ xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+
+		<conteudo> vetor </conteudo>	
+		<idEx> v004 </idEx>
+		<nivel> facil </nivel>
+		<tipo> me </tipo>
+		<preReq> </preReq>
+
+		<enunciado> Os vetores são matrizes de quantas dimensões: </enunciado>
+
+		<alternativa> 
+			<idAlt> v004a </idAlt>
+			<texto> 1 dimensão </texto>
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt> v004b </idAlt>
+			<texto> 0 dimensão </texto>	
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt> v004c </idAlt>
+			<texto> 2 dimensões </texto>
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt> v004d </idAlt>
+			<texto> Nenhuma das anteriores. </texto>
+		</alternativa>
+
+		<resposta> v004b </resposta>
+
+</exercicio>
+

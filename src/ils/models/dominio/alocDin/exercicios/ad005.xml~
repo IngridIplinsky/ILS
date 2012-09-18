@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+xmlns="http://www.w3schools.com"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+		
+		<conteudo> alocacao dinamica </conteudo>	
+		<idEx> ad005 </idEx>
+		<nivel> facil </nivel>
+		<tipo> me </tipo>
+		<preReq> </preReq>
+
+		<enunciado> 
+			&quot;Para alocar memória precisamos saber quanto espaço cada tipo ocupa.&quot;
+			Qual é esse operador? 
+		</enunciado>
+
+		<alternativa> 
+			<idAlt> ad005a </idAlt>
+			<codigo> allocation() </codigo>
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt> ad005b </idAlt>
+			<codigo> free() </codigo>
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt> ad005c </idAlt>
+			<codigo> sizeof() </codigo>
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt> ad005d </idAlt>
+			<codigo> malloc() </codigo>
+		</alternativa>
+
+		<resposta> ad005c </resposta>
+
+</exercicio>
+
+

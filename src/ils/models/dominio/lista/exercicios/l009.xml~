@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+xmlns="http://www.w3schools.com"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+		
+		<conteudo> lista </conteudo>	
+		<idEx> l009 </idEx>
+		<nivel> facil </nivel>
+		<tipo> me </tipo>
+		<preReq> alocacao dinamica, vetor, fila, pilha, metodos pesquisa </preReq>
+
+		<enunciado> Para buscar um item em uma lista encadeada ... </enunciado>
+
+		<alternativa> 
+			<idAlt> l009a </idAlt>
+			<texto> Busca direto pelo indice </texto>
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt> l009b </idAlt>
+			<texto> Percorre toda a lista </texto>	
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt> l009c </idAlt>
+			<texto> Percorre até achar o item </texto>	
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt> l009d </idAlt>
+			<texto> Nenhuma das anteriores </texto>
+		</alternativa>
+
+		<resposta> l009c </resposta>
+
+</exercicio>
+

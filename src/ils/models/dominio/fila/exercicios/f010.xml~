@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+xmlns="http://www.w3schools.com"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+		
+		<conteudo> fila </conteudo>	
+		<idEx> f010 </idEx>
+		<nivel> facil </nivel>
+		<tipo> aa </tipo>
+		<preReq> </preReq>
+
+		<enunciado> 
+			<texto> O protótipo de uma função em C, contida em uma biblioteca de fila, segue abaixo: </texto>
+			<codigo>void func(Fila* f, float v);</codigo>
+         	<texto>O que esta função pode representar em uma fila?</texto>
+			<enum> 
+				<item id="1">Insercao</item>
+				<item id="2">Criacao </item>
+				<item id="3">Remocao </item>
+			</enum>
+			<texto> Analise as afirmações e marque a alternativa correta: </texto>
+		</enunciado>
+
+		<alternativa> 
+			<texto>  As afirmações <item id="1" /> e <item id="2" /> são corretas. </texto>
+		</alternativa>
+		
+		<alternativa> 
+			<texto> Criação da Fila </texto>	
+		</alternativa>
+		
+		<alternativa val="true"> 
+			<texto> As afirmações <item id="1" /> e <item id="3" /> são corretas. </texto>	
+		</alternativa>
+		
+		<alternativa> 
+			<texto> A primeira e terceira alternativas estão corretas. </texto>	
+		</alternativa>
+		
+		<alternativa> 
+			<texto> Nenhuma das anteriores </texto>	
+		</alternativa>
+		
+
+		<resposta> </resposta>
+
+</exercicio>
+

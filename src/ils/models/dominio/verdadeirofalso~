@@ -9,15 +9,19 @@
 		<idEx> O id do exercicio, que o identifica unicamente</idEx>
 		<nivel> O nivel pode ser facil, medio ou avancado </nivel>
 		<preReq> O nome dos conteudos necessários para responder a esta questão </preReq>
-	
+
 		<enunciado> O enunciado do exercicio vem aqui </enunciado>
 
-		<entradaTexto /> 
-		<entradaCodigo />
+		<alternativa id="" valor=""> 
+			
+			<idAlt> O id da alternativa, identifica a unicamente </idAlt>
+			<texto> O texto da alternativa</texto>
+			<codigo> O codigo da alternativa, se for o caso</codigo>
 		
-		<resposta> Uma resposta correta para ser comparada junto ao módulo tutor </resposta>
+		</alternativa>
+		
+		<resposta> O id da resposta correta</resposta>
 
 	</exercicio>
 
 </conteudo>
-

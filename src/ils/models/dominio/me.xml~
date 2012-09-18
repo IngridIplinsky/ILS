@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE dominio SYSTEM "dominio.dtd">
-<conteudo>
-
-	<nome> O nome do conteudo vem aqui </nome>
-	<preReq> O nome dos conteudos pre reuisito para a questao </preReq>
-
-	<exercicio>
+<exercicio
+xmlns="http://www.w3schools.com"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="exercicio.xsd">
 		
-		<idEx> O id do exercicio, que o identifica unicamente</idEx>
-		<nivel> O nivel pode ser facil, medio ou avancado </nivel>
+	<conteudo> O nome do conteudo ao qual o exercicio se refere </conteudo>
+	<idEx> O id do exercicio, que o identifica unicamente</idEx>
+	<nivel> O nivel pode ser facil, medio ou avancado </nivel>
+	<tipo> tipo pode ser aberta, multipla escolha, V ou F </tipo>
+	<preReq> O nome dos conteudos necessários para responder a esta questão </preReq>
+	
+	<enunciado> O enunciado do exercicio vem aqui </enunciado>
 
-		<enunciado> O enunciado do exercicio vem aqui </enunciado>
-
-		<alternativa id="meuId"> 
-			<texto> O texto da alternativa</texto>
-			<codigo> O codigo da alternativa, se for o caso</codigo>
+	<alternativa> <!-- OPCIONAL. apenas para questões FECHADAS. -->
 		
-		</alternativa>
+		<idAlt> O id da alternativa, para questões de mult. escolha. </idAlt> <!-- OPCIONAL. apenas para identificar alternativas de me. -->
+		<valor> true ou false </valor> <!-- opcional, apenas para V ou F -->	
+		<texto> O texto da alternativa</texto> <!-- opcional, caso se tenha texto -->
+		<codigo> O codigo da alternativa, se for o caso</codigo> <!-- Opcional, caso se tenha codigo -->
+		
+	</alternativa>
+	
+	<entradaTexto /> <!-- OPCIONAL. apenas para questões abertas. --> 
+	<entradaCodigo /> <!-- OPCIONAL. apenas para questões que exijam código, como as de programação. -->
+		
+	<resposta> O id da resposta correta (para multipla escolha) ou uma resposta em texto ou código (para abertas) </resposta>
 
-		<resposta> O id da resposta correta</resposta>
-
-	</exercicio>
-
-</conteudo>
+</exercicio>
 

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+xmlns="http://www.w3schools.com"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+		
+		<conteudo> vetor </conteudo>	
+		<idEx> v005 </idEx>
+		<nivel> facil </nivel>
+		<tipo> me </tipo>
+		<preReq> </preReq>
+
+		<enunciado> 
+			Tenho o seguinte código:
+			for(i=0; i&lt;5; i++) Vetor[i] = i+2
+			O que esse código faz?
+		</enunciado>
+
+		<alternativa> 
+			<idAlt> v005a </idAlt>
+			<texto> Preenche o Vetor com o número 1. </texto>
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt> v005b </idAlt>
+			<texto> Preenche o Vetor de 1 à 5. </texto>	
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt> v005c </idAlt>
+			<texto> Preenche o Vetor com número 0. </texto>
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt> v005d </idAlt>
+			<texto> Nenhuma das alternativas anteriores. </texto>
+		</alternativa>
+
+		<resposta> v005d </resposta>
+
+</exercicio>
+
+

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+xmlns="http://www.w3schools.com"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+
+		<conteudo> alocacao dinamica </conteudo>	
+		<idEx> ad003 </idEx>
+		<nivel> facil </nivel>
+		<tipo> me </tipo>
+		<preReq> </preReq>
+
+		<enunciado> Marque a alternativa correta para se alocar um vetor inteiro vet de 50 posições na linguagem C:  </enunciado>
+
+		<alternativa> 
+			<idAlt> ad003a </idAlt>
+			<codigo> vet = (int*) malloc (sizeof(int)) </codigo>
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt> ad003b </idAlt>
+			<codigo> *vet = (int*) malloc (sizeof(int)) </codigo>	
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt> ad003c </idAlt>
+			<codigo> *vet = (int*) malloc (50*sizeof(int)) </codigo>	
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt> ad003d </idAlt>
+			<codigo> vet = (int*) malloc (50*sizeof(int)) </codigo>
+		</alternativa>
+
+		<resposta> ad003d </resposta>
+
+</exercicio>
+

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+ xmlns="exercicio"
+ xmlns:xsi="exercicio"
+ xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+		
+		<conteudo> fila </conteudo>	
+		<idEx> f008 </idEx>
+		<nivel> facil </nivel>
+		<tipo> me </tipo>
+		<preReq> </preReq>
+
+		<enunciado>
+			<texto> Tem-se em um programa o seguinte protótipo de uma função: </texto>
+			<codigo> Fila* func(void); </codigo>
+         	<texto> O que esta função pode representar? </texto>
+		</enunciado>
+
+		<alternativa> 
+			<texto> Destruição de uma fila </texto>
+		</alternativa>
+		
+		<alternativa> 
+			<texto> Criação da Fila </texto>
+		</alternativa>
+		
+		<alternativa> 
+			<texto> Remoção de um item da Fila </texto>	
+		</alternativa>
+		
+		<alternativa valor="true"> 
+			<texto> A segunda e terceira alternativa estão corretas. </texto>	
+		</alternativa>
+		
+		<alternativa> 
+			<texto> Nenhuma das anteriores </texto>	
+		</alternativa>
+
+		<resposta> </resposta>
+
+</exercicio>
+

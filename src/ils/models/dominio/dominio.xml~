@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dominio SYSTEM "dominio.dtd">
+<conteudo>
+
+	<nome> O nome do conteudo vem aqui </nome>
+
+	<apresentacao>
+	
+		<idAp> O id da apresentacao </idAp>
+		<conteudo> O nome do conteudo ao qual se destina o recurso </conteudo>
+		<texto> Texto para apresentacao </texto>
+		<codigo> codigo para apresentacao</codigo>	
+	
+	</apresentacao>
+
+	<exercicio>
+		
+		<idEx> O id do exercicio, que o identifica unicamente</idEx>
+		<nivel> O nivel pode ser facil, medio ou avancado </nivel>
+		<preReq> O nome dos conteudos necessários para responder a esta questão </preReq>		
+
+		<enunciado> O enunciado do exercicio vem aqui </enunciado>
+
+		<alternativa id=""> 
+			<idAlt> O id da alternativa, identifica a unicamente </idAlt>
+			<texto> O texto da alternativa</texto>
+			<codigo> O codigo da alternativa, se for o caso</codigo>
+			<valor> aqui é V ou F. No caso vale como a resposta da alternativa. </valor>
+		</alternativa>
+
+		<entradaTexto /> 
+		<entradaCodigo /> 
+
+		<resposta> O id da resposta correta</resposta>
+
+		<multimidia>
+			<idMult> O id da multimidia </idMult>
+			<figura> O diretório/url da figura vem aqui </figura> 		
+			<video> O diretório/url do video vem aqui </video>
+		</multimidia>
+
+	</exercicio>
+
+	<multimidia>
+	
+		<idMult> O id da multimidia </idMult>
+		<conteudo> O nome do conteudo ao qual se destina o recurso </conteudo>	
+		<figura> O diretório/url da figura vem aqui </figura> 		
+		<video> O diretório/url do video vem aqui </video>
+
+	</multimidia>
+
+</conteudo>
+

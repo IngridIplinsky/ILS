@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+ xmlns="exercicio"
+ xmlns:xsi="exercicio"
+ xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+
+		<conteudo> alocacao dinamica </conteudo>
+		<idEx> ad004 </idEx>
+		<nivel> facil </nivel>
+		<tipo> me </tipo>
+		<preReq> </preReq>
+
+		<enunciado> 
+			<texto>
+				Desejo criar a seguinte estrutura em C: 
+            	Um vetor de 3 posicoes capaz de guardar uma string em cada posição, seguindo o modelo:
+				posição 0: Maria
+            	posição 1: João
+            	posição 2: Pedro
+            	Marque a alternativa correta referente à alocação desta estrutura.
+            </texto>
+		</enunciado>
+
+		<alternativa> 
+			<codigo> vetS[3] = (char*) malloc(sizeof(char)) </codigo>
+		</alternativa>
+		
+		<alternativa> 
+			<codigo> vetS[2] = (char*) malloc(sizeof(char)) </codigo>
+		</alternativa>
+		
+		<alternativa valor="true"> 
+			<codigo>  vetS = (char*) malloc(3*sizeof(char)) </codigo>
+		</alternativa>
+		
+		<alternativa> 
+			<texto> Não é possível fazer isto na linguagem C.</texto>
+		</alternativa>
+
+		<resposta> </resposta>
+
+</exercicio>
+

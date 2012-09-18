@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+xmlns="http://www.w3schools.com"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+		
+		<conteudo> lista </conteudo>	
+		<idEx> l008 </idEx>
+		<nivel> facil </nivel>
+		<tipo> me </tipo>
+		<preReq> alocacao dinamica, vetor, fila, pilha, metodos pesquisa </preReq>
+
+		<enunciado>
+			Tem-se em um programa a seguinte função em C: 
+			void Func (TipoLista &amp;Lista) {
+				
+				Lista.Primeiro = InicioArranjo;
+				Lista.Ultimo = InicioArranjo;
+			}
+         	Qual a alteração que este código faz na Lista?
+		</enunciado>
+
+		<alternativa> 
+			<idAlt> l008a </idAlt>
+			<texto> Verifica se a lista está cheia </texto>
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt> l008b </idAlt>
+			<texto> Faz a lista ficar vazia </texto>
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt> l008c </idAlt>
+			<texto> Verifica se a lista está vazia </texto>	
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt> l008d </idAlt>
+			<texto> Nenhuma das anteriores </texto>	
+		</alternativa>
+
+		<resposta> l008b </resposta>
+
+</exercicio>
+

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+xmlns="http://www.w3schools.com"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+		
+		<conteudo> vetor </conteudo>	
+		<idEx> v008 </idEx>
+		<nivel> facil </nivel>
+		<tipo> me </tipo>
+		<preReq> </preReq>
+
+		<enunciado> 
+			<texto> Dado um vetor A definido com: </texto> 
+			<codigo> int A[99]; </codigo>
+			<texto> como preenchê-lo com o valor 30? </texto> 
+		</enunciado>
+
+		<alternativa> 
+			<codigo> afor (int i = 0; i &lt;= 99; i++) A[i] = 30; </codigo>
+		</alternativa>
+		
+		<alternativa valor="true"> 
+			<codigo> for  (int i = 0; i &lt; 99; i++)  A[i] = 30; </codigo>	
+		</alternativa>
+		
+		<alternativa> 
+			<codigo> for (int i = 1; i &lt;= 99; i++)  A[i] = 30; </codigo>	
+		</alternativa>
+		
+		<alternativa> 
+			<codigo> for (int i = 0; i &lt;= 99; i++){ A[i] = 30; i++;} </codigo>	
+		</alternativa>
+
+		<resposta> </resposta>
+
+</exercicio>
+

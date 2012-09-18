@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="exercicio">
+	<xs:complexType>
+		<xs:sequence>
+			
+			<xs:element name="conteudo" type="xs:string"/>
+			<xs:element name="idEx" type="xs:string"/>
+			<xs:element name="nivel" type="xs:string"/>
+			<xs:element name="tipo" type="xs:string"/>
+			<xs:element name="preReq" type="xs:string"/>
+
+			<xs:element name="enunciado" minOccurs="0">
+  				<xs:complexType>
+    				<xs:sequence>
+    					
+    					<xs:element name="texto" type="xs:boolean" minOccurs="0"/>
+						<xs:element name="codigo" type="xs:boolean" minOccurs="0"/>
+					
+						<xs:element name="enum" minOccurs="0">
+  							<xs:complexType>
+    							<xs:sequence>
+      								
+      								<xs:element name="item">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:attribute name="id" type="xs:string"/>
+											<xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									
+								</xs:sequence>
+							</xs:complexType>
+      					</xs:element>
+      					
+      				</xs:sequence>
+				</xs:complexType>
+      		</xs:element>
+			
+			<xs:element name="alternativa" minOccurs="0">
+  				<xs:complexType>
+    				<xs:sequence>
+    					<xs:attribute name="id" type="xs:string" minOccurs="0"/>
+						<xs:element name="valor" type="xs:boolean" minOccurs="0"/>
+      					
+      					<xs:element name="texto" minOccurs="0">
+  							<xs:complexType>
+    							<xs:sequence>
+      								
+      								<xs:element name="item" minOccurs="0">
+										<xs:complexType>
+											<xs:attribute name="id" type="xs:string"/>
+										</xs:complexType>
+									</xs:element>
+									
+								</xs:sequence>
+							</xs:complexType>
+      					</xs:element>
+      					
+      					<xs:element name="codigo" type="xs:string" minOccurs="0"/>
+    				</xs:sequence>
+  				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="texto" minOccurs="0">
+				<xs:complexType>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="codigo" minOccurs="0">
+				<xs:complexType>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="resposta">
+  				<xs:complexType>
+    				<xs:sequence>
+						<xs:element name="texto" type="xs:boolean" minOccurs="0"/>
+						<xs:element name="codigo" type="xs:boolean" minOccurs="0"/>
+					</xs:sequence>
+  				</xs:complexType>
+			</xs:element>	
+						
+		</xs:sequence>
+  	</xs:complexType>
+</xs:element>
+</xs:schema>

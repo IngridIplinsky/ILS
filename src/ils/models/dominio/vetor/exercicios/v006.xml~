@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+xmlns="http://www.w3schools.com"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+		
+		<conteudo> vetor </conteudo>	
+		<idEx> v006 </idEx>
+		<nivel> facil </nivel>
+		<tipo> me </tipo>
+		<preReq> </preReq>
+
+		<enunciado> Indique qual das variáveis a seguir representa um vetor de números reais: </enunciado>
+
+		<alternativa> 
+			<idAlt> v006a </idAlt>
+			<codigo> int A[5] </codigo>
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt> v006b </idAlt>
+			<codigo> float A[5] </codigo>	
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt> v006c </idAlt>
+			<codigo> char A[5] </codigo>	
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt> v006d </idAlt>
+			<codigo> void A[5] </codigo>	
+		</alternativa>
+
+		<resposta> v006d </resposta>
+
+</exercicio>
+

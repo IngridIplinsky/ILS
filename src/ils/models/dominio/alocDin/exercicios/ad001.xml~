@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+xmlns="http://www.w3schools.com"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+	
+	<conteudo> alocacao dinamica </conteudo>	
+	<idEx> ad001 </idEx>
+	<nivel> facil </nivel>
+	<tipo> me </tipo>
+	<preReq> </preReq>
+
+	<enunciado> A alocação dinâmica em C é feita com o seguinte comando: </enunciado>
+
+	<alternativa> 
+		<idAlt> ad001a </idAlt>
+		<codigo> allocation(estrutura*)</codigo>
+	</alternativa>
+		
+	<alternativa> 
+		<idAlt> ad001b </idAlt>
+		<codigo> free(estrutura*) </codigo>	
+	</alternativa>
+		
+	<alternativa> 
+		<idAlt> ad001c </idAlt>
+		<codigo> sizeof() </codigo>	
+	</alternativa>
+		
+	<alternativa> 
+		<idAlt> ad001d </idAlt>
+		<codigo> malloc() </codigo>
+	</alternativa>
+
+	<resposta> ad001d </resposta>
+
+</exercicio>
+
+
+

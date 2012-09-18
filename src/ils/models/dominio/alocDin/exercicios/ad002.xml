@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+ xmlns="exercicio"
+ xmlns:xsi="exercicio"
+ xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+		
+		<conteudo> alocacao dinamica </conteudo>	
+		<idEx> ad002 </idEx>
+		<nivel> facil </nivel>
+		<tipo> me </tipo>
+		<preReq> </preReq>
+		
+		<enunciado> 
+			<texto>
+			Em alguns sistemas computacionais, o gasto de memória é decisivo na produção de um software. 
+		    Para não haver desperdício de memória:
+		    </texto> 
+		</enunciado>
+
+		<alternativa> 
+			<texto> Se faz alocação estática, pois se delimita a quantidade de memória que se quer usar.</texto>
+		</alternativa>
+		
+		<alternativa> 
+			<texto> Se faz alocação dinâmica, colocando a quantidade de posições da estrutura que se quer utilizar. </texto>
+		</alternativa>
+		
+		<alternativa valor="true"> 
+			<texto> Se faz alocação dinâmica, não colocando a quantidade de posições. </texto>
+		</alternativa>
+		
+		<alternativa> 
+			<texto> Nenhuma das anteriores. </texto>
+		</alternativa>
+
+		<resposta> </resposta>
+
+</exercicio>
+
+

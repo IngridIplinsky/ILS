@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+xmlns="http://www.w3schools.com"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+
+		<conteudo> fila </conteudo>	
+		<idEx> f004 </idEx>
+		<nivel> facil </nivel>
+		<tipo> me </tipo>
+		<preReq> </preReq>
+
+		<enunciado> Quais são os dois tipos de fila de prioridade?  </enunciado>
+
+		<alternativa> 
+			<idAlt> f004a </idAlt>
+			<texto> insedente, descendente </texto>
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt> f004b </idAlt>
+			<texto> comum, alterada </texto>	
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt> f004c </idAlt>
+			<texto> ascedente, descendente</texto>
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt> f004d </idAlt>
+			<texto> Nenhuma das anteriores. </texto>
+		</alternativa>
+
+		<resposta> f004c </resposta>
+
+</exercicio>
+

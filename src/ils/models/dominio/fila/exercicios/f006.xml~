@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+xmlns="http://www.w3schools.com"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+		
+		<conteudo> fila </conteudo>	
+		<idEx> f006 </idEx>
+		<nivel> facil </nivel>
+		<tipo> me </tipo>
+		<preReq> </preReq>
+
+		<enunciado> 
+			Como é representada uma Fila estática?
+	 	</enunciado>
+
+		<alternativa> 
+			<idAlt> f006a </idAlt>
+			<texto> Usando apenas uma estrutura (struct) </texto>
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt> f006b </idAlt>
+			<texto> Usando matriz </texto>	
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt> f006c </idAlt>
+			<texto> Usando vetor </texto>	
+		</alternativa>
+		
+		<alternativa> 
+			<idAlt> f006d </idAlt>
+			<texto> Nenhuma das anteriores </texto>	
+		</alternativa>
+
+		<resposta> f006c </resposta>
+
+</exercicio>
+

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<apresentacao
+xmlns="http://www.w3schools.com"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="apresentacao.xsd">
+	
+	<idAp> O id da apresentacao </idAp>
+	<conteudo> O nome do conteudo ao qual se destina o recurso </conteudo>
+	<texto> Texto para apresentacao </texto>
+	<codigo> codigo para apresentacao</codigo>	<!--opcional. -->
+	
+</apresentacao>
