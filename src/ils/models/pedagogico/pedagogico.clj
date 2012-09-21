@@ -87,19 +87,3 @@
       :else
          (atualizar-probs-exercicio (recupera-id (session/get :senhaUsuario)) materia exercicio 0.0 0.0 1.0)
 ))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

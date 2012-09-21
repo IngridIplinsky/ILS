@@ -241,7 +241,3 @@
   (first (tag (nth (last (nth (vec (neoparse (buscar-multimidia id )))1))pos))))
  ([id pos tag alt] ;use esta para pegar url, diretorio, embedded de figuras, videos ou animacoes. Escreva "true" no ultimo argumento.
    (first (tag (last (tag (nth (last (nth (vec (neoparse (buscar-multimidia id)))1))pos))))))) 
-  
-  
-  
-  
