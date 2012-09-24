@@ -234,170 +234,77 @@
 
 (defpage [:post "/login/vetor/1"] []
     (common/layout
-         (formata-pergunta "001v.xml")))
-
+      (formata-pergunta  "1" "v001" "VETOR" "/login/vetor/2")))
 
 
 (defpage [:post "/login/vetor/2"] {:keys [op]}
 (pedagogico-corretor "vetor" "ex1" op)
      (common/layout
-         [:body {:id "fundoiframe"} 
-         [:form {:action "/login/vetor/3" :method "post" :name "form"}
-         [:center [:h5 "VETOR"]]
-         [:p (str "2) "(get-value "src/ils/models/dominio/exerc-vetor/002v.xml" :exercicio :enunciado))]
-         [:input {:type "radio" :name "op" :value "v2a" }]  
-         (get-value "src/ils/models/dominio/exerc-vetor/002v.xml" :exercicio :alternativa :idAlt1) [:br]
-         [:input {:type "radio" :name "op" :value "v2b" }]  
-	 (get-value "src/ils/models/dominio/exerc-vetor/002v.xml" :exercicio :alternativa :idAlt2) [:br]
-         [:input {:type "radio" :name "op" :value "v2c" }]  
-	 (get-value "src/ils/models/dominio/exerc-vetor/002v.xml" :exercicio :alternativa :idAlt3) [:br]
-         [:input {:type "radio" :name "op" :value "v2d" }]  
-	 (get-value "src/ils/models/dominio/exerc-vetor/002v.xml" :exercicio :alternativa :idAlt4) [:br] [:br][:br]
-         [:button {:class "botaoQuestoes" :onclick "return verificaRadio();" } "Avançar"]]]))
-
+        (formata-pergunta "2" "v002" "VETOR" "/login/vetor/3"))) 
+         
 
 (defpage [:post "/login/vetor/3"] {:keys [op]}
 (pedagogico-corretor "vetor" "ex2" op)
      (common/layout
-         [:body {:id "fundoiframe"} 
-         [:form {:action "/login/vetor/4" :method "post" :name "form"}
-         [:center [:h5 "VETOR"]]
-         [:p (str "3) "(get-value "src/ils/models/dominio/exerc-vetor/003v.xml" :exercicio :enunciado)) ]
-         [:input {:type "radio" :name "op" :value "v3a" }]  
-	 (get-value "src/ils/models/dominio/exerc-vetor/003v.xml" :exercicio :alternativa :idAlt1) [:br]
-         [:input {:type "radio" :name "op" :value "v3b" }] 
-	 (get-value "src/ils/models/dominio/exerc-vetor/003v.xml" :exercicio :alternativa :idAlt2) [:br]
-         [:input {:type "radio" :name "op" :value "v3c" }] 
-	 (get-value "src/ils/models/dominio/exerc-vetor/003v.xml" :exercicio :alternativa :idAlt3) [:br]
-         [:input {:type "radio" :name "op" :value "v3d" }]  
-	 (get-value "src/ils/models/dominio/exerc-vetor/003v.xml" :exercicio :alternativa :idAlt4) [:br] [:br][:br]
-         [:button {:class "botaoQuestoes" :onclick "return verificaRadio();"} "Avançar"]]]))
-
+       (formata-pergunta  "3" "v003" "VETOR" "/login/vetor/4")))
+        
 
 (defpage [:post "/login/vetor/4"] {:keys [op]}
 (pedagogico-corretor "vetor" "ex3" op)
      (common/layout
-         [:body {:id "fundoiframe"} 
-         [:form {:action "/login/vetor/5" :method "post" :name "form"}
-         [:center [:h5 "VETOR"]]
-         [:p (str "4) "(get-value "src/ils/models/dominio/exerc-vetor/004v.xml" :exercicio :enunciado))]
-         [:input {:type "radio" :name "op" :value "v4a" }]  
-	 (get-value "src/ils/models/dominio/exerc-vetor/004v.xml" :exercicio :alternativa :idAlt1) [:br]
-         [:input {:type "radio" :name "op" :value "v4b" }]  
-	 (get-value "src/ils/models/dominio/exerc-vetor/004v.xml" :exercicio :alternativa :idAlt2) [:br]
-         [:input {:type "radio" :name "op" :value "v4c" }] 
-	 (get-value "src/ils/models/dominio/exerc-vetor/004v.xml" :exercicio :alternativa :idAlt3) [:br]
-         [:input {:type "radio" :name "op" :value "v4d" }] 
-         (get-value "src/ils/models/dominio/exerc-vetor/004v.xml" :exercicio :alternativa :idAlt4) [:br] [:br][:br] 
-         [:button {:class "botaoQuestoes" :onclick "return verificaRadio();"} "Avançar"]]]))
-
+       (formata-pergunta  "4" "v004" "VETOR" "/login/vetor/5")))  
 
 (defpage [:post "/login/vetor/5"] {:keys [op]}   
 (pedagogico-corretor "vetor" "ex4" op)
- (common/layout
+    (common/layout
          [:body {:id "fundoiframe"} 
-         [:form {:action "/login/vetor/6" :method "post" :name "form"}
+         [:form {:action "/login/vetor/6" :method "post"}
          [:center [:h5 "VETOR"]]
-         [:p (str "5) "(get-value "src/ils/models/dominio/exerc-vetor/005v.xml" :exercicio :enunciado))]
-         [:input {:type "radio" :name "op" :value "v5a" }]  
-         (get-value "src/ils/models/dominio/exerc-vetor/005v.xml" :exercicio :alternativa :idAlt1) [:br]
-         [:input {:type "radio" :name "op" :value "v5b" }]  
-	 (get-value "src/ils/models/dominio/exerc-vetor/005v.xml" :exercicio :alternativa :idAlt2) [:br]
-         [:input {:type "radio" :name "op" :value "v5c" }] 
-	 (get-value "src/ils/models/dominio/exerc-vetor/005v.xml" :exercicio :alternativa :idAlt3) [:br]
-         [:input {:type "radio" :name "op" :value "v5d" }] 
-	 (get-value "src/ils/models/dominio/exerc-vetor/005v.xml" :exercicio :alternativa :idAlt4) [:br] [:br][:br]
-         [:button {:class "botaoQuestoes" :onclick "return verificaRadio();"} "Avançar"]]]))
-
+         [:p "5) Tenho o seguinte código: for(i=0; i&lt;5; i++) Vetor[i] = i+2 ."] 
+         [:p "O que esse código faz?"] 
+         [:input {:type "radio" :name "op" :value "a" }]  " (A)  Preenche o Vetor com o número 1." [:br]
+         [:input {:type "radio" :name "op" :value "b" }]  " (B)  Preenche o Vetor de 1 à 5. " [:br]
+         [:input {:type "radio" :name "op" :value "c" }]  " (C)  Preenche o Vetor com número 0." [:br]
+         [:input {:type "radio" :name "op" :value "d" }]  " (D)  Nenhuma das alternativas anteriores." [:br] [:br][:br]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+        
 (defpage [:post "/login/vetor/6"] {:keys [op]}
 (pedagogico-corretor "vetor" "ex5" op)
      (common/layout
          [:body {:id "fundoiframe"} 
-         [:form {:action "/login/vetor/7" :method "post" :name "form"}
-         [:center [:h5 "VETOR"]]  
-         [:p (str "6) "(get-value "src/ils/models/dominio/exerc-vetor/006v.xml" :exercicio :enunciado))]
-         [:input {:type "radio" :name "op" :value "v6a" }] 
-	 (get-value "src/ils/models/dominio/exerc-vetor/006v.xml" :exercicio :alternativa :idAlt1) [:br]
-         [:input {:type "radio" :name "op" :value "v6b" }]  
-	 (get-value "src/ils/models/dominio/exerc-vetor/006v.xml" :exercicio :alternativa :idAlt2) [:br]
-         [:input {:type "radio" :name "op" :value "v6c" }]
-	 (get-value "src/ils/models/dominio/exerc-vetor/006v.xml" :exercicio :alternativa :idAlt3) [:br]
-         [:input {:type "radio" :name "op" :value "v6d" }] 
-	 (get-value "src/ils/models/dominio/exerc-vetor/006v.xml" :exercicio :alternativa :idAlt4) [:br] [:br][:br]
-         [:button {:class "botaoQuestoes" :onclick "return verificaRadio();"} "Avançar"]]]))
-
+         [:form {:action "/login/vetor/7" :method "post"}
+         [:center [:h5 "VETOR"]]
+         [:p "6) Indique qual das variáveis a seguir representa um vetor de números reais:"] 
+         [:input {:type "radio" :name "op" :value "a" }]  " (A)  int A[5]" [:br]
+         [:input {:type "radio" :name "op" :value "b" }]  " (B)  float A[5]" [:br]
+         [:input {:type "radio" :name "op" :value "c" }]  " (C)  char A[5]" [:br]
+         [:input {:type "radio" :name "op" :value "d" }]  " (D)  void A[5]" [:br] [:br][:br]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+        
+         
 (defpage [:post "/login/vetor/7"] {:keys [op]}
 (pedagogico-corretor "vetor" "ex6" op)
      (common/layout
-         [:body {:id "fundoiframe"} 
-         [:form {:action "/login/vetor/8" :method "post" :name "form"}
-         [:center [:h5 "VETOR"]]
-         [:p (str "7) "(get-value "src/ils/models/dominio/exerc-vetor/007v.xml" :exercicio :enunciado))]
-         [:input {:type "radio" :name "op" :value "v7a" }] 
-	 (get-value "src/ils/models/dominio/exerc-vetor/007v.xml" :exercicio :alternativa :idAlt1) [:br]
-         [:input {:type "radio" :name "op" :value "v7b" }]  
-	 (get-value "src/ils/models/dominio/exerc-vetor/007v.xml" :exercicio :alternativa :idAlt2) [:br]
-         [:input {:type "radio" :name "op" :value "v7c" }]  
-	 (get-value "src/ils/models/dominio/exerc-vetor/007v.xml" :exercicio :alternativa :idAlt3) [:br]
-         [:input {:type "radio" :name "op" :value "v7d" }]  
-	 (get-value "src/ils/models/dominio/exerc-vetor/007v.xml" :exercicio :alternativa :idAlt4) [:br] [:br][:br]
-         [:button {:class "botaoQuestoes" :onclick "return verificaRadio();"} "Avançar"]]]))
-
+        (formata-pergunta  "7" "v007" "VETOR" "/login/vetor/8")))
+         
 (defpage [:post "/login/vetor/8"] {:keys [op]}
 (pedagogico-corretor "vetor" "ex7" op)
      (common/layout
-         [:body {:id "fundoiframe"} 
-         [:form {:action "/login/vetor/9" :method "post" :name "form"}
-         [:center [:h5 "VETOR"]]
-         [:p (str "8) "(get-value "src/ils/models/dominio/exerc-vetor/008v.xml" :exercicio :enunciado))]
-         [:input {:type "radio" :name "op" :value "v8a" }]  
-	 (get-value "src/ils/models/dominio/exerc-vetor/008v.xml" :exercicio :alternativa :idAlt1) [:br]
-         [:input {:type "radio" :name "op" :value "v8b" }]  
-	 (get-value "src/ils/models/dominio/exerc-vetor/008v.xml" :exercicio :alternativa :idAlt2) [:br]
-         [:input {:type "radio" :name "op" :value "v8c" }] 
-	 (get-value "src/ils/models/dominio/exerc-vetor/008v.xml" :exercicio :alternativa :idAlt3) [:br]
-         [:input {:type "radio" :name "op" :value "v8d" }]  
-	 (get-value "src/ils/models/dominio/exerc-vetor/008v.xml" :exercicio :alternativa :idAlt4) [:br] [:br][:br]
-         [:button {:class "botaoQuestoes" :onclick "return verificaRadio();"} "Avançar"]]]))
-
+       (formata-pergunta  "8" "v008" "VETOR" "/login/vetor/9")))
+         
 
 (defpage [:post "/login/vetor/9"] {:keys [op]}
 (pedagogico-corretor "vetor" "ex8" op)
      (common/layout
-         [:body {:id "fundoiframe"} 
-         [:form {:action "/login/vetor/10" :method "post" :name "form"}
-         [:center [:h5 "VETOR"]]
-         [:p (str "9) "(get-value "src/ils/models/dominio/exerc-vetor/009v.xml" :exercicio :enunciado))]
-         [:input {:type "radio" :name "op" :value "v9a" }]  
-	 (get-value "src/ils/models/dominio/exerc-vetor/009v.xml" :exercicio :alternativa :idAlt1) [:br]
-         [:input {:type "radio" :name "op" :value "v9b" }]  
-	 (get-value "src/ils/models/dominio/exerc-vetor/009v.xml" :exercicio :alternativa :idAlt2) [:br]
-         [:input {:type "radio" :name "op" :value "v9c" }] 
-	 (get-value "src/ils/models/dominio/exerc-vetor/009v.xml" :exercicio :alternativa :idAlt3) [:br]
-         [:input {:type "radio" :name "op" :value "v9d" }] 
-	 (get-value "src/ils/models/dominio/exerc-vetor/009v.xml" :exercicio :alternativa :idAlt4) [:br] [:br][:br]
-         [:button {:class "botaoQuestoes" :onclick "return verificaRadio();"} "Avançar"]]]))
-
+       (formata-pergunta  "9" "v009" "VETOR" "/login/vetor/10"))) 
+         
 
 (defpage [:post "/login/vetor/10"] {:keys [op]}
 (pedagogico-corretor "vetor" "ex9" op)
      (common/layout
-         [:body {:id "fundoiframe"} 
-         [:form {:action "/login/vetor/fim" :method "post" :name "form"}
-         [:center [:h5 "VETOR"]]
-         [:p (str "10) "(get-value "src/ils/models/dominio/exerc-vetor/010v.xml" :exercicio :enunciado))]
-         [:input {:type "radio" :name "op" :value "v10a" }]  
-	 (get-value "src/ils/models/dominio/exerc-vetor/010v.xml" :exercicio :alternativa :idAlt1) [:br]
-                                                                                    
-         [:input {:type "radio" :name "op" :value "v10b" }] 
-	 (get-value "src/ils/models/dominio/exerc-vetor/010v.xml" :exercicio :alternativa :idAlt2) [:br]
- 
-         [:input {:type "radio" :name "op" :value "v10c" }] 
-	 (get-value "src/ils/models/dominio/exerc-vetor/010v.xml" :exercicio :alternativa :idAlt3) [:br]
+       (formata-pergunta  "10" "v010" "VETOR" "/login/vetor/fim")))   
 
-         [:input {:type "radio" :name "op" :value "v10d" }]  
-	 (get-value "src/ils/models/dominio/exerc-vetor/010v.xml" :exercicio :alternativa :idAlt4) [:br] [:br][:br]
-         [:button {:class "botaoQuestoes" :onclick "return verificaRadio();"} "Avançar"]]]))
+
 
 (defpage [:post "/login/vetor/fim"] {:keys [op]}
 (pedagogico-corretor "vetor" "ex10" op)

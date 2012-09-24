@@ -292,23 +292,13 @@
 	})
 
 
-;BANCO DE DADOS -*- BANCO DE DADOS -*- BANCO DE DADOS -*- BANCO DE DADOS -*- BANCO DE DADOS -*- BANCO DE DADOS -*- BANCO DE DADOS
-(def ILS-DB 
-   {
-    :classname   "org.h2.Driver"
-    :subprotocol "h2:file"
-    :subname     (str (System/getProperty "user.dir") "/" "demo")
-    :user        "sa"
-    :password    ""
-   }
-  )
 
 (defn cria-tabela-aluno
 "Cria a tabela usada para armazenar os resultados inferidos pela rede bayesiana." 
 []
   (sql/with-connection ILS-DB
     (sql/create-table :ALUNOS
-           [:alunoKey "integer NOT NULL"]
+           [:alunoKey "varchar(30) NOT NULL"]
            [:nome "varchar(50) NOT NULL"]
            [:sobrenome "varchar(50) NOT NULL"]
 	   [:curso "varchar(50) NOT NULL"]
@@ -382,25 +372,6 @@
            [:td [:h6 (get (nth list-aux 0) :senha)]]])
 
 
-;#############################################################################################
-;************************* Função que recebe o xml e coloca na interface *********************
-;#############################################################################################
-
-(defn formata-pergunta [xml]
-         [:body {:id "fundoiframe"} 
-         [:form {:action "/login/vetor/2" :method "post" :name "form"}
-         [:center [:h5 "VETOR"]]    
-         [:p (str "1) "(get-value (str "src/ils/models/dominio/exerc-vetor/" xml) :exercicio :enunciado))]
-         [:input {:type "radio" :name "op" :value "v1a" }]
-         (get-value (str "src/ils/models/dominio/exerc-vetor/" xml) :exercicio :alternativa :idAlt1) [:br]
-         [:input {:type "radio" :name "op" :value "v1b" }] 
-         (get-value (str "src/ils/models/dominio/exerc-vetor/" xml) :exercicio :alternativa :idAlt2) [:br]
-         [:input {:type "radio" :name "op" :value "v1c" }]  
-         (get-value (str "src/ils/models/dominio/exerc-vetor/" xml) :exercicio :alternativa :idAlt3) [:br]
-         [:input {:type "radio" :name "op" :value "v1d" :onclick "" }]  
-         (get-value (str "src/ils/models/dominio/exerc-vetor/" xml) :exercicio :alternativa :idAlt4) [:br] [:br][:br]
-         [:button {:class "botaoQuestoes" :onclick "return verificaRadio();"} "Avançar"]]])
-
 
 
 
@@ -439,7 +410,7 @@
      (imprime-dados-alunos i)))
 
 
-(def var-aux (count(mostra-alunos)))
+;(def var-aux (count(mostra-alunos)))
 
 
 (defn testes [st]
@@ -479,17 +450,17 @@
 
 
 (defn recupera-id [senha]
-   (get (nth (id-aluno-senha senha) 0) :alunokey))
+  (get (nth (id-aluno-senha senha) 0) :alunokey))
 
 
 (defn retorna-exercicio-certos [alunokey conteudo]
   (sql/with-connection ILS-DB
-  (sql/with-query-results res [(str "SELECT EXERCICIO.exercicio FROM EXERCICIO WHERE EXERCICIO.alunoKey = " alunokey " AND EXERCICIO.bom = 1.0 " " AND EXERCICIO.conteudo ='" conteudo "'")]
+  (sql/with-query-results res [(str "SELECT EXERCICIO.exercicio FROM EXERCICIO WHERE EXERCICIO.alunoKey = '" alunokey "' AND EXERCICIO.bom = 1.0 " " AND EXERCICIO.conteudo ='" conteudo "'")]
     (doall res))))
   
 (defn retorna-exercicio-certos-dominio [alunokey conteudo]
   (sql/with-connection ILS-DB
-  (sql/with-query-results res [(str "SELECT DOMINIO.bom FROM DOMINIO WHERE DOMINIO.alunoKey = " alunokey " AND DOMINIO.conteudo = '" conteudo"'")]
+  (sql/with-query-results res [(str "SELECT DOMINIO.bom FROM DOMINIO WHERE DOMINIO.alunoKey = '" alunokey "' AND DOMINIO.conteudo = '" conteudo"'")]
     (doall res))))
 
 
@@ -499,7 +470,7 @@
     (cond (>= aux (count list-aux)) (do 0))
        (cond (not(>= aux (count list-aux))) 
          (do
-           (println (get (nth list-aux aux) :nome))
+           (println (get (nth list-aux aux) :nome));
            (println (get (nth list-aux aux) :alunokey))
            (println (get (nth list-aux aux) :sobrenome))
            (println (get (nth list-aux aux) :curso))
@@ -516,7 +487,7 @@
 []
   (sql/with-connection ILS-DB
     (sql/create-table :dominio
-           [:alunoKey "integer NOT NULL"]
+           [:alunoKey "varchar(30) NOT NULL"]
            [:conteudo "varchar(20) NOT NULL"]
            [:bom "float NOT NULL"]
 	   [:medio "float NOT NULL"]
@@ -531,7 +502,7 @@
 []
   (sql/with-connection ILS-DB
     (sql/create-table :exercicio
-           [:alunoKey "integer NOT NULL"]
+           [:alunoKey "varchar(30) NOT NULL"]
            [:exercicio "varchar(20) NOT NULL"]
            [:conteudo "varchar(20) NOT NULL"]
            [:bom "float NOT NULL"]
@@ -696,14 +667,14 @@
 "Mostra o dominio referente a um aluno."
 [chave]
 (sql/with-connection ILS-DB
-  (sql/with-query-results res [(str "SELECT DOMINIO.conteudo, DOMINIO.bom, DOMINIO.MEDIO, DOMINIO.ruim FROM DOMINIO WHERE DOMINIO.alunoKey = " chave)]
+  (sql/with-query-results res [(str "SELECT DOMINIO.conteudo, DOMINIO.bom, DOMINIO.MEDIO, DOMINIO.ruim FROM DOMINIO WHERE DOMINIO.alunoKey = '" chave "'")]
     (doall res))))
 
 (defn mostrar-exercicios 
 "Mostra o dominio referente a um aluno."
 [chave conteudo]
 (sql/with-connection ILS-DB
-  (sql/with-query-results res [(str "SELECT EXERCICIO.exercicio, EXERCICIO.bom, EXERCICIO.medio, EXERCICIO.ruim FROM EXERCICIO WHERE EXERCICIO.alunoKey = " chave" AND EXERCICIO.conteudo = '" conteudo "'")]
+  (sql/with-query-results res [(str "SELECT EXERCICIO.exercicio, EXERCICIO.bom, EXERCICIO.medio, EXERCICIO.ruim FROM EXERCICIO WHERE EXERCICIO.alunoKey = '" chave"' AND EXERCICIO.conteudo = '" conteudo "'")]
     (doall res))))
 
 
@@ -714,7 +685,7 @@
 [chave nconteudo qbom qmedio qruim]
     (sql/with-connection ILS-DB
       (sql/update-values :dominio
-       [(str "DOMINIO.alunoKey =" chave " AND DOMINIO.conteudo = '" nconteudo "'")]
+       [(str "DOMINIO.alunoKey ='" chave "' AND DOMINIO.conteudo = '" nconteudo "'")]
        {:alunoKey chave :conteudo nconteudo :bom qbom :medio qmedio :ruim qruim})))
 
 (defn atualizar-probs-exercicio 
@@ -722,7 +693,7 @@
 [chave nconteudo ex qbom qmedio qruim]
     (sql/with-connection ILS-DB
       (sql/update-values :exercicio
-       [(str "EXERCICIO.alunoKey =" chave " AND EXERCICIO.conteudo = '" nconteudo "' AND EXERCICIO.exercicio = '" ex"'")]
+       [(str "EXERCICIO.alunoKey ='" chave "' AND EXERCICIO.conteudo = '" nconteudo "' AND EXERCICIO.exercicio = '" ex"'")]
        {:alunoKey chave :conteudo nconteudo :exercicio ex :bom qbom :medio qmedio :ruim qruim})))
 
 

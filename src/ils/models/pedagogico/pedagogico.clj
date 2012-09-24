@@ -2,7 +2,8 @@
   (:require [ils.views.common :as common]
             [noir.content.getting-started]
             [noir.session :as session])
- (:use [ils.models.estudante.corygil estudante]))
+ (:use [ils.models.estudante.corygil estudante]
+       [ils.models.dominio dominio]))
 
 
 
@@ -11,45 +12,45 @@
 ; manipulados pelo modulo do aluno.
 (def mapaAlocacaoDinamica
 {
-   "ex1"    "al1d"
-   "ex2"    "al2c"
-   "ex3"    "al3d"
-   "ex4"    "al1c"
-   "ex5"    "al5c"
-   "ex6"    "al6c"
-   "ex7"    "al7b"
-   "ex8"    "al8d"
-   "ex9"    "al9d"
-   "ex10"   "al10c"
+   "ex1"    "d"
+   "ex2"    "c"
+   "ex3"    "d"
+   "ex4"    "c"
+   "ex5"    "c"
+   "ex6"    "c"
+   "ex7"    "b"
+   "ex8"    "d"
+   "ex9"    "d"
+   "ex10"   "c"
 })
 
 
 (def mapaVetor
 {
-   "ex1"    "v1b"
-   "ex2"    "v2d"
-   "ex3"    "v3c"
-   "ex4"    "v4a"
-   "ex5"    "v5d"
-   "ex6"    "v6d"
-   "ex7"    "v7a"
-   "ex8"    "v8b"
-   "ex9"    "v9d"
-   "ex10"   "v10a"
+   "ex1"    "b"
+   "ex2"    "d"
+   "ex3"    "c"
+   "ex4"    "a"
+   "ex5"    "d"
+   "ex6"    "d"
+   "ex7"    "a"
+   "ex8"    "b"
+   "ex9"    "d"
+   "ex10"   "a"
 })
 
 (def mapaLista
 {
-   "ex1"    "l1c"
-   "ex2"    "l2c"
-   "ex3"    "l3d"
-   "ex4"    "l2c"
-   "ex5"    "l5d"
-   "ex6"    "l6d"
-   "ex7"    "l7b"
-   "ex8"    "l8b"
-   "ex9"    "l9c"
-   "ex10"   "l10c"
+   "ex1"    "c"
+   "ex2"    "c"
+   "ex3"    "d"
+   "ex4"    "c"
+   "ex5"    "d"
+   "ex6"    "d"
+   "ex7"    "b"
+   "ex8"    "b"
+   "ex9"    "c"
+   "ex10"   "c"
 })
 
 
@@ -87,3 +88,81 @@
       :else
          (atualizar-probs-exercicio (recupera-id (session/get :senhaUsuario)) materia exercicio 0.0 0.0 1.0)
 ))
+
+
+
+;#############################################################################################
+;************************* Função que recebe o xml e coloca na interface *********************
+;#############################################################################################
+
+(defn formata-pergunta [n xml nome post]
+; Primeira coisa a ser feita e carregar o xml desejado sendo assim a 
+;performance melhora de forma signifcativa pois não será preciso buscar 
+;no banco de dados, o xml estará agora em uma estrututura
+         (carregar-xml xml)
+; Condição para verificar se o exercício é de Multipla Escolha
+; Note que usamos a função "get-value-exercicio "
+; Ela trabalha na forma de lista, ou seja a tag que trata
+; o tipo de exercicio está na posição 3 
+         (cond (= " me " (get-value-exercicio 3))
+; Abaixo temos o formato genêrico de html para exercicios de multipla escolha         
+         [:body {:id "fundoiframe"} 
+         [:form {:action post :method "post" :name "form"}
+         [:center [:h5 nome]]    
+         [:p (str n ") "(get-value-exercicio 5 0))]
+         [:input {:type "radio" :name "op" :value "a" }]
+         (get-value-exercicio 6 0) [:br]
+         [:input {:type "radio" :name "op" :value "b" }] 
+         (get-value-exercicio 7 0) [:br]
+         [:input {:type "radio" :name "op" :value "c" }]  
+         (get-value-exercicio 8 0) [:br]
+         [:input {:type "radio" :name "op" :value "d" }]  
+         (get-value-exercicio 9 0) [:br] [:br][:br]
+         [:button {:class "botaoQuestoes" :onclick "return verificaRadio();"} "Avançar"]]]
+         :else
+;Abaixo temos o formato genêrico de html para exercicios de "aa"
+ 	 (cond (= " aa " (get-value-exercicio 3))
+         [:body {:id "fundoiframe"} 
+         [:form {:action post :method "post" :name "form"}
+         [:center [:h5 nome]]    
+         [:p (str n ") "(get-value-exercicio 5 0))]
+         [:p (get-value-exercicio 5 1)]
+         [:p (get-value-exercicio 5 2)]
+	 [:p (get-value-exercicio 5 3 0)]
+         [:p (get-value-exercicio 5 3 1)]
+	 [:p (get-value-exercicio 5 3 2)]	 	         
+         [:input {:type "radio" :name "op" :value "a" }]
+         (get-value-exercicio 6 0) [:br]
+         [:input {:type "radio" :name "op" :value "b" }] 
+         (get-value-exercicio 7 0) [:br]
+         [:input {:type "radio" :name "op" :value "c" }]  
+         (get-value-exercicio 8 0) [:br]
+         [:input {:type "radio" :name "op" :value "d" }]  
+         (get-value-exercicio 9 0) [:br] [:br][:br]
+         [:button {:class "botaoQuestoes" :onclick "return verificaRadio();"} "Avançar"]]]
+; Caso de questões abertas
+	 :else
+	 [:body {:id "fundoiframe"} 
+         [:form {:action post :method "post" :name "form"}
+         [:center [:h5 nome]]    
+         [:p (str n ") "(get-value-exercicio 5 0))]
+         [:textarea {:id "Codigo" :type "text" :name "CodigoAluno"}]
+         [:button {:class "botaoAnterior"} "anterior"]
+       	 [:button {:class "botaoTestar"} "testar"]
+         [:button {:class "botaoProximo"} "próximo"]]]
+
+            ))) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

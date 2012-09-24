@@ -11,9 +11,10 @@
 		<preReq> </preReq>
 
 		<enunciado> 
-			<texto> Tenho o seguinte código: </texto>
-			<codigo> for(i=0; i&lt;5; i++) Vetor[i] = i+2 </codigo>
-			<texto> O que esse código faz? </texto>
+			<texto> Tenho o seguinte código: </texto> 
+			<codigo>for(i=0; i&lt;5; i++) Vetor[i] = i+2 </codigo> 
+			<texto> O que esse código faz? </texto> 
+                        
 		</enunciado>
 
 		<alternativa> 
