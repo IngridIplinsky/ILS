@@ -1,7 +1,7 @@
 # Listing ignored files:
 #pom.xml
-#*jar
-#.lein-deps-sum
+*jar
+.lein-deps-sum
 *~
 
 # Listing ignored directories:
