@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+ xmlns="exercicio"
+ xmlns:xsi="exercicio"
+ xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+		
+		<conteudo> fila </conteudo>	
+		<idEx> f005 </idEx>
+		<nivel> facil </nivel>
+		<tipo> vf </tipo>
+		<preReq> </preReq>
+
+		<enunciado> 
+			<texto> Marque v para verdadeiro e f para falso: </texto>
+		</enunciado>
+
+		<alternativa valor="true"> 
+			<texto> Na fila dinâmica, os elementos são encadeados para garantir a organização. </texto>
+		</alternativa>
+		
+		<alternativa valor="true"> 
+			<texto> A fila estática tem um número fixo de elementos, igual o tamanho do vetor. </texto>	
+		</alternativa>
+		
+		<alternativa valor="false"> 
+			<texto> Em uma fila estática, os dados removidos também são eliminados do vetor. </texto>
+		</alternativa>
+		
+		<alternativa valor="false"> 
+			<texto> Nunca irá ocorrer Overflow em uma fila dinâmica. </texto>
+		</alternativa>
+
+</exercicio>
+
+

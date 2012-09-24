@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+ xmlns="exercicio"
+ xmlns:xsi="exercicio"
+ xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+
+		<conteudo> fila </conteudo>	
+		<idEx> f004 </idEx>
+		<nivel> facil </nivel>
+		<tipo> me </tipo>
+		<preReq> </preReq>
+
+		<enunciado> 
+			<texto> Quais são os dois tipos de fila de prioridade? </texto>  
+		</enunciado>
+
+		<alternativa> 
+			<texto> insedente, descendente </texto>
+		</alternativa>
+		
+		<alternativa> 
+			<texto> comum, alterada </texto>	
+		</alternativa>
+		
+		<alternativa valor="true"> 
+			<texto> ascedente, descendente</texto>
+		</alternativa>
+		
+		<alternativa> 
+			<texto> Nenhuma das anteriores. </texto>
+		</alternativa>
+
+		<resposta> </resposta>
+
+</exercicio>
+

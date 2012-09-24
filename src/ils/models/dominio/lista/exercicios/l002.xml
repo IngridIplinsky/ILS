@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+ xmlns="exercicio"
+ xmlns:xsi="exercicio"
+ xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+		
+		<conteudo> lista </conteudo>	
+		<idEx> l002 </idEx>
+		<nivel> facil </nivel>
+		<tipo> me </tipo>
+		<preReq> alocacao dinamica, vetor, fila, pilha, metodos pesquisa </preReq>
+		
+		<enunciado> 
+			<texto> Como inicializar uma lista? </texto> 
+		</enunciado>
+
+		<alternativa> 
+			<codigo> Lista %L </codigo>
+		</alternativa>
+		
+		<alternativa> 
+			<codigo> Lista &amp;L </codigo>
+		</alternativa>
+		
+		<alternativa valor="true"> 
+			<codigo> Lista *L </codigo>
+		</alternativa>
+		
+		<alternativa> 
+			<codigo> Lista #L </codigo>
+		</alternativa>
+
+		<resposta> </resposta>
+
+</exercicio>
+
+

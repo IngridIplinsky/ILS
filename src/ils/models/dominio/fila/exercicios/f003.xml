@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+ xmlns="exercicio"
+ xmlns:xsi="exercicio"
+ xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+
+		<conteudo> fila </conteudo>	
+		<idEx> f003 </idEx>
+		<nivel> facil </nivel>
+		<tipo> me </tipo>
+		<preReq> </preReq>
+
+		<enunciado> Quais são as operações primitivas de uma fila? </enunciado>
+
+		<alternativa valor="true"> 
+			<texto>  Inserir, Remover e Buscar </texto>
+		</alternativa>
+		
+		<alternativa> 
+			<texto> Destruir, Remover e Alocar </texto>	
+		</alternativa>
+		
+		<alternativa> 
+			<texto>  Buscar, Alocar e Destruir </texto>
+		</alternativa>
+		
+		<alternativa> 
+			<texto> Nenhuma das anteriores. </texto>
+		</alternativa>
+
+		<resposta> </resposta>
+
+</exercicio>
+

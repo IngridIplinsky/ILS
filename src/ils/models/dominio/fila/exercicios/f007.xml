@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+xmlns="http://www.w3schools.com"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+	
+		<conteudo> fila </conteudo>	
+		<idEx> f007 </idEx>
+		<nivel> facil </nivel>
+		<tipo> me </tipo>
+		<preReq> </preReq>
+
+		<enunciado> 
+			<texto> A seguinte estrutura em C: </texto>
+			<codigo>
+			queue {
+				int items[MAXQUEUE]; 
+				int front, 
+				rear;};
+			</codigo>
+         	<texto> representa uma fila... </texto>
+		</enunciado>
+
+		<alternativa> 
+			<texto>  Cheia </texto>
+		</alternativa>
+		
+		<alternativa> 
+			<texto> Estática  </texto>	
+		</alternativa>
+		
+		<alternativa valor="true"> 
+			<texto> Dinâmica </texto>
+		</alternativa>
+		
+		<alternativa> 
+			<texto> Nenhuma das anteriores </texto>
+		</alternativa>
+
+		<resposta> </resposta>
+
+</exercicio>
+
+

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+ xmlns="exercicio"
+ xmlns:xsi="exercicio"
+ xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+		
+		<conteudo> vetor </conteudo>	
+		<idEx> v006 </idEx>
+		<nivel> facil </nivel>
+		<tipo> me </tipo>
+		<preReq> </preReq>
+
+		<enunciado> 
+			<texto> Indique qual das variáveis a seguir representa um vetor de números reais: </texto>
+		</enunciado>
+
+		<alternativa> 
+			<codigo> int A[5] </codigo>
+		</alternativa>
+		
+		<alternativa> 
+			<codigo> float A[5] </codigo>	
+		</alternativa>
+		
+		<alternativa> 
+			<codigo> char A[5] </codigo>	
+		</alternativa>
+		
+		<alternativa valor="true"> 
+			<codigo> void A[5] </codigo>	
+		</alternativa>
+
+		<resposta> </resposta>
+
+</exercicio>
+

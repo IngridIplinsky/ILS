@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+ xmlns="exercicio"
+ xmlns:xsi="exercicio"
+ xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+
+		<conteudo> vetor </conteudo>	
+		<idEx> v003 </idEx>
+		<nivel> facil </nivel>
+		<tipo> me </tipo>
+		<preReq> </preReq>
+
+		<enunciado> 
+			<texto> Qual código a seguir percorre o vetor de caracteres de 4 posições, imprimindo cada item: </texto> 
+		</enunciado>
+
+		<alternativa> 
+			<codigo> for(i = 0, i &lt;= 4, i++)  printf(%d, vetor[i]); </codigo>
+		</alternativa>
+		
+		<alternativa> 
+			<codigo> for(i = 0; i &lt; 4, i++)  printf(&quot;%d&quot;,vetor[i]); </codigo>	
+		</alternativa>
+		
+		<alternativa valor="true"> 
+			<codigo> for(i = 0; i &lt; 4, i++)  printf(%c,vetor[i]); </codigo>	
+		</alternativa>
+		
+		<alternativa> 
+			<texto> Nenhuma das anteriores. </texto>
+		</alternativa>
+
+		<resposta> </resposta>
+
+</exercicio>
+
