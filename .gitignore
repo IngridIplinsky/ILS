@@ -1,9 +1,9 @@
 # Listing ignored files:
-pom.xml
-*jar
-.lein-deps-sum
+#pom.xml
+#*jar
+#.lein-deps-sum
 *~
 
 # Listing ignored directories:
-/lib/
-/classes/
+#/lib/
+#/classes/
