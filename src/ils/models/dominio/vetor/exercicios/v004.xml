@@ -4,11 +4,10 @@
  xmlns:xsi="exercicio"
  xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
 
-		<conteudo> vetor </conteudo>	
-		<idEx> v004 </idEx>
-		<nivel> facil </nivel>
-		<tipo> me </tipo>
-		<preReq> </preReq>
+		<conteudo>vetor</conteudo>	
+		<idEx>v004</idEx>
+		<nivel>facil</nivel>
+		<tipo>me</tipo>
 
 		<enunciado> 
 			<texto> Os vetores são matrizes de quantas dimensões: </texto> 

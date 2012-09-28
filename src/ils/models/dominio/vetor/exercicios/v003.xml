@@ -1,14 +1,14 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <exercicio
  xmlns="exercicio"
  xmlns:xsi="exercicio"
  xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
 
-		<conteudo> vetor </conteudo>	
-		<idEx> v003 </idEx>
-		<nivel> facil </nivel>
-		<tipo> me </tipo>
-		<preReq> </preReq>
+		<conteudo>vetor</conteudo>	
+		<idEx>v003</idEx>
+		<nivel>facil</nivel>
+		<tipo>me</tipo>
 
 		<enunciado> 
 			<texto> Qual código a seguir percorre o vetor de caracteres de 4 posições, imprimindo cada item: </texto> 

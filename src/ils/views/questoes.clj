@@ -234,80 +234,112 @@
 
 (defpage [:post "/login/vetor/1"] []
     (common/layout
-      (formata-pergunta  "1" "v001" "VETOR" "/login/vetor/2")))
+      ;(formata-pergunta  "1" "v001" "VETOR" "/login/vetor/2")
+      (pedagogico-main)
+    ))
 
 
 (defpage [:post "/login/vetor/2"] {:keys [op]}
-(pedagogico-corretor "vetor" "ex1" op)
-     (common/layout
-        (formata-pergunta "2" "v002" "VETOR" "/login/vetor/3"))) 
+;(pedagogico-corretor "vetor" "ex1" op)
+;(pedagogico-corretor "vetor" "v001" op)
+    (common/layout
+        ;(formata-pergunta "2" "v002" "VETOR" "/login/vetor/3")
+        (pedagogico-corretor 2 op)
+    )) 
          
 
 (defpage [:post "/login/vetor/3"] {:keys [op]}
-(pedagogico-corretor "vetor" "ex2" op)
-     (common/layout
-       (formata-pergunta  "3" "v003" "VETOR" "/login/vetor/4")))
+;(pedagogico-corretor "vetor" "ex2" op)
+;(pedagogico-corretor "vetor" "v002" op)
+    (common/layout
+       ;(formata-pergunta  "3" "v003" "VETOR" "/login/vetor/4")
+       (pedagogico-corretor 3 op)
+    ))
         
 
 (defpage [:post "/login/vetor/4"] {:keys [op]}
-(pedagogico-corretor "vetor" "ex3" op)
-     (common/layout
-       (formata-pergunta  "4" "v004" "VETOR" "/login/vetor/5")))  
+;(pedagogico-corretor "vetor" "ex3" op)
+;(pedagogico-corretor "vetor" "v003" op)
+    (common/layout
+       ;(formata-pergunta  "4" "v004" "VETOR" "/login/vetor/5")
+       (pedagogico-corretor 4 op)
+    ))  
 
 (defpage [:post "/login/vetor/5"] {:keys [op]}   
-(pedagogico-corretor "vetor" "ex4" op)
+;(pedagogico-corretor "vetor" "ex4" op)
+;(pedagogico-corretor "vetor" "v004" op)
     (common/layout
-         [:body {:id "fundoiframe"} 
-         [:form {:action "/login/vetor/6" :method "post"}
-         [:center [:h5 "VETOR"]]
-         [:p "5) Tenho o seguinte código: for(i=0; i&lt;5; i++) Vetor[i] = i+2 ."] 
-         [:p "O que esse código faz?"] 
-         [:input {:type "radio" :name "op" :value "a" }]  " (A)  Preenche o Vetor com o número 1." [:br]
-         [:input {:type "radio" :name "op" :value "b" }]  " (B)  Preenche o Vetor de 1 à 5. " [:br]
-         [:input {:type "radio" :name "op" :value "c" }]  " (C)  Preenche o Vetor com número 0." [:br]
-         [:input {:type "radio" :name "op" :value "d" }]  " (D)  Nenhuma das alternativas anteriores." [:br] [:br][:br]
-         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+;         [:body {:id "fundoiframe"} 
+;         [:form {:action "/login/vetor/6" :method "post"}
+;         [:center [:h5 "VETOR"]]
+;         [:p "5) Tenho o seguinte código: for(i=0; i&lt;5; i++) Vetor[i] = i+2 ."] 
+;         [:p "O que esse código faz?"] 
+;         [:input {:type "radio" :name "op" :value "a" }]  " (A)  Preenche o Vetor com o número 1." [:br]
+;         [:input {:type "radio" :name "op" :value "b" }]  " (B)  Preenche o Vetor de 1 à 5. " [:br]
+;         [:input {:type "radio" :name "op" :value "c" }]  " (C)  Preenche o Vetor com número 0." [:br]
+;         [:input {:type "radio" :name "op" :value "d" }]  " (D)  Nenhuma das alternativas anteriores." [:br] [:br][:br]
+;         [:button {:class "botaoQuestoes"} "Avançar"]]]
+        (pedagogico-corretor 5 op)
+    )
+)
         
 (defpage [:post "/login/vetor/6"] {:keys [op]}
-(pedagogico-corretor "vetor" "ex5" op)
+;(pedagogico-corretor "vetor" "ex5" op)
+;(pedagogico-corretor "vetor" "v005" op)
      (common/layout
-         [:body {:id "fundoiframe"} 
-         [:form {:action "/login/vetor/7" :method "post"}
-         [:center [:h5 "VETOR"]]
-         [:p "6) Indique qual das variáveis a seguir representa um vetor de números reais:"] 
-         [:input {:type "radio" :name "op" :value "a" }]  " (A)  int A[5]" [:br]
-         [:input {:type "radio" :name "op" :value "b" }]  " (B)  float A[5]" [:br]
-         [:input {:type "radio" :name "op" :value "c" }]  " (C)  char A[5]" [:br]
-         [:input {:type "radio" :name "op" :value "d" }]  " (D)  void A[5]" [:br] [:br][:br]
-         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+;         [:body {:id "fundoiframe"} 
+;         [:form {:action "/login/vetor/7" :method "post"}
+;         [:center [:h5 "VETOR"]]
+;         [:p "6) Indique qual das variáveis a seguir representa um vetor de números reais:"] 
+;         [:input {:type "radio" :name "op" :value "a" }]  " (A)  int A[5]" [:br]
+;         [:input {:type "radio" :name "op" :value "b" }]  " (B)  float A[5]" [:br]
+;         [:input {:type "radio" :name "op" :value "c" }]  " (C)  char A[5]" [:br]
+;         [:input {:type "radio" :name "op" :value "d" }]  " (D)  void A[5]" [:br] [:br][:br]
+;         [:button {:class "botaoQuestoes"} "Avançar"]]]
+        (pedagogico-corretor 6 op)
+    )
+)
         
          
 (defpage [:post "/login/vetor/7"] {:keys [op]}
-(pedagogico-corretor "vetor" "ex6" op)
-     (common/layout
-        (formata-pergunta  "7" "v007" "VETOR" "/login/vetor/8")))
+;(pedagogico-corretor "vetor" "ex6" op)
+;(pedagogico-corretor "vetor" "v006" op)
+    (common/layout
+        ;(formata-pergunta  "7" "v007" "VETOR" "/login/vetor/8")
+        (pedagogico-corretor 7 op)
+    ))
          
 (defpage [:post "/login/vetor/8"] {:keys [op]}
-(pedagogico-corretor "vetor" "ex7" op)
-     (common/layout
-       (formata-pergunta  "8" "v008" "VETOR" "/login/vetor/9")))
+;(pedagogico-corretor "vetor" "ex7" op)
+;(pedagogico-corretor "vetor" "v007" op)
+    (common/layout
+       ;(formata-pergunta  "8" "v008" "VETOR" "/login/vetor/9")
+       (pedagogico-corretor 8 op)
+    ))
          
 
 (defpage [:post "/login/vetor/9"] {:keys [op]}
-(pedagogico-corretor "vetor" "ex8" op)
-     (common/layout
-       (formata-pergunta  "9" "v009" "VETOR" "/login/vetor/10"))) 
+;(pedagogico-corretor "vetor" "ex8" op)
+;(pedagogico-corretor "vetor" "v008" op)
+    (common/layout
+       ;(formata-pergunta  "9" "v009" "VETOR" "/login/vetor/10")
+       (pedagogico-corretor 9 op)
+    ))
          
 
 (defpage [:post "/login/vetor/10"] {:keys [op]}
-(pedagogico-corretor "vetor" "ex9" op)
-     (common/layout
-       (formata-pergunta  "10" "v010" "VETOR" "/login/vetor/fim")))   
+;(pedagogico-corretor "vetor" "ex9" op)
+;(pedagogico-corretor "vetor" "v009" op)
+    (common/layout
+       ;(formata-pergunta  "10" "v010" "VETOR" "/login/vetor/fim")
+       (pedagogico-corretor 10 op)
+    ))
 
 
 
 (defpage [:post "/login/vetor/fim"] {:keys [op]}
-(pedagogico-corretor "vetor" "ex10" op)
+;(pedagogico-corretor "vetor" "ex10" op)
+;(pedagogico-corretor "vetor" "v010" op)
 (atualiza-todo-dominio (recupera-id (session/get :senhaUsuario)) "vetor")   
 (cond (> (get (nth (retorna-exercicio-certos-dominio (recupera-id (session/get :senhaUsuario)) "vetor") 0) :bom) 0.5)
   (common/layout

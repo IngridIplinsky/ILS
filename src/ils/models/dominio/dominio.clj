@@ -3,7 +3,7 @@
   	[clojure.zip :as zip] 
 	[clojure.contrib.zip-filter.xml :as zf]
 	[clojure.java.jdbc :as sql])
-  (:use [clojure.data.xml])
+  (:use clojure.data.xml)
 )
   
 ;BANCO DE DADOS -*- BANCO DE DADOS -*- BANCO DE DADOS -*- BANCO DE DADOS -*- BANCO DE DADOS -*- BANCO DE DADOS -*- BANCO DE DADOS
@@ -252,7 +252,4 @@
   (first (:content (nth (last (nth (vec xml )1))pos))))
  ([pos alt] ;use esta para pegar url, diretorio, embedded de figuras, videos ou animacoes. Escreva "true" no ultimo argumento.
    (first (:content (last (:content (nth (last (nth (vec xml )1))pos))))))) 
-  
-  
-  
-  
+
