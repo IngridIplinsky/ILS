@@ -5,8 +5,6 @@
  (:use [ils.models.estudante.corygil estudante]
        [ils.models.dominio dominio]))
 
-
-
 (def mapaRespostas
 {
    "a"   5
@@ -213,10 +211,20 @@
       :corretude (= (mod (get mapaRespostas resposta) 2) 0)
       })
    (cond
-      (get xmlmap :corretude)
-         (atualizar-probs-exercicio (recupera-id (session/get :senhaUsuario))  (get xmlmap :conteudo) (get xmlmap :exercicio) 1.0 0.0 0.0)
-      :else
-         (atualizar-probs-exercicio (recupera-id (session/get :senhaUsuario))  (get xmlmap :conteudo) (get xmlmap :exercicio) 0.0 0.0 1.0)
+      (or (or (or (= resposta "a") (= resposta "b")) (= resposta "c")) (= resposta "d"))
+         (cond
+            (get xmlmap :corretude)
+               (atualizar-probs-exercicio (recupera-id (session/get :senhaUsuario))  (get xmlmap :conteudo) (get xmlmap :exercicio) 1.0 0.0 0.0)
+            :else
+               (atualizar-probs-exercicio (recupera-id (session/get :senhaUsuario))  (get xmlmap :conteudo) (get xmlmap :exercicio) 0.0 0.0 1.0)
+         )
+   :else
+      (cond
+         (= (mod (rand-int 2) 0) 0)
+            (atualizar-probs-exercicio (recupera-id (session/get :senhaUsuario))  (get xmlmap :conteudo) (get xmlmap :exercicio) 1.0 0.0 0.0)
+         :else
+            (atualizar-probs-exercicio (recupera-id (session/get :senhaUsuario))  (get xmlmap :conteudo) (get xmlmap :exercicio) 0.0 0.0 1.0)
+      )
    )
    (pedagogico-gera-exercicio n (get xmlmap :nivel) (get xmlmap :corretude) )
 )
