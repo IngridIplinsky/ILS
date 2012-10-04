@@ -2,34 +2,35 @@
 <exercicio
  xmlns="exercicio"
  xmlns:xsi="exercicio"
- xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+ xsi:schemaLocation="/src/dominio/exercicio.xsd">
 		
 		<conteudo>vetor</conteudo>	
 		<idEx>v002</idEx>
 		<nivel>facil</nivel>
 		<tipo>me</tipo>
+		<preReq> </preReq>
 		
 		<enunciado> 
-		 	<texto> A individualização de cada variável de um vetor é feita através do uso de: </texto>
+		 	<texto>A individualização de cada variável de um vetor é feita através do uso de:</texto>
 		</enunciado>
+		
+		<resposta> </resposta>
 
 		<alternativa> 
-			<texto> dimensão.</texto>
+			<texto>dimensão.</texto>
 		</alternativa>
 		
 		<alternativa> 
-			<texto> coluna.</texto>
+			<texto>coluna.</texto>
 		</alternativa>
 		
 		<alternativa> 
-			<texto> linha. </texto>
+			<texto>linha.</texto>
 		</alternativa>
 		
 		<alternativa valor="true"> 
-			<texto> índices. </texto>
+			<texto>índices.</texto>
 		</alternativa>
-
-		<resposta> </resposta>
 
 </exercicio>
 

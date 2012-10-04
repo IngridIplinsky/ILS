@@ -2,12 +2,12 @@
 <exercicio
  xmlns="exercicio"
  xmlns:xsi="exercicio"
- xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+ xsi:schemaLocation="/src/dominio/exercicio.xsd">
 		
-		<conteudo> alocacao dinamica </conteudo>	
-		<idEx> ad010 </idEx>
-		<nivel> facil </nivel>
-		<tipo> me </tipo>
+		<conteudo>alocacao dinamica</conteudo>	
+		<idEx>ad010</idEx>
+		<nivel>facil</nivel>
+		<tipo>me</tipo>
 		<preReq> </preReq>
 
 		<enunciado>
@@ -23,25 +23,25 @@
 			</codigo>
 			<texto> O que o código faz ? </texto>
 		</enunciado>
+		
+		<resposta> </resposta>
 
 		<alternativa> 
-			<texto> aloca um vetor e retorna seu valor </texto>
+			<texto>aloca um vetor e retorna seu valor</texto>
 		</alternativa>
 		
 		<alternativa> 
-			<texto>  aloca e depois limpa a memoria </texto>	
+			<texto>aloca e depois limpa a memoria</texto>	
 		</alternativa>
 		
 		<alternativa valor="true"> 
-			<texto> aloca e verifica se deu certo </texto>
+			<texto>aloca e verifica se deu certo</texto>
 		</alternativa>
 		
 		<alternativa> 
-			<texto> Nenhuma das anteriores </texto>	
+			<texto>Nenhuma das anteriores</texto>	
 		</alternativa>
 		
-
-		<resposta> </resposta>
 
 </exercicio>
 

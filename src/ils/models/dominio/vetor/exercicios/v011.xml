@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+ xmlns="exercicio"
+ xmlns:xsi="exercicio"
+ xsi:schemaLocation="/src/dominio/exercicio.xsd">
+		
+		<conteudo>vetor</conteudo>	
+		<idEx>v011</idEx>
+		<nivel>medio</nivel>
+		<tipo>programacao</tipo>
+		<preReq> </preReq>
+
+		<enunciado> 
+			<texto>Dados 5 notas, calcular a média das notas e identificar se elas são maiores ou menor do que a média das notas.</texto> 
+		</enunciado>
+		
+		<resposta>
+			<codigo>
+				int 
+				main(void)
+				{
+
+					float nota1,nota2,nota3,nota4,nota5,media;
+					media=0.0;
+
+					scanf(&quot;%f&quot;,&amp;nota1);
+					scanf(&quot;%f&quot;,&amp;nota2);
+					scanf(&quot;%f&quot;,&amp;nota3);
+					scanf(&quot;%f&quot;,&amp;nota4);
+					scanf(&quot;%f&quot;,&amp;nota5);
+					media=nota1+nota2+nota3+nota4+nota5;
+					if(nota1&gt;media)
+						printf(&quot;%f &gt; %f&quot;,nota1,media);
+					if(nota2&gt;media)
+						printf(&quot;%f &gt; %f&quot;,nota2,media);
+					if(nota3&gt;media)
+						printf(&quot;%f &gt; %f&quot;,nota3,media);
+					if(nota4&gt;media)
+						printf(&quot;%f &gt; %f&quot;,nota4,media);
+					if(nota5&gt;media)
+						printf(&quot;%f &gt; %f&quot;,nota5,media);
+
+					return 0;
+				}
+			</codigo>
+		</resposta>
+
+		<entradaCodigo />
+		
+
+</exercicio>
+

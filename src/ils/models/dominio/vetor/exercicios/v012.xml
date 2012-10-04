@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+ xmlns="exercicio"
+ xmlns:xsi="exercicio"
+ xsi:schemaLocation="/src/dominio/exercicio.xsd">
+		
+		<conteudo>vetor</conteudo>	
+		<idEx>v012</idEx>
+		<nivel>dificil</nivel>
+		<tipo>programacao</tipo>
+		<preReq> </preReq>
+
+		<enunciado> 
+			<texto> 
+				Dados 1000 notas, calcular a média das notas e identificar se elas são maiores ou menor do que a média das notas. 
+			</texto> 
+		</enunciado>
+		
+		<resposta>
+			<codigo>
+				int 
+				main(void)
+				{
+					float nota[5], media;
+					int cont;
+
+					media=0.0;
+					cont=0;
+
+						while(cont&gt;=999){ 
+							scanf(&quot;%f&quot;,nota[cont]); 
+							media=media+nota[cont]); 
+							cont++; 
+						}  
+							for(cont=0; cont&lt;=4; cont++){ 
+								if(nota[cont]&gt;media)
+									printf(&quot;a nota %d eh maior que a media da sala&quot;,cont+1);
+								else
+									printf(&quot;a nota %d eh menor que a media da sala&quot;,cont+1);
+							}
+					return 0;
+				}
+			</codigo>
+		</resposta>
+
+		<entradaCodigo />
+		
+
+</exercicio>

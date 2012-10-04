@@ -2,41 +2,41 @@
 <exercicio
  xmlns="exercicio"
  xmlns:xsi="exercicio"
- xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+ xsi:schemaLocation="/src/dominio/exercicio.xsd">
 		
-		<conteudo> lista </conteudo>	
-		<idEx> l005 </idEx>
-		<nivel> facil </nivel>
-		<tipo> me </tipo>
-		<preReq> alocacao dinamica, vetor, fila, pilha, metodos pesquisa </preReq>
+		<conteudo>lista</conteudo>	
+		<idEx>l005</idEx>
+		<nivel>facil</nivel>
+		<tipo>me</tipo>
+		<preReq>alocacao dinamica, vetor, fila, pilha, metodos pesquisa</preReq>
 
 		<enunciado> 
-			<texto> Tenho o seguinte código: </texto>
+			<texto>Tenho o seguinte código:</texto>
 		 	<codigo>
 		 	p = list; 
 		 	list = next(p); 
 		 	x = info(p);
 		 	</codigo>
-			<texto> O que esse código quer dizer? </texto>
+			<texto>O que esse código quer dizer?</texto>
 		</enunciado>
+		
+		<resposta> </resposta>
 
 		<alternativa> 
-			<texto> Pega o elemento central da lista. </texto>
+			<texto>Pega o elemento central da lista.</texto>
 		</alternativa>
 		
 		<alternativa> 
-			<texto> Imprime o primeiro elemento da lista. </texto>	
+			<texto>Imprime o primeiro elemento da lista.</texto>	
 		</alternativa>
 		
 		<alternativa> 
-			<texto> Imprime o último elemento da lista. </texto>
+			<texto>Imprime o último elemento da lista.</texto>
 		</alternativa>
 		
 		<alternativa valor="true"> 
-			<texto> Remove o primeiro elemento da lista. </texto>
+			<texto>Remove o primeiro elemento da lista.</texto>
 		</alternativa>
-
-		<resposta> </resposta>
 
 </exercicio>
 

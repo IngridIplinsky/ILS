@@ -2,35 +2,35 @@
 <exercicio
  xmlns="exercicio"
  xmlns:xsi="exercicio"
- xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+ xsi:schemaLocation="/src/dominio/exercicio.xsd">
 
-		<conteudo> lista </conteudo>	
-		<idEx> l004 </idEx>
-		<nivel> facil </nivel>
-		<tipo> me </tipo>
-		<preReq> alocacao dinamica, vetor, fila, pilha, metodos pesquisa </preReq>
+		<conteudo>lista</conteudo>	
+		<idEx>l004</idEx>
+		<nivel>facil</nivel>
+		<tipo>me</tipo>
+		<preReq>alocacao dinamica, vetor, fila, pilha, metodos pesquisa</preReq>
 
 		<enunciado> 
-			<texto> Quais são as informações essenciais para reproduzir uma lista encadeada? </texto>  
+			<texto>Quais são as informações essenciais para reproduzir uma lista encadeada?</texto>  
 		</enunciado>
+		
+		<resposta> </resposta>
 
 		<alternativa> 
-			<texto> tamanho da lista e elemento do meio </texto>
+			<texto>tamanho da lista e elemento do meio</texto>
 		</alternativa>
 		
 		<alternativa> 
-			<texto> o primeiro e último elementos </texto>	
+			<texto>o primeiro e último elementos</texto>	
 		</alternativa>
 		
 		<alternativa valor="true"> 
-			<texto> o primeiro elemento e o próximo </texto>
+			<texto>o primeiro elemento e o próximo</texto>
 		</alternativa>
 		
 		<alternativa> 
-			<texto> Nenhuma das anteriores. </texto>
+			<texto>Nenhuma das anteriores.</texto>
 		</alternativa>
-
-		<resposta> </resposta>
 
 </exercicio>
 

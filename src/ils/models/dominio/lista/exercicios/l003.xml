@@ -2,35 +2,35 @@
 <exercicio
  xmlns="exercicio"
  xmlns:xsi="exercicio"
- xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+ xsi:schemaLocation="/src/dominio/exercicio.xsd">
 
-		<conteudo> lista </conteudo>	
-		<idEx> l003 </idEx>
-		<nivel> facil </nivel>
-		<tipo> me </tipo>
-		<preReq> alocacao dinamica, vetor, fila, pilha, metodos pesquisa </preReq>
+		<conteudo>lista</conteudo>	
+		<idEx>l003</idEx>
+		<nivel>facil</nivel>
+		<tipo>me</tipo>
+		<preReq>alocacao dinamica, vetor, fila, pilha, metodos pesquisa</preReq>
 
 		<enunciado> 
-			<texto> Marque a alternativa incorreta: </texto>
+			<texto>Marque a alternativa incorreta:</texto>
 		</enunciado>
+		
+		<resposta> </resposta>
 
 		<alternativa> 
-			<texto>  Pode-se ter acesso a qualquer elemento em uma lista. </texto>
+			<texto>Pode-se ter acesso a qualquer elemento em uma lista.</texto>
 		</alternativa>
 		
 		<alternativa> 
-			<texto> Se só inserir no fim e remover no início, a lista faz o papel de uma fila. </texto>	
+			<texto>Se só inserir no fim e remover no início, a lista faz o papel de uma fila.</texto>	
 		</alternativa>
 		
 		<alternativa> 
-			<texto>  Não existem restrições em relação à posição dos elementos em uma lista. </texto>
+			<texto>Não existem restrições em relação à posição dos elementos em uma lista.</texto>
 		</alternativa>
 		
 		<alternativa valor="true"> 
-			<texto> Existem restrições em relação à posição dos elementos em uma lista. </texto>
+			<texto>Existem restrições em relação à posição dos elementos em uma lista.</texto>
 		</alternativa>
-
-		<resposta> </resposta>
 
 </exercicio>
 

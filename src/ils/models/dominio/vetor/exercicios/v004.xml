@@ -2,34 +2,35 @@
 <exercicio
  xmlns="exercicio"
  xmlns:xsi="exercicio"
- xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+ xsi:schemaLocation="/src/dominio/exercicio.xsd">
 
 		<conteudo>vetor</conteudo>	
 		<idEx>v004</idEx>
 		<nivel>facil</nivel>
 		<tipo>me</tipo>
+		<preReq> </preReq>
 
 		<enunciado> 
-			<texto> Os vetores são matrizes de quantas dimensões: </texto> 
+			<texto>Os vetores são matrizes de quantas dimensões:</texto> 
 		</enunciado>
+		
+		<resposta> </resposta>
 
 		<alternativa valor="true"> 
-			<texto> 1 dimensão </texto>
+			<texto>1 dimensão</texto>
 		</alternativa>
 		
 		<alternativa> 
-			<texto> 0 dimensão </texto>	
+			<texto>0 dimensão</texto>	
 		</alternativa>
 		
 		<alternativa> 
-			<texto> 2 dimensões </texto>
+			<texto>2 dimensões</texto>
 		</alternativa>
 		
 		<alternativa> 
-			<texto> Nenhuma das anteriores. </texto>
+			<texto>Nenhuma das anteriores.</texto>
 		</alternativa>
-
-		<resposta> </resposta>
 
 </exercicio>
 

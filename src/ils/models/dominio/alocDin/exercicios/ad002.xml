@@ -2,12 +2,12 @@
 <exercicio
  xmlns="exercicio"
  xmlns:xsi="exercicio"
- xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+ xsi:schemaLocation="/src/dominio/exercicio.xsd">
 		
-		<conteudo> alocacao dinamica </conteudo>	
-		<idEx> ad002 </idEx>
-		<nivel> facil </nivel>
-		<tipo> me </tipo>
+		<conteudo>alocacao dinamica</conteudo>	
+		<idEx>ad002</idEx>
+		<nivel>facil</nivel>
+		<tipo>me</tipo>
 		<preReq> </preReq>
 		
 		<enunciado> 
@@ -16,24 +16,24 @@
 		    Para não haver desperdício de memória:
 		    </texto> 
 		</enunciado>
+		
+		<resposta> </resposta>
 
 		<alternativa> 
-			<texto> Se faz alocação estática, pois se delimita a quantidade de memória que se quer usar.</texto>
+			<texto>Se faz alocação estática, pois se delimita a quantidade de memória que se quer usar.</texto>
 		</alternativa>
 		
 		<alternativa> 
-			<texto> Se faz alocação dinâmica, colocando a quantidade de posições da estrutura que se quer utilizar. </texto>
+			<texto>Se faz alocação dinâmica, colocando a quantidade de posições da estrutura que se quer utilizar.</texto>
 		</alternativa>
 		
 		<alternativa valor="true"> 
-			<texto> Se faz alocação dinâmica, não colocando a quantidade de posições. </texto>
+			<texto>Se faz alocação dinâmica, não colocando a quantidade de posições.</texto>
 		</alternativa>
 		
 		<alternativa> 
-			<texto> Nenhuma das anteriores. </texto>
+			<texto>Nenhuma das anteriores.</texto>
 		</alternativa>
-
-		<resposta> </resposta>
 
 </exercicio>
 

@@ -2,35 +2,35 @@
 <exercicio
  xmlns="exercicio"
  xmlns:xsi="exercicio"
- xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+ xsi:schemaLocation="/src/dominio/exercicio.xsd">
 		
-		<conteudo> fila </conteudo>	
-		<idEx> f006 </idEx>
-		<nivel> facil </nivel>
-		<tipo> me </tipo>
+		<conteudo>fila</conteudo>	
+		<idEx>f006</idEx>
+		<nivel>facil</nivel>
+		<tipo>me</tipo>
 		<preReq> </preReq>
 
 		<enunciado> 
-			<texto> Como é representada uma Fila estática? </texto>
+			<texto>Como é representada uma Fila estática?</texto>
 	 	</enunciado>
+	 	
+	 	<resposta> </resposta>
 
 		<alternativa> 
-			<texto> Usando apenas uma estrutura (struct) </texto>
+			<texto>Usando apenas uma estrutura (struct)</texto>
 		</alternativa>
 		
 		<alternativa> 
-			<texto> Usando matriz </texto>	
+			<texto>Usando matriz</texto>	
 		</alternativa>
 		
 		<alternativa valor="true"> 
-			<texto> Usando vetor </texto>	
+			<texto>Usando vetor</texto>	
 		</alternativa>
 		
 		<alternativa> 
-			<texto> Nenhuma das anteriores </texto>	
+			<texto>Nenhuma das anteriores</texto>	
 		</alternativa>
-
-		<resposta> </resposta>
 
 </exercicio>
 

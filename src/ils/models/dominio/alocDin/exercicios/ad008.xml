@@ -2,35 +2,35 @@
 <exercicio
  xmlns="exercicio"
  xmlns:xsi="exercicio"
- xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+ xsi:schemaLocation="/src/dominio/exercicio.xsd">
 		
-		<conteudo> alocacao dinamica </conteudo>
-		<idEx> ad008 </idEx>
-		<nivel> facil </nivel>
-		<tipo> me </tipo>
+		<conteudo>alocacao dinamica</conteudo>
+		<idEx>ad008</idEx>
+		<nivel>facil</nivel>
+		<tipo>me</tipo>
 		<preReq> </preReq>
 
 		<enunciado> 
-			<texto> Marque a alternativa correta para se alocar um vetor inteiro vet de 500 posições na linguagem C: </texto> 
+			<texto>Marque a alternativa correta para se alocar um vetor inteiro vet de 500 posições na linguagem C:</texto> 
 		</enunciado>
+		
+		<resposta> </resposta>
 
 		<alternativa> 
-			<codigo> vet = (int*) malloc (sizeof(int)) </codigo>
+			<codigo>vet = (int*) malloc (sizeof(int))</codigo>
 		</alternativa>
 		
 		<alternativa> 
-			<codigo> (int*) malloc (sizeof(int)) </codigo>	
+			<codigo>(int*) malloc (sizeof(int))</codigo>	
 		</alternativa>
 		
 		<alternativa> 
-			<codigo> malloc (500*sizeof(int)) </codigo>	
+			<codigo>malloc (500*sizeof(int))</codigo>	
 		</alternativa>
 		
 		<alternativa valor="true"> 
-			<codigo> malloc (500*sizeof(int)) </codigo>	
+			<codigo>malloc (500*sizeof(int))</codigo>	
 		</alternativa>
-
-		<resposta> </resposta>
 
 </exercicio>
 

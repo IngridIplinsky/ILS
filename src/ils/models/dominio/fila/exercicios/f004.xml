@@ -2,35 +2,35 @@
 <exercicio
  xmlns="exercicio"
  xmlns:xsi="exercicio"
- xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+ xsi:schemaLocation="/src/dominio/exercicio.xsd">
 
-		<conteudo> fila </conteudo>	
-		<idEx> f004 </idEx>
-		<nivel> facil </nivel>
-		<tipo> me </tipo>
+		<conteudo>fila</conteudo>	
+		<idEx>f004</idEx>
+		<nivel>facil</nivel>
+		<tipo>me</tipo>
 		<preReq> </preReq>
 
 		<enunciado> 
-			<texto> Quais são os dois tipos de fila de prioridade? </texto>  
+			<texto>Quais são os dois tipos de fila de prioridade?</texto>  
 		</enunciado>
+		
+		<resposta> </resposta>
 
 		<alternativa> 
-			<texto> insedente, descendente </texto>
+			<texto>incidente, descendente</texto>
 		</alternativa>
 		
 		<alternativa> 
-			<texto> comum, alterada </texto>	
+			<texto>comum, alterada</texto>	
 		</alternativa>
 		
 		<alternativa valor="true"> 
-			<texto> ascedente, descendente</texto>
+			<texto>ascendente, descendente</texto>
 		</alternativa>
 		
 		<alternativa> 
-			<texto> Nenhuma das anteriores. </texto>
+			<texto>Nenhuma das anteriores.</texto>
 		</alternativa>
-
-		<resposta> </resposta>
 
 </exercicio>
 

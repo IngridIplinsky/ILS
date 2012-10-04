@@ -2,16 +2,16 @@
 <exercicio
  xmlns="exercicio"
  xmlns:xsi="exercicio"
- xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+ xsi:schemaLocation="/src/dominio/exercicio.xsd">
 	
-		<conteudo> lista </conteudo>	
-		<idEx> l007 </idEx>
-		<nivel> facil </nivel>
-		<tipo> me </tipo>
-		<preReq> alocacao dinamica, vetor, fila, pilha, metodos pesquisa </preReq>
+		<conteudo>lista</conteudo>	
+		<idEx>l007</idEx>
+		<nivel>facil</nivel>
+		<tipo>me</tipo>
+		<preReq>alocacao dinamica, vetor, fila, pilha, metodos pesquisa</preReq>
 
 		<enunciado> 
-			<texto> Tenho o seguinte código em C: </texto>
+			<texto>Tenho o seguinte código em C:</texto>
 			<codigo>
 			N getNode(){ 
 				
@@ -21,26 +21,26 @@
 				
 			}
 			</codigo>
-         	<texto> O que esse código faz? </texto> 
+         	<texto>O que esse código faz?</texto> 
 		</enunciado>
+		
+		<resposta> </resposta>
 
 		<alternativa> 
-			<texto>  Aloca uma lista estática e retorna a mesma </texto>
+			<texto>Aloca uma lista estática e retorna a mesma</texto>
 		</alternativa>
 		
 		<alternativa valor="true"> 
-			<texto> Aloca uma lista dinâmica e retorna a mesma  </texto>	
+			<texto>Aloca uma lista dinâmica e retorna a mesma</texto>	
 		</alternativa>
 		
 		<alternativa> 
-			<texto> Aloca uma lista usando outra lista </texto>
+			<texto>Aloca uma lista usando outra lista</texto>
 		</alternativa>
 		
 		<alternativa> 
-			<texto> Nenhuma das anteriores </texto>
+			<texto>Nenhuma das anteriores</texto>
 		</alternativa>
-
-		<resposta> </resposta>
 
 </exercicio>
 

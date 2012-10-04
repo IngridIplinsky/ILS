@@ -2,34 +2,35 @@
 <exercicio
  xmlns="exercicio"
  xmlns:xsi="exercicio"
- xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+ xsi:schemaLocation="/src/dominio/exercicio.xsd">
 	
 	<conteudo>vetor</conteudo>	
 	<idEx>v001</idEx>
 	<nivel>facil</nivel>
 	<tipo>me</tipo>
+	<preReq> </preReq>
 
 	<enunciado> 
-		<texto> Quero atribuir a uma variável X a quinta posição de um vetor V de 100 posições. Para isto: </texto> 
+		<texto>Quero atribuir a uma variável X a quinta posição de um vetor V de 100 posições. Para isto:</texto> 
 	</enunciado>
+	
+	<resposta> </resposta>
 
 	<alternativa> 
-		<codigo> X = V[5] </codigo>
+		<codigo>X = V[5]</codigo>
 	</alternativa>
 		
 	<alternativa valor="true"> 
-		<codigo> X = V[4] </codigo>	
+		<codigo>X = V[4]</codigo>	
 	</alternativa>
 		
 	<alternativa> 
-		<texto> Não é possível acessá-la diretamente, preciso fazer um laço que percorre até v[4]. </texto>	
+		<texto>Não é possível acessá-la diretamente, preciso fazer um laço que percorre até v[4].</texto>	
 	</alternativa>
 		
 	<alternativa> 
-		<texto> Nenhuma das alternativas anteriores. </texto>
+		<texto>Nenhuma das alternativas anteriores.</texto>
 	</alternativa>
-
-	<resposta> </resposta>
 
 </exercicio>
 

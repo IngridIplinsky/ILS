@@ -2,16 +2,16 @@
 <exercicio
  xmlns="exercicio"
  xmlns:xsi="exercicio"
- xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+ xsi:schemaLocation="/src/dominio/exercicio.xsd">
 		
-		<conteudo> lista </conteudo>	
-		<idEx> l008 </idEx>
-		<nivel> facil </nivel>
-		<tipo> me </tipo>
-		<preReq> alocacao dinamica, vetor, fila, pilha, metodos pesquisa </preReq>
+		<conteudo>lista</conteudo>	
+		<idEx>l008</idEx>
+		<nivel>facil</nivel>
+		<tipo>me</tipo>
+		<preReq>alocacao dinamica, vetor, fila, pilha, metodos pesquisa</preReq>
 
 		<enunciado>
-			<texto> Tem-se em um programa a seguinte função em C: </texto> 
+			<texto>Tem-se em um programa a seguinte função em C:</texto> 
 			<codigo>
 			void Func (TipoLista &amp;Lista) {
 				
@@ -19,26 +19,26 @@
 				Lista.Ultimo = InicioArranjo;
 			}
 			</codigo>
-         	<texto> Qual a alteração que este código faz na Lista? </texto>
+         	<texto>Qual a alteração que este código faz na Lista?</texto>
 		</enunciado>
+		
+		<resposta> </resposta>
 
 		<alternativa> 
-			<texto> Verifica se a lista está cheia </texto>
+			<texto>Verifica se a lista está cheia</texto>
 		</alternativa>
 		
 		<alternativa valor="true"> 
-			<texto> Faz a lista ficar vazia </texto>
+			<texto>Faz a lista ficar vazia</texto>
 		</alternativa>
 		
 		<alternativa> 
-			<texto> Verifica se a lista está vazia </texto>	
+			<texto>Verifica se a lista está vazia</texto>	
 		</alternativa>
 		
 		<alternativa> 
-			<texto> Nenhuma das anteriores </texto>	
+			<texto>Nenhuma das anteriores</texto>	
 		</alternativa>
-
-		<resposta> </resposta>
 
 </exercicio>
 

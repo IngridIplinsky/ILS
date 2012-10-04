@@ -2,37 +2,37 @@
 <exercicio
  xmlns="exercicio"
  xmlns:xsi="exercicio"
- xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+ xsi:schemaLocation="/src/dominio/exercicio.xsd">
 		
-		<conteudo> alocacao dinamica </conteudo>
-		<idEx> ad006 </idEx>
-		<nivel> facil </nivel>
-		<tipo> me </tipo>
+		<conteudo>alocacao dinamica</conteudo>
+		<idEx>ad006</idEx>
+		<nivel>facil</nivel>
+		<tipo>me</tipo>
 		<preReq> </preReq>
 
 		<enunciado> 
-			<texto> Dado o código: </texto>
-			<codigo> ptr = malloc (sizeof (data)); </codigo>
-			<texto> O que a variavel ptr representa? </texto>
+			<texto>Dado o código:</texto>
+			<codigo>ptr = malloc (sizeof (data));</codigo>
+			<texto>O que a variavel ptr representa?</texto>
 		</enunciado>
+		
+		<resposta> </resposta>
 
 		<alternativa> 
-			<texto> Devolve o endereço</texto>
+			<texto>Devolve o endereço</texto>
 		</alternativa>
 		
 		<alternativa> 
-			<texto> Devolve um valor qualquer </texto>
+			<texto>Devolve um valor qualquer</texto>
 		</alternativa>
 		
 		<alternativa valor="true"> 
-			<texto> Devolve NULL </texto>
+			<texto>Devolve NULL</texto>
 		</alternativa>
 		
 		<alternativa> 
-			<texto> Devolve lixo </texto>
+			<texto>Devolve lixo</texto>
 		</alternativa>
-
-		<resposta> </resposta>
 
 </exercicio>
 

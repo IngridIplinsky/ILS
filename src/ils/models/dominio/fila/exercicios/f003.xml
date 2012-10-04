@@ -2,33 +2,33 @@
 <exercicio
  xmlns="exercicio"
  xmlns:xsi="exercicio"
- xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+ xsi:schemaLocation="/src/dominio/exercicio.xsd">
 
-		<conteudo> fila </conteudo>	
-		<idEx> f003 </idEx>
-		<nivel> facil </nivel>
-		<tipo> me </tipo>
+		<conteudo>fila</conteudo>	
+		<idEx>f003</idEx>
+		<nivel>facil</nivel>
+		<tipo>me</tipo>
 		<preReq> </preReq>
 
-		<enunciado> Quais são as operações primitivas de uma fila? </enunciado>
+		<enunciado>Quais são as operações primitivas de uma fila?</enunciado>
+		
+		<resposta> </resposta>
 
 		<alternativa valor="true"> 
-			<texto>  Inserir, Remover e Buscar </texto>
+			<texto>Inserir, Remover e Buscar</texto>
 		</alternativa>
 		
 		<alternativa> 
-			<texto> Destruir, Remover e Alocar </texto>	
+			<texto>Destruir, Remover e Alocar</texto>	
 		</alternativa>
 		
 		<alternativa> 
-			<texto>  Buscar, Alocar e Destruir </texto>
+			<texto>Buscar, Alocar e Destruir</texto>
 		</alternativa>
 		
 		<alternativa> 
-			<texto> Nenhuma das anteriores. </texto>
+			<texto>Nenhuma das anteriores.</texto>
 		</alternativa>
-
-		<resposta> </resposta>
 
 </exercicio>
 

@@ -2,35 +2,35 @@
 <exercicio
  xmlns="exercicio"
  xmlns:xsi="exercicio"
- xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+ xsi:schemaLocation="/src/dominio/exercicio.xsd">
 		
-		<conteudo> lista </conteudo>	
-		<idEx> l002 </idEx>
-		<nivel> facil </nivel>
-		<tipo> me </tipo>
-		<preReq> alocacao dinamica, vetor, fila, pilha, metodos pesquisa </preReq>
+		<conteudo>lista</conteudo>	
+		<idEx>l002</idEx>
+		<nivel>facil</nivel>
+		<tipo>me</tipo>
+		<preReq>alocacao dinamica, vetor, fila, pilha, metodos pesquisa</preReq>
 		
 		<enunciado> 
-			<texto> Como inicializar uma lista? </texto> 
+			<texto>Como inicializar uma lista?</texto> 
 		</enunciado>
+		
+		<resposta> </resposta>
 
 		<alternativa> 
-			<codigo> Lista %L </codigo>
+			<codigo>Lista %L</codigo>
 		</alternativa>
 		
 		<alternativa> 
-			<codigo> Lista &amp;L </codigo>
+			<codigo>Lista &amp;L</codigo>
 		</alternativa>
 		
 		<alternativa valor="true"> 
-			<codigo> Lista *L </codigo>
+			<codigo>Lista *L</codigo>
 		</alternativa>
 		
 		<alternativa> 
-			<codigo> Lista #L </codigo>
+			<codigo>Lista #L</codigo>
 		</alternativa>
-
-		<resposta> </resposta>
 
 </exercicio>
 

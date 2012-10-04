@@ -2,17 +2,19 @@
 <exercicio
  xmlns="exercicio"
  xmlns:xsi="exercicio"
- xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+ xsi:schemaLocation="/src/dominio/exercicio.xsd">
 	
-	<conteudo> lista </conteudo>	
-	<idEx> l001 </idEx>
-	<nivel> facil </nivel>
-	<tipo> me </tipo>
-	<preReq> alocacao dinamica, vetor, fila, pilha, metodos pesquisa </preReq>
+	<conteudo>lista</conteudo>	
+	<idEx>l001</idEx>
+	<nivel>facil</nivel>
+	<tipo>me</tipo>
+	<preReq>alocacao dinamica, vetor, fila, pilha, metodos pesquisa</preReq>
 
 	<enunciado> 
-		<texto> Quais são os tipos de lista? </texto>
+		<texto>Quais são os tipos de lista?</texto>
 	</enunciado>
+	
+	<resposta> </resposta>
 
 	<alternativa> 
 		<texto> encadeada reversa, duplamente encadeada, cíclica e estática </texto>
@@ -29,8 +31,6 @@
 	<alternativa> 
 		<texto> Nenhuma das alternativas anteriores. </texto>
 	</alternativa>
-
-	<resposta> </resposta>
 
 </exercicio>
 

@@ -2,12 +2,12 @@
 <exercicio
  xmlns="exercicio"
  xmlns:xsi="exercicio"
- xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+ xsi:schemaLocation="/src/dominio/exercicio.xsd">
 	
-	<conteudo> recursividade </conteudo>	
-	<idEx> r001 </idEx>
-	<nivel> facil </nivel>
-	<tipo> me </tipo>
+	<conteudo>recursividade</conteudo>	
+	<idEx>r001</idEx>
+	<nivel>facil</nivel>
+	<tipo>me</tipo>
 	<preReq> </preReq>
 
 	<enunciado> 
@@ -16,6 +16,8 @@
         Marque a alternativa correta referente ao(s) problema(s) ocasionado(s) pela recursão:
         </texto> 
 	</enunciado>
+	
+	<resposta> </resposta>
 
 	<alternativa> 
 		<texto> segmentation fault </texto>
@@ -32,8 +34,6 @@
 	<alternativa> 
 		<texto> Todas as anteriores. </texto>
 	</alternativa>
-
-	<resposta> </resposta>
 
 </exercicio>
 

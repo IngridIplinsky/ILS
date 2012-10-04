@@ -2,35 +2,35 @@
 <exercicio
  xmlns="exercicio"
  xmlns:xsi="exercicio"
- xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+ xsi:schemaLocation="/src/dominio/exercicio.xsd">
 	
-		<conteudo> alocacao dinamica </conteudo>	
-		<idEx> ad007 </idEx>
-		<nivel> facil </nivel>
-		<tipo> me </tipo>
+		<conteudo>alocacao dinamica</conteudo>	
+		<idEx>ad007</idEx>
+		<nivel>facil</nivel>
+		<tipo>me</tipo>
 		<preReq> </preReq>
 
 		<enunciado> 
-			<texto> Se quisermos alocar espaço para 100 inteiros, podemos usar: </texto>
+			<texto>Se quisermos alocar espaço para 100 inteiros, podemos usar:</texto>
 		</enunciado>
+		
+		<resposta> </resposta>
 
 		<alternativa valor="true"> 
-			<codigo> int &amp;ip; ip = (int &amp;) malloc(100*sizeof(int)); </codigo>
+			<codigo>int &amp;ip; ip = (int &amp;) malloc(100*sizeof(int));</codigo>
 		</alternativa>
 		
 		<alternativa> 
-			<codigo> int *ip; ip = (int *) malloc(100*sizeof(int)); </codigo>	
+			<codigo>int *ip; ip = (int *) malloc(100*sizeof(int));</codigo>	
 		</alternativa>
 		
 		<alternativa> 
-			<codigo> int *ip; &amp;ip = (int *) sizeof(100*malloc(*int)); </codigo>
+			<codigo>int *ip; &amp;ip = (int *) sizeof(100*malloc(*int));</codigo>
 		</alternativa>
 		
 		<alternativa> 
-			<codigo> int *ip; ip = (int *) sizeof(100*malloc(int)); </codigo>
+			<codigo>int *ip; ip = (int *) sizeof(100*malloc(int));</codigo>
 		</alternativa>
-
-		<resposta> </resposta>
 
 </exercicio>
 

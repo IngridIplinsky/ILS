@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+ xmlns="exercicio"
+ xmlns:xsi="exercicio"
+ xsi:schemaLocation="/src/dominio/exercicio.xsd">
+		
+		<conteudo>lista</conteudo>	
+		<idEx>l014</idEx>
+		<nivel>dificil</nivel>
+		<tipo>programacao</tipo>
+		<preReq>alocacao dinamica, vetor, fila, pilha, metodos pesquisa</preReq>
+
+		<enunciado> 
+			<texto> 
+				Considere uma lista simplesmente encadeada que armazena os seguintes dados de alunos de uma disciplina:
+			 </texto> 
+			 <enum>
+			 	<item id="1"> Número de matrícula: número inteiro </item>
+			 	<item id="2"> Nome: até 80 caracteres </item>
+			 	<item id="3"> Nome na disciplina: número de ponto flutuante </item>
+			 </enum>
+			 <texto> 
+				Considerando que a estrutura que representa um nó de lista é dado por:
+			</texto>
+			<codigo>
+				struct lista {
+					int matricula;
+					char nome[81];
+					float media;
+					struct lista* prox;
+				}
+				typedef struct lista Lista;
+			</codigo>   
+			<texto> 
+				Implemente uma função que insira, em ordem crescente de número de matrícula, os dados de um novo aluno na lista.
+				Esta função deve obedecer o seguinte protótipo, retornando o ponteiro para o primeiro elemento:
+			</texto> 
+			<codigo>
+				Lista* ins_ordenado (Lista* l, int mat, char* nome, float nota);
+			</codigo>
+		</enunciado>
+		
+		<resposta>
+			<codigo>
+				Lista* ins_ordenado(Lista* L, int mat, char* nome, float nota)
+				{
+					Lista* p = L;
+					Lista ant = NULL;
+					Lista* novo = (Lista*)malloc(sizeof(Lista));
+					novo -&gt;mat = mat;
+					strcpy(novo-&gt;nome, nome);
+					novo-&gt;media = nota;
+					novo-&gt;prox = NULL;
+					if (p==NULL) 
+						return novo;
+					while ((p!=NULL) &amp;&amp; (novo-&gt;mat &gt; p-&gt;mat))
+					{ 
+						ant = p; p = p-&gt;prox;
+					}
+					if (ant == NULL) {
+					novo-&gt;prox = p; 
+					return novo;
+					}
+					novo -&gt;prox = ant-&gt;prox;
+					ant-&gt;prox = novo;
+					return L;
+				}
+				
+			</codigo>
+	 	</resposta>
+
+		<entradaCodigo />
+
+</exercicio>

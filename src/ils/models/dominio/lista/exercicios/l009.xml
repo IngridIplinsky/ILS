@@ -2,35 +2,35 @@
 <exercicio
  xmlns="exercicio"
  xmlns:xsi="exercicio"
- xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+ xsi:schemaLocation="/src/dominio/exercicio.xsd">
 		
-		<conteudo> lista </conteudo>	
-		<idEx> l009 </idEx>
-		<nivel> facil </nivel>
-		<tipo> me </tipo>
-		<preReq> alocacao dinamica, vetor, fila, pilha, metodos pesquisa </preReq>
+		<conteudo>lista</conteudo>	
+		<idEx>l009</idEx>
+		<nivel>facil</nivel>
+		<tipo>me</tipo>
+		<preReq>alocacao dinamica, vetor, fila, pilha, metodos pesquisa</preReq>
 
 		<enunciado> 
-			<texto> Para buscar um item em uma lista encadeada ...</texto>
+			<texto>Para buscar um item em uma lista encadeada ...</texto>
 		</enunciado>
+		
+		<resposta> </resposta>
 
 		<alternativa> 
-			<texto> Busca direto pelo indice </texto>
+			<texto>Busca direto pelo indice</texto>
 		</alternativa>
 		
 		<alternativa> 
-			<texto> Percorre toda a lista </texto>	
+			<texto>Percorre toda a lista</texto>	
 		</alternativa>
 		
 		<alternativa valor="true"> 
-			<texto> Percorre até achar o item </texto>	
+			<texto>Percorre até achar o item</texto>	
 		</alternativa>
 		
 		<alternativa> 
-			<texto> Nenhuma das anteriores </texto>
+			<texto>Nenhuma das anteriores</texto>
 		</alternativa>
-
-		<resposta> </resposta>
 
 </exercicio>
 

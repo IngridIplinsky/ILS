@@ -2,16 +2,19 @@
 <exercicio
  xmlns="exercicio"
  xmlns:xsi="exercicio"
- xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/exercicio.xsd">
+ xsi:schemaLocation="/src/dominio/exercicio.xsd">
 		
 		<conteudo>vetor</conteudo>	
 		<idEx>v010</idEx>
 		<nivel>facil</nivel>
 		<tipo>me</tipo>
+		<preReq> </preReq>
 
 		<enunciado> 
-			<texto> Dada uma sequência de n números, imprime-las na ordem inversa à da leitura. </texto> 
+			<texto>Dada uma sequência de n números, imprime-las na ordem inversa à da leitura.</texto> 
 		</enunciado>
+		
+		<resposta> </resposta>
 
 		<alternativa> 
 			<codigo>
@@ -49,8 +52,6 @@
 			</codigo>	
 		</alternativa>
 		
-
-		<resposta> </resposta>
 
 </exercicio>
 
