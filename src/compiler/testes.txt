@@ -1,0 +1,94 @@
+int x[3][5];
+{:tag dec, 
+ :specs ({:tag int}), 
+ :init ({:tag declarator, 
+         :arg1 [], 
+         :arg2 {:tag decl, 
+                :base {:tag decl, 
+                       :base {:tag decl, 
+                              :base {:tag decl, 
+                                     :base {:tag id, :lexeme x,}, 
+                                     :ty-qual []}, 
+                              :assign {:tag cast-exp, 
+                                       :exp {:tag int-const, 
+                                             :value 3 }}}, 
+                                       :ty-qual []}, 
+                :assign {:tag cast-exp, 
+                         :exp {:tag int-const, 
+                               :value 5}}}})}
+
+int x[3][5];
+{:tag decl,
+ :name x
+ :type {:tag array
+        :size 3
+        :type {:tag array
+               :size 5
+               :type int}
+       } 
+}
+
+
+{:tag dec, 
+ :specs ({:tag int}), 
+ :init ({:tag declarator, 
+         :arg1 [], 
+         :arg2 {:tag decl, 
+                :base {:tag decl, 
+                       :base {:tag decl, 
+                              :base {:tag decl, 
+                                     :base {:tag id, :lexeme x,}, 
+                                     :ty-qual []}, 
+                              :assign {:tag cast-exp, 
+                                       :exp {:tag int-const, 
+                                             :value 3 }}}, 
+                                       :ty-qual []}, 
+                :assign {:tag cast-exp, 
+                         :exp {:tag int-const, 
+                               :value 5}}}})}
+
+
+
+
+int x[10];
+{:tag decl,
+ :name x
+ :type {:tag array
+        :size 10
+        :type int} }
+
+
+int x[10][5];
+{:tag decl,
+ :name x
+ :type {:tag array
+        :size 10
+        :type {:tag array
+               :size 5
+               :type int}
+       } 
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
