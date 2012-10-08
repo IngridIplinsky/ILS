@@ -26,11 +26,11 @@
 		
 		<resposta> </resposta>
 
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>aloca um vetor e retorna seu valor</texto>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>aloca e depois limpa a memoria</texto>	
 		</alternativa>
 		
@@ -38,7 +38,7 @@
 			<texto>aloca e verifica se deu certo</texto>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Nenhuma das anteriores</texto>	
 		</alternativa>
 		

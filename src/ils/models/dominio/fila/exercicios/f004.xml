@@ -16,11 +16,11 @@
 		
 		<resposta> </resposta>
 
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>incidente, descendente</texto>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>comum, alterada</texto>	
 		</alternativa>
 		
@@ -28,7 +28,7 @@
 			<texto>ascendente, descendente</texto>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Nenhuma das anteriores.</texto>
 		</alternativa>
 

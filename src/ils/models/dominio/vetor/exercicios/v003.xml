@@ -16,11 +16,11 @@
 		
 		<resposta> </resposta>
 
-		<alternativa> 
+		<alternativa valor="false"> 
 			<codigo>for(i = 0, i &lt;= 4, i++)  printf(%d, vetor[i]);</codigo>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<codigo>for(i = 0; i &lt; 4, i++)  printf(&quot;%d&quot;,vetor[i]);</codigo>	
 		</alternativa>
 		
@@ -28,7 +28,7 @@
 			<codigo>for(i = 0; i &lt; 4, i++)  printf(%c,vetor[i]);</codigo>	
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Nenhuma das anteriores.</texto>
 		</alternativa>
 

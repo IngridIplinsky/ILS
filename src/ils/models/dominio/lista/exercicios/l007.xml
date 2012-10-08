@@ -26,7 +26,7 @@
 		
 		<resposta> </resposta>
 
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Aloca uma lista estática e retorna a mesma</texto>
 		</alternativa>
 		
@@ -34,11 +34,11 @@
 			<texto>Aloca uma lista dinâmica e retorna a mesma</texto>	
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Aloca uma lista usando outra lista</texto>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Nenhuma das anteriores</texto>
 		</alternativa>
 

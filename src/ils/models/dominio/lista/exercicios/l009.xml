@@ -16,11 +16,11 @@
 		
 		<resposta> </resposta>
 
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Busca direto pelo indice</texto>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Percorre toda a lista</texto>	
 		</alternativa>
 		
@@ -28,7 +28,7 @@
 			<texto>Percorre até achar o item</texto>	
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Nenhuma das anteriores</texto>
 		</alternativa>
 

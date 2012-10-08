@@ -24,23 +24,23 @@
 		
 		<resposta> </resposta>
 
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto> As afirmações <item id="1" /> e <item id="2" /> são corretas.</texto>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Criação da Fila</texto>	
 		</alternativa>
 		
-		<alternativa val="true"> 
+		<alternativa valor="true"> 
 			<texto>As afirmações <item id="1" /> e <item id="3" /> são corretas.</texto>	
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>A primeira e terceira alternativas estão corretas.</texto>	
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Nenhuma das anteriores</texto>	
 		</alternativa>
 		

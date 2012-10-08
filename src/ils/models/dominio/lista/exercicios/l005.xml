@@ -22,15 +22,15 @@
 		
 		<resposta> </resposta>
 
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Pega o elemento central da lista.</texto>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Imprime o primeiro elemento da lista.</texto>	
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Imprime o último elemento da lista.</texto>
 		</alternativa>
 		

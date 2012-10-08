@@ -19,7 +19,7 @@
 	
 	<resposta> </resposta>
 
-	<alternativa> 
+	<alternativa valor="false"> 
 		<texto> segmentation fault </texto>
 	</alternativa>
 		
@@ -27,11 +27,11 @@
 		<texto> stack overflow </texto>
 	</alternativa>
 		
-	<alternativa> 
+	<alternativa valor="false"> 
 		<texto> ineficiência </texto>
 	</alternativa>
 		
-	<alternativa> 
+	<alternativa valor="false"> 
 		<texto> Todas as anteriores. </texto>
 	</alternativa>
 

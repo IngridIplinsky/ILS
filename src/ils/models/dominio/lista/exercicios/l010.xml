@@ -23,11 +23,11 @@
 		
 		<resposta> </resposta>
 
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Lista estática</texto>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Lista encadeada simples</texto>	
 		</alternativa>
 		
@@ -35,7 +35,7 @@
 			<texto>Lista duplamente encadeada</texto>	
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Nenhuma das anteriores</texto>	
 		</alternativa>
 

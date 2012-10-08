@@ -21,15 +21,15 @@
          
          <resposta> </resposta>
 
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Inserção</texto>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Alteração</texto>	
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Remoção</texto>	
 		</alternativa>
 		

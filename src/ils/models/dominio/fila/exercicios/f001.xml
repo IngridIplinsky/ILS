@@ -23,15 +23,15 @@
 		<texto>FIFO (first in, first out)</texto>
 	</alternativa>
 		
-	<alternativa> 
+	<alternativa valor="false"> 
 		<texto>LIFO (last in, first out)</texto>
 	</alternativa>
 		
-	<alternativa> 
+	<alternativa valor="false"> 
 		<texto>FILO (first in, last out)</texto>
 	</alternativa>
 		
-	<alternativa> 
+	<alternativa valor="false"> 
 		<texto>LILO (last in, last out)</texto>
 	</alternativa>
 

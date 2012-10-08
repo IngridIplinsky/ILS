@@ -18,11 +18,11 @@
 		
 		<resposta> </resposta>
 
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Devolve o endereço</texto>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Devolve um valor qualquer</texto>
 		</alternativa>
 		
@@ -30,7 +30,7 @@
 			<texto>Devolve NULL</texto>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Devolve lixo</texto>
 		</alternativa>
 

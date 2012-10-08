@@ -18,15 +18,15 @@
 	 	
 	 	<resposta> </resposta>
 
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Um nó para representar uma lista estática</texto>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Um nó para representar uma lista dinâmica</texto>	
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>O maior elemento de uma lista e seu próximo</texto>	
 		</alternativa>
 		

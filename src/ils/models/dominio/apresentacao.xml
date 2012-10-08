@@ -2,7 +2,7 @@
 <apresentacao
  xmlns="apresentacao"
  xmlns:xsi="apresentacao"
- xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/apresentacao.xsd">
+ xsi:schemaLocation="apresentacao.xsd">
 	
 	<idAp> O id da apresentacao </idAp>
 	<conteudo> O nome do conteudo ao qual se destina o recurso </conteudo>

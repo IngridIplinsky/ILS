@@ -18,15 +18,15 @@
 		
 		<resposta> </resposta>
 
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Destruição de uma fila</texto>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Criação da Fila</texto>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Remoção de um item da Fila</texto>	
 		</alternativa>
 		
@@ -34,7 +34,7 @@
 			<texto>A segunda e terceira alternativa estão corretas.</texto>	
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Nenhuma das anteriores</texto>	
 		</alternativa>
 

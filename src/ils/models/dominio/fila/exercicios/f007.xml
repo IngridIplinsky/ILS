@@ -23,11 +23,11 @@
 		
 		<resposta> </resposta>
 
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Cheia</texto>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Estática</texto>	
 		</alternativa>
 		
@@ -35,7 +35,7 @@
 			<texto>Dinâmica</texto>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Nenhuma das anteriores</texto>
 		</alternativa>
 

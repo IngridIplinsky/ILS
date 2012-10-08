@@ -1,11 +1,12 @@
 ;Fins administrativos. Esta função é bem custosa, então não a use a menos que saiba o que está fazendo!
 
+
 (defn- reload-banco []
  "Uma funcao para restaurar o banco de dados, e fazer eventuais alterações que envolvam todos os arquivos .xml"
  	(destroi-tabelas)
  	(criar-tabela-exercicio)
-; 	(criar-tabela-multimidia)
-; 	(criar-tabela-apresentacao)
+ 	(criar-tabela-multimidia)
+ 	(criar-tabela-apresentacao)
 	(inserir-exercicio "v001" "vetor" "facil" "me" (slurp "src/dominio/vetor/exercicios/v001.xml"))
 	(inserir-exercicio "v002" "vetor" "facil" "me" (slurp "src/dominio/vetor/exercicios/v002.xml"))
 	(inserir-exercicio "v003" "vetor" "facil" "me" (slurp "src/dominio/vetor/exercicios/v003.xml"))
@@ -58,4 +59,10 @@
 	(inserir-exercicio "ad008" "alocacao dinamica" "facil" "me" (slurp "src/dominio/alocDin/exercicios/ad008.xml"))
 	(inserir-exercicio "ad009" "alocacao dinamica" "facil" "me" (slurp "src/dominio/alocDin/exercicios/ad009.xml"))
 	(inserir-exercicio "ad010" "alocacao dinamica" "facil" "me" (slurp "src/dominio/alocDin/exercicios/ad010.xml"))
+	
+	
+	(inserir-apresentacao "v001" "vetor" (slurp "src/dominio/vetor/apresentacao/v001.xml"))
+	
+	(inserir-multimidia "v001" "vetor" "figura"  (slurp "src/dominio/vetor/multimidia/v001.xml"))
+	(inserir-multimidia "v002" "vetor" "video"  (slurp "src/dominio/vetor/multimidia/v002.xml"))
   ) 

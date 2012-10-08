@@ -16,11 +16,11 @@
 	
 	<resposta> </resposta>
 
-	<alternativa> 
+	<alternativa valor="false"> 
 		<texto> encadeada reversa, duplamente encadeada, cíclica e estática </texto>
 	</alternativa>
 		
-	<alternativa> 
+	<alternativa valor="false"> 
 		<texto> encadeada reversa, encadeada transversa, circular e estática  </texto>
 	</alternativa>
 		
@@ -28,7 +28,7 @@
 		<texto> encadeada simples, duplamente encadeada, circular e estática </texto>
 	</alternativa>
 		
-	<alternativa> 
+	<alternativa valor="false"> 
 		<texto> Nenhuma das alternativas anteriores. </texto>
 	</alternativa>
 

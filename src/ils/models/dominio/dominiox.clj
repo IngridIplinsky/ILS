@@ -4,6 +4,7 @@
 	[clojure.contrib.zip-filter.xml :as zf]
 	[clojure.java.jdbc :as sql])
   (:use clojure.data.xml)
+  (:use clojure.contrib.zip-filter.xml)
 )
   
 (def ILS-DB 
@@ -60,10 +61,10 @@
 []
    (sql/with-connection ILS-DB
     (sql/drop-table :exercicio))
-   ;(sql/with-connection ILS-DB
-   ; (sql/drop-table :apresentacao))
-  ; (sql/with-connection ILS-DB
-   ; (sql/drop-table :multimidia))
+   (sql/with-connection ILS-DB
+    (sql/drop-table :apresentacao))
+   (sql/with-connection ILS-DB
+    (sql/drop-table :multimidia))
  )
     
 
@@ -190,95 +191,101 @@
 
 ; MANIPULAÇÃO DE XML
 
-
 (defn get-value [xml & tags]
  "Pega o xml de um arquivo e o guarda em uma estrutura."
   (apply zf/xml1-> (zip/xml-zip (xml/parse xml)) (conj (vec tags) zf/text)))
-    
-    
- (defn neoparse [xml]
-  "Pega um xml em formato de string, advindo de entrada ou banco de dados e o guarda em uma estrutura."
-   (let [input-xml (java.io.StringReader. xml)]
-                           (parse input-xml)))
+  
+ (defn zip-str [s]
+  "Pega uma string em xml e realiza o parsing."
+  (zip/xml-zip (xml/parse (java.io.ByteArrayInputStream. (.getBytes s)))))
                            
  (defn carregar-exercicio [id]
   "Carrega o xml do exercício para a memória. A definição de uma estrutura para tal deixa as operações muito mais rápidas."
-	(def xml (neoparse (buscar-exercicio id))))
+	(def xmlEx (zip-str (buscar-exercicio id))))
 	
  (defn carregar-apresentacao [id]
   "Carrega o xml da apresentacao para a memória. A definição de uma estrutura para tal deixa as operações muito mais rápidas."
-	(def xml (neoparse (buscar-apresentacao id))))  
+	(def xmlAp (zip-str (buscar-apresentacao id))))  
 	
  (defn carregar-multimidia [id]
   "Carrega o xml da multimidia para a memória. A definição de uma estrutura para tal deixa as operações muito mais rápidas."
-	(def xml (neoparse (buscar-multimidia id)))) 
+	(def xmlMult (zip-str (buscar-multimidia id)))) 
  
  (defn get-value-exercicio 
- "A forma mais facil que encontrei. Faz o que get-value fazia, mas para o banco. É bem prática, seguindo o modelo :)
-  Especifica para exercicio. "
+ "Pega o conteudo da tag de um exercicio a partir do seu nome de tag. Para alternativas, é necessário passar a posição."
   ([tag]
    (cond 
-   		(= tag "conteudo") (first (:content (nth (last (last (vec xml)))0)))
-   		(= tag "idEx") (first (:content (nth (last (last (vec xml)))1)))
-   		(= tag "nivel") (first (:content (nth (last (last (vec xml)))2)))
-   		(= tag "tipo") (first (:content (nth (last (last (vec xml)))3)))
-   		(= tag "preReq") (first (:content (nth (last (last (vec xml)))4)))	
-   		(= tag "enunciado") (first (:content (nth (:content (nth (last (last (vec xml )))5))0)))
-   		(= tag "resposta") (first (:content (nth (:content (nth (last (last (vec xml )))6))0)))
+   		(= tag "conteudo") (first (xml-> xmlEx :conteudo text))
+   		(= tag "idEx") (first (xml-> xmlEx :idEx text))
+   		(= tag "nivel") (first (xml-> xmlEx :nivel text))
+   		(= tag "tipo") (first (xml-> xmlEx :tipo text))
+   		(= tag "preReq") (first (xml-> xmlEx :preReq text))	
+   		(= tag "enunciado") (first (xml-> xmlEx :enunciado :texto text))
+   		(= tag "resposta") (first (xml-> xmlEx :resposta :codigo text))	
     	:else "tag inválida ou entrada incorreta!" ))
    ([tag pos]
    	(cond
-   		(= tag "enunciado") (first (:content (nth (:content (nth (last (last (vec xml )))5))pos)))
-   		(= tag "resposta") (first (:content (nth (:content (nth (last (last (vec xml )))6))pos)))
-   		(= tag "alternativa") (first (:content (nth (:content (nth (last (last (vec xml )))(+ pos 7)))0)))
+   		(and (= tag "enunciado") (= pos "codigo")) (first (xml-> xmlEx :enunciado :codigo text))
+   		(and (= tag "enunciado") (= pos "texto")) (first (xml-> xmlEx :enunciado :texto text))
+   		(and (= tag "resposta") (= pos "texto")) (first (xml-> xmlEx :resposta :texto text))
+   		(and (= tag "resposta") (= pos "codigo")) (first (xml-> xmlEx :resposta :codigo text))
+   		(= tag "alternativa") (nth (xml-> xmlEx :alternativa text) pos)
    		:else "tag inválida ou entrada incorreta!"))
-   ([tag pos pos1]
+   ([tag tag2 pos]
    	(cond
-   		(= tag "alternativa") (first (:content (nth (:content (nth (last (last (vec xml )))(+ pos 7)))pos1)))
-   		(= tag "enunciado") (first (:content (nth (vec (:content (nth (:content (nth (last (last (vec xml )))5))pos)))pos1)))
+   		(and (= tag "enunciado") (= tag2 "codigo")) (nth (xml-> xmlEx :enunciado :codigo text) pos)
+   		(and (= tag "enunciado") (= tag2 "texto")) (nth (xml-> xmlEx :enunciado :texto text) pos)
+   		(and (= tag "enunciado" ) (= tag2 "enum")) (nth (xml-> xmlEx :enunciado :enum :item text) pos)
+   		(and (= tag "resposta") (= tag2 "texto")) (nth (xml-> xmlEx :resposta :texto text) pos)
+   		(and (= tag "resposta") (= tag2 "codigo")) (nth (xml-> xmlEx :resposta :codigo text) pos)
    		:else "tag inválida ou entrada incorreta!")))
    
    
 (defn get-attr-exercicio
- "Esta função é específica para pegar atributos de tags. É muito útil para saber se uma questão é correta (retorna true) ou incorreta (nil)
-  ou para V ou F (que retorna true ou false). A partir do id e da posição."
- ([tag pos] ;para pegar valores de alternativas
- (cond 
- 	(= tag "alternativa") (first (vals (:attrs (nth (last (last (vec xml )))(+ pos 7)))))
- 	:else "tag inválida ou entrada incorreta!"))
- ([tag pos1 pos2] ;especial para pegar os id's de item em exercicios do tipo aa Ex: (get-attr-exercicio "f010" 5 3 0) 
- (cond
- 	(= tag "enunciado")	(first (vals (:attrs (nth (vec (:content (nth (:content (nth (last (last (vec xml )))5))pos1)))pos2))))
- 	:else "tag inválida ou entrada incorreta!")))
+ "Esta função é específica para pegar atributos de tags. É muito útil para saber se uma questão é correta (retorna true) ou incorreta (false)
+  ou para V ou F (que também retorna true ou false)."
+ ([tag pos]
+ 	(cond 
+ 		(= tag "alternativa") (nth (xml-> xmlEx :alternativa (attr :valor))pos)
+ 		:else "tag inválida ou entrada incorreta!"))
+ ([tag tag2 pos] 
+ 	(cond
+ 		(and (= tag "enunciado") (= tag2 "enum")) (nth (xml-> xmlEx :enunciado :enum :item (attr :id))pos)
+ 		:else "tag inválida ou entrada incorreta!")))
 
  
 
 (defn get-value-apresentacao 
- "A forma mais facil que encontrei. Faz o que get-value fazia, mas para o banco. É bem prática, seguindo o modelo :)
-  Especifica para apresentacao. "
+ "Pega o conteudo da tag de uma apresencao a partir do nome de tag."
  ([tag] ;use para pegar conteudos de tags.
   (cond 
-      	(= tag "idAp") (first (:content (nth (last (nth (vec xml )2))0)))
-      	(= tag "conteudo") (first (:content (nth (last (nth (vec xml )2))1)))
-      	(= tag "texto") (first (:content (nth (last (nth (vec xml )2))2)))
-      	(= tag "codigo") (first (:content (nth (last (nth (vec xml )2))3)))
-      	:else "tag inválida ou entrada incorreta!" 
-  ))) 
+      	(= tag "idAp") (first (xml-> xmlAp :idAp text))
+      	(= tag "conteudo") (first (xml-> xmlAp :conteudo text))
+      	(= tag "texto") (first (xml-> xmlAp :texto text))
+      	(= tag "codigo") (first (xml-> xmlAp :codigo text))
+      	:else "tag inválida ou entrada incorreta!" ))) 
      
   
 (defn get-value-multimidia 
- "A forma mais facil que encontrei. Faz o que get-value fazia, mas para o banco. É bem prática, seguindo o modelo :)
-  Especifica para multimidia. "
+ "Pega o conteudo da tag de um recurso multimidia a partir do(s) seu(s) nome(s) de tag(s)."
  ([tag]
    (cond 
-      	(= tag "idMult") (first (:content (nth (last (nth (vec xml )1))0)))
-      	(= tag "conteudo") (first (:content (nth (last (nth (vec xml )1))1)))
-      	(= tag "figura")  (first (:content (last (:content (nth (last (nth (vec xml )1))2))))) 
-      	(= tag "video") (first (:content (last (:content (nth (last (nth (vec xml )1))2)))))
-      	(= tag "animacao") (first (:content (last (:content (nth (last (nth (vec xml )1))2)))))
-      	:else "tag inválida ou entrada incorreta!" 
-  )))
+      	(= tag "idMult") (first (xml-> xmlMult :idMult text))
+      	(= tag "conteudo") (first (xml-> xmlMult :conteudo text))
+      	(= tag "legenda") (first (xml-> xmlMult :legenda text))
+      	:else "tag inválida ou entrada incorreta!" ))
+ ([tag tag2]
+ 	(cond 
+ 		(and (= tag "figura") (= tag2 "url"))  (first (xml-> xmlMult :figura :url text))
+ 		(and (= tag "figura") (= tag2 "diretorio"))  (first (xml-> xmlMult :figura :diretorio text)) 
+ 		(and (= tag "animacao") (= tag2 "url"))  (first (xml-> xmlMult :animacao :url text))
+ 		(and (= tag "animacao") (= tag2 "diretorio"))  (first (xml-> xmlMult :animacao :diretorio text))
+ 		(and (= tag "video") (= tag2 "url"))  (first (xml-> xmlMult :video :url text))
+ 		(and (= tag "video") (= tag2 "diretorio"))  (first (xml-> xmlMult :video :diretorio text)) 
+ 		(and (= tag "video") (= tag2 "embedded"))  (first (xml-> xmlMult :video :embedded text))
+ 		:else "tag inválida ou entrada incorreta!" )))
   
+
   
 ;GERAÇÃO DE XML  
 (defn gerar-xml [nomearq]
@@ -291,64 +298,4 @@
   (with-open [out-file (java.io.FileWriter. nomearq)]
     (emit tags out-file))))
   
-  
-(defn- reload-banco []
- "Uma funcao para restaurar o banco de dados, e fazer eventuais alterações que envolvam todos os arquivos .xml"
- 	(destroi-tabelas)
- 	(criar-tabela-exercicio)
-; 	(criar-tabela-multimidia)
-; 	(criar-tabela-apresentacao)
-	(inserir-exercicio "v001" "vetor" "facil" "me" (slurp "src/dominio/vetor/exercicios/v001.xml"))
-	(inserir-exercicio "v002" "vetor" "facil" "me" (slurp "src/dominio/vetor/exercicios/v002.xml"))
-	(inserir-exercicio "v003" "vetor" "facil" "me" (slurp "src/dominio/vetor/exercicios/v003.xml"))
-	(inserir-exercicio "v004" "vetor" "facil" "me" (slurp "src/dominio/vetor/exercicios/v004.xml"))
-	(inserir-exercicio "v005" "vetor" "facil" "me" (slurp "src/dominio/vetor/exercicios/v005.xml"))
-	(inserir-exercicio "v006" "vetor" "facil" "me" (slurp "src/dominio/vetor/exercicios/v006.xml"))
-	(inserir-exercicio "v007" "vetor" "facil" "me" (slurp "src/dominio/vetor/exercicios/v007.xml"))
-	(inserir-exercicio "v008" "vetor" "facil" "me" (slurp "src/dominio/vetor/exercicios/v008.xml"))
-	(inserir-exercicio "v009" "vetor" "facil" "me" (slurp "src/dominio/vetor/exercicios/v009.xml"))
-	(inserir-exercicio "v010" "vetor" "facil" "me" (slurp "src/dominio/vetor/exercicios/v010.xml"))
-	(inserir-exercicio "v011" "vetor" "medio" "programacao" (slurp "src/dominio/vetor/exercicios/v011.xml"))
-	(inserir-exercicio "v012" "vetor" "dificil" "programacao" (slurp "src/dominio/vetor/exercicios/v012.xml"))
-	
-	(inserir-exercicio "r001" "recursividade" "facil" "me" (slurp "src/dominio/recursiv/exercicios/r001.xml"))
-	(inserir-exercicio "r002" "recursividade" "medio" "programacao" (slurp "src/dominio/recursiv/exercicios/r002.xml"))
-	
-	(inserir-exercicio "l001" "lista" "facil" "me" (slurp "src/dominio/lista/exercicios/l001.xml"))
-	(inserir-exercicio "l002" "lista" "facil" "me" (slurp "src/dominio/lista/exercicios/l002.xml"))
-	(inserir-exercicio "l003" "lista" "facil" "me" (slurp "src/dominio/lista/exercicios/l003.xml"))
-	(inserir-exercicio "l004" "lista" "facil" "me" (slurp "src/dominio/lista/exercicios/l004.xml"))
-	(inserir-exercicio "l005" "lista" "facil" "me" (slurp "src/dominio/lista/exercicios/l005.xml"))
-	(inserir-exercicio "l006" "lista" "facil" "me" (slurp "src/dominio/lista/exercicios/l006.xml"))
-	(inserir-exercicio "l007" "lista" "facil" "me" (slurp "src/dominio/lista/exercicios/l007.xml"))
-	(inserir-exercicio "l008" "lista" "facil" "me" (slurp "src/dominio/lista/exercicios/l008.xml"))
-	(inserir-exercicio "l009" "lista" "facil" "me" (slurp "src/dominio/lista/exercicios/l009.xml"))
-	(inserir-exercicio "l010" "lista" "facil" "me" (slurp "src/dominio/lista/exercicios/l010.xml"))
-	(inserir-exercicio "l011" "lista" "medio" "programacao" (slurp "src/dominio/lista/exercicios/l011.xml"))
-	(inserir-exercicio "l012" "lista" "medio" "programacao" (slurp "src/dominio/lista/exercicios/l012.xml"))
-	(inserir-exercicio "l013" "lista" "facil" "programacao" (slurp "src/dominio/lista/exercicios/l013.xml"))
-	(inserir-exercicio "l014" "lista" "dificil" "programacao" (slurp "src/dominio/lista/exercicios/l014.xml"))
-	
-	(inserir-exercicio "f001" "fila" "facil" "me" (slurp "src/dominio/fila/exercicios/f001.xml"))
-	(inserir-exercicio "f002" "fila" "facil" "me" (slurp "src/dominio/fila/exercicios/f002.xml"))
-	(inserir-exercicio "f003" "fila" "facil" "me" (slurp "src/dominio/fila/exercicios/f003.xml"))
-	(inserir-exercicio "f004" "fila" "facil" "me" (slurp "src/dominio/fila/exercicios/f004.xml"))
-	(inserir-exercicio "f005" "fila" "facil" "vf" (slurp "src/dominio/fila/exercicios/f005.xml"))
-	(inserir-exercicio "f006" "fila" "facil" "me" (slurp "src/dominio/fila/exercicios/f006.xml"))
-	(inserir-exercicio "f007" "fila" "facil" "me" (slurp "src/dominio/fila/exercicios/f007.xml"))
-	(inserir-exercicio "f008" "fila" "facil" "me" (slurp "src/dominio/fila/exercicios/f008.xml"))
-	(inserir-exercicio "f009" "fila" "facil" "me" (slurp "src/dominio/fila/exercicios/f009.xml"))
-	(inserir-exercicio "f010" "fila" "facil" "aa" (slurp "src/dominio/fila/exercicios/f010.xml"))
-	
-	(inserir-exercicio "ad001" "alocacao dinamica" "facil" "me" (slurp "src/dominio/alocDin/exercicios/ad001.xml"))
-	(inserir-exercicio "ad002" "alocacao dinamica" "facil" "me" (slurp "src/dominio/alocDin/exercicios/ad002.xml"))
-	(inserir-exercicio "ad003" "alocacao dinamica" "facil" "me" (slurp "src/dominio/alocDin/exercicios/ad003.xml"))
-	(inserir-exercicio "ad004" "alocacao dinamica" "facil" "me" (slurp "src/dominio/alocDin/exercicios/ad004.xml"))
-	(inserir-exercicio "ad005" "alocacao dinamica" "facil" "me" (slurp "src/dominio/alocDin/exercicios/ad005.xml"))
-	(inserir-exercicio "ad006" "alocacao dinamica" "facil" "me" (slurp "src/dominio/alocDin/exercicios/ad006.xml"))
-	(inserir-exercicio "ad007" "alocacao dinamica" "facil" "me" (slurp "src/dominio/alocDin/exercicios/ad007.xml"))
-	(inserir-exercicio "ad008" "alocacao dinamica" "facil" "me" (slurp "src/dominio/alocDin/exercicios/ad008.xml"))
-	(inserir-exercicio "ad009" "alocacao dinamica" "facil" "me" (slurp "src/dominio/alocDin/exercicios/ad009.xml"))
-	(inserir-exercicio "ad010" "alocacao dinamica" "facil" "me" (slurp "src/dominio/alocDin/exercicios/ad010.xml"))
-  ) 
   

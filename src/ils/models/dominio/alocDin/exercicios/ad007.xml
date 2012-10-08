@@ -20,15 +20,15 @@
 			<codigo>int &amp;ip; ip = (int &amp;) malloc(100*sizeof(int));</codigo>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<codigo>int *ip; ip = (int *) malloc(100*sizeof(int));</codigo>	
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<codigo>int *ip; &amp;ip = (int *) sizeof(100*malloc(*int));</codigo>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<codigo>int *ip; ip = (int *) sizeof(100*malloc(int));</codigo>
 		</alternativa>
 

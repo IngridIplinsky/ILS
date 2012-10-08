@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<apresentacao
+<multimidia
  xmlns="multimidia"
  xmlns:xsi="multimidia"
- xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/multimidia.xsd">
+ xsi:schemaLocation="multimidia.xsd">
 	
 	<idMult> O id da multimidia </idMult>
-	<conteudo> O nome do conteudo ao qual se destina o recurso </conteudo>	
+	<conteudo> O nome do conteudo ao qual se destina o recurso </conteudo>
+	<legenda> A legenda serve como rótulo para a mídia. Pode ser usado em caso de menção de direitos autorais. </legenda> <!-- opcional -->	
 	
 	<figura> <!-- opcional, somente para figuras. -->
 	     <diretorio> O diretório da figura </diretorio>

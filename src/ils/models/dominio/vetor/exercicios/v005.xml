@@ -18,15 +18,15 @@
 		
 		<resposta> </resposta>
 
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Preenche o Vetor com o número 1.</texto>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Preenche o Vetor de 1 à 5.</texto>	
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Preenche o Vetor com número 0.</texto>
 		</alternativa>
 		

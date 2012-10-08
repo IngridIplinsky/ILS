@@ -19,11 +19,11 @@
 		
 		<resposta> </resposta>
 
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Se faz alocação estática, pois se delimita a quantidade de memória que se quer usar.</texto>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Se faz alocação dinâmica, colocando a quantidade de posições da estrutura que se quer utilizar.</texto>
 		</alternativa>
 		
@@ -31,7 +31,7 @@
 			<texto>Se faz alocação dinâmica, não colocando a quantidade de posições.</texto>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Nenhuma das anteriores.</texto>
 		</alternativa>
 

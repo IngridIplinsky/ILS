@@ -2,10 +2,10 @@
 <apresentacao
  xmlns="apresentacao"
  xmlns:xsi="apresentacao"
- xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/apresentacao.xsd">
+ xsi:schemaLocation="src/dominio/apresentacao.xsd">
 	
-	<idAp> v001 </idAp>
-	<conteudo> vetor </conteudo>
+	<idAp>v001</idAp>
+	<conteudo>vetor</conteudo>
 	<texto> 
 		Um array ou vetor é uma série de objetos de dados, todos 
         eles possuindo o mesmo tipo, estes objetos de dados são 

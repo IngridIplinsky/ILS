@@ -18,15 +18,15 @@
 		
 		<resposta> </resposta>
 
-		<alternativa> 
+		<alternativa valor="false"> 
 			<codigo>for (int i = 0; i &lt;= 20; i++) A[i] = i;</codigo>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<codigo>for (int i = 0; i &lt; 19; i++) A[i] = i;</codigo>	
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<codigo>for (int i = 1; i &lt; 19; i++) A[i] = i;</codigo>	
 		</alternativa>
 		

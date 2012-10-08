@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<apresentacao
+<multimidia
  xmlns="multimidia"
  xmlns:xsi="multimidia"
- xsi:schemaLocation="/home/eduardo/Desktop/dominio/src/dominio/multimidia.xsd">
+ xsi:schemaLocation="src/dominio/multimidia.xsd">
 	
-	<idAp> v001 </idAp>
-	<conteudo> vetor </conteudo>
+	<idMult>v001</idMult>
+	<conteudo>vetor</conteudo>
 	<figura> 
-		<url> src/desktop/istoeumexemplo.lol </url> 
+		<url>src/desktop/istoeumexemplo.gif</url> 
     </figura>
 	
-</apresentacao>
+</multimidia>

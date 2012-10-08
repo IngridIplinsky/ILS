@@ -16,15 +16,15 @@
 		
 		<resposta> </resposta>
 
-		<alternativa> 
+		<alternativa valor="false"> 
 			<codigo>int A[5]</codigo>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<codigo>float A[5]</codigo>	
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<codigo>char A[5]</codigo>	
 		</alternativa>
 		

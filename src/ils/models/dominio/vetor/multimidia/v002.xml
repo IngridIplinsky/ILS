@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<multimidia
+ xmlns="multimidia"
+ xmlns:xsi="multimidia"
+ xsi:schemaLocation="src/dominio/multimidia.xsd">
+	
+	<idMult>v001</idMult>
+	<conteudo>vetor</conteudo>
+	<legenda>Créditos a Department of Computer Science &amp; Engineering ,IIT Delhi.</legenda>
+	
+	<video> 
+		<embedded>&lt;iframe width=&quot;420&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/zWg7U0OEAoE&quot; frameborder=&quot;0&quot; allowfullscreen &gt;&lt;/iframe&gt;</embedded> 
+    </video>
+	
+</multimidia>

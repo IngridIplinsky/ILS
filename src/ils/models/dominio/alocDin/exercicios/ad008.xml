@@ -16,15 +16,15 @@
 		
 		<resposta> </resposta>
 
-		<alternativa> 
+		<alternativa valor="false"> 
 			<codigo>vet = (int*) malloc (sizeof(int))</codigo>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<codigo>(int*) malloc (sizeof(int))</codigo>	
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<codigo>malloc (500*sizeof(int))</codigo>	
 		</alternativa>
 		

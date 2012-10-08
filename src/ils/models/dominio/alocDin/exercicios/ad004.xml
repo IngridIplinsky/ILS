@@ -23,11 +23,11 @@
 		
 		<resposta> </resposta>
 
-		<alternativa> 
+		<alternativa valor="false"> 
 			<codigo>vetS[3] = (char*) malloc(sizeof(char))</codigo>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<codigo>vetS[2] = (char*) malloc(sizeof(char))</codigo>
 		</alternativa>
 		
@@ -35,7 +35,7 @@
 			<codigo>vetS = (char*) malloc(3*sizeof(char))</codigo>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Não é possível fazer isto na linguagem C.</texto>
 		</alternativa>
 

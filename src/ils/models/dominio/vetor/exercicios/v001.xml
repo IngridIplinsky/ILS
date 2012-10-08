@@ -16,7 +16,7 @@
 	
 	<resposta> </resposta>
 
-	<alternativa> 
+	<alternativa valor="false"> 
 		<codigo>X = V[5]</codigo>
 	</alternativa>
 		
@@ -24,11 +24,11 @@
 		<codigo>X = V[4]</codigo>	
 	</alternativa>
 		
-	<alternativa> 
+	<alternativa valor="false"> 
 		<texto>Não é possível acessá-la diretamente, preciso fazer um laço que percorre até v[4].</texto>	
 	</alternativa>
 		
-	<alternativa> 
+	<alternativa valor="false"> 
 		<texto>Nenhuma das alternativas anteriores.</texto>
 	</alternativa>
 

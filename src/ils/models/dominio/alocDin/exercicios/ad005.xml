@@ -19,11 +19,11 @@
 		
 		<resposta> </resposta>
 
-		<alternativa> 
+		<alternativa valor="false"> 
 			<codigo>allocation()</codigo>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<codigo>free()</codigo>
 		</alternativa>
 		
@@ -31,7 +31,7 @@
 			<codigo>sizeof()</codigo>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<codigo>malloc()</codigo>
 		</alternativa>
 

@@ -16,11 +16,11 @@
 		
 		<resposta> </resposta>
 
-		<alternativa> 
+		<alternativa valor="false"> 
 			<codigo>Lista %L</codigo>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<codigo>Lista &amp;L</codigo>
 		</alternativa>
 		
@@ -28,7 +28,7 @@
 			<codigo>Lista *L</codigo>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<codigo>Lista #L</codigo>
 		</alternativa>
 

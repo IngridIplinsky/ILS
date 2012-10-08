@@ -18,15 +18,15 @@
 			<texto>Inserir, Remover e Buscar</texto>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Destruir, Remover e Alocar</texto>	
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Buscar, Alocar e Destruir</texto>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Nenhuma das anteriores.</texto>
 		</alternativa>
 

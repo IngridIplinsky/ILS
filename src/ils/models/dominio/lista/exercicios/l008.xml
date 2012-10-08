@@ -24,7 +24,7 @@
 		
 		<resposta> </resposta>
 
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Verifica se a lista está cheia</texto>
 		</alternativa>
 		
@@ -32,11 +32,11 @@
 			<texto>Faz a lista ficar vazia</texto>
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Verifica se a lista está vazia</texto>	
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<texto>Nenhuma das anteriores</texto>	
 		</alternativa>
 

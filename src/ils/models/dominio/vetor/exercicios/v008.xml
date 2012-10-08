@@ -18,7 +18,7 @@
 		
 		<resposta> </resposta>
 
-		<alternativa> 
+		<alternativa valor="false"> 
 			<codigo>afor (int i = 0; i &lt;= 99; i++) A[i] = 30;</codigo>
 		</alternativa>
 		
@@ -26,11 +26,11 @@
 			<codigo>for  (int i = 0; i &lt; 99; i++)  A[i] = 30;</codigo>	
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<codigo>for (int i = 1; i &lt;= 99; i++)  A[i] = 30;</codigo>	
 		</alternativa>
 		
-		<alternativa> 
+		<alternativa valor="false"> 
 			<codigo>for (int i = 0; i &lt;= 99; i++){ A[i] = 30; i++;}</codigo>	
 		</alternativa>
 
