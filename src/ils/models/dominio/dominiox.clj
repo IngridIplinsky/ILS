@@ -70,32 +70,45 @@
 
 ;INSERCAO
 
+(defn get-value [xml & tags]
+ "Pega o xml de um arquivo e o guarda em uma estrutura."
+  (apply zf/xml1-> (zip/xml-zip (xml/parse xml)) (conj (vec tags) zf/text)))
+
 (defn- inserir-exercicio
   "Funcao para inserir os xml prontos de exercicio no banco. 
    A função é usada juntamente com a função slurp, que lê um arquivo em Clojure."
-   [id conteudo nivel tipo xml]
+   [xml]
    (sql/with-connection ILS-DB
     (sql/insert-records :exercicio
-      {:id id :conteudo conteudo :nivel nivel :tipo tipo :xmlexercicio xml}
+      {:id (get-value xml :idEx) 
+       :conteudo (get-value xml :conteudo) 
+       :nivel (get-value xml :nivel) 
+       :tipo (get-value xml :tipo) 
+       :xmlexercicio (slurp xml)}
     )))
     
     
 (defn- inserir-apresentacao
   "Funcao para inserir os xml prontos de apresentacao no banco. 
    A função é usada juntamente com a função slurp, que lê um arquivo em Clojure."
-   [id conteudo xml]
+   [xml]
    (sql/with-connection ILS-DB
     (sql/insert-records :apresentacao
-      {:id id :conteudo conteudo :xmlapresentacao xml}
+      {:id (get-value xml :idAp) 
+       :conteudo (get-value xml :conteudo) 
+       :xmlapresentacao (slurp xml)}
     )))
     
 (defn- inserir-multimidia
   "Funcao para inserir os xml prontos de multimidia no banco. 
    A função é usada juntamente com a função slurp, que lê um arquivo em Clojure."
-   [id conteudo tipo xml]
+   [tipo xml]
    (sql/with-connection ILS-DB
     (sql/insert-records :multimidia
-      {:id id :conteudo conteudo :tipo tipo :xmlmultimidia xml}
+      {:id (get-value xml :idMult)  
+       :conteudo (get-value xml :conteudo) 
+       :tipo tipo 
+       :xmlmultimidia (slurp xml)}
     )))
     
     
@@ -190,10 +203,6 @@
         
 
 ; MANIPULAÇÃO DE XML
-
-(defn get-value [xml & tags]
- "Pega o xml de um arquivo e o guarda em uma estrutura."
-  (apply zf/xml1-> (zip/xml-zip (xml/parse xml)) (conj (vec tags) zf/text)))
   
  (defn zip-str [s]
   "Pega uma string em xml e realiza o parsing."
@@ -298,4 +307,70 @@
   (with-open [out-file (java.io.FileWriter. nomearq)]
     (emit tags out-file))))
   
+  
+(defn- reload-banco []
+ "Uma funcao para restaurar o banco de dados, e fazer eventuais alterações que envolvam todos os arquivos .xml"
+ 	(destroi-tabelas)
+ 	(criar-tabela-exercicio)
+ 	(criar-tabela-multimidia)
+ 	(criar-tabela-apresentacao)
+	(inserir-exercicio "src/dominio/vetor/exercicios/v001.xml")
+	(inserir-exercicio "src/dominio/vetor/exercicios/v002.xml")
+	(inserir-exercicio "src/dominio/vetor/exercicios/v003.xml")
+	(inserir-exercicio "src/dominio/vetor/exercicios/v004.xml")
+	(inserir-exercicio "src/dominio/vetor/exercicios/v005.xml")
+	(inserir-exercicio "src/dominio/vetor/exercicios/v006.xml")
+	(inserir-exercicio "src/dominio/vetor/exercicios/v007.xml")
+	(inserir-exercicio "src/dominio/vetor/exercicios/v008.xml")
+	(inserir-exercicio "src/dominio/vetor/exercicios/v009.xml")
+	(inserir-exercicio "src/dominio/vetor/exercicios/v010.xml")
+	(inserir-exercicio "src/dominio/vetor/exercicios/v011.xml")
+	(inserir-exercicio "src/dominio/vetor/exercicios/v012.xml")
+	
+	(inserir-exercicio "src/dominio/recursiv/exercicios/r001.xml")
+	(inserir-exercicio "src/dominio/recursiv/exercicios/r002.xml")
+	
+	(inserir-exercicio "src/dominio/lista/exercicios/l001.xml")
+	(inserir-exercicio "src/dominio/lista/exercicios/l002.xml")
+	(inserir-exercicio "src/dominio/lista/exercicios/l003.xml")
+	(inserir-exercicio "src/dominio/lista/exercicios/l004.xml")
+	(inserir-exercicio "src/dominio/lista/exercicios/l005.xml")
+	(inserir-exercicio "src/dominio/lista/exercicios/l006.xml")
+	(inserir-exercicio "src/dominio/lista/exercicios/l007.xml")
+	(inserir-exercicio "src/dominio/lista/exercicios/l008.xml")
+	(inserir-exercicio "src/dominio/lista/exercicios/l009.xml")
+	(inserir-exercicio "src/dominio/lista/exercicios/l010.xml")
+	(inserir-exercicio "src/dominio/lista/exercicios/l011.xml")
+	(inserir-exercicio "src/dominio/lista/exercicios/l012.xml")
+	(inserir-exercicio "src/dominio/lista/exercicios/l013.xml")
+	(inserir-exercicio "src/dominio/lista/exercicios/l014.xml")
+	
+	(inserir-exercicio "src/dominio/fila/exercicios/f001.xml")
+	(inserir-exercicio "src/dominio/fila/exercicios/f002.xml")
+	(inserir-exercicio "src/dominio/fila/exercicios/f003.xml")
+	(inserir-exercicio "src/dominio/fila/exercicios/f004.xml")
+	(inserir-exercicio "src/dominio/fila/exercicios/f005.xml")
+	(inserir-exercicio "src/dominio/fila/exercicios/f006.xml")
+	(inserir-exercicio "src/dominio/fila/exercicios/f007.xml")
+	(inserir-exercicio "src/dominio/fila/exercicios/f008.xml")
+	(inserir-exercicio "src/dominio/fila/exercicios/f009.xml")
+	(inserir-exercicio "src/dominio/fila/exercicios/f010.xml")
+	
+	(inserir-exercicio "src/dominio/alocDin/exercicios/ad001.xml")
+	(inserir-exercicio "src/dominio/alocDin/exercicios/ad002.xml")
+	(inserir-exercicio "src/dominio/alocDin/exercicios/ad003.xml")
+	(inserir-exercicio "src/dominio/alocDin/exercicios/ad004.xml")
+	(inserir-exercicio "src/dominio/alocDin/exercicios/ad005.xml")
+	(inserir-exercicio "src/dominio/alocDin/exercicios/ad006.xml")
+	(inserir-exercicio "src/dominio/alocDin/exercicios/ad007.xml")
+	(inserir-exercicio "src/dominio/alocDin/exercicios/ad008.xml")
+	(inserir-exercicio "src/dominio/alocDin/exercicios/ad009.xml")
+	(inserir-exercicio "src/dominio/alocDin/exercicios/ad010.xml")
+	
+	
+	(inserir-apresentacao "src/dominio/vetor/apresentacao/v001.xml")
+	
+	(inserir-multimidia "figura" "src/dominio/vetor/multimidia/v001.xml")
+	(inserir-multimidia "video" "src/dominio/vetor/multimidia/v002.xml")
+  )
   

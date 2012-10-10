@@ -4,7 +4,7 @@
  xmlns:xsi="multimidia"
  xsi:schemaLocation="src/dominio/multimidia.xsd">
 	
-	<idMult>v001</idMult>
+	<idMult>v002</idMult>
 	<conteudo>vetor</conteudo>
 	<legenda>Créditos a Department of Computer Science &amp; Engineering ,IIT Delhi.</legenda>
 	

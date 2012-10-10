@@ -1,0 +1,17 @@
+<!-- em construcao -->
+<?xml version="1.0" encoding="UTF-8"?>
+<erro
+xmlns="bug"
+xmlns:xsi="bug"
+xsi:schemaLocation="exercicio.xsd">
+		
+	<idBug> O id do erro </idBug>
+	<conteudo> O nome do conteudo ao qual o erro se refere </conteudo>
+	<tipo> o tipo do exercicio no qual ocorreu o erro </tipo>
+	<codigo> Erro em codigo, para exercicios de programacao </codigo>
+	<alternativa> </alternativa>
+
+	
+
+</erro>
+
