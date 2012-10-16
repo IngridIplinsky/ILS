@@ -4,7 +4,10 @@
             [noir.session :as session])
   (:use [ils.models.estudante.corygil estudante]
         [noir.core :only [defpage]]
-        [hiccup.core :only [html]]))
+        [hiccup.core :only [html]]
+        [noir.core :only [defpartial]]
+        [hiccup.page-helpers :only [include-css html5 include-js html5]]
+ ))
 
 (defpage "/welcome" []
          (common/layout
@@ -47,36 +50,32 @@
 (session/put! :senhaUsuario senha)
 (cond (= 1 (compara-usuario usuario senha) 1) 
         (common/layout
-         [:body {:id "fundo_index"} 
-         [:div {:id "princ_index"}
+         [:head 
+          (include-css "/css/drop.css")]
+         [:body {:class "auto"} 
          [:div {:id "back_recem"}]
          [:div {:id "fundo"}]
          [:div {:id "fundo2"}]
+         [:div {:id "back_index"}]
          [:div {:id "back_mini"}]
          [:div {:id "links"} 
          [:iframe {:id "perguntas" :src "/login/ola" :name "principal"}]
-         [:h3 {:id "est-dados"} "Estrutura de Dados"]
-         [:p {:id "menuRecursi"} [:a {:id "alinhaLink" :href "/login/recursividade" :target "principal"} "Recursividade"]]
-         [:p {:id "menuAlocacao"} [:a {:href "/login/alocacao" :target "principal" :id "i" } "Alocação Dinâmica"]] 
-         [:p {:id "menuVetor"} [:a {:href "/login/vetor" :target "principal"} "Vetor"]]        
-         [:p {:id "menuVetor1"} [:a {:href "/login/vetor" :target "principal" :id "vet" } "Vetor"]]
-         [:p {:id "menuLista"} [:a {:href "/login/lista" :target "principal"} "Lista"]]
-         [:p {:id "menuLista1"} [:a {:href "/login/lista" :target "principal" :id "list"} "Lista"]]
-         [:p {:id "menuFila"} [:a {:href "/login/fila" :target "principal"} "Fila"]]
-         [:p {:id "menuFila1"} [:a {:href "/login/fila" :target "principal" :id "fila"} "Fila"]]
-         [:p {:id "menuPilha"} [:a {:href "/login/pilha" :target "principal"} "Pilha"]]
-         [:p {:id "menuPilha1"} [:a {:href "/login/pilha" :target "principal" :id "pilha"} "Pilha"]]
-         [:p {:id "menuArvore"} [:a {:href "/login/arvore" :target "principal"} "Árvore"]]
-         [:p {:id "menuArvore1"} [:a {:href "/login/arvore" :target "principal" :id "arvore"} "Árvore"]] 
-         [:p {:id "menuMetOrd"} [:a {:href "/login/metOrd" :target "principal"} "Métodos Ordenação"]]
-         [:p {:id "menuMetOrd1"} [:a {:href "/login/metOrd" :target "principal" :id "metOrd"} "Métodos Ordenação"]] 
-         [:p {:id "menuMetPesq"} [:a {:href "/login/metPesq" :target "principal"} "Métodos Pesquisa"]]
-         [:p {:id "menuMetPesq1"} [:a {:href "/login/metPesq" :target "principal" :id "metPesq"} "Métodos Pesquisa"]]]    
+         [:h4 {:id "est-dados"} "Estrutura de Dados"]
+         [:p {:id "menuAlocacao" } [:a {:href "/login/alocacao" :target "principal" :id "aloc"} "Alocação Dinâmica"]]
+         [:p {:id "menuRecursi"  } [:a {:href "/login/recursividade" :target "principal"} "Recursividade"]] 
+         [:p {:id "menuVetor"    } [:a {:href "/login/vetor" :target "principal"} "Vetor"]]        
+         [:p {:id "menuLista"    } [:a {:href "/login/lista" :target "principal"} "Lista"]]
+         [:p {:id "menuFila"     } [:a {:href "/login/fila" :target "principal"} "Fila"]]
+         [:p {:id "menuPilha"    } [:a {:href "/login/pilha" :target "principal"} "Pilha"]]
+         [:p {:id "menuArvore"   } [:a {:href "/login/arvore" :target "principal"} "Árvore"]] 
+         [:p {:id "menuMetOrd"   } [:a {:href "/login/metOrd" :target "principal"} "Métodos Ordenação"]] 
+         [:p {:id "menuMetPesq"  } [:a {:href "/login/metPesq" :target "principal"} "Métodos Pesquisa"]]]    
          [:p {:class "logocadastro"} "ILS"]
          [:h4 {:id "ativ"} "Atividades"]
          [:h5 {:id "ativ-exerc"} ""]
          [:p {:class "ilscadastro"} "Olá, " usuario  " | " [:a {:href "/" :id "logout"} "Logout"]]
-         ]])
+         [:a {:href "/videos/vetor" :id "apresentacao" :target "principal"} "| Configurações"]
+         ])
          
   :else
    (common/layout
@@ -141,22 +140,21 @@
          [:div {:id "links"} 
          [:iframe {:id "perguntas" :src "/login/ola" :name "principal"}]
          [:h3 {:id "est-dados"} "Estrutura de Dados"]
-         [:p {:id "menuRecursi"} [:a {:id "alinhaLink" :href "/login/recursividade" :target "principal"} "Recursividade"]]
-         [:p {:id "menuAlocacao"} [:a {:href "/login/alocacao" :target "principal" :id "i" } "Alocação Dinâmica"]] 
+         [:p {:id "menuAlocacao"} [:a {:href "/login/alocacao" :target "principal"} "Alocação Dinâmica"]] 
          [:p {:id "menuVetor"} [:a {:href "/login/vetor" :target "principal"} "Vetor"]]        
-         [:p {:id "menuVetor1"} [:a {:href "/login/vetor" :target "principal" :id "vet" } "Vetor"]]
+         ;[:p {:id "menuVetor1"} [:a {:href "/login/vetor" :target "principal" :id "vet" } "Vetor"]]
          [:p {:id "menuLista"} [:a {:href "/login/lista" :target "principal"} "Lista"]]
-         [:p {:id "menuLista1"} [:a {:href "/login/lista" :target "principal" :id "list"} "Lista"]]
+         ;[:p {:id "menuLista1"} [:a {:href "/login/lista" :target "principal" :id "list"} "Lista"]]
          [:p {:id "menuFila"} [:a {:href "/login/fila" :target "principal"} "Fila"]]
-         [:p {:id "menuFila1"} [:a {:href "/login/fila" :target "principal" :id "fila"} "Fila"]]
+         ;[:p {:id "menuFila1"} [:a {:href "/login/fila" :target "principal" :id "fila"} "Fila"]]
          [:p {:id "menuPilha"} [:a {:href "/login/pilha" :target "principal"} "Pilha"]]
-         [:p {:id "menuPilha1"} [:a {:href "/login/pilha" :target "principal" :id "pilha"} "Pilha"]]
+         ;[:p {:id "menuPilha1"} [:a {:href "/login/pilha" :target "principal" :id "pilha"} "Pilha"]]
          [:p {:id "menuArvore"} [:a {:href "/login/arvore" :target "principal"} "Árvore"]]
-         [:p {:id "menuArvore1"} [:a {:href "/login/arvore" :target "principal" :id "arvore"} "Árvore"]] 
+         ;[:p {:id "menuArvore1"} [:a {:href "/login/arvore" :target "principal" :id "arvore"} "Árvore"]] 
          [:p {:id "menuMetOrd"} [:a {:href "/login/metOrd" :target "principal"} "Métodos Ordenação"]]
-         [:p {:id "menuMetOrd1"} [:a {:href "/login/metOrd" :target "principal" :id "metOrd"} "Métodos Ordenação"]] 
-         [:p {:id "menuMetPesq"} [:a {:href "/login/metPesq" :target "principal"} "Métodos Pesquisa"]]
-         [:p {:id "menuMetPesq1"} [:a {:href "/login/metPesq" :target "principal" :id "metPesq"} "Métodos Pesquisa"]]]    
+         ;[:p {:id "menuMetOrd1"} [:a {:href "/login/metOrd" :target "principal" :id "metOrd"} "Métodos Ordenação"]] 
+         [:p {:id "menuMetPesq"} [:a {:href "/login/metPesq" :target "principal"} "Métodos Pesquisa"]]]
+         ;[:p {:id "menuMetPesq1"} [:a {:href "/login/metPesq" :target "principal" :id "metPesq"} "Métodos Pesquisa"]]]    
          [:p {:class "logocadastro"} "ILS"]
          [:h4 {:id "ativ"} "Atividades"]
          [:h5 {:id "ativ-exerc"} ""]
@@ -277,6 +275,33 @@
    [:video {:id "video" :controls "controls"}
    [:source {:src "/videos/aula35.mp4" :type "video/mp4"}]]]))    
 
+
+(defpage "/codigo" []
+ (common/layout
+  [:head [:title "teste"]      
+  (include-css "/css/codemirror.css")
+  (include-js "/js/codemirror.js")
+  (include-css "/css/docs.css")
+  (include-js "/js/clike.js") 
+  ]
+  [:body {:onload "chama();"}
+  [:form [:textarea {:id "code" :name "code"}
+"/* Escreva seu código aqui*/\n"
+   "#include <stdio.h>\n"
+   "#include <stdlib.h>\n"
+ 
+]]
+
+    
+    [:p "Simple mode that tries to handle C-like languages as well as it
+    can. Takes two configuration parameters: <code>keywords</code>, an
+    object whose property names are the keywords in the language,
+    and <code>useCPP</code>, which determines whether C preprocessor
+    directives are recognized."]
+
+    
+  ]
+))
 
 
 

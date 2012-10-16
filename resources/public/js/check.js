@@ -5,6 +5,43 @@ function teste()
   alert("Error/Usúario já cadastrado!");
  }
 
+
+
+
+function CorVermelhaAloc()
+{
+   
+  parent.document.getElementById('aloc').style.color = "red";
+
+}
+
+
+function CorAzulAloc()
+{
+   
+  parent.document.getElementById('aloc').style.color = "red";
+
+}
+
+function CorPretaAloc()
+{
+   
+  parent.document.getElementById('aloc').style.color = "red";
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 function exemplo5(link) {
 document.getElementById('pagina').innerHTML=document.getElementById(link).innerHTML;
 }

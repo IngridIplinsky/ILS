@@ -4,9 +4,9 @@
 	[clojure.contrib.zip-filter.xml :as zf]
 	[clojure.java.jdbc :as sql])
   (:use clojure.data.xml)
+  (:use clojure.contrib.zip-filter.xml)
 )
   
-;BANCO DE DADOS -*- BANCO DE DADOS -*- BANCO DE DADOS -*- BANCO DE DADOS -*- BANCO DE DADOS -*- BANCO DE DADOS -*- BANCO DE DADOS
 (def ILS-DB 
    {
     :classname   "org.h2.Driver"
@@ -16,15 +16,10 @@
     :password    ""
    }
   )
-
-
-
-
-  ;CRIAÇÃO DE TABELAS. Apenas para eventuais manutenções e testes, não é para ser usado.  
   
-
-
-(defn criar-tabela-exercicio-dominio
+;CRIAÇÃO DE TABELAS. Apenas para eventuais manutenções e testes, não é para ser usado.  
+  
+(defn criar-tabela-exerciciodominio
 "Funcao para testes. Não use diretamente!" 
 []
   (sql/with-connection ILS-DB
@@ -61,7 +56,7 @@
 )))
 
 
-(defn- destroi-tabelas-dominio 
+(defn destroi-tabelas 
 "Não use isto. É so pra testes iniciais! Ou vai ter que repovoar o banco inteiro."
 []
    (sql/with-connection ILS-DB
@@ -69,43 +64,57 @@
    (sql/with-connection ILS-DB
     (sql/drop-table :apresentacao))
    (sql/with-connection ILS-DB
-    (sql/drop-table :multimidia)))
+    (sql/drop-table :multimidia))
+ )
     
 
 ;INSERCAO
 
-(defn inserir-exercicios
+(defn get-value [xml & tags]
+ "Pega o xml de um arquivo e o guarda em uma estrutura."
+  (apply zf/xml1-> (zip/xml-zip (xml/parse xml)) (conj (vec tags) zf/text)))
+
+(defn- inserir-exercicio
   "Funcao para inserir os xml prontos de exercicio no banco. 
    A função é usada juntamente com a função slurp, que lê um arquivo em Clojure."
-   [id conteudo nivel tipo xml]
+   [xml]
    (sql/with-connection ILS-DB
     (sql/insert-records :exerciciodominio
-      {:id id :conteudo conteudo :nivel nivel :tipo tipo :xmlexercicio xml}
+      {:id (get-value xml :idEx) 
+       :conteudo (get-value xml :conteudo) 
+       :nivel (get-value xml :nivel) 
+       :tipo (get-value xml :tipo) 
+       :xmlexercicio (slurp xml)}
     )))
     
     
 (defn- inserir-apresentacao
   "Funcao para inserir os xml prontos de apresentacao no banco. 
    A função é usada juntamente com a função slurp, que lê um arquivo em Clojure."
-   [id conteudo xml]
+   [xml]
    (sql/with-connection ILS-DB
     (sql/insert-records :apresentacao
-      {:id id :conteudo conteudo :xmlapresentacao xml}
+      {:id (get-value xml :idAp) 
+       :conteudo (get-value xml :conteudo) 
+       :xmlapresentacao (slurp xml)}
     )))
     
 (defn- inserir-multimidia
   "Funcao para inserir os xml prontos de multimidia no banco. 
    A função é usada juntamente com a função slurp, que lê um arquivo em Clojure."
-   [id conteudo tipo xml]
+   [tipo xml]
    (sql/with-connection ILS-DB
     (sql/insert-records :multimidia
-      {:id id :conteudo conteudo :tipo tipo :xmlmultimidia xml}
+      {:id (get-value xml :idMult)  
+       :conteudo (get-value xml :conteudo) 
+       :tipo tipo 
+       :xmlmultimidia (slurp xml)}
     )))
     
     
 ;REMOCAO
 
-(defn remover-exercicio
+(defn- remover-exercicio
   "Funcao para remover algum exercicio do banco, pelo id."
    [id]
    (sql/with-connection ILS-DB
@@ -114,7 +123,7 @@
     )))
     
     
-(defn remover-apresentacao
+(defn- remover-apresentacao
   "Funcao para remover algum exercicio do banco, pelo id."
    [id]
    (sql/with-connection ILS-DB
@@ -122,7 +131,7 @@
       [(str "apresentacao.id = '"id"'")]
     )))
     
-(defn remover-multimidia
+(defn- remover-multimidia
   "Funcao para remover algum exercicio do banco, pelo id."
    [id]
    (sql/with-connection ILS-DB
@@ -137,7 +146,6 @@
     (apply str (line-seq rdr))))
     
 ;BUSCA
-
 
 ;Parte 1: retornar os XML a partir do id.
 
@@ -195,61 +203,174 @@
         
 
 ; MANIPULAÇÃO DE XML
-
-(defn get-value [xml & tags]
- "Pega o xml de um arquivo e o guarda em uma estrutura."
-  (apply zf/xml1-> (zip/xml-zip (xml/parse xml)) (conj (vec tags) zf/text)))
-    
-    
- (defn neoparse [xml]
-  "Pega um xml em formato de string, advindo de entrada ou banco de dados e o guarda em uma estrutura."
-   (let [input-xml (java.io.StringReader. xml)]
-                           (parse input-xml)))
+  
+ (defn zip-str [s]
+  "Pega uma string em xml e realiza o parsing."
+  (zip/xml-zip (xml/parse (java.io.ByteArrayInputStream. (.getBytes s)))))
                            
- (defn carregar-xml [id]
-  "Carrega o xml para a memória. A definição de uma estrutura para tal deixa as operações muito mais rápidas."
-	(def xml (neoparse (buscar-exercicio id)))) 
+ (defn carregar-exercicio [id]
+  "Carrega o xml do exercício para a memória. A definição de uma estrutura para tal deixa as operações muito mais rápidas."
+	(def xmlEx (zip-str (buscar-exercicio id))))
+	
+ (defn carregar-apresentacao [id]
+  "Carrega o xml da apresentacao para a memória. A definição de uma estrutura para tal deixa as operações muito mais rápidas."
+	(def xmlAp (zip-str (buscar-apresentacao id))))  
+	
+ (defn carregar-multimidia [id]
+  "Carrega o xml da multimidia para a memória. A definição de uma estrutura para tal deixa as operações muito mais rápidas."
+	(def xmlMult (zip-str (buscar-multimidia id)))) 
  
  (defn get-value-exercicio 
- "A forma mais facil que encontrei. Faz o que get-value fazia, mas para o banco. É bem prática, seguindo o modelo :)
-  Especifica para exercicio. "
- ;([id pos]
-  ;(nth (last (nth (vec (neoparse (buscar-exercicio id)))0))pos)) ;use para ver toda a tag (o que inclui atributos no caso de alternativas)
-  ([pos]
-   (first (:content (nth (last (nth (vec xml)0))pos)))) ;use para tags simples.
-   ;use esta para aquelas que possuem tags internas (enunciados, me ou v/f). escreva "true" no penultimo argumento e indique 
-   ;a posicao da tag interna. Esta pega o primeiro nivel de tag interna, ou seja, nao pega a tag enum, em enunciado, por exemplo.
-  ([pos pos1]
-   (first (:content (nth (:content (nth (last (nth (vec xml )0))pos))pos1))))
-  ([pos pos1 pos2] ;especial para pegar afirmacoes em exercicios do tipo aa (enum)
-   (first (:content (nth (vec (:content (nth (:content (nth (last (nth (vec xml )0))pos))pos1)))pos2)))))
+ "Pega o conteudo da tag de um exercicio a partir do seu nome de tag. Para alternativas, é necessário passar a posição."
+  ([tag]
+   (cond 
+   		(= tag "conteudo") (first (xml-> xmlEx :conteudo text))
+   		(= tag "idEx") (first (xml-> xmlEx :idEx text))
+   		(= tag "nivel") (first (xml-> xmlEx :nivel text))
+   		(= tag "tipo") (first (xml-> xmlEx :tipo text))
+   		(= tag "preReq") (first (xml-> xmlEx :preReq text))	
+   		(= tag "enunciado") (first (xml-> xmlEx :enunciado :texto text))
+   		(= tag "resposta") (first (xml-> xmlEx :resposta :codigo text))	
+    	:else "tag inválida ou entrada incorreta!" ))
+   ([tag pos]
+   	(cond
+   		(and (= tag "enunciado") (= pos "codigo")) (first (xml-> xmlEx :enunciado :codigo text))
+   		(and (= tag "enunciado") (= pos "texto")) (first (xml-> xmlEx :enunciado :texto text))
+   		(and (= tag "resposta") (= pos "texto")) (first (xml-> xmlEx :resposta :texto text))
+   		(and (= tag "resposta") (= pos "codigo")) (first (xml-> xmlEx :resposta :codigo text))
+   		(= tag "alternativa") (nth (xml-> xmlEx :alternativa text) pos)
+   		:else "tag inválida ou entrada incorreta!"))
+   ([tag tag2 pos]
+   	(cond
+   		(and (= tag "enunciado") (= tag2 "codigo")) (nth (xml-> xmlEx :enunciado :codigo text) pos)
+   		(and (= tag "enunciado") (= tag2 "texto")) (nth (xml-> xmlEx :enunciado :texto text) pos)
+   		(and (= tag "enunciado" ) (= tag2 "enum")) (nth (xml-> xmlEx :enunciado :enum :item text) pos)
+   		(and (= tag "resposta") (= tag2 "texto")) (nth (xml-> xmlEx :resposta :texto text) pos)
+   		(and (= tag "resposta") (= tag2 "codigo")) (nth (xml-> xmlEx :resposta :codigo text) pos)
+   		:else "tag inválida ou entrada incorreta!")))
    
    
 (defn get-attr-exercicio
- "Esta função é específica para pegar atributos de tags. É muito útil para saber se uma questão é correta (retorna true) ou incorreta (nil)
-  ou para V ou F (que retorna true ou false). A partir do id e da posição."
- ([pos] ;para pegar valores de alternativas
- (:valor (first (rest (first (rest (get-value-exercicio pos)))))))
- ([id pos  pos1 pos2] ;especial para pegar os id's de item em exercicios do tipo aa Ex: (get-attr-exercicio "f010" 5 3 0)  
-    (nth (first (:attrs (nth (vec (:content (nth (:content (nth (last (nth (vec xml )0))pos))pos1)))pos2)))1)))
+ "Esta função é específica para pegar atributos de tags. É muito útil para saber se uma questão é correta (retorna true) ou incorreta (false)
+  ou para V ou F (que também retorna true ou false)."
+ ([tag pos]
+ 	(cond 
+ 		(= tag "alternativa") (nth (xml-> xmlEx :alternativa (attr :valor))pos)
+ 		:else "tag inválida ou entrada incorreta!"))
+ ([tag tag2 pos] 
+ 	(cond
+ 		(and (= tag "enunciado") (= tag2 "enum")) (nth (xml-> xmlEx :enunciado :enum :item (attr :id))pos)
+ 		:else "tag inválida ou entrada incorreta!")))
+
  
 
 (defn get-value-apresentacao 
- "A forma mais facil que encontrei. Faz o que get-value fazia, mas para o banco. É bem prática, seguindo o modelo :)
-  Especifica para apresentacao. "
- ;([id pos] ;use para ver toda a tag
-  ;(nth (last (nth (vec (neoparse (buscar-apresentacao id )))2))pos)) 
- ([id pos] ;use para pegar conteudos de tags.
-  (first (:content (nth (last (nth (vec xml )2))pos))))) 
+ "Pega o conteudo da tag de uma apresencao a partir do nome de tag."
+ ([tag] ;use para pegar conteudos de tags.
+  (cond 
+      	(= tag "idAp") (first (xml-> xmlAp :idAp text))
+      	(= tag "conteudo") (first (xml-> xmlAp :conteudo text))
+      	(= tag "texto") (first (xml-> xmlAp :texto text))
+      	(= tag "codigo") (first (xml-> xmlAp :codigo text))
+      	:else "tag inválida ou entrada incorreta!" ))) 
      
   
 (defn get-value-multimidia 
- "A forma mais facil que encontrei. Faz o que get-value fazia, mas para o banco. É bem prática, seguindo o modelo :)
-  Especifica para multimidia. "
- ;([id pos] ;use para ver toda a tag 
- ; (nth (last (nth (vec (neoparse (buscar-multimidia id )))1))pos)) 
- ([pos] ;use para pegar conteudos de tags simples.
-  (first (:content (nth (last (nth (vec xml )1))pos))))
- ([pos alt] ;use esta para pegar url, diretorio, embedded de figuras, videos ou animacoes. Escreva "true" no ultimo argumento.
-   (first (:content (last (:content (nth (last (nth (vec xml )1))pos))))))) 
+ "Pega o conteudo da tag de um recurso multimidia a partir do(s) seu(s) nome(s) de tag(s)."
+ ([tag]
+   (cond 
+      	(= tag "idMult") (first (xml-> xmlMult :idMult text))
+      	(= tag "conteudo") (first (xml-> xmlMult :conteudo text))
+      	(= tag "legenda") (first (xml-> xmlMult :legenda text))
+      	:else "tag inválida ou entrada incorreta!" ))
+ ([tag tag2]
+ 	(cond 
+ 		(and (= tag "figura") (= tag2 "url"))  (first (xml-> xmlMult :figura :url text))
+ 		(and (= tag "figura") (= tag2 "diretorio"))  (first (xml-> xmlMult :figura :diretorio text)) 
+ 		(and (= tag "animacao") (= tag2 "url"))  (first (xml-> xmlMult :animacao :url text))
+ 		(and (= tag "animacao") (= tag2 "diretorio"))  (first (xml-> xmlMult :animacao :diretorio text))
+ 		(and (= tag "video") (= tag2 "url"))  (first (xml-> xmlMult :video :url text))
+ 		(and (= tag "video") (= tag2 "diretorio"))  (first (xml-> xmlMult :video :diretorio text)) 
+ 		(and (= tag "video") (= tag2 "embedded"))  (first (xml-> xmlMult :video :embedded text))
+ 		:else "tag inválida ou entrada incorreta!" )))
+  
 
+  
+;GERAÇÃO DE XML  
+(defn gerar-xml [nomearq]
+	"Gera um xml. Passa o arquivo como parametro."
+	(let [tags (element :foo {:foo-attr "foo value"}
+                     (element :bar {:bar-attr "bar value"}
+                       (element :baz {} "The baz value1")
+                       (element :baz {} "The baz value2")
+                       (element :baz {} "The baz value3")))]
+  (with-open [out-file (java.io.FileWriter. nomearq)]
+    (emit tags out-file))))
+  
+  
+(defn reload-banco []
+ "Uma funcao para restaurar o banco de dados, e fazer eventuais alterações que envolvam todos os arquivos .xml"
+ 	(destroi-tabelas)
+ 	(criar-tabela-exerciciodominio)
+ 	(criar-tabela-multimidia)
+ 	(criar-tabela-apresentacao)
+	(inserir-exercicio "src/ils/models/dominio/vetor/exercicios/v001.xml")
+	(inserir-exercicio "src/ils/models/dominio/vetor/exercicios/v002.xml")
+	(inserir-exercicio "src/ils/models/dominio/vetor/exercicios/v003.xml")
+	(inserir-exercicio "src/ils/models/dominio/vetor/exercicios/v004.xml")
+	(inserir-exercicio "src/ils/models/dominio/vetor/exercicios/v005.xml")
+	(inserir-exercicio "src/ils/models/dominio/vetor/exercicios/v006.xml")
+	(inserir-exercicio "src/ils/models/dominio/vetor/exercicios/v007.xml")
+	(inserir-exercicio "src/ils/models/dominio/vetor/exercicios/v008.xml")
+	(inserir-exercicio "src/ils/models/dominio/vetor/exercicios/v009.xml")
+	(inserir-exercicio "src/ils/models/dominio/vetor/exercicios/v010.xml")
+	(inserir-exercicio "src/ils/models/dominio/vetor/exercicios/v011.xml")
+	(inserir-exercicio "src/ils/models/dominio/vetor/exercicios/v012.xml")
+	
+	(inserir-exercicio "src/ils/models/dominio/recursiv/exercicios/r001.xml")
+	(inserir-exercicio "src/ils/models/dominio/recursiv/exercicios/r002.xml")
+	
+	(inserir-exercicio "src/ils/models/dominio/lista/exercicios/l001.xml")
+	(inserir-exercicio "src/ils/models/dominio/lista/exercicios/l002.xml")
+	(inserir-exercicio "src/ils/models/dominio/lista/exercicios/l003.xml")
+	(inserir-exercicio "src/ils/models/dominio/lista/exercicios/l004.xml")
+	(inserir-exercicio "src/ils/models/dominio/lista/exercicios/l005.xml")
+	(inserir-exercicio "src/ils/models/dominio/lista/exercicios/l006.xml")
+	(inserir-exercicio "src/ils/models/dominio/lista/exercicios/l007.xml")
+	(inserir-exercicio "src/ils/models/dominio/lista/exercicios/l008.xml")
+	(inserir-exercicio "src/ils/models/dominio/lista/exercicios/l009.xml")
+	(inserir-exercicio "src/ils/models/dominio/lista/exercicios/l010.xml")
+	(inserir-exercicio "src/ils/models/dominio/lista/exercicios/l011.xml")
+	(inserir-exercicio "src/ils/models/dominio/lista/exercicios/l012.xml")
+	(inserir-exercicio "src/ils/models/dominio/lista/exercicios/l013.xml")
+	(inserir-exercicio "src/ils/models/dominio/lista/exercicios/l014.xml")
+	
+	(inserir-exercicio "src/ils/models/dominio/fila/exercicios/f001.xml")
+	(inserir-exercicio "src/ils/models/dominio/fila/exercicios/f002.xml")
+	(inserir-exercicio "src/ils/models/dominio/fila/exercicios/f003.xml")
+	(inserir-exercicio "src/ils/models/dominio/fila/exercicios/f004.xml")
+	(inserir-exercicio "src/ils/models/dominio/fila/exercicios/f005.xml")
+	(inserir-exercicio "src/ils/models/dominio/fila/exercicios/f006.xml")
+	(inserir-exercicio "src/ils/models/dominio/fila/exercicios/f007.xml")
+	(inserir-exercicio "src/ils/models/dominio/fila/exercicios/f008.xml")
+	(inserir-exercicio "src/ils/models/dominio/fila/exercicios/f009.xml")
+	(inserir-exercicio "src/ils/models/dominio/fila/exercicios/f010.xml")
+	
+	(inserir-exercicio "src/ils/models/dominio/alocDin/exercicios/ad001.xml")
+	(inserir-exercicio "src/ils/models/dominio/alocDin/exercicios/ad002.xml")
+	(inserir-exercicio "src/ils/models/dominio/alocDin/exercicios/ad003.xml")
+	(inserir-exercicio "src/ils/models/dominio/alocDin/exercicios/ad004.xml")
+	(inserir-exercicio "src/ils/models/dominio/alocDin/exercicios/ad005.xml")
+	(inserir-exercicio "src/ils/models/dominio/alocDin/exercicios/ad006.xml")
+	(inserir-exercicio "src/ils/models/dominio/alocDin/exercicios/ad007.xml")
+	(inserir-exercicio "src/ils/models/dominio/alocDin/exercicios/ad008.xml")
+	(inserir-exercicio "src/ils/models/dominio/alocDin/exercicios/ad009.xml")
+	(inserir-exercicio "src/ils/models/dominio/alocDin/exercicios/ad010.xml")
+	
+	
+	(inserir-apresentacao "src/ils/models/dominio/vetor/apresentacao/v001.xml")
+	
+	(inserir-multimidia "figura" "src/ils/models/dominio/vetor/multimidia/v001.xml")
+	(inserir-multimidia "video" "src/ils/models/dominio/vetor/multimidia/v002.xml")
+  )
+  

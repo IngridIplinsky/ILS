@@ -6,7 +6,9 @@
         [ils.models.pedagogico pedagogico]
         [ils.models.dominio dominio]  
         [noir.core :only [defpage]]
-        [hiccup.core :only [html]]))
+        [hiccup.core :only [html]]
+        [noir.core :only [defpartial]]
+        [hiccup.page-helpers :only [include-css html5 include-js html5]]))
         
 
 
@@ -42,151 +44,67 @@
              conforme a necessidade do programa. Dessa forma evita-se o desperdício de memória.
              A alocação dinâmica é muito utilizada em problemas de estrutura de dados, por exemplo, 
             listas encadeadas, pilhas, filas, arvores binárias e grafos."]
-         [:button {:class "botaoQuestoes" :onclick "testeAlocacao();"} "Avançar para questões"]]]))
+         [:button {:class "botaoQuestoes" :onclick "testeAlocacao();"} "Avançar para questões"]
+         [:a {:class "videoAulas" :href "/videos/vetor" } "Vídeos aulas"]
+         [:a {:class "textosExplicativos" :href "/videos/vetor"} "Textos"]
+         ]]))
 
 
 
 (defpage [:post "/login/alocacao/1"] []
      (common/layout
-         [:body {:id "fundoiframe"} 
-         [:form {:action "/login/alocacao/2" :method "post" :name "form"}
-         [:center [:h5 "Alocação Dinâmica"]]
-         [:p "1) A alocação dinâmica em C é feita com o seguinte comando: "]
-         [:input {:type "radio" :name "op" :value "al1a" }]  " (A) allocation(estrutura*)" [:br]
-         [:input {:type "radio" :name "op" :value "al1b" }]  " (B) free(estrutura*)" [:br]
-         [:input {:type "radio" :name "op" :value "al1c" }]  " (C) sizeof()" [:br]
-         [:input {:type "radio" :name "op" :value "al1d" }]  " (D) malloc()" [:br] [:br][:br] 
-         [:button {:class "botaoQuestoes" :onclick "return verificaRadio();"} "Avançar"]]]))
-
+         (formata-pergunta  "1" "ad001" "Alocação Dinâmica" "/login/alocacao/2")))
 
 (defpage [:post "/login/alocacao/2"] {:keys [op]}
 (pedagogico-corretor "alocDin" "ex1" op)
      (common/layout
-         [:body {:id "fundoiframe"} 
-         [:form {:action "/login/alocacao/3" :method "post" :name "form"}
-         [:center [:h5 "Alocação Dinâmica"]]
-         [:p "2) Em alguns sistemas computacionais, o gasto de memória é decisivo na produção de um software. Para não haver desperdício de memória:"]
-         [:input {:type "radio" :name "op" :value "al2a" }]  " (A) Se faz alocação estática, pois se delimita a quantidade de memória que se quer usar." [:br]
-         [:input {:type "radio" :name "op" :value "al2b" }]  " (B) Se faz alocação dinâmica, colocando a quantidade de posições da estrutura que se quer utilizar." [:br]
-         [:input {:type "radio" :name "op" :value "al2c" }]  " (C) Se faz alocação dinâmica, não colocando a quantidade de posições." [:br]
-         [:input {:type "radio" :name "op" :value "al2d" }]  " (D) Nenhuma das anteriores." [:br] [:br][:br]
-         [:button {:class "botaoQuestoes" :onclick "return verificaRadio();"} "Avançar"]]]))
-
+         (formata-pergunta  "2" "ad002" "Alocação Dinâmica" "/login/alocacao/3")))
 
 (defpage [:post "/login/alocacao/3"] {:keys [op]}
 (pedagogico-corretor "alocDin" "ex2" op)
      (common/layout
-         [:body {:id "fundoiframe"} 
-         [:form {:action "/login/alocacao/4" :method "post" :name "form"}
-         [:center [:h5 "Alocação Dinâmica"]]
-         [:p "3) Marque a alternativa correta para se alocar um vetor inteiro vet de 50 posições na linguagem C: "]
-         [:input {:type "radio" :name "op" :value "al3a" }]  " (A)  vet = (int*) malloc (sizeof(int)) " [:br]
-         [:input {:type "radio" :name "op" :value "al3b" }]  " (B) *vet = (int*) malloc (sizeof(int)) " [:br]
-         [:input {:type "radio" :name "op" :value "al3c" }]  " (C) *vet = (int*) malloc (50*sizeof(int)) " [:br]
-         [:input {:type "radio" :name "op" :value "al3d" }]  " (D)  vet = (int*) malloc (50*sizeof(int))" [:br] [:br][:br]
-         [:button {:class "botaoQuestoes" :onclick "return verificaRadio();"} "Avançar"]]]))
-
+         (formata-pergunta  "3" "ad003" "Alocação Dinâmica" "/login/alocacao/4")))
 
 (defpage [:post "/login/alocacao/4"] {:keys [op]}
 (pedagogico-corretor "alocDin" "ex3" op)
      (common/layout
-         [:body {:id "fundoiframe"} 
-         [:form {:action "/login/alocacao/5" :method "post" :name "form"}
-         [:center [:h5 "Alocação Dinâmica"]]
-         [:p "4) Desejo criar a seguinte estrutura em C:"] 
-         [:p "Um vetor de 3 posicoes capaz de guardar uma string em cada posição, seguindo o modelo:"]
-         [:p "posição 0: Maria"]
-         [:p "posição 1: João"]
-         [:p "posição 2: Pedro"]
-         [:p "Marque a alternativa correta referente à alocação desta estrutura."]
-         [:input {:type "radio" :name "op" :value "al1a" }]  " (A) vetS[3] = (char*) malloc(sizeof(char))" [:br]
-         [:input {:type "radio" :name "op" :value "al1b" }]  " (B) vetS[2] = (char*) malloc(sizeof(char))" [:br]
-         [:input {:type "radio" :name "op" :value "al1c" }]  " (C) vetS = (char*) malloc(3*sizeof(char))" [:br]
-         [:input {:type "radio" :name "op" :value "al1d" }]  " (D) Não é possível fazer isto na linguagem C." [:br] [:br][:br]
-         [:button {:class "botaoQuestoes" :onclick "return verificaRadio();"} "Avançar"]]]))
-
+         (formata-pergunta  "4" "ad004" "Alocação Dinâmica" "/login/alocacao/5")))
 
 (defpage [:post "/login/alocacao/5"] {:keys [op]}
 (pedagogico-corretor "alocDin" "ex4" op)
      (common/layout
-         [:body {:id "fundoiframe"} 
-         [:form {:action "/login/alocacao/6" :method "post" :name "form"}
-         [:center [:h5 "Alocação Dinâmica"]]
-         [:p "5) Para alocar memória precisamos saber quanto espaço cada tipo ocupa. "]
-         [:p "Qual é esse operador ?"]
-         [:input {:type "radio" :name "op" :value "al5a" }]  " (A) allocation()" [:br]
-         [:input {:type "radio" :name "op" :value "al5b" }]  " (B) free()" [:br]
-         [:input {:type "radio" :name "op" :value "al5c" }]  " (C) sizeof()" [:br]
-         [:input {:type "radio" :name "op" :value "al5d" }]  " (D) malloc()" [:br] [:br][:br]
-         [:button {:class "botaoQuestoes" :onclick "return verificaRadio();"} "Avançar"]]]))
+         (formata-pergunta  "5" "ad005" "Alocação Dinâmica" "/login/alocacao/6")))
+
 
 (defpage [:post "/login/alocacao/6"] {:keys [op]}
 (pedagogico-corretor "alocDin" "ex5" op)
         (common/layout 
-         [:body {:id "fundoiframe"} 
-         [:form {:action "/login/alocacao/7" :method "post" :name "form"}
-         [:center [:h5 "Alocação Dinâmica"]]  
-         [:p "6) O que a variavel ptr representa ? ptr = malloc (sizeof (data)); "]
-         [:input {:type "radio" :name "op" :value "al6a" }]  " (A) Devolve o endereço" [:br]
-         [:input {:type "radio" :name "op" :value "al6b" }]  " (B) Devolve um valor qualquer" [:br]
-         [:input {:type "radio" :name "op" :value "al6c" }]  " (C) Devolve NULL" [:br]
-         [:input {:type "radio" :name "op" :value "al6d" }]  " (D) Devolve lixo" [:br] [:br][:br]
-         [:button {:class "botaoQuestoes" :onclick "return verificaRadio();"} "Avançar"]]]))
+        (formata-pergunta  "6" "ad006" "Alocação Dinâmica" "/login/alocacao/7")))
+
 
 (defpage [:post "/login/alocacao/7"] {:keys [op]}
 (pedagogico-corretor "alocDin" "ex6" op)
      (common/layout
-         [:body {:id "fundoiframe"} 
-         [:form {:action "/login/alocacao/8" :method "post" :name "form"}
-         [:center [:h5 "Alocação Dinâmica"]]
-         [:p "7) se quisermos alocar espaço para 100 inteiros podemos usar: "]
-         [:input {:type "radio" :name "op" :value "al7a" }]  " (A)int &ip; ip = (int &) malloc(100*sizeof(int));" [:br]
-         [:input {:type "radio" :name "op" :value "al7b" }]  " (B)int *ip; ip = (int *) malloc(100*sizeof(int));" [:br]
-         [:input {:type "radio" :name "op" :value "al7c" }]  " (C)int *ip; &ip = (int *) sizeof(100*malloc(*int));" [:br]
-         [:input {:type "radio" :name "op" :value "al7d" }]  " (D)int *ip; ip = (int *) sizeof(100*malloc(int));" [:br] [:br][:br]
-         [:button {:class "botaoQuestoes" :onclick "return verificaRadio();"} "Avançar"]]]))
+         (formata-pergunta  "7" "ad007" "Alocação Dinâmica" "/login/alocacao/8")))
+
 
 (defpage [:post "/login/alocacao/8"] {:keys [op]}
 (pedagogico-corretor "alocDin" "ex7" op)
      (common/layout
-         [:body {:id "fundoiframe"} 
-         [:form {:action "/login/alocacao/9" :method "post" :name "form"}
-         [:center [:h5 "Alocação Dinâmica"]]
-         [:p "8) Marque a alternativa correta para se alocar um vetor inteiro vet de 500 posições na linguagem C: "]
-         [:input {:type "radio" :name "op" :value "al8a" }]  " (A)  vet = (int*) malloc (sizeof(int)) " [:br]
-         [:input {:type "radio" :name "op" :value "al8b" }]  " (B) *vet = (int*) malloc (sizeof(int)) " [:br]
-         [:input {:type "radio" :name "op" :value "al8c" }]  " (C) *vet = (int*) malloc (500*sizeof(int)) " [:br]
-         [:input {:type "radio" :name "op" :value "al8d" }]  " (D)  vet = (int*) malloc (500*sizeof(int))" [:br] [:br][:br]
-         [:button {:class "botaoQuestoes" :onclick "return verificaRadio();"} "Avançar"]]]))
+        (formata-pergunta  "8" "ad008" "Alocação Dinâmica" "/login/alocacao/9")))
+
 
 
 (defpage [:post "/login/alocacao/9"] {:keys [op]}
 (pedagogico-corretor "alocDin" "ex8" op)
      (common/layout
-         [:body {:id "fundoiframe"} 
-         [:form {:action "/login/alocacao/10" :method "post" :name "form"}
-         [:center [:h5 "Alocação Dinâmica"]]
-         [:p "9) Limpar a memoria alocada de um vetor V "]
-         [:input {:type "radio" :name "op" :value "al9a" }]  " (A) alloc(V) " [:br]
-         [:input {:type "radio" :name "op" :value "al9b" }]  " (B) malloc(V)" [:br]
-         [:input {:type "radio" :name "op" :value "al9c" }]  " (C) sizeof(V)" [:br]
-         [:input {:type "radio" :name "op" :value "al9d" }]  " (D) free(V)" [:br] [:br][:br]
-         [:button {:class "botaoQuestoes" :onclick "return verificaRadio();"} "Avançar"]]]))
+         (formata-pergunta  "9" "ad009" "Alocação Dinâmica" "/login/alocacao/10")))
 
 
 (defpage [:post "/login/alocacao/10"] {:keys [op]}
 (pedagogico-corretor "alocDin" "ex9" op)
      (common/layout
-         [:body {:id "fundoiframe"} 
-         [:form {:action "/login/alocacao/fim" :method "post" :name "form"}
-         [:center [:h5 "Alocação Dinâmica"]]
-         [:p "10)  int Func(vet) { vet = (int*) malloc (sizeof(int)); if(vet == NULL) return 0 else return 1 } "]
-         [:p "O que o código faz ?"]
-         [:input {:type "radio" :name "op" :value "al10a" }]  " (A) aloca um vetor e retorna seu valor " [:br]
-         [:input {:type "radio" :name "op" :value "al10b" }]  " (B) aloca e depois limpa a memoria" [:br]
-         [:input {:type "radio" :name "op" :value "al10c" }]  " (C) aloca e verifica se deu certo" [:br]
-         [:input {:type "radio" :name "op" :value "al10d" }]  " (D) Nenhuma das anteriores" [:br] [:br][:br]   
-         [:button {:class "botaoQuestoes" :onclick "return verificaRadio();"} "Avançar"]]]))
+         (formata-pergunta  "10" "ad010" "Alocação Dinâmica" "/login/alocacao/fim")))
 
 
 (defpage [:post "/login/alocacao/fim"] {:keys [op]}
@@ -210,9 +128,6 @@
          )))
 
 
-
-
-
 ;/********************************************************************/
 ;/****************************** VETOR ********************/
 ;/********************************************************************/
@@ -228,122 +143,148 @@
               chamados de elementos do vetor. Um vetor é declarado fornecendo-se 
              o tipo dos seus elementos, o nome do vetor e o número de elementos. 
              Um vetor nada mais é do que uma matriz unidimensional."]
-         [:button {:class "botaoQuestoes" :onclick "testeVetor();" } "Avançar para questões"]]]))
+         [:button {:class "botaoQuestoes" :onclick "testeVetor();" } "Avançar para questões"]
+         [:a {:class "videoAulas" :href "/videos/vetor" } "Vídeos aulas"]
+         [:a {:class "textosExplicativos" :href "/videos/vetor"} "Textos"]
+         ]]))
 
 
 
-(defpage [:post "/login/vetor/1"] []
+(defpage [:post "/login/vetor/11"] []
     (common/layout
-      ;(formata-pergunta  "1" "v001" "VETOR" "/login/vetor/2")
-      (pedagogico-main)
-    ))
+      ;(formata-pergunta  "1" "v001" "VETOR" "/login/vetor/2")))
+     [:head
+              (include-css "/css/codemirror.css")
+              (include-js "/js/codemirror.js")
+              (include-css "/css/docs.css")
+              (include-js "/js/clike.js")]             
+  
+       [:body {:onload "chama();"}     
+       [:p "11) Escreva um código em C, que imprime um vetor de 10 posições"] 
+       [:form {:action "/login/vetor/fim" :method "post"}
+       [:textarea {:id "code" :name "code"}
+       "    /* Escreva seu código aqui*/   \n\n"
+       "#include <stdio.h>\n"
+       "#include <stdlib.h>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+ 
+]
+
+  [:button {:class "botaoAnterior"} "anterior"]
+  [:button {:class "botaoTestar"} "testar"]
+  [:button {:class "botaoProximo"} "próximo"]
+  [:div {:id "console"} ">" [:p {:id "cons"} ""]]]]))
+    
+
+(defpage [:post "/login/vetor/1"] {:keys [op]}
+     (common/layout
+        (formata-pergunta "1" "v001" "VETOR" "/login/vetor/2"))) 
 
 
 (defpage [:post "/login/vetor/2"] {:keys [op]}
-;(pedagogico-corretor "vetor" "ex1" op)
-;(pedagogico-corretor "vetor" "v001" op)
-    (common/layout
-        ;(formata-pergunta "2" "v002" "VETOR" "/login/vetor/3")
-        (pedagogico-corretor 2 op)
-    )) 
+(pedagogico-corretor "vetor" "ex1" op)
+     (common/layout
+        (formata-pergunta "2" "v002" "VETOR" "/login/vetor/3"))) 
          
 
 (defpage [:post "/login/vetor/3"] {:keys [op]}
-;(pedagogico-corretor "vetor" "ex2" op)
-;(pedagogico-corretor "vetor" "v002" op)
-    (common/layout
-       ;(formata-pergunta  "3" "v003" "VETOR" "/login/vetor/4")
-       (pedagogico-corretor 3 op)
-    ))
+(pedagogico-corretor "vetor" "ex2" op)
+     (common/layout
+       (formata-pergunta  "3" "v003" "VETOR" "/login/vetor/4")))
         
 
 (defpage [:post "/login/vetor/4"] {:keys [op]}
-;(pedagogico-corretor "vetor" "ex3" op)
-;(pedagogico-corretor "vetor" "v003" op)
-    (common/layout
-       ;(formata-pergunta  "4" "v004" "VETOR" "/login/vetor/5")
-       (pedagogico-corretor 4 op)
-    ))  
+(pedagogico-corretor "vetor" "ex3" op)
+     (common/layout
+       (formata-pergunta  "4" "v004" "VETOR" "/login/vetor/5")))  
 
 (defpage [:post "/login/vetor/5"] {:keys [op]}   
-;(pedagogico-corretor "vetor" "ex4" op)
-;(pedagogico-corretor "vetor" "v004" op)
+(pedagogico-corretor "vetor" "ex4" op)
     (common/layout
-;         [:body {:id "fundoiframe"} 
-;         [:form {:action "/login/vetor/6" :method "post"}
-;         [:center [:h5 "VETOR"]]
-;         [:p "5) Tenho o seguinte código: for(i=0; i&lt;5; i++) Vetor[i] = i+2 ."] 
-;         [:p "O que esse código faz?"] 
-;         [:input {:type "radio" :name "op" :value "a" }]  " (A)  Preenche o Vetor com o número 1." [:br]
-;         [:input {:type "radio" :name "op" :value "b" }]  " (B)  Preenche o Vetor de 1 à 5. " [:br]
-;         [:input {:type "radio" :name "op" :value "c" }]  " (C)  Preenche o Vetor com número 0." [:br]
-;         [:input {:type "radio" :name "op" :value "d" }]  " (D)  Nenhuma das alternativas anteriores." [:br] [:br][:br]
-;         [:button {:class "botaoQuestoes"} "Avançar"]]]
-        (pedagogico-corretor 5 op)
-    )
-)
+       (formata-pergunta  "5" "v005" "VETOR" "/login/vetor/6")))  
+
+       ;  [:body {:id "fundoiframe"} 
+        ; [:form {:action "/login/vetor/6" :method "post"}
+        ; [:center [:h5 "VETOR"]]
+        ; [:p "5) Tenho o seguinte código: for(i=0; i&lt;5; i++) Vetor[i] = i+2 ."] 
+        ; [:p "O que esse código faz?"] 
+        ; [:input {:type "radio" :name "op" :value "a" }]  " (A)  Preenche o Vetor com o número 1." [:br]
+        ; [:input {:type "radio" :name "op" :value "b" }]  " (B)  Preenche o Vetor de 1 à 5. " [:br]
+        ; [:input {:type "radio" :name "op" :value "c" }]  " (C)  Preenche o Vetor com número 0." [:br]
+        ; [:input {:type "radio" :name "op" :value "d" }]  " (D)  Nenhuma das alternativas anteriores." [:br] [:br][:br]
+        ; [:button {:class "botaoQuestoes"} "Avançar"]]]))
         
 (defpage [:post "/login/vetor/6"] {:keys [op]}
-;(pedagogico-corretor "vetor" "ex5" op)
-;(pedagogico-corretor "vetor" "v005" op)
+(pedagogico-corretor "vetor" "ex5" op)
      (common/layout
-;         [:body {:id "fundoiframe"} 
-;         [:form {:action "/login/vetor/7" :method "post"}
-;         [:center [:h5 "VETOR"]]
-;         [:p "6) Indique qual das variáveis a seguir representa um vetor de números reais:"] 
-;         [:input {:type "radio" :name "op" :value "a" }]  " (A)  int A[5]" [:br]
-;         [:input {:type "radio" :name "op" :value "b" }]  " (B)  float A[5]" [:br]
-;         [:input {:type "radio" :name "op" :value "c" }]  " (C)  char A[5]" [:br]
-;         [:input {:type "radio" :name "op" :value "d" }]  " (D)  void A[5]" [:br] [:br][:br]
-;         [:button {:class "botaoQuestoes"} "Avançar"]]]
-        (pedagogico-corretor 6 op)
-    )
-)
+        (formata-pergunta  "6" "v006" "VETOR" "/login/vetor/7")))  
+
+        ; [:body {:id "fundoiframe"} 
+        ; [:form {:action "/login/vetor/7" :method "post"}
+        ; [:center [:h5 "VETOR"]]
+        ; [:p "6) Indique qual das variáveis a seguir representa um vetor de números reais:"] 
+        ; [:input {:type "radio" :name "op" :value "a" }]  " (A)  int A[5]" [:br]
+        ; [:input {:type "radio" :name "op" :value "b" }]  " (B)  float A[5]" [:br]
+        ; [:input {:type "radio" :name "op" :value "c" }]  " (C)  char A[5]" [:br]
+        ; [:input {:type "radio" :name "op" :value "d" }]  " (D)  void A[5]" [:br] [:br][:br]
+        ; [:button {:class "botaoQuestoes"} "Avançar"]]]))
         
          
 (defpage [:post "/login/vetor/7"] {:keys [op]}
-;(pedagogico-corretor "vetor" "ex6" op)
-;(pedagogico-corretor "vetor" "v006" op)
-    (common/layout
-        ;(formata-pergunta  "7" "v007" "VETOR" "/login/vetor/8")
-        (pedagogico-corretor 7 op)
-    ))
+(pedagogico-corretor "vetor" "ex6" op)
+     (common/layout
+        (formata-pergunta  "7" "v007" "VETOR" "/login/vetor/8")))
          
 (defpage [:post "/login/vetor/8"] {:keys [op]}
-;(pedagogico-corretor "vetor" "ex7" op)
-;(pedagogico-corretor "vetor" "v007" op)
-    (common/layout
-       ;(formata-pergunta  "8" "v008" "VETOR" "/login/vetor/9")
-       (pedagogico-corretor 8 op)
-    ))
+(pedagogico-corretor "vetor" "ex7" op)
+     (common/layout
+       (formata-pergunta  "8" "v008" "VETOR" "/login/vetor/9")))
          
 
 (defpage [:post "/login/vetor/9"] {:keys [op]}
-;(pedagogico-corretor "vetor" "ex8" op)
-;(pedagogico-corretor "vetor" "v008" op)
-    (common/layout
-       ;(formata-pergunta  "9" "v009" "VETOR" "/login/vetor/10")
-       (pedagogico-corretor 9 op)
-    ))
+(pedagogico-corretor "vetor" "ex8" op)
+     (common/layout
+       (formata-pergunta  "9" "v009" "VETOR" "/login/vetor/10"))) 
          
 
 (defpage [:post "/login/vetor/10"] {:keys [op]}
-;(pedagogico-corretor "vetor" "ex9" op)
-;(pedagogico-corretor "vetor" "v009" op)
-    (common/layout
-       ;(formata-pergunta  "10" "v010" "VETOR" "/login/vetor/fim")
-       (pedagogico-corretor 10 op)
-    ))
+(pedagogico-corretor "vetor" "ex9" op)
+     (common/layout
+       (formata-pergunta  "10" "v010" "VETOR" "/login/vetor/11")))   
 
 
+(defpage [:post "/login/vetor/11"] {:keys [op]}
+(pedagogico-corretor "vetor" "ex9" op)
+     (common/layout
+       [:head
+              (include-css "/css/codemirror.css")
+              (include-js "/js/codemirror.js")
+              (include-css "/css/docs.css")
+              (include-js "/js/clike.js")]             
+  
+       [:body {:onload "chama();"}
+       [:p "11) Escreva um código em C, que imprime um vetor de 10 posições"] 
+       [:form {:action "/login/vetor/fim" :method "post"}
+       [:textarea {:id "code" :name "code"}
+       "    /* Escreva seu código aqui*/   \n\n"
+       "#include <stdio.h>\n"
+       "#include <stdlib.h>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+ 
+]
 
-(defpage [:post "/login/vetor/fim"] {:keys [op]}
-;(pedagogico-corretor "vetor" "ex10" op)
-;(pedagogico-corretor "vetor" "v010" op)
+  [:button {:class "botaoAnterior"} "anterior"]
+  [:button {:class "botaoTestar"} "testar"]
+  [:button {:class "botaoProximo"} "próximo"]
+  [:div {:id "console"} ">" [:p {:id "cons"} ""]]
+    
+  ]]
+))
+
+(defpage [:post "/login/vetor/fim"] {:keys [code]}
+(pedagogico-corretor "vetor" "ex10" code)
 (atualiza-todo-dominio (recupera-id (session/get :senhaUsuario)) "vetor")   
 (cond (> (get (nth (retorna-exercicio-certos-dominio (recupera-id (session/get :senhaUsuario)) "vetor") 0) :bom) 0.5)
   (common/layout
-         [:body {:id "fundoiframe" :onload "alteraVisibilidadeLista1(); alteraVisibilidadeVetor1(); alteraVisibilidadeVetorInvisivel(); alteraVisibilidadeAlocacaoInvisivel(); mudaCorAzulLista(); alteraVisibilidadeFilaInvisivel(); alteraVisibilidadePilhaInvisivel(); alteraVisibilidadeArvoreInvisivel();"} 
+         [:body {:id "fundoiframe" :onload ""} 
          [:center [:h5 "VETOR"]]
          [:center [:h2 "Você terminou as atividades de vetores! "]]
          [:center [:h4 "Fico feliz, pois você teve um conhecimento acima de 50%"]]
@@ -351,14 +292,24 @@
          [:center [:h4 "Vamos para o centeúdo de Lista, o link apareceu ao lado"]]])
    :else 
      (common/layout
-         [:body {:id "fundoiframe" :onload "alteraVisibilidadeAlocacao(); alteraVisibilidadeVetor1Inv(); alteraVisibilidadeVetor();  alteraVisibilidadeListaInvisivel(); alteraVisibilidadeFilaInvisivel();"} 
+         [:body {:id "fundoiframe" :onload "CorVermelhaAloc();"} 
          [:center [:h5 "VETOR" ]]
+         [:p code]
          [:center [:h2 "Você terminou as atividades de vetores! "]]
          [:center [:h4 "Fico triste, pois você não se saiu bem"]]
          [:center [:h4 "Sendo assim, não pode prosseguir."]]
          [:center [:h4 "Te indico o conteúdo de alocação dinâmica, que apareceu o link ao lado."]]]  
          )))
 
+
+(defpage "/videos/vetor" []
+ (common/layout
+         [:body {:id "fundoiframe" } 
+         [:center [:h5 "VETOR/VÍDEOS" ]]
+         [:center [:h4 [:iframe {:width "560" :height "315" :src "http://www.youtube.com/embed/sTYLxyPszWQ" :frameborder "1" }]]]
+         [:center [:h4 [:iframe {:width "560" :height "315" :src "http://www.youtube.com/embed/3TP0e-bfdfw" :frameborder "1" }]]]
+         [:center [:h4 [:iframe {:width "560" :height "315" :src "http://www.youtube.com/embed/CtM7o2rsTic" :frameborder "1" }]]]]  
+         ))
 
 
 

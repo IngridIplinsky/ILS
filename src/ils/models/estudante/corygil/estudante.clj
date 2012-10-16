@@ -14,7 +14,7 @@
 (def dominio
 	  (bayes-net
 	    {
-	    :ABE [0.33 0.33 0.34]
+	        :ABE [0.33 0.33 0.34]
 		:DBE 3
 		:BAD 3
 		:BDC 3
@@ -160,135 +160,135 @@
 
 		
 (def estrutura-dados
-    {		:ed001 [0.33 0.33 0.34]
-		:ed002 [0.33 0.33 0.34]
-		:ed003 [0.33 0.33 0.34]
-		:ed004 [0.33 0.33 0.34]
-		:ed005 [0.03 0.33 0.64]
-		:ed006 [0.13 0.53 0.34]
-		:ed007 [0.20 0.43 0.37]
-		:ed008 [0.33 0.33 0.34]
-		:ed009 [0.33 0.33 0.34]
-		:ed010 [0.33 0.33 0.34]
+    {		:ex1 [0.33 0.33 0.34]
+		:ex2 [0.33 0.33 0.34]
+		:ex3 [0.33 0.33 0.34]
+		:ex4 [0.33 0.33 0.34]
+		:ex5 [0.03 0.33 0.64]
+		:ex6 [0.13 0.53 0.34]
+		:ex7 [0.20 0.43 0.37]
+		:ex8 [0.33 0.33 0.34]
+		:ex9 [0.33 0.33 0.34]
+		:ex10 [0.33 0.33 0.34]
 	})
 
 
 (def alocDin
-    {		:ad001 [0.33 0.33 0.34]
-		:ad002 [0.33 0.33 0.34]
-		:ad003 [0.33 0.33 0.34]
-		:ad004 [0.33 0.33 0.34]
-		:ad005 [0.03 0.33 0.64]
-		:ad006 [0.13 0.53 0.34]
-		:ad007 [0.20 0.43 0.37]
-		:ad008 [0.33 0.33 0.34]
-		:ad009 [0.33 0.33 0.34]
-		:ad010 [0.33 0.33 0.34]
+    {		:ex1 [0.33 0.33 0.34]
+		:ex2 [0.33 0.33 0.34]
+		:ex3 [0.33 0.33 0.34]
+		:ex4 [0.33 0.33 0.34]
+		:ex5 [0.03 0.33 0.64]
+		:ex6 [0.13 0.53 0.34]
+		:ex7 [0.20 0.43 0.37]
+		:ex8 [0.33 0.33 0.34]
+		:ex9 [0.33 0.33 0.34]
+		:ex10 [0.33 0.33 0.34]
 	})
 
 (def vetor
-    {		:v001 [0.33 0.33 0.34]
-		:v002 [0.33 0.33 0.34]
-		:v003 [0.33 0.33 0.34]
-		:v004 [0.33 0.33 0.34]
-		:v005 [0.03 0.33 0.64]
-		:v006 [0.13 0.53 0.34]
-		:v007 [0.20 0.43 0.37]
-		:v008 [0.33 0.33 0.34]
-		:v009 [0.33 0.33 0.34]
-		:v010 [0.33 0.33 0.34]
+    {		:ex1 [0.33 0.33 0.34]
+		:ex2 [0.33 0.33 0.34]
+		:ex3 [0.33 0.33 0.34]
+		:ex4 [0.33 0.33 0.34]
+		:ex5 [0.03 0.33 0.64]
+		:ex6 [0.13 0.53 0.34]
+		:ex7 [0.20 0.43 0.37]
+		:ex8 [0.33 0.33 0.34]
+		:ex9 [0.33 0.33 0.34]
+		:ex10 [0.33 0.33 0.34]
 	})
 
 (def recursiv
-    {		:r001 [0.33 0.33 0.34]
-		:r002 [0.33 0.33 0.34]
-		:r003 [0.33 0.33 0.34]
-		:r004 [0.33 0.33 0.34]
-		:r005 [0.03 0.33 0.64]
-		:r006 [0.13 0.53 0.34]
-		:r007 [0.20 0.43 0.37]
-		:r008 [0.33 0.33 0.34]
-		:r009 [0.33 0.33 0.34]
-		:r010 [0.33 0.33 0.34]
+    {		:ex1 [0.33 0.33 0.34]
+		:ex2 [0.33 0.33 0.34]
+		:ex3 [0.33 0.33 0.34]
+		:ex4 [0.33 0.33 0.34]
+		:ex5 [0.03 0.33 0.64]
+		:ex6 [0.13 0.53 0.34]
+		:ex7 [0.20 0.43 0.37]
+		:ex8 [0.33 0.33 0.34]
+		:ex9 [0.33 0.33 0.34]
+		:ex10 [0.33 0.33 0.34]
 	})
 
 (def lista
-    {		:l001 [0.33 0.33 0.34]
-		:l002 [0.33 0.33 0.34]
-		:l003 [0.33 0.33 0.34]
-		:l004 [0.33 0.33 0.34]
-		:l005 [0.03 0.33 0.64]
-		:l006 [0.13 0.53 0.34]
-		:l007 [0.20 0.43 0.37]
-		:l008 [0.33 0.33 0.34]
-		:l009 [0.33 0.33 0.34]
-		:l010 [0.33 0.33 0.34]
+    {		:ex1 [0.33 0.33 0.34]
+		:ex2 [0.33 0.33 0.34]
+		:ex3 [0.33 0.33 0.34]
+		:ex4 [0.33 0.33 0.34]
+		:ex5 [0.03 0.33 0.64]
+		:ex6 [0.13 0.53 0.34]
+		:ex7 [0.20 0.43 0.37]
+		:ex8 [0.33 0.33 0.34]
+		:ex9 [0.33 0.33 0.34]
+		:ex10 [0.33 0.33 0.34]
 	})
 
 (def arvore
-    {		:a001 [0.33 0.33 0.34]
-		:a002 [0.33 0.33 0.34]
-		:a003 [0.33 0.33 0.34]
-		:a004 [0.33 0.33 0.34]
-		:a005 [0.03 0.33 0.64]
-		:a006 [0.13 0.53 0.34]
-		:a007 [0.20 0.43 0.37]
-		:a008 [0.33 0.33 0.34]
-		:a009 [0.33 0.33 0.34]
-		:a010 [0.33 0.33 0.34]
+    {		:ex1 [0.33 0.33 0.34]
+		:ex2 [0.33 0.33 0.34]
+		:ex3 [0.33 0.33 0.34]
+		:ex4 [0.33 0.33 0.34]
+		:ex5 [0.03 0.33 0.64]
+		:ex6 [0.13 0.53 0.34]
+		:ex7 [0.20 0.43 0.37]
+		:ex8 [0.33 0.33 0.34]
+		:ex9 [0.33 0.33 0.34]
+		:ex10 [0.33 0.33 0.34]
 	})
 
 (def fila
-    {		:f001 [0.33 0.33 0.34]
-		:f002 [0.33 0.33 0.34]
-		:f003 [0.33 0.33 0.34]
-		:f004 [0.33 0.33 0.34]
-		:f005 [0.03 0.33 0.64]
-		:f006 [0.13 0.53 0.34]
-		:f007 [0.20 0.43 0.37]
-		:f008 [0.33 0.33 0.34]
-		:f009 [0.33 0.33 0.34]
-		:f010 [0.33 0.33 0.34]
+    {		:ex1 [0.33 0.33 0.34]
+		:ex2 [0.33 0.33 0.34]
+		:ex3 [0.33 0.33 0.34]
+		:ex4 [0.33 0.33 0.34]
+		:ex5 [0.03 0.33 0.64]
+		:ex6 [0.13 0.53 0.34]
+		:ex7 [0.20 0.43 0.37]
+		:ex8 [0.33 0.33 0.34]
+		:ex9 [0.33 0.33 0.34]
+		:ex10 [0.33 0.33 0.34]
 	})
 
 (def pilha
-    {		:p001 [0.33 0.33 0.34]
-		:p002 [0.33 0.33 0.34]
-		:p003 [0.33 0.33 0.34]
-		:p004 [0.33 0.33 0.34]
-		:p005 [0.03 0.33 0.64]
-		:p006 [0.13 0.53 0.34]
-		:p007 [0.20 0.43 0.37]
-		:p008 [0.33 0.33 0.34]
-		:p009 [0.33 0.33 0.34]
-		:p010 [0.33 0.33 0.34]
+    {		:ex1 [0.33 0.33 0.34]
+		:ex2 [0.33 0.33 0.34]
+		:ex3 [0.33 0.33 0.34]
+		:ex4 [0.33 0.33 0.34]
+		:ex5 [0.03 0.33 0.64]
+		:ex6 [0.13 0.53 0.34]
+		:ex7 [0.20 0.43 0.37]
+		:ex8 [0.33 0.33 0.34]
+		:ex9 [0.33 0.33 0.34]
+		:ex10 [0.33 0.33 0.34]
 	})
 
 
 (def metOrd
-    {		:mo001 [0.33 0.33 0.34]
-		:mo002 [0.33 0.33 0.34]
-		:mo003 [0.33 0.33 0.34]
-		:mo004 [0.33 0.33 0.34]
-		:mo005 [0.03 0.33 0.64]
-		:mo006 [0.13 0.53 0.34]
-		:mo007 [0.20 0.43 0.37]
-		:mo008 [0.33 0.33 0.34]
-		:mo009 [0.33 0.33 0.34]
-		:mo010 [0.33 0.33 0.34]
+    {		:ex1 [0.33 0.33 0.34]
+		:ex2 [0.33 0.33 0.34]
+		:ex3 [0.33 0.33 0.34]
+		:ex4 [0.33 0.33 0.34]
+		:ex5 [0.03 0.33 0.64]
+		:ex6 [0.13 0.53 0.34]
+		:ex7 [0.20 0.43 0.37]
+		:ex8 [0.33 0.33 0.34]
+		:ex9 [0.33 0.33 0.34]
+		:ex10 [0.33 0.33 0.34]
 	})
 
 (def metPesq
-    {		:mp001 [0.33 0.33 0.34]
-		:mp002 [0.33 0.33 0.34]
-		:mp003 [0.33 0.33 0.34]
-		:mp004 [0.33 0.33 0.34]
-		:mp005 [0.03 0.33 0.64]
-		:mp006 [0.13 0.53 0.34]
-		:mp007 [0.20 0.43 0.37]
-		:mp008 [0.33 0.33 0.34]
-		:mp009 [0.33 0.33 0.34]
-		:mp010 [0.33 0.33 0.34]
+    {		:ex1 [0.33 0.33 0.34]
+		:ex2 [0.33 0.33 0.34]
+		:ex3 [0.33 0.33 0.34]
+		:ex4 [0.33 0.33 0.34]
+		:ex5 [0.03 0.33 0.64]
+		:ex6 [0.13 0.53 0.34]
+		:ex7 [0.20 0.43 0.37]
+		:ex8 [0.33 0.33 0.34]
+		:ex9 [0.33 0.33 0.34]
+		:ex10 [0.33 0.33 0.34]
 	})
 
 
@@ -410,7 +410,7 @@
      (imprime-dados-alunos i)))
 
 
-;(def var-aux (count(mostra-alunos)))
+(def var-aux (count(mostra-alunos)))
 
 
 (defn testes [st]
@@ -514,7 +514,7 @@
 ))) 
  
 
-(defn destroi-tabelas 
+(defn destroi-tabelas-estudante 
 "Destrói a tabela usada para armazenar os resultados inferidos pela rede bayesiana."
 []
    (sql/with-connection ILS-DB
@@ -560,106 +560,106 @@
     ))	
    (sql/with-connection ILS-DB
     (sql/insert-records :exercicio
-      	{:alunoKey chave :exercicio "ed001" :conteudo "estrutura-dados" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ed002" :conteudo "estrutura-dados" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ed003" :conteudo "estrutura-dados" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ed004" :conteudo "estrutura-dados" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ed005" :conteudo "estrutura-dados" :bom 0.33 :medio 0.33 :ruim 0.33}	
-	{:alunoKey chave :exercicio "ed006" :conteudo "estrutura-dados" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ed007" :conteudo "estrutura-dados" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ed008" :conteudo "estrutura-dados" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ed009" :conteudo "estrutura-dados" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ed010" :conteudo "estrutura-dados" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ad001" :conteudo "alocDin" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ad002" :conteudo "alocDin" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ad003" :conteudo "alocDin" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ad004" :conteudo "alocDin" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ad005" :conteudo "alocDin" :bom 0.33 :medio 0.33 :ruim 0.33}	
-	{:alunoKey chave :exercicio "ad006" :conteudo "alocDin" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ad007" :conteudo "alocDin" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ad008" :conteudo "alocDin" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ad009" :conteudo "alocDin" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ad010" :conteudo "alocDin" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "v001" :conteudo "vetor" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "v002" :conteudo "vetor" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "v003" :conteudo "vetor" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "v004" :conteudo "vetor" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "v005" :conteudo "vetor" :bom 0.33 :medio 0.33 :ruim 0.33}	
-	{:alunoKey chave :exercicio "v006" :conteudo "vetor" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "v007" :conteudo "vetor" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "v008" :conteudo "vetor" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "v009" :conteudo "vetor" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "v010" :conteudo "vetor" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "r001" :conteudo "recursiv" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "r002" :conteudo "recursiv" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "r003" :conteudo "recursiv" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "r004" :conteudo "recursiv" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "r005" :conteudo "recursiv" :bom 0.33 :medio 0.33 :ruim 0.33}	
-	{:alunoKey chave :exercicio "r006" :conteudo "recursiv" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "r007" :conteudo "recursiv" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "r008" :conteudo "recursiv" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "r009" :conteudo "recursiv" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "r010" :conteudo "recursiv" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "l001" :conteudo "lista" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "l002" :conteudo "lista" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "l003" :conteudo "lista" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "l004" :conteudo "lista" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "l005" :conteudo "lista" :bom 0.33 :medio 0.33 :ruim 0.33}	
-	{:alunoKey chave :exercicio "l006" :conteudo "lista" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "l007" :conteudo "lista" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "l008" :conteudo "lista" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "l009" :conteudo "lista" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "l010" :conteudo "lista" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "a001" :conteudo "arvore" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "a002" :conteudo "arvore" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "a003" :conteudo "arvore" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "a004" :conteudo "arvore" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "a005" :conteudo "arvore" :bom 0.33 :medio 0.33 :ruim 0.33}	
-	{:alunoKey chave :exercicio "a006" :conteudo "arvore" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "a007" :conteudo "arvore" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "a008" :conteudo "arvore" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "a009" :conteudo "arvore" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "a010" :conteudo "arvore" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "f001" :conteudo "fila" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "f002" :conteudo "fila" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "f003" :conteudo "fila" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "f004" :conteudo "fila" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "f005" :conteudo "fila" :bom 0.33 :medio 0.33 :ruim 0.33}	
-	{:alunoKey chave :exercicio "f006" :conteudo "fila" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "f007" :conteudo "fila" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "f008" :conteudo "fila" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "f009" :conteudo "fila" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "f010" :conteudo "fila" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "p001" :conteudo "pilha" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "p002" :conteudo "pilha" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "p003" :conteudo "pilha" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "p004" :conteudo "pilha" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "p005" :conteudo "pilha" :bom 0.33 :medio 0.33 :ruim 0.33}	
-	{:alunoKey chave :exercicio "p006" :conteudo "pilha" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "p007" :conteudo "pilha" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "p008" :conteudo "pilha" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "p009" :conteudo "pilha" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "p010" :conteudo "pilha" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "mo001" :conteudo "metOrd" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "mo002" :conteudo "metOrd" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "mo003" :conteudo "metOrd" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "mo004" :conteudo "metOrd" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "mo005" :conteudo "metOrd" :bom 0.33 :medio 0.33 :ruim 0.33}	
-	{:alunoKey chave :exercicio "mo006" :conteudo "metOrd" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "mo007" :conteudo "metOrd" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "mo008" :conteudo "metOrd" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "mo009" :conteudo "metOrd" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "mo010" :conteudo "metOrd" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "mp001" :conteudo "metPesq" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "mp002" :conteudo "metPesq" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "mp003" :conteudo "metPesq" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "mp004" :conteudo "metPesq" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "mp005" :conteudo "metPesq" :bom 0.33 :medio 0.33 :ruim 0.33}	
-	{:alunoKey chave :exercicio "mp006" :conteudo "metPesq" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "mp007" :conteudo "metPesq" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "mp008" :conteudo "metPesq" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "mp009" :conteudo "metPesq" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "mp010" :conteudo "metPesq" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex1" :conteudo "estrutura-dados" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex2" :conteudo "estrutura-dados" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex3" :conteudo "estrutura-dados" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex4" :conteudo "estrutura-dados" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex5" :conteudo "estrutura-dados" :bom 0.33 :medio 0.33 :ruim 0.33}	
+	{:alunoKey chave :exercicio "ex6" :conteudo "estrutura-dados" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex7" :conteudo "estrutura-dados" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex8" :conteudo "estrutura-dados" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex9" :conteudo "estrutura-dados" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex10" :conteudo "estrutura-dados" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex1" :conteudo "alocDin" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex2" :conteudo "alocDin" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex3" :conteudo "alocDin" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex4" :conteudo "alocDin" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex5" :conteudo "alocDin" :bom 0.33 :medio 0.33 :ruim 0.33}	
+	{:alunoKey chave :exercicio "ex6" :conteudo "alocDin" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex7" :conteudo "alocDin" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex8" :conteudo "alocDin" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex9" :conteudo "alocDin" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex10" :conteudo "alocDin" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex1" :conteudo "vetor" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex2" :conteudo "vetor" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex3" :conteudo "vetor" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex4" :conteudo "vetor" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex5" :conteudo "vetor" :bom 0.33 :medio 0.33 :ruim 0.33}	
+	{:alunoKey chave :exercicio "ex6" :conteudo "vetor" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex7" :conteudo "vetor" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex8" :conteudo "vetor" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex9" :conteudo "vetor" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex10" :conteudo "vetor" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex1" :conteudo "recursiv" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex2" :conteudo "recursiv" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex3" :conteudo "recursiv" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex4" :conteudo "recursiv" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex5" :conteudo "recursiv" :bom 0.33 :medio 0.33 :ruim 0.33}	
+	{:alunoKey chave :exercicio "ex6" :conteudo "recursiv" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex7" :conteudo "recursiv" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex8" :conteudo "recursiv" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex9" :conteudo "recursiv" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex10" :conteudo "recursiv" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex1" :conteudo "lista" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex2" :conteudo "lista" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex3" :conteudo "lista" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex4" :conteudo "lista" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex5" :conteudo "lista" :bom 0.33 :medio 0.33 :ruim 0.33}	
+	{:alunoKey chave :exercicio "ex6" :conteudo "lista" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex7" :conteudo "lista" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex8" :conteudo "lista" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex9" :conteudo "lista" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex10" :conteudo "lista" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex1" :conteudo "arvore" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex2" :conteudo "arvore" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex3" :conteudo "arvore" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex4" :conteudo "arvore" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex5" :conteudo "arvore" :bom 0.33 :medio 0.33 :ruim 0.33}	
+	{:alunoKey chave :exercicio "ex6" :conteudo "arvore" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex7" :conteudo "arvore" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex8" :conteudo "arvore" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex9" :conteudo "arvore" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex10" :conteudo "arvore" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex1" :conteudo "fila" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex2" :conteudo "fila" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex3" :conteudo "fila" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex4" :conteudo "fila" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex5" :conteudo "fila" :bom 0.33 :medio 0.33 :ruim 0.33}	
+	{:alunoKey chave :exercicio "ex6" :conteudo "fila" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex7" :conteudo "fila" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex8" :conteudo "fila" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex9" :conteudo "fila" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex10" :conteudo "fila" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex1" :conteudo "pilha" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex2" :conteudo "pilha" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex3" :conteudo "pilha" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex4" :conteudo "pilha" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex5" :conteudo "pilha" :bom 0.33 :medio 0.33 :ruim 0.33}	
+	{:alunoKey chave :exercicio "ex6" :conteudo "pilha" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex7" :conteudo "pilha" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex8" :conteudo "pilha" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex9" :conteudo "pilha" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex10" :conteudo "pilha" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex1" :conteudo "metOrd" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex2" :conteudo "metOrd" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex3" :conteudo "metOrd" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex4" :conteudo "metOrd" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex5" :conteudo "metOrd" :bom 0.33 :medio 0.33 :ruim 0.33}	
+	{:alunoKey chave :exercicio "ex6" :conteudo "metOrd" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex7" :conteudo "metOrd" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex8" :conteudo "metOrd" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex9" :conteudo "metOrd" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex10" :conteudo "metOrd" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex1" :conteudo "metPesq" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex2" :conteudo "metPesq" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex3" :conteudo "metPesq" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex4" :conteudo "metPesq" :bom 0.33 :medio 0.33 :ruim 0.33}
+      	{:alunoKey chave :exercicio "ex5" :conteudo "metPesq" :bom 0.33 :medio 0.33 :ruim 0.33}	
+	{:alunoKey chave :exercicio "ex6" :conteudo "metPesq" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex7" :conteudo "metPesq" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex8" :conteudo "metPesq" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex9" :conteudo "metPesq" :bom 0.33 :medio 0.33 :ruim 0.33}
+	{:alunoKey chave :exercicio "ex10" :conteudo "metPesq" :bom 0.33 :medio 0.33 :ruim 0.33}
 
     )))      		
 
@@ -1335,7 +1335,7 @@
 ;ATENCAO! esta funcao nao atualiza no banco. Use as duas quando mudar de exercicio! (esta é util para mudar os valores da estrutura,
 ;utilizada para calcular o conhecimento geral do estudante. Para alterar no banco, use: atualizar-probs-exercicio  (linha 502)
 (defn atualizar-exercicio 
-"Atualiza as probabilidades de um exercicio de algum conteudo (nao use aspas!). Ex: (atualizar-exercicio estrutura-dados :v001 1.0 0.0 0.0)"
+"Atualiza as probabilidades de um exercicio de algum conteudo (nao use aspas!). Ex: (atualizar-exercicio estrutura-dados :ex1 1.0 0.0 0.0)"
 [conteudo exercicio bom medio ruim]
         (cond 	   
 	   (= conteudo estrutura-dados) (def estrutura-dados
@@ -1366,313 +1366,313 @@
 	[chave conteudo]
    (cond 	   
 	   (= conteudo "estrutura-dados") (def estrutura-dados
-                                        (assoc estrutura-dados :ed001 [(nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 0))1)
+                                        (assoc estrutura-dados :ex1 [(nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 0))1)
  						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 0))2)
 						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 0))3)]
-                                                :ed002 [(nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 2))1)
+                                                :ex2 [(nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 2))1)
  						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 2))2)
 						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 2))3)]
-						:ed003 [(nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 3))1)
+						:ex3 [(nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 3))1)
  						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 3))2)
 						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 3))3)]
-						:ed004 [(nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 4))1)
+						:ex4 [(nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 4))1)
  						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 4))2)
 						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 4))3)]
-						:ed005 [(nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 5))1)
+						:ex5 [(nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 5))1)
  						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 5))2)
 						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 5))3)]
-						:ed006 [(nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 6))1)
+						:ex6 [(nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 6))1)
  						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 6))2)
 						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 6))3)]
-						:ed007 [(nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 7))1)
+						:ex7 [(nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 7))1)
  						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 7))2)
 						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 7))3)]
-						:ed008 [(nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 8))1)
+						:ex8 [(nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 8))1)
  						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 8))2)
 						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 8))3)]
-						:ed009 [(nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 9))1)
+						:ex9 [(nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 9))1)
  						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 9))2)
 						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 9))3)]
-						:ed010 [(nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 1))1)
+						:ex10 [(nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 1))1)
  						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 1))2)
 						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 1))3)] ))
 	   (= conteudo "alocDin") (def alocDin
-                                (assoc alocDin :ad001 [(nth (vals (nth (mostrar-exercicios chave "alocDin") 0))1)
+                                (assoc alocDin :ex1 [(nth (vals (nth (mostrar-exercicios chave "alocDin") 0))1)
  						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 0))2)
 						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 0))3)]
-                                                :ad002 [(nth (vals (nth (mostrar-exercicios chave "alocDin") 2))1)
+                                                :ex2 [(nth (vals (nth (mostrar-exercicios chave "alocDin") 2))1)
  						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 2))2)
 						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 2))3)]
-						:ad003 [(nth (vals (nth (mostrar-exercicios chave "alocDin") 3))1)
+						:ex3 [(nth (vals (nth (mostrar-exercicios chave "alocDin") 3))1)
  						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 3))2)
 						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 3))3)]
-						:ad004 [(nth (vals (nth (mostrar-exercicios chave "alocDin") 4))1)
+						:ex4 [(nth (vals (nth (mostrar-exercicios chave "alocDin") 4))1)
  						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 4))2)
 						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 4))3)]
-						:ad005 [(nth (vals (nth (mostrar-exercicios chave "alocDin") 5))1)
+						:ex5 [(nth (vals (nth (mostrar-exercicios chave "alocDin") 5))1)
  						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 5))2)
 						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 5))3)]
-						:ad006 [(nth (vals (nth (mostrar-exercicios chave "alocDin") 6))1)
+						:ex6 [(nth (vals (nth (mostrar-exercicios chave "alocDin") 6))1)
  						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 6))2)
 						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 6))3)]
-						:ad007 [(nth (vals (nth (mostrar-exercicios chave "alocDin") 7))1)
+						:ex7 [(nth (vals (nth (mostrar-exercicios chave "alocDin") 7))1)
  						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 7))2)
 						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 7))3)]
-						:ad008 [(nth (vals (nth (mostrar-exercicios chave "alocDin") 8))1)
+						:ex8 [(nth (vals (nth (mostrar-exercicios chave "alocDin") 8))1)
  						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 8))2)
 						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 8))3)]
-						:ad009 [(nth (vals (nth (mostrar-exercicios chave "alocDin") 9))1)
+						:ex9 [(nth (vals (nth (mostrar-exercicios chave "alocDin") 9))1)
  						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 9))2)
 						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 9))3)]
-						:ad010 [(nth (vals (nth (mostrar-exercicios chave "alocDin") 1))1)
+						:ex10 [(nth (vals (nth (mostrar-exercicios chave "alocDin") 1))1)
  						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 1))2)
 						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 1))3)] ))
 	   (= conteudo "vetor") (def vetor
-                               (assoc vetor :v001 [(nth (vals (nth (mostrar-exercicios chave "vetor") 0))1)
+                               (assoc vetor :ex1 [(nth (vals (nth (mostrar-exercicios chave "vetor") 0))1)
  						      (nth (vals (nth (mostrar-exercicios chave "vetor") 0))2)
 						      (nth (vals (nth (mostrar-exercicios chave "vetor") 0))3)]
-                                                :v002 [(nth (vals (nth (mostrar-exercicios chave "vetor") 2))1)
+                                                :ex2 [(nth (vals (nth (mostrar-exercicios chave "vetor") 2))1)
  						      (nth (vals (nth (mostrar-exercicios chave "vetor") 2))2)
 						      (nth (vals (nth (mostrar-exercicios chave "vetor") 2))3)]
-						:v003 [(nth (vals (nth (mostrar-exercicios chave "vetor") 3))1)
+						:ex3 [(nth (vals (nth (mostrar-exercicios chave "vetor") 3))1)
  						      (nth (vals (nth (mostrar-exercicios chave "vetor") 3))2)
 						      (nth (vals (nth (mostrar-exercicios chave "vetor") 3))3)]
-						:v004 [(nth (vals (nth (mostrar-exercicios chave "vetor") 4))1)
+						:ex4 [(nth (vals (nth (mostrar-exercicios chave "vetor") 4))1)
  						      (nth (vals (nth (mostrar-exercicios chave "vetor") 4))2)
 						      (nth (vals (nth (mostrar-exercicios chave "vetor") 4))3)]
-						:v005 [(nth (vals (nth (mostrar-exercicios chave "vetor") 5))1)
+						:ex5 [(nth (vals (nth (mostrar-exercicios chave "vetor") 5))1)
  						      (nth (vals (nth (mostrar-exercicios chave "vetor") 5))2)
 						      (nth (vals (nth (mostrar-exercicios chave "vetor") 5))3)]
-						:v006 [(nth (vals (nth (mostrar-exercicios chave "vetor") 6))1)
+						:ex6 [(nth (vals (nth (mostrar-exercicios chave "vetor") 6))1)
  						      (nth (vals (nth (mostrar-exercicios chave "vetor") 6))2)
 						      (nth (vals (nth (mostrar-exercicios chave "vetor") 6))3)]
-						:v007 [(nth (vals (nth (mostrar-exercicios chave "vetor") 7))1)
+						:ex7 [(nth (vals (nth (mostrar-exercicios chave "vetor") 7))1)
  						      (nth (vals (nth (mostrar-exercicios chave "vetor") 7))2)
 						      (nth (vals (nth (mostrar-exercicios chave "vetor") 7))3)]
-						:v008 [(nth (vals (nth (mostrar-exercicios chave "vetor") 8))1)
+						:ex8 [(nth (vals (nth (mostrar-exercicios chave "vetor") 8))1)
  						      (nth (vals (nth (mostrar-exercicios chave "vetor") 8))2)
 						      (nth (vals (nth (mostrar-exercicios chave "vetor") 8))3)]
-						:v009 [(nth (vals (nth (mostrar-exercicios chave "vetor") 9))1)
+						:ex9 [(nth (vals (nth (mostrar-exercicios chave "vetor") 9))1)
  						      (nth (vals (nth (mostrar-exercicios chave "vetor") 9))2)
 						      (nth (vals (nth (mostrar-exercicios chave "vetor") 9))3)]
-						:v010 [(nth (vals (nth (mostrar-exercicios chave "vetor") 1))1)
+						:ex10 [(nth (vals (nth (mostrar-exercicios chave "vetor") 1))1)
  						      (nth (vals (nth (mostrar-exercicios chave "vetor") 1))2)
 						      (nth (vals (nth (mostrar-exercicios chave "vetor") 1))3)] ))
            (= conteudo "recursiv") (def recursiv
-                                 (assoc recursiv :r001 [(nth (vals (nth (mostrar-exercicios chave "recursiv") 0))1)
+                                 (assoc recursiv :ex1 [(nth (vals (nth (mostrar-exercicios chave "recursiv") 0))1)
  						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 0))2)
 						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 0))3)]
-                                                :r002 [(nth (vals (nth (mostrar-exercicios chave "recursiv") 2))1)
+                                                :ex2 [(nth (vals (nth (mostrar-exercicios chave "recursiv") 2))1)
  						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 2))2)
 						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 2))3)]
-						:r003 [(nth (vals (nth (mostrar-exercicios chave "recursiv") 3))1)
+						:ex3 [(nth (vals (nth (mostrar-exercicios chave "recursiv") 3))1)
  						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 3))2)
 						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 3))3)]
-						:r004 [(nth (vals (nth (mostrar-exercicios chave "recursiv") 4))1)
+						:ex4 [(nth (vals (nth (mostrar-exercicios chave "recursiv") 4))1)
  						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 4))2)
 						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 4))3)]
-						:r005 [(nth (vals (nth (mostrar-exercicios chave "recursiv") 5))1)
+						:ex5 [(nth (vals (nth (mostrar-exercicios chave "recursiv") 5))1)
  						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 5))2)
 						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 5))3)]
-						:r006 [(nth (vals (nth (mostrar-exercicios chave "recursiv") 6))1)
+						:ex6 [(nth (vals (nth (mostrar-exercicios chave "recursiv") 6))1)
  						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 6))2)
 						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 6))3)]
-						:r007 [(nth (vals (nth (mostrar-exercicios chave "recursiv") 7))1)
+						:ex7 [(nth (vals (nth (mostrar-exercicios chave "recursiv") 7))1)
  						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 7))2)
 						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 7))3)]
-						:r008 [(nth (vals (nth (mostrar-exercicios chave "recursiv") 8))1)
+						:ex8 [(nth (vals (nth (mostrar-exercicios chave "recursiv") 8))1)
  						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 8))2)
 						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 8))3)]
-						:r009 [(nth (vals (nth (mostrar-exercicios chave "recursiv") 9))1)
+						:ex9 [(nth (vals (nth (mostrar-exercicios chave "recursiv") 9))1)
  						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 9))2)
 						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 9))3)]
-						:r010 [(nth (vals (nth (mostrar-exercicios chave "recursiv") 1))1)
+						:ex10 [(nth (vals (nth (mostrar-exercicios chave "recursiv") 1))1)
  						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 1))2)
 						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 1))3)] ))
            (= conteudo "lista") (def lista
-                               (assoc lista :l001 [(nth (vals (nth (mostrar-exercicios chave "lista") 0))1)
+                               (assoc lista :ex1 [(nth (vals (nth (mostrar-exercicios chave "lista") 0))1)
  						      (nth (vals (nth (mostrar-exercicios chave "lista") 0))2)
 						      (nth (vals (nth (mostrar-exercicios chave "lista") 0))3)]
-                                                :l002 [(nth (vals (nth (mostrar-exercicios chave "lista") 2))1)
+                                                :ex2 [(nth (vals (nth (mostrar-exercicios chave "lista") 2))1)
  						      (nth (vals (nth (mostrar-exercicios chave "lista") 2))2)
 						      (nth (vals (nth (mostrar-exercicios chave "lista") 2))3)]
-						:l003 [(nth (vals (nth (mostrar-exercicios chave "lista") 3))1)
+						:ex3 [(nth (vals (nth (mostrar-exercicios chave "lista") 3))1)
  						      (nth (vals (nth (mostrar-exercicios chave "lista") 3))2)
 						      (nth (vals (nth (mostrar-exercicios chave "lista") 3))3)]
-						:l004 [(nth (vals (nth (mostrar-exercicios chave "lista") 4))1)
+						:ex4 [(nth (vals (nth (mostrar-exercicios chave "lista") 4))1)
  						      (nth (vals (nth (mostrar-exercicios chave "lista") 4))2)
 						      (nth (vals (nth (mostrar-exercicios chave "lista") 4))3)]
-						:l005 [(nth (vals (nth (mostrar-exercicios chave "lista") 5))1)
+						:ex5 [(nth (vals (nth (mostrar-exercicios chave "lista") 5))1)
  						      (nth (vals (nth (mostrar-exercicios chave "lista") 5))2)
 						      (nth (vals (nth (mostrar-exercicios chave "lista") 5))3)]
-						:l006 [(nth (vals (nth (mostrar-exercicios chave "lista") 6))1)
+						:ex6 [(nth (vals (nth (mostrar-exercicios chave "lista") 6))1)
  						      (nth (vals (nth (mostrar-exercicios chave "lista") 6))2)
 						      (nth (vals (nth (mostrar-exercicios chave "lista") 6))3)]
-						:l007 [(nth (vals (nth (mostrar-exercicios chave "lista") 7))1)
+						:ex7 [(nth (vals (nth (mostrar-exercicios chave "lista") 7))1)
  						      (nth (vals (nth (mostrar-exercicios chave "lista") 7))2)
 						      (nth (vals (nth (mostrar-exercicios chave "lista") 7))3)]
-						:l008 [(nth (vals (nth (mostrar-exercicios chave "lista") 8))1)
+						:ex8 [(nth (vals (nth (mostrar-exercicios chave "lista") 8))1)
  						      (nth (vals (nth (mostrar-exercicios chave "lista") 8))2)
 						      (nth (vals (nth (mostrar-exercicios chave "lista") 8))3)]
-						:l009 [(nth (vals (nth (mostrar-exercicios chave "lista") 9))1)
+						:ex9 [(nth (vals (nth (mostrar-exercicios chave "lista") 9))1)
  						      (nth (vals (nth (mostrar-exercicios chave "lista") 9))2)
 						      (nth (vals (nth (mostrar-exercicios chave "lista") 9))3)]
-						:l010 [(nth (vals (nth (mostrar-exercicios chave "lista") 1))1)
+						:ex10 [(nth (vals (nth (mostrar-exercicios chave "lista") 1))1)
  						      (nth (vals (nth (mostrar-exercicios chave "lista") 1))2)
 						      (nth (vals (nth (mostrar-exercicios chave "lista") 1))3)] ))
            (= conteudo "arvore") (def arvore
-                               (assoc arvore :a001 [(nth (vals (nth (mostrar-exercicios chave "arvore") 0))1)
+                               (assoc arvore :ex1 [(nth (vals (nth (mostrar-exercicios chave "arvore") 0))1)
  						      (nth (vals (nth (mostrar-exercicios chave "arvore") 0))2)
 						      (nth (vals (nth (mostrar-exercicios chave "arvore") 0))3)]
-                                                :a002 [(nth (vals (nth (mostrar-exercicios chave "arvore") 2))1)
+                                                :ex2 [(nth (vals (nth (mostrar-exercicios chave "arvore") 2))1)
  						      (nth (vals (nth (mostrar-exercicios chave "arvore") 2))2)
 						      (nth (vals (nth (mostrar-exercicios chave "arvore") 2))3)]
-						:a003 [(nth (vals (nth (mostrar-exercicios chave "arvore") 3))1)
+						:ex3 [(nth (vals (nth (mostrar-exercicios chave "arvore") 3))1)
  						      (nth (vals (nth (mostrar-exercicios chave "arvore") 3))2)
 						      (nth (vals (nth (mostrar-exercicios chave "arvore") 3))3)]
-						:a004 [(nth (vals (nth (mostrar-exercicios chave "arvore") 4))1)
+						:ex4 [(nth (vals (nth (mostrar-exercicios chave "arvore") 4))1)
  						      (nth (vals (nth (mostrar-exercicios chave "arvore") 4))2)
 						      (nth (vals (nth (mostrar-exercicios chave "arvore") 4))3)]
-						:a005 [(nth (vals (nth (mostrar-exercicios chave "arvore") 5))1)
+						:ex5 [(nth (vals (nth (mostrar-exercicios chave "arvore") 5))1)
  						      (nth (vals (nth (mostrar-exercicios chave "arvore") 5))2)
 						      (nth (vals (nth (mostrar-exercicios chave "arvore") 5))3)]
-						:a006 [(nth (vals (nth (mostrar-exercicios chave "arvore") 6))1)
+						:ex6 [(nth (vals (nth (mostrar-exercicios chave "arvore") 6))1)
  						      (nth (vals (nth (mostrar-exercicios chave "arvore") 6))2)
 						      (nth (vals (nth (mostrar-exercicios chave "arvore") 6))3)]
-						:a007 [(nth (vals (nth (mostrar-exercicios chave "arvore") 7))1)
+						:ex7 [(nth (vals (nth (mostrar-exercicios chave "arvore") 7))1)
  						      (nth (vals (nth (mostrar-exercicios chave "arvore") 7))2)
 						      (nth (vals (nth (mostrar-exercicios chave "arvore") 7))3)]
-						:a008 [(nth (vals (nth (mostrar-exercicios chave "arvore") 8))1)
+						:ex8 [(nth (vals (nth (mostrar-exercicios chave "arvore") 8))1)
  						      (nth (vals (nth (mostrar-exercicios chave "arvore") 8))2)
 						      (nth (vals (nth (mostrar-exercicios chave "arvore") 8))3)]
-						:a009 [(nth (vals (nth (mostrar-exercicios chave "arvore") 9))1)
+						:ex9 [(nth (vals (nth (mostrar-exercicios chave "arvore") 9))1)
  						      (nth (vals (nth (mostrar-exercicios chave "arvore") 9))2)
 						      (nth (vals (nth (mostrar-exercicios chave "arvore") 9))3)]
-						:a010 [(nth (vals (nth (mostrar-exercicios chave "arvore") 1))1)
+						:ex10 [(nth (vals (nth (mostrar-exercicios chave "arvore") 1))1)
  						      (nth (vals (nth (mostrar-exercicios chave "arvore") 1))2)
 						      (nth (vals (nth (mostrar-exercicios chave "arvore") 1))3)] ))
            (= conteudo "fila") (def fila
-                             (assoc fila :f001 [(nth (vals (nth (mostrar-exercicios chave "fila") 0))1)
+                             (assoc fila :ex1 [(nth (vals (nth (mostrar-exercicios chave "fila") 0))1)
  						      (nth (vals (nth (mostrar-exercicios chave "fila") 0))2)
 						      (nth (vals (nth (mostrar-exercicios chave "fila") 0))3)]
-                                                :f002 [(nth (vals (nth (mostrar-exercicios chave "fila") 2))1)
+                                                :ex2 [(nth (vals (nth (mostrar-exercicios chave "fila") 2))1)
  						      (nth (vals (nth (mostrar-exercicios chave "fila") 2))2)
 						      (nth (vals (nth (mostrar-exercicios chave "fila") 2))3)]
-						:f003 [(nth (vals (nth (mostrar-exercicios chave "fila") 3))1)
+						:ex3 [(nth (vals (nth (mostrar-exercicios chave "fila") 3))1)
  						      (nth (vals (nth (mostrar-exercicios chave "fila") 3))2)
 						      (nth (vals (nth (mostrar-exercicios chave "fila") 3))3)]
-						:f004 [(nth (vals (nth (mostrar-exercicios chave "fila") 4))1)
+						:ex4 [(nth (vals (nth (mostrar-exercicios chave "fila") 4))1)
  						      (nth (vals (nth (mostrar-exercicios chave "fila") 4))2)
 						      (nth (vals (nth (mostrar-exercicios chave "fila") 4))3)]
-						:f005 [(nth (vals (nth (mostrar-exercicios chave "fila") 5))1)
+						:ex5 [(nth (vals (nth (mostrar-exercicios chave "fila") 5))1)
  						      (nth (vals (nth (mostrar-exercicios chave "fila") 5))2)
 						      (nth (vals (nth (mostrar-exercicios chave "fila") 5))3)]
-						:f006 [(nth (vals (nth (mostrar-exercicios chave "fila") 6))1)
+						:ex6 [(nth (vals (nth (mostrar-exercicios chave "fila") 6))1)
  						      (nth (vals (nth (mostrar-exercicios chave "fila") 6))2)
 						      (nth (vals (nth (mostrar-exercicios chave "fila") 6))3)]
-						:f007 [(nth (vals (nth (mostrar-exercicios chave "fila") 7))1)
+						:ex7 [(nth (vals (nth (mostrar-exercicios chave "fila") 7))1)
  						      (nth (vals (nth (mostrar-exercicios chave "fila") 7))2)
 						      (nth (vals (nth (mostrar-exercicios chave "fila") 7))3)]
-						:f008 [(nth (vals (nth (mostrar-exercicios chave "fila") 8))1)
+						:ex8 [(nth (vals (nth (mostrar-exercicios chave "fila") 8))1)
  						      (nth (vals (nth (mostrar-exercicios chave "fila") 8))2)
 						      (nth (vals (nth (mostrar-exercicios chave "fila") 8))3)]
-						:f009 [(nth (vals (nth (mostrar-exercicios chave "fila") 9))1)
+						:ex9 [(nth (vals (nth (mostrar-exercicios chave "fila") 9))1)
  						      (nth (vals (nth (mostrar-exercicios chave "fila") 9))2)
 						      (nth (vals (nth (mostrar-exercicios chave "fila") 9))3)]
-						:f010 [(nth (vals (nth (mostrar-exercicios chave "fila") 1))1)
+						:ex10 [(nth (vals (nth (mostrar-exercicios chave "fila") 1))1)
  						      (nth (vals (nth (mostrar-exercicios chave "fila") 1))2)
 						      (nth (vals (nth (mostrar-exercicios chave "fila") 1))3)] ))
            (= conteudo "pilha") (def pilha
-                               (assoc pilha :p001 [(nth (vals (nth (mostrar-exercicios chave "pilha") 0))1)
+                               (assoc pilha :ex1 [(nth (vals (nth (mostrar-exercicios chave "pilha") 0))1)
  						      (nth (vals (nth (mostrar-exercicios chave "pilha") 0))2)
 						      (nth (vals (nth (mostrar-exercicios chave "pilha") 0))3)]
-                                                :p002 [(nth (vals (nth (mostrar-exercicios chave "pilha") 2))1)
+                                                :ex2 [(nth (vals (nth (mostrar-exercicios chave "pilha") 2))1)
  						      (nth (vals (nth (mostrar-exercicios chave "pilha") 2))2)
 						      (nth (vals (nth (mostrar-exercicios chave "pilha") 2))3)]
-						:p003 [(nth (vals (nth (mostrar-exercicios chave "pilha") 3))1)
+						:ex3 [(nth (vals (nth (mostrar-exercicios chave "pilha") 3))1)
  						      (nth (vals (nth (mostrar-exercicios chave "pilha") 3))2)
 						      (nth (vals (nth (mostrar-exercicios chave "pilha") 3))3)]
-						:p004 [(nth (vals (nth (mostrar-exercicios chave "pilha") 4))1)
+						:ex4 [(nth (vals (nth (mostrar-exercicios chave "pilha") 4))1)
  						      (nth (vals (nth (mostrar-exercicios chave "pilha") 4))2)
 						      (nth (vals (nth (mostrar-exercicios chave "pilha") 4))3)]
-						:p005 [(nth (vals (nth (mostrar-exercicios chave "pilha") 5))1)
+						:ex5 [(nth (vals (nth (mostrar-exercicios chave "pilha") 5))1)
  						      (nth (vals (nth (mostrar-exercicios chave "pilha") 5))2)
 						      (nth (vals (nth (mostrar-exercicios chave "pilha") 5))3)]
-						:p006 [(nth (vals (nth (mostrar-exercicios chave "pilha") 6))1)
+						:ex6 [(nth (vals (nth (mostrar-exercicios chave "pilha") 6))1)
  						      (nth (vals (nth (mostrar-exercicios chave "pilha") 6))2)
 						      (nth (vals (nth (mostrar-exercicios chave "pilha") 6))3)]
-						:p007 [(nth (vals (nth (mostrar-exercicios chave "pilha") 7))1)
+						:ex7 [(nth (vals (nth (mostrar-exercicios chave "pilha") 7))1)
  						      (nth (vals (nth (mostrar-exercicios chave "pilha") 7))2)
 						      (nth (vals (nth (mostrar-exercicios chave "pilha") 7))3)]
-						:p008 [(nth (vals (nth (mostrar-exercicios chave "pilha") 8))1)
+						:ex8 [(nth (vals (nth (mostrar-exercicios chave "pilha") 8))1)
  						      (nth (vals (nth (mostrar-exercicios chave "pilha") 8))2)
 						      (nth (vals (nth (mostrar-exercicios chave "pilha") 8))3)]
-						:p009 [(nth (vals (nth (mostrar-exercicios chave "pilha") 9))1)
+						:ex9 [(nth (vals (nth (mostrar-exercicios chave "pilha") 9))1)
  						      (nth (vals (nth (mostrar-exercicios chave "pilha") 9))2)
 						      (nth (vals (nth (mostrar-exercicios chave "pilha") 9))3)]
-						:p010 [(nth (vals (nth (mostrar-exercicios chave "pilha") 1))1)
+						:ex10 [(nth (vals (nth (mostrar-exercicios chave "pilha") 1))1)
  						      (nth (vals (nth (mostrar-exercicios chave "pilha") 1))2)
 						      (nth (vals (nth (mostrar-exercicios chave "pilha") 1))3)] ))
            (= conteudo "metOrd") (def metOrd
-                               (assoc metOrd :mo001 [(nth (vals (nth (mostrar-exercicios chave "metOrd") 0))1)
+                               (assoc metOrd :ex1 [(nth (vals (nth (mostrar-exercicios chave "metOrd") 0))1)
  						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 0))2)
 						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 0))3)]
-                                                :mo002 [(nth (vals (nth (mostrar-exercicios chave "metOrd") 2))1)
+                                                :ex2 [(nth (vals (nth (mostrar-exercicios chave "metOrd") 2))1)
  						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 2))2)
 						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 2))3)]
-						:mo003 [(nth (vals (nth (mostrar-exercicios chave "metOrd") 3))1)
+						:ex3 [(nth (vals (nth (mostrar-exercicios chave "metOrd") 3))1)
  						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 3))2)
 						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 3))3)]
-						:mo004 [(nth (vals (nth (mostrar-exercicios chave "metOrd") 4))1)
+						:ex4 [(nth (vals (nth (mostrar-exercicios chave "metOrd") 4))1)
  						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 4))2)
 						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 4))3)]
-						:mo005 [(nth (vals (nth (mostrar-exercicios chave "metOrd") 5))1)
+						:ex5 [(nth (vals (nth (mostrar-exercicios chave "metOrd") 5))1)
  						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 5))2)
 						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 5))3)]
-						:mo006 [(nth (vals (nth (mostrar-exercicios chave "metOrd") 6))1)
+						:ex6 [(nth (vals (nth (mostrar-exercicios chave "metOrd") 6))1)
  						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 6))2)
 						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 6))3)]
-						:mo007 [(nth (vals (nth (mostrar-exercicios chave "metOrd") 7))1)
+						:ex7 [(nth (vals (nth (mostrar-exercicios chave "metOrd") 7))1)
  						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 7))2)
 						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 7))3)]
-						:mo008 [(nth (vals (nth (mostrar-exercicios chave "metOrd") 8))1)
+						:ex8 [(nth (vals (nth (mostrar-exercicios chave "metOrd") 8))1)
  						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 8))2)
 						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 8))3)]
-						:mo009 [(nth (vals (nth (mostrar-exercicios chave "metOrd") 9))1)
+						:ex9 [(nth (vals (nth (mostrar-exercicios chave "metOrd") 9))1)
  						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 9))2)
 						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 9))3)]
-						:mo010 [(nth (vals (nth (mostrar-exercicios chave "metOrd") 1))1)
+						:ex10 [(nth (vals (nth (mostrar-exercicios chave "metOrd") 1))1)
  						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 1))2)
 						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 1))3)] ))
 	   (= conteudo "metPesq") (def metPesq
-                               (assoc metPesq :mp001 [(nth (vals (nth (mostrar-exercicios chave "metPesq") 0))1)
+                               (assoc metPesq :ex1 [(nth (vals (nth (mostrar-exercicios chave "metPesq") 0))1)
  						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 0))2)
 						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 0))3)]
-                                                :mp002 [(nth (vals (nth (mostrar-exercicios chave "metPesq") 2))1)
+                                                :ex2 [(nth (vals (nth (mostrar-exercicios chave "metPesq") 2))1)
  						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 2))2)
 						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 2))3)]
-						:mp003 [(nth (vals (nth (mostrar-exercicios chave "metPesq") 3))1)
+						:ex3 [(nth (vals (nth (mostrar-exercicios chave "metPesq") 3))1)
  						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 3))2)
 						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 3))3)]
-						:mp004 [(nth (vals (nth (mostrar-exercicios chave "metPesq") 4))1)
+						:ex4 [(nth (vals (nth (mostrar-exercicios chave "metPesq") 4))1)
  						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 4))2)
 						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 4))3)]
-						:mp005 [(nth (vals (nth (mostrar-exercicios chave "metPesq") 5))1)
+						:ex5 [(nth (vals (nth (mostrar-exercicios chave "metPesq") 5))1)
  						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 5))2)
 						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 5))3)]
-						:mp006 [(nth (vals (nth (mostrar-exercicios chave "metPesq") 6))1)
+						:ex6 [(nth (vals (nth (mostrar-exercicios chave "metPesq") 6))1)
  						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 6))2)
 						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 6))3)]
-						:mp007 [(nth (vals (nth (mostrar-exercicios chave "metPesq") 7))1)
+						:ex7 [(nth (vals (nth (mostrar-exercicios chave "metPesq") 7))1)
  						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 7))2)
 						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 7))3)]
-						:mp008 [(nth (vals (nth (mostrar-exercicios chave "metPesq") 8))1)
+						:ex8 [(nth (vals (nth (mostrar-exercicios chave "metPesq") 8))1)
  						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 8))2)
 						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 8))3)]
-						:mp009 [(nth (vals (nth (mostrar-exercicios chave "metPesq") 9))1)
+						:ex9 [(nth (vals (nth (mostrar-exercicios chave "metPesq") 9))1)
  						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 9))2)
 						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 9))3)]
-						:mp010 [(nth (vals (nth (mostrar-exercicios chave "metPesq") 1))1)
+						:ex10 [(nth (vals (nth (mostrar-exercicios chave "metPesq") 1))1)
  						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 1))2)
 						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 1))3)] ))
          :else "Este conteudo nao eh valido!")
