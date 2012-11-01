@@ -147,6 +147,16 @@
     
 ;BUSCA
 
+;Parte 0: fazer update nos XML que estao no banco de dados
+;(defn atualizar-exercicio2 [id nivel]
+;  "Esta função busca um exercicio em xml do banco, e é capaz de ler o CLOB já descompresso."
+;  (sql/with-connection ILS-DB
+;    (sql/transaction ;precisa ser dentro de uma transação para funcionar.
+;      (sql/with-query-results rs 
+;        [(str "UPDATE exerciciodominio SET exerciciodominio.nivel = '"nivel"' WHERE exerciciodominio.id = '"id"'")]
+;        (clob-to-string (:xmlexercicio (first rs))) ))))
+
+
 ;Parte 1: retornar os XML a partir do id.
 
 (defn buscar-exercicio [id]
@@ -201,6 +211,13 @@
     [(str "SELECT multimidia.id FROM multimidia WHERE multimidia."condicao" = '"rotulo"'")]
     (doall res))))
         
+(defn buscar-id-nivel [materia rotulo]
+  "Esta função busca os ids de exercicios dada uma propriedade (tipo, nivel, conteudo).
+     Exemplo: conteudo vetor (tudo entre aspas), tipo facil (nao ponha acento)"
+(sql/with-connection ILS-DB
+  (sql/with-query-results res 
+    [(str "SELECT exerciciodominio.id FROM exerciciodominio WHERE exerciciodominio.conteudo = '"materia"' AND exerciciodominio.nivel = '"rotulo"'")]
+    (doall res))))
 
 ; MANIPULAÇÃO DE XML
   
