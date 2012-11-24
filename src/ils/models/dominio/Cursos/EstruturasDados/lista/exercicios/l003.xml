@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+ xmlns="exercicio"
+ xmlns:xsi="exercicio"
+ xsi:schemaLocation="/src/dominio/exercicio.xsd">
+
+		<conteudo>lista</conteudo>	
+		<idEx>l003</idEx>
+		<nivel>facil</nivel>
+		<tipo>me</tipo>
+		<preReq>
+			<req></req>
+		</preReq>
+
+		<enunciado> 
+			<texto>Marque a alternativa incorreta:</texto>
+		</enunciado>
+		
+		<resposta> </resposta>
+
+		<alternativa valor="false"> 
+			<texto>Pode-se ter acesso a qualquer elemento em uma lista.</texto>
+		</alternativa>
+		
+		<alternativa valor="false"> 
+			<texto>Se só inserir no fim e remover no início, a lista faz o papel de uma fila.</texto>	
+		</alternativa>
+		
+		<alternativa valor="false"> 
+			<texto>Não existem restrições em relação à posição dos elementos em uma lista.</texto>
+		</alternativa>
+		
+		<alternativa valor="true"> 
+			<texto>Existem restrições em relação à posição dos elementos em uma lista.</texto>
+		</alternativa>
+
+</exercicio>
+

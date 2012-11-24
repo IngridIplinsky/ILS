@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+ xmlns="exercicio"
+ xmlns:xsi="exercicio"
+ xsi:schemaLocation="/src/dominio/exercicio.xsd">
+	
+	<conteudo>lista</conteudo>	
+	<idEx>l001</idEx>
+	<nivel>facil</nivel>
+	<tipo>me</tipo>
+	<preReq>
+		<req></req>
+	</preReq>
+
+	<enunciado> 
+		<texto>Quais são os tipos de lista?</texto>
+	</enunciado>
+	
+	<resposta> </resposta>
+
+	<alternativa valor="false"> 
+		<texto> encadeada reversa, duplamente encadeada, cíclica e estática </texto>
+	</alternativa>
+		
+	<alternativa valor="false"> 
+		<texto> encadeada reversa, encadeada transversa, circular e estática  </texto>
+	</alternativa>
+		
+	<alternativa valor="true"> 
+		<texto> encadeada simples, duplamente encadeada, circular e estática </texto>
+	</alternativa>
+		
+	<alternativa valor="false"> 
+		<texto> Nenhuma das alternativas anteriores. </texto>
+	</alternativa>
+
+</exercicio>
+
+
+
