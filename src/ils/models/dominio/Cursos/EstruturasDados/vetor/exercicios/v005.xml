@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+ xmlns="exercicio"
+ xmlns:xsi="exercicio"
+ xsi:schemaLocation="/src/dominio/exercicio.xsd">
+		
+		<conteudo>vetor</conteudo>	
+		<idEx>v005</idEx>
+		<nivel>facil</nivel>
+		<tipo>me</tipo>
+		<preReq>
+			<req></req>
+		</preReq>
+
+		<enunciado> 
+			<texto>Tenho o seguinte código</texto>
+			<codigo highlight="yes">for(i=0; i&lt;5; i++) Vetor[i] = i+2</codigo>
+			<texto>O que esse código faz?</texto>
+		</enunciado>
+		
+		<resposta> </resposta>
+
+		<alternativa valor="false"> 
+			<texto>Preenche o Vetor com o número 1.</texto>
+		</alternativa>
+		
+		<alternativa valor="false"> 
+			<texto>Preenche o Vetor de 1 à 5.</texto>	
+		</alternativa>
+		
+		<alternativa valor="false"> 
+			<texto>Preenche o Vetor com número 0.</texto>
+		</alternativa>
+		
+		<alternativa valor="true"> 
+			<texto>Nenhuma das alternativas anteriores.</texto>
+		</alternativa>
+
+</exercicio>
+
+

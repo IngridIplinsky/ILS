@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+ xmlns="exercicio"
+ xmlns:xsi="exercicio"
+ xsi:schemaLocation="/src/dominio/exercicio.xsd">
+		
+		<conteudo>lista</conteudo>	
+		<idEx>l011</idEx>
+		<nivel>medio</nivel>
+		<tipo>programacao</tipo>
+		<preReq>
+			<req>alocDin</req>
+		</preReq>
+
+		<enunciado> 
+			<texto> 
+				Considere estruturas de listas encadeadas que armazenam valores inteiros.
+				O tipo que representa um nó da lista é dado por:
+			 </texto> 
+			<codigo highlight="yes">
+				struct lista {
+					int info; 
+					struct lista *prox;
+				};
+			typedef struct lista Lista;
+			</codigo>  
+			<texto> 
+				Implemente uma função que receba um vetor de valores inteiros com n elementos e construa uma lista 
+				encadeada armazenando os elementos do vetor nos nós da lista. Assim, se for recebido o vetor
+			</texto> 
+			<codigo highlight="yes">
+				v[5] = {3, 8, 1, 7, 2}
+			</codigo> 
+			<texto> 
+				, a funcao deve retornar uma nova lista cujo primeiro nó tem a informação 3, o segundo a informação 8,
+				e assim por diante. Se o vetor tiver zero elementos, a função deve ter como valor de retorno uma lista vazia.
+				O protótipo da função é dado por:
+			</texto> 
+			<codigo highlight="yes">
+				Lista* constroi (int n, int* v);
+			</codigo>
+		</enunciado>
+		
+		<resposta>
+			<codigo>
+				Lista* constroi (int n, int* v)
+				{
+					Lista* p;   /* variável auxiliar para percorrer a lista */
+					Lista* q;   /* variável auxiliar para criar a nova lista */
+					int i;
+					q = NULL;
+					for(i=n-1; i>=0; i--)   
+					{ 
+						p = (Lista*) malloc(sizeof(Lista));
+						p->prox = q;
+						p->info = v[i]; 
+						q = p;
+					}
+					return q;
+				}
+			</codigo>
+	 	</resposta>
+
+		<entradaCodigo />
+
+</exercicio>
+

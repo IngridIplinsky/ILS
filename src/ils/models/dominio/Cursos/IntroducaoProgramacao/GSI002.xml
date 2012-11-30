@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hierarquia
+ xmlns="hierarquia"
+ xmlns:xsi="hierarquia"
+ xsi:schemaLocation="src/dominio/hierarquia.xsd">
+
+<sigla>GSI002</sigla>
+<nome>Introdução à Programação de Computadores</nome>
+
+<conteudo>
+	<raiz nome="Lista">
+		<filho>Fila</filho>
+		<filho>Pilha</filho>
+		<filho>MetPesq</filho>
+		<filho>Vetor</filho>
+		<filho>AlocDin</filho>
+	</raiz>
+
+	<raiz nome="Fila">
+		<filho>EstruturasDados</filho>
+	</raiz>
+
+	<raiz nome="Pilha">
+		<filho>EstruturasDados</filho>
+	</raiz>
+
+	<raiz nome="MetPesq">
+		<filho>EstruturasDados</filho>
+	</raiz>
+
+	<raiz nome="Arvore">
+		<filho>Vetor</filho>
+		<filho>Recursiv</filho>
+		<filho>EstruturasDados</filho>
+	</raiz>
+
+	<raiz nome="EstruturasDados">
+	</raiz>
+
+	<raiz nome="Vetor">
+	</raiz>
+
+	<raiz nome="AlocDin">
+	</raiz>
+
+	<raiz nome="Fila">
+		<filho>Lista</filho>
+	</raiz>
+
+	<raiz nome="Recursiv">
+	</raiz>
+</conteudo>
+
+</hierarquia>

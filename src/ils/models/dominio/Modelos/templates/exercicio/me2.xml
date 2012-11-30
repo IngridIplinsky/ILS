@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+ xmlns="exercicio"
+ xmlns:xsi="exercicio"
+ xsi:schemaLocation="/src/dominio/exercicio.xsd">
+		
+		<conteudo>vetor</conteudo>	
+		<idEx>v010</idEx>
+		<nivel>facil</nivel>
+		<tipo>me</tipo>
+		<preReq>
+			<req></req>
+		</preReq>
+
+		<enunciado> 
+			<texto>Dada uma sequência de n números, marque a alternativa que imprime esta na ordem inversa à da leitura.</texto> 
+		</enunciado>
+		
+		<resposta> </resposta>
+
+		<alternativa valor="false"> 
+			<codigo highlight="yes">
+				for (i = 0; i &lt; n; i++) 
+					scanf(&quot;%d&quot;, &amp;v[i]);
+						for (i = n-1; i &gt;= 0; i--)
+							printf(&quot;%d&quot;, v[i]); 
+			</codigo>
+		</alternativa>
+		
+		<alternativa valor="false"> 
+			<codigo highlight="yes">
+				for (i = 1; i &lt; n; i++)
+					scanf(&quot;%d&quot;, &amp;v[i]);
+						for (i = n-1; i &gt;= 1; i--)
+							printf(&quot;%d&quot;, v[i]);
+			</codigo>	
+		</alternativa>
+		
+		<alternativa valor="false"> 
+			<codigo highlight="yes"> 
+				for (i = 1; i &lt; n; i++)
+					scanf(&quot;%d&quot;, &amp;v[i]);
+						for (i = n; i &gt;= 1; i--)
+							printf(&quot;%d&quot;, v[i]);
+			</codigo>	
+		</alternativa>
+		
+		<alternativa valor="true"> 
+			<codigo highlight="yes"> 
+				for (i = 1; i &lt; n; i++)
+					scanf(&quot;%d&quot;, &amp;v[i]);
+						for (i = n; i &gt; 1; i--)
+							printf(&quot;%d&quot;, v[i]);
+			</codigo>	
+		</alternativa>
+		
+
+</exercicio>
+
