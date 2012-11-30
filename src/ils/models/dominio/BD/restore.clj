@@ -34,7 +34,7 @@
  	(criar-tabela-estiloEstudante)
  	(criar-tabela-catalogoBug) 	
  	
- 	(println "Realizando o povoamento das tabelas. Por favor, aguarde...")
+ 	(println "Inserindo o curso de Estruras de Dados no ILS. Por favor, aguarde...")
  	
  	(inserir-aluno "98713" "Eduardo" "Gonçalves Costa" "Ciência da Computação" "dudugoncalvescosta@hotmail.com"
  	               "eduardo" "123")
@@ -108,7 +108,7 @@
 	(inserir-exercicio "src/dominio/Cursos/EstruturasDados/alocDin/exercicios/ad009.xml")
 	(inserir-exercicio "src/dominio/Cursos/EstruturasDados/alocDin/exercicios/ad010.xml")
 	
-	(inserir-estilo "visual" "global" "teorico")
+	(inserir-estilo "est01" "visual" "global" "teorico")
 	
 	(inserir-apresentacao "src/dominio/Cursos/EstruturasDados/vetor/apresentacao/v001.xml")
 	(inserir-apresentacao "src/dominio/Cursos/EstruturasDados/vetor/apresentacao/v002.xml")
@@ -121,13 +121,35 @@
 	(inserir-exercicioAluno "98713" "vetor" "v001" 0.33 0.33 0.34)
 	(inserir-exercicioAluno "98713" "fila" "f001" 0.33 0.33 0.34)
 	
-	(println "Gerando alguns logs de erro e inserindo no banco...")
+	(println "Gerando alguns logs de erro e inserindo no banco (apenas teste)...")
 	
 	(gerar-bug "src/dominio/Cursos/EstruturasDados/vetor/erros/98713v001.xml"
 	           "e001" "98713" "vetor" "v001" "me" "c" "d") 
 	           
 	(gerar-bug "src/dominio/Cursos/EstruturasDados/fila/erros/98713f001.xml"
 	           "e002" "98713" "fila" "v001" "me" "a" "b") 
+	           
+	(println "Criando nova disciplina: GSI002 - Introducao à prog. de Computadores...") 
+	
+	(inserir-disciplina "src/dominio/Cursos/IntroducaoProgramacao/GSI002.xml")	
+    
+    (inserir-conteudo "GSI002" "introducao")
+
+    (println "Novo conteudo para GSI002! introducao.") 
+    (println "Aulas do professor André Backes sendo inseridas. Por favor, aguarde...") 
+    
+    (inserir-apresentacao "src/dominio/Cursos/IntroducaoProgramacao/introducao/apresentacao/backes01.xml")
+	(inserir-apresentacao "src/dominio/Cursos/IntroducaoProgramacao/introducao/apresentacao/backes02.xml")
+	(inserir-apresentacao "src/dominio/Cursos/IntroducaoProgramacao/introducao/apresentacao/backes03.xml")
+	(inserir-apresentacao "src/dominio/Cursos/IntroducaoProgramacao/introducao/apresentacao/backes04.xml")
+	(inserir-apresentacao "src/dominio/Cursos/IntroducaoProgramacao/introducao/apresentacao/backes05.xml")
+	(inserir-apresentacao "src/dominio/Cursos/IntroducaoProgramacao/introducao/apresentacao/backes06.xml")
+	(inserir-apresentacao "src/dominio/Cursos/IntroducaoProgramacao/introducao/apresentacao/backes07.xml")
+	(inserir-apresentacao "src/dominio/Cursos/IntroducaoProgramacao/introducao/apresentacao/backes08.xml")
+	(inserir-apresentacao "src/dominio/Cursos/IntroducaoProgramacao/introducao/apresentacao/backes09.xml")
+	(inserir-apresentacao "src/dominio/Cursos/IntroducaoProgramacao/introducao/apresentacao/backes10.xml")
+	(inserir-apresentacao "src/dominio/Cursos/IntroducaoProgramacao/introducao/apresentacao/backes11.xml")
+    (inserir-apresentacao "src/dominio/Cursos/IntroducaoProgramacao/introducao/apresentacao/backes12.xml")
 	
 	(println "Restauração do banco concluída.")
   )  

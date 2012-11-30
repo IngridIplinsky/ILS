@@ -1,5 +1,6 @@
 (ns dominio.BD.insercao
-    (:use dominio.BD.persistence)
+    (:use [dominio.BD.persistence]
+          [dominio.BD.busca])
     (:require [clojure.xml :as xml]
   			[clojure.zip :as zip] 
 			[clojure.contrib.zip-filter.xml :as zf]
@@ -79,9 +80,7 @@
       {:idAp (get-value xml :idAp) 
        :conteudo (get-value xml :conteudo) 
        :tipo (get-value xml :tipo)
-       :selecao (get-value xml :selecao)
-       :organizacao (get-value xml :organizacao)
-       :utilizacao (get-value xml :utilizacao)
+       :idEst (first (vals (first (buscar-estilo "idEst" (get-value xml :selecao) (get-value xml :organizacao) (get-value xml :utilizacao)))))
        :xmlapresentacao (slurp xml)}
     )))
 
@@ -103,10 +102,10 @@
   
 (defn inserir-estilo
   "Insere um novo estilo de aprendizadgem de um aluno, para um curso, no banco. Determinado pelo módulo pedagógico, e pode ser alterado."
-   [selecao organizacao utilizacao]
+   [idEst selecao organizacao utilizacao]
    (sql/with-connection ILS-DB
     (sql/insert-records :estilo
-      {:selecao selecao :organizacao organizacao :utilizacao utilizacao}
+      {:idEst idEst :selecao selecao :organizacao organizacao :utilizacao utilizacao}
     )))    
     
 (defn inserir-estiloEstudante
@@ -114,7 +113,10 @@
    [matricula sigla selecao organizacao utilizacao]
    (sql/with-connection ILS-DB
     (sql/insert-records :estiloEstudante
-      {:matricula matricula :sigla sigla :selecao selecao :organizacao organizacao :utilizacao utilizacao}
+      {:matricula matricula 
+       :sigla sigla 
+       :idEst (first (vals (first (buscar-estilo "idEst" selecao organizacao utilizacao))))
+       }
     )))  
     
 (defn inserir-catalogoBug

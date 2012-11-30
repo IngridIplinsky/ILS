@@ -98,16 +98,10 @@
     (sql/create-table :estiloEstudante
            [:matricula "VARCHAR(20) NOT NULL"]
            [:sigla "VARCHAR(20) NOT NULL"]
-           [:selecao "VARCHAR(20) NOT NULL"]
-           [:organizacao "VARCHAR(20) NOT NULL"]
-           [:utilizacao "VARCHAR(20) NOT NULL"]
+           [:idEst "VARCHAR(20) NOT NULL"]
            ["CONSTRAINT PK_ESTEST PRIMARY KEY(matricula, sigla)"]
-           ["CONSTRAINT FK_ESTEST_DISC FOREIGN KEY(sigla)
-             REFERENCES disciplina(sigla)"]
-           ["CONSTRAINT FK_ESTEST_ALU FOREIGN KEY(matricula)
-             REFERENCES aluno(matricula)"]
-           ["CONSTRAINT FK_ESTEST_APRE FOREIGN KEY(selecao, organizacao, utilizacao)
-             REFERENCES estilo(selecao, organizacao, utilizacao)"]
+           ["CONSTRAINT FK_ESTEST_APRE FOREIGN KEY(idEst)
+             REFERENCES estilo(idEst)"]
            )))
 
 (defn criar-tabela-estilo
@@ -115,10 +109,12 @@
 []
   (sql/with-connection ILS-DB
     (sql/create-table :estilo
+    	   [:idEst "VARCHAR(20) NOT NULL"]
            [:selecao "VARCHAR(20) NOT NULL"]
            [:organizacao "VARCHAR(20) NOT NULL"]
            [:utilizacao "VARCHAR(20) NOT NULL"]
-           ["CONSTRAINT PK_ESTILO PRIMARY KEY(selecao, organizacao, utilizacao)"]
+           ["UNIQUE(selecao, organizacao, utilizacao)"]
+           ["CONSTRAINT PK_ESTILO PRIMARY KEY(idEst)"]
            )))
 
 (defn criar-tabela-apresentacao
@@ -129,13 +125,11 @@
            [:idAp "VARCHAR(20) NOT NULL"]
            [:conteudo "VARCHAR(50) NOT NULL"]
            [:tipo "VARCHAR(20) NOT NULL"]
-           [:selecao "VARCHAR(20) NOT NULL"]
-           [:organizacao "VARCHAR(20) NOT NULL"]
-           [:utilizacao "VARCHAR(20) NOT NULL"]
+           [:idEst "VARCHAR(20) NOT NULL"]
            [:xmlapresentacao "CLOB(10000) NOT NULL"]
            ["CONSTRAINT PK_APRESENTACAO PRIMARY KEY(idAp)"]
-           ["CONSTRAINT FK_APRESENTACAO FOREIGN KEY(selecao, organizacao, utilizacao)
-             REFERENCES estilo(selecao, organizacao, utilizacao)"]
+           ["CONSTRAINT FK_APRESENTACAO FOREIGN KEY(idEst)
+             REFERENCES estilo(idEst)"]
            )))
 
 (defn criar-tabela-conteudoAluno

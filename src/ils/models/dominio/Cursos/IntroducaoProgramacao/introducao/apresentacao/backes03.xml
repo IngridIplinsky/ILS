@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<apresentacao
+ xmlns="apresentacao"
+ xmlns:xsi="apresentacao"
+ xsi:schemaLocation="src/dominio/apresentacao.xsd">
+	
+	<idAp>backes03</idAp>
+	<conteudo>introducao</conteudo>
+	<tipo>video</tipo>
+	<selecao>visual</selecao>
+	<organizacao>global</organizacao>
+	<utilizacao>teorico</utilizacao>
+	
+	<video> 
+		<diretorio>arquivos/video/aula03.mp4</diretorio>
+		<legenda>Comando printf - André Backes</legenda>
+    </video>
+
+</apresentacao>

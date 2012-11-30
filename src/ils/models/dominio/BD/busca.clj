@@ -37,7 +37,16 @@
 	(sql/with-connection ILS-DB
   	 (sql/with-query-results res 
        [(str "SELECT apresentacao."retorno" FROM apresentacao WHERE apresentacao."coluna" = '"valor"'")]
-       (doall res)))))  
+       (doall res))))
+  ([retorno selecao organizacao utilizacao]
+    "Indica apresentacoes de determinado estilo."
+    (sql/with-connection ILS-DB
+   	 (sql/transaction
+  	  (sql/with-query-results res 
+        [(str "SELECT apresentacao."retorno" FROM apresentacao, estilo WHERE estilo.selecao = '"selecao"' 
+               AND estilo.organizacao = '"organizacao"' AND estilo.utilizacao = '"utilizacao"'
+               AND estilo.idEst = apresentacao.idEst")]
+           )))))  
      
 (defn buscar-catalogoBug
  ([id]
@@ -143,12 +152,21 @@
            :else [(str "SELECT conteudoAluno."retorno" FROM conteudoAluno WHERE conteudoAluno."col1" = "valor1" AND conteudoAluno."col2" = "valor2)])
           (doall res))))) 
   
-(defn buscar-estilo [retorno coluna valor]
-"Busca campos da tabela estilo, através de uma coluna e valor contidos nela."
-(sql/with-connection ILS-DB
-  (sql/with-query-results res 
+(defn buscar-estilo 
+ ([retorno coluna valor]
+  "Busca campos da tabela estilo, através de uma coluna e valor contidos nela."
+  (sql/with-connection ILS-DB
+   (sql/with-query-results res 
     [(str "SELECT estilo."retorno" FROM estilo WHERE estilo."coluna" = '"valor"'")]
-      (doall res)))) 
+      (doall res))))
+ ([retorno selecao organizacao utilizacao]
+  "Busca campos da tabela estilo, através de uma coluna e valor contidos nela."
+  (sql/with-connection ILS-DB
+   (sql/with-query-results res 
+    [(str "SELECT estilo."retorno" FROM estilo WHERE estilo.selecao = '"selecao"' AND
+           estilo.organizacao = '"organizacao"' AND estilo.utilizacao = '"utilizacao"'")]
+      (doall res))))) 
+  
  
 (defn buscar-todos-ex [id]
 (sql/with-connection ILS-DB
@@ -157,12 +175,4 @@
     [(str "SELECT exercicio.xmlexercicio FROM exercicio WHERE exercicio.idEx = '"id"'")]
        (clob-to-string (:xmlexercicio (first res))) ))))  
        
-(defn buscar-apresentacao-estilo [selecao organizacao utilizacao]
-  "Indica apresentacoes de determinado estilo."
- (sql/with-connection ILS-DB
- 	 (sql/transaction
-  	  (sql/with-query-results res 
-        [(str "SELECT apresentacao.id FROM apresentacao WHERE apresentacao.selecao = '"selecao"' 
-               AND organizacao = '"organizacao"' AND utilizacao = '"utilizacao"'")]
-           ))))
  
