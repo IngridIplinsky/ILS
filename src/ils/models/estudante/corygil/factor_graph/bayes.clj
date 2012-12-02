@@ -1,8 +1,8 @@
 (ns ils.models.estudante.corygil.factor-graph.bayes
   (:use
-   ils.models.estudante.corygil.factor-graph)
+      ils.models.estudante.corygil.factor-graph)
   (:import
-   [ils.models.estudante.corygil.factor_graph FNode VNode]))
+      [ils.models.estudante.corygil.factor_graph FNode VNode]))
 
  ;;TODO: exception if invalid probability distribution :
 (defn bayes-net [variables factors]

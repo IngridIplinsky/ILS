@@ -1,6 +1,6 @@
-(ns dominio.xml.geracao
+(ns ils.models.dominio.xml.geracao
 	(:use [clojure.data.xml]
-	      [dominio.BD.insercao]))
+	      [ils.models.dominio.BD.insercao]))
 
 
 (defn gerar-bug 

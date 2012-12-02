@@ -1,12 +1,10 @@
 (ns ils.models.estudante.corygil.estudante
   (:use
-   ils.models.estudante.corygil.factor-graph)
-  (:use
-   ils.models.estudante.corygil.factor-graph.bayes)
-  (:use 
-    ils.models.dominio.dominio)
-  (:require 
-   [clojure.java.jdbc :as sql]))
+      [ils.models.estudante.corygil.factor-graph]
+      [ils.models.estudante.corygil.factor-graph.bayes]
+      [ils.models.dominio.BD.atualizacao]
+      [ils.models.dominio.BD.busca]
+      ))
 
 ;Árvore de junção do modelo do domínio do artigo:
 ;Ambientes Inteligentes de Aprendizagem: Uma proposta baseada em hipermídia adaptativa e redes bayesianas. Nunes
@@ -292,419 +290,6 @@
 	})
 
 
-
-(defn cria-tabela-aluno
-"Cria a tabela usada para armazenar os resultados inferidos pela rede bayesiana." 
-[]
-  (sql/with-connection ILS-DB
-    (sql/create-table :ALUNOS
-           [:alunoKey "varchar(30) NOT NULL"]
-           [:nome "varchar(50) NOT NULL"]
-           [:sobrenome "varchar(50) NOT NULL"]
-	   [:curso "varchar(50) NOT NULL"]
-	   [:email "varchar(50)"]
-	   [:usuario "varchar(50) NOT NULL"]
-           [:senha "varchar(50) NOT NULL"]          
-           ["CONSTRAINT PK_ALUNO PRIMARY KEY(alunoKey)"]
-)))
-
-
-(defn insere-tabela-aluno [alunoKey nome sobrenome curso email usuario senha]
-(sql/with-connection ILS-DB
-    (sql/insert-records :ALUNOS
-      {:alunoKey alunoKey :NOME nome :SOBRENOME sobrenome :CURSO curso
-       :EMAIL email :USUARIO usuario :SENHA senha})))
-
-
-(defn mostra-alunos []
-(sql/with-connection ILS-DB
- (sql/with-query-results res ["SELECT * FROM ALUNOS"]
-  (doall res))))
-
-(defn mostra-alunos-nomes []
-(sql/with-connection ILS-DB
- (sql/with-query-results res ["SELECT NOME FROM ALUNOS"]
-  (doall res))))
-
-(defn mostra-alunos-alunoKey []
-(sql/with-connection ILS-DB
- (sql/with-query-results res ["SELECT alunoKey FROM ALUNOS"]
-  (doall res))))
-
-(defn mostra-alunos-sobrenome []
-(sql/with-connection ILS-DB
- (sql/with-query-results res ["SELECT SOBRENOME FROM ALUNOS"]
-  (doall res))))
-
-(defn mostra-alunos-curso []
-(sql/with-connection ILS-DB
- (sql/with-query-results res ["SELECT CURSO FROM ALUNOS"]
-  (doall res))))
-
-(defn mostra-alunos-email []
-(sql/with-connection ILS-DB
- (sql/with-query-results res ["SELECT EMAIL FROM ALUNOS"]
-  (doall res))))
-
-(defn mostra-alunos-usuario []
-(sql/with-connection ILS-DB
- (sql/with-query-results res ["SELECT USUARIO FROM ALUNOS"]
-  (doall res))))
-
-(defn mostra-alunos-senha []
-(sql/with-connection ILS-DB
- (sql/with-query-results res ["SELECT SENHA FROM ALUNOS"]
-  (doall res))))
-
-
-(def list-aux (mostra-alunos))
-
-
-
-(defn imprime []
-           [:tr
-           [:td [:h6 (get (nth list-aux 0) :nome)]]
-           [:td [:h6 (get (nth list-aux 0) :alunokey)]]
-           [:td [:h6 (get (nth list-aux 0) :sobrenome)]]
-           [:td [:h6 (get (nth list-aux 0) :curso)]]
-           [:td [:h6 (get (nth list-aux 0) :email)]]
-           [:td [:h6 (get (nth list-aux 0) :usuario)]]
-           [:td [:h6 (get (nth list-aux 0) :senha)]]])
-
-
-
-
-
-(defn imprime-dados-alunos [aux]
-  (cond (>= aux (count (mostra-alunos))) (do 0))
-       (cond (not(>= aux (count (mostra-alunos))))
-        (do
-           [:tr [:td [:h6 (get (nth (mostra-alunos) aux) :nome)]]
-           [:td [:h6 (get (nth (mostra-alunos) aux) :alunokey)]]
-           [:td [:h6 (get (nth (mostra-alunos) aux) :sobrenome)]]
-           [:td [:h6 (get (nth (mostra-alunos) aux) :curso)]]
-           [:td [:h6 (get (nth (mostra-alunos) aux) :email)]]
-           [:td [:h6 (get (nth (mostra-alunos) aux) :usuario)]]
-           [:td [:h6 (get (nth (mostra-alunos) aux) :senha)]]]))) 
-
-
-
-(defn retorna-usuario [aux]
-  (cond (>= aux (count (mostra-alunos))) (do 0))
-       (cond (not(>= aux (count (mostra-alunos))))
-        (do
-           (get (nth (mostra-alunos) aux) :usuario)))) 
-
-(defn retorna-senha [aux]
-  (cond (>= aux (count (mostra-alunos))) (do 0))
-       (cond (not(>= aux (count (mostra-alunos))))
-        (do
-           (get (nth (mostra-alunos) aux) :senha)))) 
-
-
-
-
-(defn tet []
-(for [i (range 0 (count (mostra-alunos)))
-       :when (inc i)]
-     (imprime-dados-alunos i)))
-
-
-(def var-aux (count(mostra-alunos)))
-
-
-(defn testes [st]
-   (str st))
-           
-(defn id-aluno-senha [senha]
- (sql/with-connection ILS-DB
-  (sql/with-query-results res [(str "SELECT ALUNOS.alunokey FROM ALUNOS WHERE ALUNOS.senha = '" senha"'")]
-    (doall res))))
-   
-(defn id-aluno-usuario-senha [usu senha]
- (sql/with-connection ILS-DB
-  (sql/with-query-results res [(str "SELECT ALUNOS.alunokey FROM ALUNOS WHERE ALUNOS.usuario ='" usu "' AND ALUNOS.senha = '" senha"'")]
-    (doall res))))
-
-(defn id-aluno-usario [usuario]
- (sql/with-connection ILS-DB
-  (sql/with-query-results res [(str "SELECT ALUNOS.alunokey FROM ALUNOS WHERE ALUNOS.usuario = '" usuario"'")]
-    (doall res))))
-
-
-(defn chave-usuario-cadastro [chave]
- (sql/with-connection ILS-DB
-  (sql/with-query-results res [(str "SELECT ALUNOS.nome FROM ALUNOS WHERE ALUNOS.alunoKey = '" chave"'")]
-    (doall res))))
-
-
-
-(defn compara-usuario [usuario senha]
-(cond (= nil (id-aluno-usuario-senha usuario senha)) 0
-  :else 1))
-
-
-(defn comparar-id-aluno [chave]
- (cond (= nil (chave-usuario-cadastro chave)) 1
-  :else 0))
-
-
-(defn recupera-id [senha]
-  (get (nth (id-aluno-senha senha) 0) :alunokey))
-
-
-(defn retorna-exercicio-certos [alunokey conteudo]
-  (sql/with-connection ILS-DB
-  (sql/with-query-results res [(str "SELECT EXERCICIO.exercicio FROM EXERCICIO WHERE EXERCICIO.alunoKey = '" alunokey "' AND EXERCICIO.bom = 1.0 " " AND EXERCICIO.conteudo ='" conteudo "'")]
-    (doall res))))
-  
-(defn retorna-exercicio-certos-dominio [alunokey conteudo]
-  (sql/with-connection ILS-DB
-  (sql/with-query-results res [(str "SELECT DOMINIO.bom FROM DOMINIO WHERE DOMINIO.alunoKey = '" alunokey "' AND DOMINIO.conteudo = '" conteudo"'")]
-    (doall res))))
-
-
-
-
-(defn teste [aux]
-    (cond (>= aux (count list-aux)) (do 0))
-       (cond (not(>= aux (count list-aux))) 
-         (do
-           (println (get (nth list-aux aux) :nome));
-           (println (get (nth list-aux aux) :alunokey))
-           (println (get (nth list-aux aux) :sobrenome))
-           (println (get (nth list-aux aux) :curso))
-           (println (get (nth list-aux aux) :email))
-           (println (get (nth list-aux aux) :usuario))
-           (println (get (nth list-aux aux) :senha))
-           (teste (+ aux 1))))) 
-
-
-
-
-(defn cria-tabela-dominio
-"Cria a tabela usada para armazenar os resultados inferidos pela rede bayesiana." 
-[]
-  (sql/with-connection ILS-DB
-    (sql/create-table :dominio
-           [:alunoKey "varchar(30) NOT NULL"]
-           [:conteudo "varchar(20) NOT NULL"]
-           [:bom "float NOT NULL"]
-	   [:medio "float NOT NULL"]
-	   [:ruim "float NOT NULL"]
-           ["CONSTRAINT PK_DOMINIO PRIMARY KEY(alunoKey, conteudo)"]
-           ["CONSTRAINT FK_DOMINIO 
-  	    FOREIGN KEY (alunoKey) REFERENCES ALUNOS (alunoKey) ON UPDATE NO ACTION ON DELETE NO ACTION"]
-)))
-
-(defn cria-tabela-exercicio
-"Cria a tabela usada para armazenar os resultados inferidos pela rede bayesiana." 
-[]
-  (sql/with-connection ILS-DB
-    (sql/create-table :exercicio
-           [:alunoKey "varchar(30) NOT NULL"]
-           [:exercicio "varchar(20) NOT NULL"]
-           [:conteudo "varchar(20) NOT NULL"]
-           [:bom "float NOT NULL"]
-	   [:medio "float NOT NULL"]
-	   [:ruim "float NOT NULL"]
-           ["CONSTRAINT PK_exercicio PRIMARY KEY(alunoKey, conteudo, exercicio)"]
-	   ["CONSTRAINT FK_exercicio 
-  	    FOREIGN KEY (alunoKey, conteudo) REFERENCES DOMINIO (alunoKey, conteudo) ON UPDATE NO ACTION ON DELETE NO ACTION"]
-))) 
- 
-
-(defn destroi-tabelas-estudante 
-"Destrói a tabela usada para armazenar os resultados inferidos pela rede bayesiana."
-[]
-   (sql/with-connection ILS-DB
-    (sql/drop-table :dominio))
-   (sql/with-connection ILS-DB
-    (sql/drop-table :exercicio))
-   (sql/with-connection ILS-DB
-    (sql/drop-table :alunos))
-   )
-
-(defn inserir-conteudo 
-  "Insere um novo conteudo no banco."
-   [chave nconteudo qbom qmedio qruim]
-   (sql/with-connection ILS-DB
-    (sql/insert-records :dominio
-      {:alunoKey chave :conteudo nconteudo :bom qbom :medio qmedio :ruim qruim}
-    )))	
-
-(defn inserir-exercicio
-  "Insere um novo exercicio no banco."
-   [chave ex nconteudo qbom qmedio qruim]
-   (sql/with-connection ILS-DB
-    (sql/insert-records :exercicio
-      {:alunoKey chave :exercicio ex :conteudo nconteudo :bom qbom :medio qmedio :ruim qruim}
-    )))
-
-
-(defn povoar-tabelas 
-"Povoa a tabela de acordo com a chave do aluno."
-  [chave]
-   (sql/with-connection ILS-DB
-    (sql/insert-records :dominio
-	{:alunoKey chave :conteudo "estrutura-dados" :bom 0.33 :medio 0.33 :ruim 0.34}
-      	{:alunoKey chave :conteudo "alocDin" :bom 0.33 :medio 0.33 :ruim 0.34}
-	{:alunoKey chave :conteudo "vetor" :bom 0.33 :medio 0.33 :ruim 0.34}
-	{:alunoKey chave :conteudo "recursiv" :bom 0.33 :medio 0.33 :ruim 0.34}
-	{:alunoKey chave :conteudo "lista" :bom 0.33 :medio 0.33 :ruim 0.34}
-	{:alunoKey chave :conteudo "arvore" :bom 0.33 :medio 0.33 :ruim 0.34}
-	{:alunoKey chave :conteudo "fila" :bom 0.33 :medio 0.33 :ruim 0.34}
-	{:alunoKey chave :conteudo "pilha" :bom 0.33 :medio 0.33 :ruim 0.34}
-	{:alunoKey chave :conteudo "metOrd" :bom 0.33 :medio 0.33 :ruim 0.34}
-	{:alunoKey chave :conteudo "metPesq" :bom 0.33 :medio 0.33 :ruim 0.34}
-    ))	
-   (sql/with-connection ILS-DB
-    (sql/insert-records :exercicio
-      	{:alunoKey chave :exercicio "ex1" :conteudo "estrutura-dados" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex2" :conteudo "estrutura-dados" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex3" :conteudo "estrutura-dados" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex4" :conteudo "estrutura-dados" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex5" :conteudo "estrutura-dados" :bom 0.33 :medio 0.33 :ruim 0.33}	
-	{:alunoKey chave :exercicio "ex6" :conteudo "estrutura-dados" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex7" :conteudo "estrutura-dados" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex8" :conteudo "estrutura-dados" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex9" :conteudo "estrutura-dados" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex10" :conteudo "estrutura-dados" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex1" :conteudo "alocDin" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex2" :conteudo "alocDin" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex3" :conteudo "alocDin" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex4" :conteudo "alocDin" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex5" :conteudo "alocDin" :bom 0.33 :medio 0.33 :ruim 0.33}	
-	{:alunoKey chave :exercicio "ex6" :conteudo "alocDin" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex7" :conteudo "alocDin" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex8" :conteudo "alocDin" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex9" :conteudo "alocDin" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex10" :conteudo "alocDin" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex1" :conteudo "vetor" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex2" :conteudo "vetor" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex3" :conteudo "vetor" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex4" :conteudo "vetor" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex5" :conteudo "vetor" :bom 0.33 :medio 0.33 :ruim 0.33}	
-	{:alunoKey chave :exercicio "ex6" :conteudo "vetor" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex7" :conteudo "vetor" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex8" :conteudo "vetor" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex9" :conteudo "vetor" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex10" :conteudo "vetor" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex1" :conteudo "recursiv" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex2" :conteudo "recursiv" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex3" :conteudo "recursiv" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex4" :conteudo "recursiv" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex5" :conteudo "recursiv" :bom 0.33 :medio 0.33 :ruim 0.33}	
-	{:alunoKey chave :exercicio "ex6" :conteudo "recursiv" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex7" :conteudo "recursiv" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex8" :conteudo "recursiv" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex9" :conteudo "recursiv" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex10" :conteudo "recursiv" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex1" :conteudo "lista" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex2" :conteudo "lista" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex3" :conteudo "lista" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex4" :conteudo "lista" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex5" :conteudo "lista" :bom 0.33 :medio 0.33 :ruim 0.33}	
-	{:alunoKey chave :exercicio "ex6" :conteudo "lista" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex7" :conteudo "lista" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex8" :conteudo "lista" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex9" :conteudo "lista" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex10" :conteudo "lista" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex1" :conteudo "arvore" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex2" :conteudo "arvore" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex3" :conteudo "arvore" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex4" :conteudo "arvore" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex5" :conteudo "arvore" :bom 0.33 :medio 0.33 :ruim 0.33}	
-	{:alunoKey chave :exercicio "ex6" :conteudo "arvore" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex7" :conteudo "arvore" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex8" :conteudo "arvore" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex9" :conteudo "arvore" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex10" :conteudo "arvore" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex1" :conteudo "fila" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex2" :conteudo "fila" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex3" :conteudo "fila" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex4" :conteudo "fila" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex5" :conteudo "fila" :bom 0.33 :medio 0.33 :ruim 0.33}	
-	{:alunoKey chave :exercicio "ex6" :conteudo "fila" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex7" :conteudo "fila" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex8" :conteudo "fila" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex9" :conteudo "fila" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex10" :conteudo "fila" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex1" :conteudo "pilha" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex2" :conteudo "pilha" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex3" :conteudo "pilha" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex4" :conteudo "pilha" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex5" :conteudo "pilha" :bom 0.33 :medio 0.33 :ruim 0.33}	
-	{:alunoKey chave :exercicio "ex6" :conteudo "pilha" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex7" :conteudo "pilha" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex8" :conteudo "pilha" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex9" :conteudo "pilha" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex10" :conteudo "pilha" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex1" :conteudo "metOrd" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex2" :conteudo "metOrd" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex3" :conteudo "metOrd" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex4" :conteudo "metOrd" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex5" :conteudo "metOrd" :bom 0.33 :medio 0.33 :ruim 0.33}	
-	{:alunoKey chave :exercicio "ex6" :conteudo "metOrd" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex7" :conteudo "metOrd" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex8" :conteudo "metOrd" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex9" :conteudo "metOrd" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex10" :conteudo "metOrd" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex1" :conteudo "metPesq" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex2" :conteudo "metPesq" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex3" :conteudo "metPesq" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex4" :conteudo "metPesq" :bom 0.33 :medio 0.33 :ruim 0.33}
-      	{:alunoKey chave :exercicio "ex5" :conteudo "metPesq" :bom 0.33 :medio 0.33 :ruim 0.33}	
-	{:alunoKey chave :exercicio "ex6" :conteudo "metPesq" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex7" :conteudo "metPesq" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex8" :conteudo "metPesq" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex9" :conteudo "metPesq" :bom 0.33 :medio 0.33 :ruim 0.33}
-	{:alunoKey chave :exercicio "ex10" :conteudo "metPesq" :bom 0.33 :medio 0.33 :ruim 0.33}
-
-    )))      		
-
-(defn mostrar-dominio 
-"Mostra o dominio referente a um aluno."
-[chave]
-(sql/with-connection ILS-DB
-  (sql/with-query-results res [(str "SELECT DOMINIO.conteudo, DOMINIO.bom, DOMINIO.MEDIO, DOMINIO.ruim FROM DOMINIO WHERE DOMINIO.alunoKey = '" chave "'")]
-    (doall res))))
-
-(defn mostrar-exercicios 
-"Mostra o dominio referente a um aluno."
-[chave conteudo]
-(sql/with-connection ILS-DB
-  (sql/with-query-results res [(str "SELECT EXERCICIO.exercicio, EXERCICIO.bom, EXERCICIO.medio, EXERCICIO.ruim FROM EXERCICIO WHERE EXERCICIO.alunoKey = '" chave"' AND EXERCICIO.conteudo = '" conteudo "'")]
-    (doall res))))
-
-
-
-
-(defn atualizar-probs-conteudo 
-"Dada a chave de um aluno e o conteudo, atualiza as probabilidades deste conteudo."
-[chave nconteudo qbom qmedio qruim]
-    (sql/with-connection ILS-DB
-      (sql/update-values :dominio
-       [(str "DOMINIO.alunoKey ='" chave "' AND DOMINIO.conteudo = '" nconteudo "'")]
-       {:alunoKey chave :conteudo nconteudo :bom qbom :medio qmedio :ruim qruim})))
-
-(defn atualizar-probs-exercicio 
-"Dada a chave de um aluno, o conteudo e o exercício, atualiza as probabilidades deste exercicio."
-[chave nconteudo ex qbom qmedio qruim]
-    (sql/with-connection ILS-DB
-      (sql/update-values :exercicio
-       [(str "EXERCICIO.alunoKey ='" chave "' AND EXERCICIO.conteudo = '" nconteudo "' AND EXERCICIO.exercicio = '" ex"'")]
-       {:alunoKey chave :conteudo nconteudo :exercicio ex :bom qbom :medio qmedio :ruim qruim})))
-
-
-(defn atualiza-todo-dominio [alunokey conteudo]
-    (cond (> ( / (count(retorna-exercicio-certos alunokey conteudo)) 10) 1/2) (atualizar-probs-conteudo alunokey conteudo 1.0 0.0 0.0)
-     :else (atualizar-probs-conteudo alunokey conteudo 0.0 0.0 1.0))) 
-
-
-
-;BANCO DE DADOS -*- BANCO DE DADOS -*- BANCO DE DADOS -*- BANCO DE DADOS -*- BANCO DE DADOS -*- BANCO DE DADOS -*- BANCO DE DADOS
-
 (defn map-function-on-map-vals 
 	"Uma funcao map modificada para maps"
     [m f]
@@ -715,10 +300,10 @@
     [ m ]
    (nth m 1))
 
-(defn calc-prob-conteudo [alunoChave nome conteudo]
+(defn calc-prob-conteudo [matricula conteudo]
   "Dados a chave do aluno, o nome do conteudo, e dados os exercicios, calcula as probabilidades bom, médio e ruim para cada conteúdo e altera no banco."
-  (atualizar-probs-conteudo 
-    alunoChave nome 
+  (atualizar-conteudoAluno 
+    matricula conteudo 
       (/ (reduce + (vals (map-function-on-map-vals conteudo  first))) 10) ;a media de bom para todos os exercicios do conteudo
  (/ (reduce + (vals (map-function-on-map-vals conteudo  second-map))) 10) ;a media de médio para todos os exercicios do conteudo
       (/ (reduce + (vals (map-function-on-map-vals conteudo  last))) 10) ;a media de ruim para todos os exercicios do conteudo
@@ -998,34 +583,34 @@
 						(nth (vec (nth (vals (run-propagation dominio))17))2)
                                                                                          )6)]
 	))      
-     (atualizar-probs-conteudo chave "estrutura-dados" 	(nth (vec (nth (vals tanara)0))0)  
+     (atualizar-conteudoAluno chave "estrutura-dados" 	(nth (vec (nth (vals tanara)0))0)  
 							(nth (vec (nth (vals tanara)0))1)
 							(nth (vec (nth (vals tanara)0))2))
-     (atualizar-probs-conteudo chave "arvore" 		(nth (vec (nth (vals tanara)1))0)  
+     (atualizar-conteudoAluno chave "arvore" 		(nth (vec (nth (vals tanara)1))0)  
 							(nth (vec (nth (vals tanara)1))1)
 							(nth (vec (nth (vals tanara)1))2))
-     (atualizar-probs-conteudo chave "recursiv" 	(nth (vec (nth (vals tanara)2))0)  
+     (atualizar-conteudoAluno chave "recursiv" 	(nth (vec (nth (vals tanara)2))0)  
 							(nth (vec (nth (vals tanara)2))1)
 							(nth (vec (nth (vals tanara)2))2))
-     (atualizar-probs-conteudo chave "fila" 		(nth (vec (nth (vals tanara)3))0)  
+     (atualizar-conteudoAluno chave "fila" 		(nth (vec (nth (vals tanara)3))0)  
 							(nth (vec (nth (vals tanara)3))1)
 							(nth (vec (nth (vals tanara)3))2))
-     (atualizar-probs-conteudo chave "metPesq" 		(nth (vec (nth (vals tanara)4))0)  
+     (atualizar-conteudoAluno chave "metPesq" 		(nth (vec (nth (vals tanara)4))0)  
 							(nth (vec (nth (vals tanara)4))1)
 							(nth (vec (nth (vals tanara)4))2))
-     (atualizar-probs-conteudo chave "metOrd" 		(nth (vec (nth (vals tanara)5))0)  
+     (atualizar-conteudoAluno chave "metOrd" 		(nth (vec (nth (vals tanara)5))0)  
 							(nth (vec (nth (vals tanara)5))1)
 							(nth (vec (nth (vals tanara)5))2))
-     (atualizar-probs-conteudo chave "lista" 		(nth (vec (nth (vals tanara)6))0)  
+     (atualizar-conteudoAluno chave "lista" 		(nth (vec (nth (vals tanara)6))0)  
 							(nth (vec (nth (vals tanara)6))1)
 							(nth (vec (nth (vals tanara)6))2))
-     (atualizar-probs-conteudo chave "pilha" 		(nth (vec (nth (vals tanara)7))0)  
+     (atualizar-conteudoAluno chave "pilha" 		(nth (vec (nth (vals tanara)7))0)  
 							(nth (vec (nth (vals tanara)7))1)
 							(nth (vec (nth (vals tanara)7))2))
-     (atualizar-probs-conteudo chave "alocDin" 		(nth (vec (nth (vals tanara)8))0)  
+     (atualizar-conteudoAluno chave "alocDin" 		(nth (vec (nth (vals tanara)8))0)  
 							(nth (vec (nth (vals tanara)8))1)
 							(nth (vec (nth (vals tanara)8))2))
-     (atualizar-probs-conteudo chave "vetor" 		(nth (vec (nth (vals tanara)9))0)  
+     (atualizar-conteudoAluno chave "vetor" 		(nth (vec (nth (vals tanara)9))0)  
 							(nth (vec (nth (vals tanara)9))1)
 							(nth (vec (nth (vals tanara)9))2))
 	
@@ -1299,34 +884,34 @@
 						(nth (vec (nth (vals (run-propagation dominio evidencias))17))2)
                                                                                          )6)]
 	))
-     (atualizar-probs-conteudo chave "estrutura-dados" 	(nth (vec (nth (vals tanara)0))0)  
+     (atualizar-conteudoAluno chave "estrutura-dados" 	(nth (vec (nth (vals tanara)0))0)  
 							(nth (vec (nth (vals tanara)0))1)
 							(nth (vec (nth (vals tanara)0))2))
-     (atualizar-probs-conteudo chave "arvore" 		(nth (vec (nth (vals tanara)1))0)  
+     (atualizar-conteudoAluno chave "arvore" 		(nth (vec (nth (vals tanara)1))0)  
 							(nth (vec (nth (vals tanara)1))1)
 							(nth (vec (nth (vals tanara)1))2))
-     (atualizar-probs-conteudo chave "recursiv" 	(nth (vec (nth (vals tanara)2))0)  
+     (atualizar-conteudoAluno chave "recursiv" 	(nth (vec (nth (vals tanara)2))0)  
 							(nth (vec (nth (vals tanara)2))1)
 							(nth (vec (nth (vals tanara)2))2))
-     (atualizar-probs-conteudo chave "fila" 		(nth (vec (nth (vals tanara)3))0)  
+     (atualizar-conteudoAluno chave "fila" 		(nth (vec (nth (vals tanara)3))0)  
 							(nth (vec (nth (vals tanara)3))1)
 							(nth (vec (nth (vals tanara)3))2))
-     (atualizar-probs-conteudo chave "metPesq" 		(nth (vec (nth (vals tanara)4))0)  
+     (atualizar-conteudoAluno chave "metPesq" 		(nth (vec (nth (vals tanara)4))0)  
 							(nth (vec (nth (vals tanara)4))1)
 							(nth (vec (nth (vals tanara)4))2))
-     (atualizar-probs-conteudo chave "metOrd" 		(nth (vec (nth (vals tanara)5))0)  
+     (atualizar-conteudoAluno chave "metOrd" 		(nth (vec (nth (vals tanara)5))0)  
 							(nth (vec (nth (vals tanara)5))1)
 							(nth (vec (nth (vals tanara)5))2))
-     (atualizar-probs-conteudo chave "lista" 		(nth (vec (nth (vals tanara)6))0)  
+     (atualizar-conteudoAluno chave "lista" 		(nth (vec (nth (vals tanara)6))0)  
 							(nth (vec (nth (vals tanara)6))1)
 							(nth (vec (nth (vals tanara)6))2))
-     (atualizar-probs-conteudo chave "pilha" 		(nth (vec (nth (vals tanara)7))0)  
+     (atualizar-conteudoAluno chave "pilha" 		(nth (vec (nth (vals tanara)7))0)  
 							(nth (vec (nth (vals tanara)7))1)
 							(nth (vec (nth (vals tanara)7))2))
-     (atualizar-probs-conteudo chave "alocDin" 		(nth (vec (nth (vals tanara)8))0)  
+     (atualizar-conteudoAluno chave "alocDin" 		(nth (vec (nth (vals tanara)8))0)  
 							(nth (vec (nth (vals tanara)8))1)
 							(nth (vec (nth (vals tanara)8))2))
-     (atualizar-probs-conteudo chave "vetor" 		(nth (vec (nth (vals tanara)9))0)  
+     (atualizar-conteudoAluno chave "vetor" 		(nth (vec (nth (vals tanara)9))0)  
 							(nth (vec (nth (vals tanara)9))1)
 							(nth (vec (nth (vals tanara)9))2))
   )
@@ -1365,316 +950,326 @@
 "Carrega os exercicios de um conteudo de um aluno do banco na estrutura."
 	[chave conteudo]
    (cond 	   
-	   (= conteudo "estrutura-dados") (def estrutura-dados
-                                        (assoc estrutura-dados :ex1 [(nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 0))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 0))2)
-						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 0))3)]
-                                                :ex2 [(nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 2))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 2))2)
-						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 2))3)]
-						:ex3 [(nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 3))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 3))2)
-						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 3))3)]
-						:ex4 [(nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 4))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 4))2)
-						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 4))3)]
-						:ex5 [(nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 5))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 5))2)
-						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 5))3)]
-						:ex6 [(nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 6))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 6))2)
-						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 6))3)]
-						:ex7 [(nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 7))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 7))2)
-						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 7))3)]
-						:ex8 [(nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 8))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 8))2)
-						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 8))3)]
-						:ex9 [(nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 9))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 9))2)
-						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 9))3)]
-						:ex10 [(nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 1))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 1))2)
-						      (nth (vals (nth (mostrar-exercicios chave "estrutura-dados") 1))3)] ))
+	   (= conteudo "EstruturasDados") (def estrutura-dados
+                                        (assoc estrutura-dados 
+                        :ex1 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "EstruturasDados") 0))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "EstruturasDados") 0))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "EstruturasDados") 0))3)]
+                        :ex2 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "EstruturasDados") 2))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "EstruturasDados") 2))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "EstruturasDados") 2))3)]
+						:ex3 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "EstruturasDados") 3))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "EstruturasDados") 3))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "EstruturasDados") 3))3)]
+						:ex4 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "EstruturasDados") 4))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "EstruturasDados") 4))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "EstruturasDados") 4))3)]
+						:ex5 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "EstruturasDados") 5))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "EstruturasDados") 5))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "EstruturasDados") 5))3)]
+						:ex6 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "EstruturasDados") 6))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "EstruturasDados") 6))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "EstruturasDados")6))3)]
+						:ex7 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "EstruturasDados") 7))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "EstruturasDados") 7))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "EstruturasDados") 7))3)]
+						:ex8 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "EstruturasDados") 8))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "EstruturasDados") 8))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "EstruturasDados") 8))3)]
+						:ex9 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "EstruturasDados") 9))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "EstruturasDados") 9))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "EstruturasDados") 9))3)]
+						:ex10 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "EstruturasDados") 1))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "EstruturasDados") 1))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "EstruturasDados") 1))3)] ))
 	   (= conteudo "alocDin") (def alocDin
-                                (assoc alocDin :ex1 [(nth (vals (nth (mostrar-exercicios chave "alocDin") 0))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 0))2)
-						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 0))3)]
-                                                :ex2 [(nth (vals (nth (mostrar-exercicios chave "alocDin") 2))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 2))2)
-						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 2))3)]
-						:ex3 [(nth (vals (nth (mostrar-exercicios chave "alocDin") 3))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 3))2)
-						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 3))3)]
-						:ex4 [(nth (vals (nth (mostrar-exercicios chave "alocDin") 4))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 4))2)
-						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 4))3)]
-						:ex5 [(nth (vals (nth (mostrar-exercicios chave "alocDin") 5))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 5))2)
-						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 5))3)]
-						:ex6 [(nth (vals (nth (mostrar-exercicios chave "alocDin") 6))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 6))2)
-						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 6))3)]
-						:ex7 [(nth (vals (nth (mostrar-exercicios chave "alocDin") 7))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 7))2)
-						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 7))3)]
-						:ex8 [(nth (vals (nth (mostrar-exercicios chave "alocDin") 8))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 8))2)
-						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 8))3)]
-						:ex9 [(nth (vals (nth (mostrar-exercicios chave "alocDin") 9))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 9))2)
-						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 9))3)]
-						:ex10 [(nth (vals (nth (mostrar-exercicios chave "alocDin") 1))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 1))2)
-						      (nth (vals (nth (mostrar-exercicios chave "alocDin") 1))3)] ))
+                                (assoc alocDin 
+                        :ex1 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "alocDin") 0))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "alocDin") 0))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "alocDin") 0))3)]
+                        :ex2 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "alocDin") 2))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "alocDin") 2))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "alocDin") 2))3)]
+						:ex3 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "alocDin") 3))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "alocDin") 3))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "alocDin") 3))3)]
+						:ex4 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "alocDin") 4))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "alocDin") 4))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "alocDin") 4))3)]
+						:ex5 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "alocDin") 5))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "alocDin") 5))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "alocDin") 5))3)]
+						:ex6 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "alocDin") 6))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "alocDin") 6))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "alocDin")6))3)]
+						:ex7 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "alocDin") 7))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "alocDin") 7))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "alocDin") 7))3)]
+						:ex8 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "alocDin") 8))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "alocDin") 8))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "alocDin") 8))3)]
+						:ex9 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "alocDin") 9))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "alocDin") 9))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "alocDin") 9))3)]
+						:ex10 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "alocDin") 1))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "alocDin") 1))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "alocDin") 1))3)] ))
 	   (= conteudo "vetor") (def vetor
-                               (assoc vetor :ex1 [(nth (vals (nth (mostrar-exercicios chave "vetor") 0))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "vetor") 0))2)
-						      (nth (vals (nth (mostrar-exercicios chave "vetor") 0))3)]
-                                                :ex2 [(nth (vals (nth (mostrar-exercicios chave "vetor") 2))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "vetor") 2))2)
-						      (nth (vals (nth (mostrar-exercicios chave "vetor") 2))3)]
-						:ex3 [(nth (vals (nth (mostrar-exercicios chave "vetor") 3))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "vetor") 3))2)
-						      (nth (vals (nth (mostrar-exercicios chave "vetor") 3))3)]
-						:ex4 [(nth (vals (nth (mostrar-exercicios chave "vetor") 4))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "vetor") 4))2)
-						      (nth (vals (nth (mostrar-exercicios chave "vetor") 4))3)]
-						:ex5 [(nth (vals (nth (mostrar-exercicios chave "vetor") 5))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "vetor") 5))2)
-						      (nth (vals (nth (mostrar-exercicios chave "vetor") 5))3)]
-						:ex6 [(nth (vals (nth (mostrar-exercicios chave "vetor") 6))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "vetor") 6))2)
-						      (nth (vals (nth (mostrar-exercicios chave "vetor") 6))3)]
-						:ex7 [(nth (vals (nth (mostrar-exercicios chave "vetor") 7))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "vetor") 7))2)
-						      (nth (vals (nth (mostrar-exercicios chave "vetor") 7))3)]
-						:ex8 [(nth (vals (nth (mostrar-exercicios chave "vetor") 8))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "vetor") 8))2)
-						      (nth (vals (nth (mostrar-exercicios chave "vetor") 8))3)]
-						:ex9 [(nth (vals (nth (mostrar-exercicios chave "vetor") 9))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "vetor") 9))2)
-						      (nth (vals (nth (mostrar-exercicios chave "vetor") 9))3)]
-						:ex10 [(nth (vals (nth (mostrar-exercicios chave "vetor") 1))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "vetor") 1))2)
-						      (nth (vals (nth (mostrar-exercicios chave "vetor") 1))3)] ))
+                               (assoc vetor 
+                        :ex1 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "vetor") 0))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "vetor") 0))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "vetor") 0))3)]
+                        :ex2 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "vetor") 2))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "vetor") 2))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "vetor") 2))3)]
+						:ex3 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "vetor") 3))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "vetor") 3))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "vetor") 3))3)]
+						:ex4 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "vetor") 4))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "vetor") 4))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "vetor") 4))3)]
+						:ex5 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "vetor") 5))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "vetor") 5))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "vetor") 5))3)]
+						:ex6 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "vetor") 6))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "vetor") 6))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "vetor")6))3)]
+						:ex7 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "vetor") 7))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "vetor") 7))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "vetor") 7))3)]
+						:ex8 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "vetor") 8))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "vetor") 8))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "vetor") 8))3)]
+						:ex9 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "vetor") 9))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "vetor") 9))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "vetor") 9))3)]
+						:ex10 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "vetor") 1))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "vetor") 1))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "vetor") 1))3)] ))
            (= conteudo "recursiv") (def recursiv
-                                 (assoc recursiv :ex1 [(nth (vals (nth (mostrar-exercicios chave "recursiv") 0))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 0))2)
-						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 0))3)]
-                                                :ex2 [(nth (vals (nth (mostrar-exercicios chave "recursiv") 2))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 2))2)
-						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 2))3)]
-						:ex3 [(nth (vals (nth (mostrar-exercicios chave "recursiv") 3))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 3))2)
-						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 3))3)]
-						:ex4 [(nth (vals (nth (mostrar-exercicios chave "recursiv") 4))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 4))2)
-						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 4))3)]
-						:ex5 [(nth (vals (nth (mostrar-exercicios chave "recursiv") 5))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 5))2)
-						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 5))3)]
-						:ex6 [(nth (vals (nth (mostrar-exercicios chave "recursiv") 6))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 6))2)
-						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 6))3)]
-						:ex7 [(nth (vals (nth (mostrar-exercicios chave "recursiv") 7))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 7))2)
-						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 7))3)]
-						:ex8 [(nth (vals (nth (mostrar-exercicios chave "recursiv") 8))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 8))2)
-						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 8))3)]
-						:ex9 [(nth (vals (nth (mostrar-exercicios chave "recursiv") 9))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 9))2)
-						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 9))3)]
-						:ex10 [(nth (vals (nth (mostrar-exercicios chave "recursiv") 1))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 1))2)
-						      (nth (vals (nth (mostrar-exercicios chave "recursiv") 1))3)] ))
+                                 (assoc recursiv 
+                        :ex1 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "recursiv") 0))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "recursiv") 0))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "recursiv") 0))3)]
+                        :ex2 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "recursiv") 2))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "recursiv") 2))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "recursiv") 2))3)]
+						:ex3 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "recursiv") 3))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "recursiv") 3))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "recursiv") 3))3)]
+						:ex4 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "recursiv") 4))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "recursiv") 4))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "recursiv") 4))3)]
+						:ex5 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "recursiv") 5))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "recursiv") 5))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "recursiv") 5))3)]
+						:ex6 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "recursiv") 6))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "recursiv") 6))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "recursiv")6))3)]
+						:ex7 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "recursiv") 7))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "recursiv") 7))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "recursiv") 7))3)]
+						:ex8 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "recursiv") 8))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "recursiv") 8))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "recursiv") 8))3)]
+						:ex9 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "recursiv") 9))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "recursiv") 9))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "recursiv") 9))3)]
+						:ex10 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "recursiv") 1))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "recursiv") 1))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "recursiv") 1))3)] ))
            (= conteudo "lista") (def lista
-                               (assoc lista :ex1 [(nth (vals (nth (mostrar-exercicios chave "lista") 0))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "lista") 0))2)
-						      (nth (vals (nth (mostrar-exercicios chave "lista") 0))3)]
-                                                :ex2 [(nth (vals (nth (mostrar-exercicios chave "lista") 2))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "lista") 2))2)
-						      (nth (vals (nth (mostrar-exercicios chave "lista") 2))3)]
-						:ex3 [(nth (vals (nth (mostrar-exercicios chave "lista") 3))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "lista") 3))2)
-						      (nth (vals (nth (mostrar-exercicios chave "lista") 3))3)]
-						:ex4 [(nth (vals (nth (mostrar-exercicios chave "lista") 4))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "lista") 4))2)
-						      (nth (vals (nth (mostrar-exercicios chave "lista") 4))3)]
-						:ex5 [(nth (vals (nth (mostrar-exercicios chave "lista") 5))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "lista") 5))2)
-						      (nth (vals (nth (mostrar-exercicios chave "lista") 5))3)]
-						:ex6 [(nth (vals (nth (mostrar-exercicios chave "lista") 6))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "lista") 6))2)
-						      (nth (vals (nth (mostrar-exercicios chave "lista") 6))3)]
-						:ex7 [(nth (vals (nth (mostrar-exercicios chave "lista") 7))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "lista") 7))2)
-						      (nth (vals (nth (mostrar-exercicios chave "lista") 7))3)]
-						:ex8 [(nth (vals (nth (mostrar-exercicios chave "lista") 8))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "lista") 8))2)
-						      (nth (vals (nth (mostrar-exercicios chave "lista") 8))3)]
-						:ex9 [(nth (vals (nth (mostrar-exercicios chave "lista") 9))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "lista") 9))2)
-						      (nth (vals (nth (mostrar-exercicios chave "lista") 9))3)]
-						:ex10 [(nth (vals (nth (mostrar-exercicios chave "lista") 1))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "lista") 1))2)
-						      (nth (vals (nth (mostrar-exercicios chave "lista") 1))3)] ))
+                               (assoc lista 
+                        :ex1 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "lista") 0))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "lista") 0))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "lista") 0))3)]
+                        :ex2 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "lista") 2))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "lista") 2))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "lista") 2))3)]
+						:ex3 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "lista") 3))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "lista") 3))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "lista") 3))3)]
+						:ex4 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "lista") 4))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "lista") 4))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "lista") 4))3)]
+						:ex5 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "lista") 5))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "lista") 5))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "lista") 5))3)]
+						:ex6 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "lista") 6))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "lista") 6))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "lista")6))3)]
+						:ex7 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "lista") 7))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "lista") 7))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "lista") 7))3)]
+						:ex8 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "lista") 8))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "lista") 8))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "lista") 8))3)]
+						:ex9 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "lista") 9))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "lista") 9))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "lista") 9))3)]
+						:ex10 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "lista") 1))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "lista") 1))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "lista") 1))3)] ))
            (= conteudo "arvore") (def arvore
-                               (assoc arvore :ex1 [(nth (vals (nth (mostrar-exercicios chave "arvore") 0))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "arvore") 0))2)
-						      (nth (vals (nth (mostrar-exercicios chave "arvore") 0))3)]
-                                                :ex2 [(nth (vals (nth (mostrar-exercicios chave "arvore") 2))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "arvore") 2))2)
-						      (nth (vals (nth (mostrar-exercicios chave "arvore") 2))3)]
-						:ex3 [(nth (vals (nth (mostrar-exercicios chave "arvore") 3))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "arvore") 3))2)
-						      (nth (vals (nth (mostrar-exercicios chave "arvore") 3))3)]
-						:ex4 [(nth (vals (nth (mostrar-exercicios chave "arvore") 4))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "arvore") 4))2)
-						      (nth (vals (nth (mostrar-exercicios chave "arvore") 4))3)]
-						:ex5 [(nth (vals (nth (mostrar-exercicios chave "arvore") 5))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "arvore") 5))2)
-						      (nth (vals (nth (mostrar-exercicios chave "arvore") 5))3)]
-						:ex6 [(nth (vals (nth (mostrar-exercicios chave "arvore") 6))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "arvore") 6))2)
-						      (nth (vals (nth (mostrar-exercicios chave "arvore") 6))3)]
-						:ex7 [(nth (vals (nth (mostrar-exercicios chave "arvore") 7))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "arvore") 7))2)
-						      (nth (vals (nth (mostrar-exercicios chave "arvore") 7))3)]
-						:ex8 [(nth (vals (nth (mostrar-exercicios chave "arvore") 8))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "arvore") 8))2)
-						      (nth (vals (nth (mostrar-exercicios chave "arvore") 8))3)]
-						:ex9 [(nth (vals (nth (mostrar-exercicios chave "arvore") 9))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "arvore") 9))2)
-						      (nth (vals (nth (mostrar-exercicios chave "arvore") 9))3)]
-						:ex10 [(nth (vals (nth (mostrar-exercicios chave "arvore") 1))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "arvore") 1))2)
-						      (nth (vals (nth (mostrar-exercicios chave "arvore") 1))3)] ))
+                               (assoc arvore 
+                        :ex1 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "arvore") 0))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "arvore") 0))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "arvore") 0))3)]
+                        :ex2 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "arvore") 2))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "arvore") 2))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "arvore") 2))3)]
+						:ex3 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "arvore") 3))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "arvore") 3))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "arvore") 3))3)]
+						:ex4 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "arvore") 4))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "arvore") 4))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "arvore") 4))3)]
+						:ex5 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "arvore") 5))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "arvore") 5))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "arvore") 5))3)]
+						:ex6 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "arvore") 6))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "arvore") 6))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "arvore")6))3)]
+						:ex7 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "arvore") 7))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "arvore") 7))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "arvore") 7))3)]
+						:ex8 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "arvore") 8))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "arvore") 8))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "arvore") 8))3)]
+						:ex9 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "arvore") 9))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "arvore") 9))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "arvore") 9))3)]
+						:ex10 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "arvore") 1))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "arvore") 1))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "arvore") 1))3)] ))
            (= conteudo "fila") (def fila
-                             (assoc fila :ex1 [(nth (vals (nth (mostrar-exercicios chave "fila") 0))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "fila") 0))2)
-						      (nth (vals (nth (mostrar-exercicios chave "fila") 0))3)]
-                                                :ex2 [(nth (vals (nth (mostrar-exercicios chave "fila") 2))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "fila") 2))2)
-						      (nth (vals (nth (mostrar-exercicios chave "fila") 2))3)]
-						:ex3 [(nth (vals (nth (mostrar-exercicios chave "fila") 3))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "fila") 3))2)
-						      (nth (vals (nth (mostrar-exercicios chave "fila") 3))3)]
-						:ex4 [(nth (vals (nth (mostrar-exercicios chave "fila") 4))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "fila") 4))2)
-						      (nth (vals (nth (mostrar-exercicios chave "fila") 4))3)]
-						:ex5 [(nth (vals (nth (mostrar-exercicios chave "fila") 5))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "fila") 5))2)
-						      (nth (vals (nth (mostrar-exercicios chave "fila") 5))3)]
-						:ex6 [(nth (vals (nth (mostrar-exercicios chave "fila") 6))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "fila") 6))2)
-						      (nth (vals (nth (mostrar-exercicios chave "fila") 6))3)]
-						:ex7 [(nth (vals (nth (mostrar-exercicios chave "fila") 7))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "fila") 7))2)
-						      (nth (vals (nth (mostrar-exercicios chave "fila") 7))3)]
-						:ex8 [(nth (vals (nth (mostrar-exercicios chave "fila") 8))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "fila") 8))2)
-						      (nth (vals (nth (mostrar-exercicios chave "fila") 8))3)]
-						:ex9 [(nth (vals (nth (mostrar-exercicios chave "fila") 9))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "fila") 9))2)
-						      (nth (vals (nth (mostrar-exercicios chave "fila") 9))3)]
-						:ex10 [(nth (vals (nth (mostrar-exercicios chave "fila") 1))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "fila") 1))2)
-						      (nth (vals (nth (mostrar-exercicios chave "fila") 1))3)] ))
+                             (assoc fila 
+                        :ex1 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "fila") 0))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "fila") 0))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "fila") 0))3)]
+                        :ex2 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "fila") 2))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "fila") 2))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "fila") 2))3)]
+						:ex3 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "fila") 3))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "fila") 3))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "fila") 3))3)]
+						:ex4 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "fila") 4))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "fila") 4))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "fila") 4))3)]
+						:ex5 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "fila") 5))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "fila") 5))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "fila") 5))3)]
+						:ex6 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "fila") 6))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "fila") 6))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "fila")6))3)]
+						:ex7 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "fila") 7))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "fila") 7))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "fila") 7))3)]
+						:ex8 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "fila") 8))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "fila") 8))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "fila") 8))3)]
+						:ex9 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "fila") 9))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "fila") 9))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "fila") 9))3)]
+						:ex10 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "fila") 1))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "fila") 1))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "fila") 1))3)] ))
            (= conteudo "pilha") (def pilha
-                               (assoc pilha :ex1 [(nth (vals (nth (mostrar-exercicios chave "pilha") 0))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "pilha") 0))2)
-						      (nth (vals (nth (mostrar-exercicios chave "pilha") 0))3)]
-                                                :ex2 [(nth (vals (nth (mostrar-exercicios chave "pilha") 2))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "pilha") 2))2)
-						      (nth (vals (nth (mostrar-exercicios chave "pilha") 2))3)]
-						:ex3 [(nth (vals (nth (mostrar-exercicios chave "pilha") 3))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "pilha") 3))2)
-						      (nth (vals (nth (mostrar-exercicios chave "pilha") 3))3)]
-						:ex4 [(nth (vals (nth (mostrar-exercicios chave "pilha") 4))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "pilha") 4))2)
-						      (nth (vals (nth (mostrar-exercicios chave "pilha") 4))3)]
-						:ex5 [(nth (vals (nth (mostrar-exercicios chave "pilha") 5))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "pilha") 5))2)
-						      (nth (vals (nth (mostrar-exercicios chave "pilha") 5))3)]
-						:ex6 [(nth (vals (nth (mostrar-exercicios chave "pilha") 6))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "pilha") 6))2)
-						      (nth (vals (nth (mostrar-exercicios chave "pilha") 6))3)]
-						:ex7 [(nth (vals (nth (mostrar-exercicios chave "pilha") 7))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "pilha") 7))2)
-						      (nth (vals (nth (mostrar-exercicios chave "pilha") 7))3)]
-						:ex8 [(nth (vals (nth (mostrar-exercicios chave "pilha") 8))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "pilha") 8))2)
-						      (nth (vals (nth (mostrar-exercicios chave "pilha") 8))3)]
-						:ex9 [(nth (vals (nth (mostrar-exercicios chave "pilha") 9))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "pilha") 9))2)
-						      (nth (vals (nth (mostrar-exercicios chave "pilha") 9))3)]
-						:ex10 [(nth (vals (nth (mostrar-exercicios chave "pilha") 1))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "pilha") 1))2)
-						      (nth (vals (nth (mostrar-exercicios chave "pilha") 1))3)] ))
+                               (assoc pilha 
+                        :ex1 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "pilha") 0))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "pilha") 0))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "pilha") 0))3)]
+                        :ex2 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "pilha") 2))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "pilha") 2))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "pilha") 2))3)]
+						:ex3 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "pilha") 3))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "pilha") 3))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "pilha") 3))3)]
+						:ex4 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "pilha") 4))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "pilha") 4))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "pilha") 4))3)]
+						:ex5 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "pilha") 5))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "pilha") 5))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "pilha") 5))3)]
+						:ex6 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "pilha") 6))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "pilha") 6))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "pilha")6))3)]
+						:ex7 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "pilha") 7))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "pilha") 7))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "pilha") 7))3)]
+						:ex8 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "pilha") 8))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "pilha") 8))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "pilha") 8))3)]
+						:ex9 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "pilha") 9))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "pilha") 9))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "pilha") 9))3)]
+						:ex10 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "pilha") 1))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "pilha") 1))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "pilha") 1))3)] ))
            (= conteudo "metOrd") (def metOrd
-                               (assoc metOrd :ex1 [(nth (vals (nth (mostrar-exercicios chave "metOrd") 0))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 0))2)
-						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 0))3)]
-                                                :ex2 [(nth (vals (nth (mostrar-exercicios chave "metOrd") 2))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 2))2)
-						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 2))3)]
-						:ex3 [(nth (vals (nth (mostrar-exercicios chave "metOrd") 3))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 3))2)
-						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 3))3)]
-						:ex4 [(nth (vals (nth (mostrar-exercicios chave "metOrd") 4))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 4))2)
-						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 4))3)]
-						:ex5 [(nth (vals (nth (mostrar-exercicios chave "metOrd") 5))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 5))2)
-						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 5))3)]
-						:ex6 [(nth (vals (nth (mostrar-exercicios chave "metOrd") 6))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 6))2)
-						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 6))3)]
-						:ex7 [(nth (vals (nth (mostrar-exercicios chave "metOrd") 7))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 7))2)
-						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 7))3)]
-						:ex8 [(nth (vals (nth (mostrar-exercicios chave "metOrd") 8))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 8))2)
-						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 8))3)]
-						:ex9 [(nth (vals (nth (mostrar-exercicios chave "metOrd") 9))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 9))2)
-						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 9))3)]
-						:ex10 [(nth (vals (nth (mostrar-exercicios chave "metOrd") 1))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 1))2)
-						      (nth (vals (nth (mostrar-exercicios chave "metOrd") 1))3)] ))
+                               (assoc metOrd 
+                        :ex1 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "metOrd") 0))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "metOrd") 0))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "metOrd") 0))3)]
+                        :ex2 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "metOrd") 2))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "metOrd") 2))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "metOrd") 2))3)]
+						:ex3 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "metOrd") 3))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "metOrd") 3))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "metOrd") 3))3)]
+						:ex4 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "metOrd") 4))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "metOrd") 4))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "metOrd") 4))3)]
+						:ex5 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "metOrd") 5))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "metOrd") 5))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "metOrd") 5))3)]
+						:ex6 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "metOrd") 6))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "metOrd") 6))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "metOrd")6))3)]
+						:ex7 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "metOrd") 7))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "metOrd") 7))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "metOrd") 7))3)]
+						:ex8 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "metOrd") 8))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "metOrd") 8))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "metOrd") 8))3)]
+						:ex9 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "metOrd") 9))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "metOrd") 9))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "metOrd") 9))3)]
+						:ex10 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "metOrd") 1))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "metOrd") 1))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "metOrd") 1))3)] ))
 	   (= conteudo "metPesq") (def metPesq
-                               (assoc metPesq :ex1 [(nth (vals (nth (mostrar-exercicios chave "metPesq") 0))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 0))2)
-						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 0))3)]
-                                                :ex2 [(nth (vals (nth (mostrar-exercicios chave "metPesq") 2))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 2))2)
-						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 2))3)]
-						:ex3 [(nth (vals (nth (mostrar-exercicios chave "metPesq") 3))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 3))2)
-						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 3))3)]
-						:ex4 [(nth (vals (nth (mostrar-exercicios chave "metPesq") 4))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 4))2)
-						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 4))3)]
-						:ex5 [(nth (vals (nth (mostrar-exercicios chave "metPesq") 5))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 5))2)
-						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 5))3)]
-						:ex6 [(nth (vals (nth (mostrar-exercicios chave "metPesq") 6))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 6))2)
-						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 6))3)]
-						:ex7 [(nth (vals (nth (mostrar-exercicios chave "metPesq") 7))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 7))2)
-						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 7))3)]
-						:ex8 [(nth (vals (nth (mostrar-exercicios chave "metPesq") 8))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 8))2)
-						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 8))3)]
-						:ex9 [(nth (vals (nth (mostrar-exercicios chave "metPesq") 9))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 9))2)
-						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 9))3)]
-						:ex10 [(nth (vals (nth (mostrar-exercicios chave "metPesq") 1))1)
- 						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 1))2)
-						      (nth (vals (nth (mostrar-exercicios chave "metPesq") 1))3)] ))
+                               (assoc metPesq 
+                       :ex1 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "metPesq") 0))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "metPesq") 0))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "metPesq") 0))3)]
+                        :ex2 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "metPesq") 2))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "metPesq") 2))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "metPesq") 2))3)]
+						:ex3 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "metPesq") 3))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "metPesq") 3))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "metPesq") 3))3)]
+						:ex4 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "metPesq") 4))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "metPesq") 4))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "metPesq") 4))3)]
+						:ex5 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "metPesq") 5))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "metPesq") 5))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "metPesq") 5))3)]
+						:ex6 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "metPesq") 6))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "metPesq") 6))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "metPesq")6))3)]
+						:ex7 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "metPesq") 7))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "metPesq") 7))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "metPesq") 7))3)]
+						:ex8 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "metPesq") 8))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "metPesq") 8))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "metPesq") 8))3)]
+						:ex9 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "metPesq") 9))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "metPesq") 9))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "metPesq") 9))3)]
+						:ex10 [(nth (vals (nth (buscar-conteudoAluno "bom" "matricula" chave "conteudo" "metPesq") 1))1)
+ 						      (nth (vals (nth (buscar-conteudoAluno "medio" "matricula" chave "conteudo" "metPesq") 1))2)
+						      (nth (vals (nth (buscar-conteudoAluno "ruim" "matricula" chave "conteudo" "metPesq") 1))3)] ))
          :else "Este conteudo nao eh valido!")
 
 )

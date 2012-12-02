@@ -1,7 +1,7 @@
-(ns dominio.BD.restore
-  (:use [dominio.BD.persistence]
-        [dominio.BD.insercao]
-        [dominio.xml.geracao]))
+(ns ils.models.dominio.BD.restore
+  (:use [ils.models.dominio.BD.persistence]
+        [ils.models.dominio.BD.insercao]
+        [ils.models.dominio.xml.geracao]))
 
 ;Fins administrativos. Esta função destroi o banco, recria e o preenche. 
 ;Portanto, é bem custosa, então não a use a menos que saiba o que está fazendo!

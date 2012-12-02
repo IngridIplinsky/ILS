@@ -1,7 +1,7 @@
-(ns dominio.xml.manipulacao
+(ns ils.models.dominio.xml.manipulacao
 	(:use [clojure.data.xml]
 	      [clojure.contrib.zip-filter.xml] 
-	      [dominio.BD.busca])
+	      [ils.models.dominio.BD.busca])
 	(:require [clojure.xml :as xml]
   			  [clojure.zip :as zip] 
 			  [clojure.contrib.zip-filter.xml :as zf]
