@@ -50,6 +50,7 @@
     (inserir-conteudo "GSI002" "struct")
     (inserir-conteudo "GSI002" "funcao")
     (inserir-conteudo "GSI002" "recursao")
+    (inserir-conteudo "GSI002" "alocDin")
     
  	
    ; (inserir-disciplina "src/dominio/Cursos/EstruturasDados/inf41.xml")
@@ -283,42 +284,42 @@
                         "&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/JmarMwaT_KQ&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;"
                         "Typedef - Créditos a André Backes")
                         
-    (gerar-apresentacao "src/dominio/Cursos/IntroducaoProgramacao/funcao/apresentacao/backes043.xml" "backes043"              
+    (gerar-apresentacao "src/dominio/Cursos/IntroducaoProgramacao/funcoes/apresentacao/backes043.xml" "backes043"              
                         "funcao" "video" "visual" "global" "teorico" "embedded"
                         "&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/OrF2ydZIELk&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;"
                         "Introdução a funções - Créditos a André Backes")                       
                         
-     (gerar-apresentacao "src/dominio/Cursos/IntroducaoProgramacao/funcao/apresentacao/backes044.xml" "backes044"              
+     (gerar-apresentacao "src/dominio/Cursos/IntroducaoProgramacao/funcoes/apresentacao/backes044.xml" "backes044"              
                         "funcao" "video" "visual" "global" "teorico" "embedded"
                         "&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/5BBD_IfFUtk&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;"
                         "Parâmetros da função - Créditos a André Backes")
                         
-      (gerar-apresentacao "src/dominio/Cursos/IntroducaoProgramacao/funcao/apresentacao/backes045.xml" "backes045"              
+      (gerar-apresentacao "src/dominio/Cursos/IntroducaoProgramacao/funcoes/apresentacao/backes045.xml" "backes045"              
                         "funcao" "video" "visual" "global" "teorico" "embedded"
                         "&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/al6Uq0nnuUE&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;"
                         "Corpo de uma função - Créditos a André Backes")
                         
-      (gerar-apresentacao "src/dominio/Cursos/IntroducaoProgramacao/funcao/apresentacao/backes046.xml" "backes046"              
+      (gerar-apresentacao "src/dominio/Cursos/IntroducaoProgramacao/funcoes/apresentacao/backes046.xml" "backes046"              
                         "funcao" "video" "visual" "global" "teorico" "embedded"
                         "&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/E3zGQKc0BX4&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;"
                         "Retorno de uma função - Créditos a André Backes")
                         
-       (gerar-apresentacao "src/dominio/Cursos/IntroducaoProgramacao/funcao/apresentacao/backes047.xml" "backes047"              
+       (gerar-apresentacao "src/dominio/Cursos/IntroducaoProgramacao/funcoes/apresentacao/backes047.xml" "backes047"              
                         "funcao" "video" "visual" "global" "teorico" "embedded"
                         "&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/4Astcs8IW3s&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;"
                         "Passagem por referência - Créditos a André Backes")
                         
-       (gerar-apresentacao "src/dominio/Cursos/IntroducaoProgramacao/funcao/apresentacao/backes048.xml" "backes048"              
+       (gerar-apresentacao "src/dominio/Cursos/IntroducaoProgramacao/funcoes/apresentacao/backes048.xml" "backes048"              
                         "funcao" "video" "visual" "global" "teorico" "embedded"
                         "&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/E-r4WkkwbVI&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;"
                         "Passagem por valor - Créditos a André Backes")
                         
-       (gerar-apresentacao "src/dominio/Cursos/IntroducaoProgramacao/funcao/apresentacao/backes049.xml" "backes049"              
+       (gerar-apresentacao "src/dominio/Cursos/IntroducaoProgramacao/funcoes/apresentacao/backes049.xml" "backes049"              
                         "funcao" "video" "visual" "global" "teorico" "embedded"
                         "&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/SAhR1h3LpDY&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;"
                         "Array cmomo parâmetro - Créditos a André Backes")
                         
-        (gerar-apresentacao "src/dominio/Cursos/IntroducaoProgramacao/funcao/apresentacao/backes050.xml" "backes050"              
+        (gerar-apresentacao "src/dominio/Cursos/IntroducaoProgramacao/funcoes/apresentacao/backes050.xml" "backes050"              
                         "funcao" "video" "visual" "global" "teorico" "embedded"
                         "&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/QuSHZ2IOYB4&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;"
                         "Struct como parâmetro - Créditos a André Backes")
@@ -341,33 +342,6 @@
 	
 	(inserir-exercicio "src/dominio/Cursos/IntroducaoProgramacao/recursao/exercicios/r001.xml")
 	(inserir-exercicio "src/dominio/Cursos/IntroducaoProgramacao/recursao/exercicios/r002.xml")
-	
-	
-	(comment (inserir-exercicio "src/dominio/Cursos/EstruturasDados/lista/exercicios/l001.xml")
-	(inserir-exercicio "src/dominio/Cursos/EstruturasDados/lista/exercicios/l002.xml")
-	(inserir-exercicio "src/dominio/Cursos/EstruturasDados/lista/exercicios/l003.xml")
-	(inserir-exercicio "src/dominio/Cursos/EstruturasDados/lista/exercicios/l004.xml")
-	(inserir-exercicio "src/dominio/Cursos/EstruturasDados/lista/exercicios/l005.xml")
-	(inserir-exercicio "src/dominio/Cursos/EstruturasDados/lista/exercicios/l006.xml")
-	(inserir-exercicio "src/dominio/Cursos/EstruturasDados/lista/exercicios/l007.xml")
-	(inserir-exercicio "src/dominio/Cursos/EstruturasDados/lista/exercicios/l008.xml")
-	(inserir-exercicio "src/dominio/Cursos/EstruturasDados/lista/exercicios/l009.xml")
-	(inserir-exercicio "src/dominio/Cursos/EstruturasDados/lista/exercicios/l010.xml")
-	(inserir-exercicio "src/dominio/Cursos/EstruturasDados/lista/exercicios/l011.xml")
-	(inserir-exercicio "src/dominio/Cursos/EstruturasDados/lista/exercicios/l012.xml")
-	(inserir-exercicio "src/dominio/Cursos/EstruturasDados/lista/exercicios/l013.xml")
-	(inserir-exercicio "src/dominio/Cursos/EstruturasDados/lista/exercicios/l014.xml")
-	
-	(inserir-exercicio "src/dominio/Cursos/EstruturasDados/fila/exercicios/f001.xml")
-	(inserir-exercicio "src/dominio/Cursos/EstruturasDados/fila/exercicios/f002.xml")
-	(inserir-exercicio "src/dominio/Cursos/EstruturasDados/fila/exercicios/f003.xml")
-	(inserir-exercicio "src/dominio/Cursos/EstruturasDados/fila/exercicios/f004.xml")
-	(inserir-exercicio "src/dominio/Cursos/EstruturasDados/fila/exercicios/f005.xml")
-	(inserir-exercicio "src/dominio/Cursos/EstruturasDados/fila/exercicios/f006.xml")
-	(inserir-exercicio "src/dominio/Cursos/EstruturasDados/fila/exercicios/f007.xml")
-	(inserir-exercicio "src/dominio/Cursos/EstruturasDados/fila/exercicios/f008.xml")
-	(inserir-exercicio "src/dominio/Cursos/EstruturasDados/fila/exercicios/f009.xml")
-	(inserir-exercicio "src/dominio/Cursos/EstruturasDados/fila/exercicios/f010.xml"))
 	
 	(inserir-exercicio "src/dominio/Cursos/IntroducaoProgramacao/alocDin/exercicios/ad001.xml")
 	(inserir-exercicio "src/dominio/Cursos/IntroducaoProgramacao/alocDin/exercicios/ad002.xml")
