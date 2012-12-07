@@ -1,0 +1,39 @@
+<exercicio
+ xmlns="exercicio"
+ xmlns:xsi="exercicio"
+ xsi:schemaLocation="/src/dominio/exercicio.xsd">
+		
+		<conteudo>introducao</conteudo>	
+		<idEx>a007</idEx>
+		<nivel>facil</nivel>
+		<tipo>programacao</tipo>
+		<preReq>
+			<req></req>
+		</preReq>
+
+		<enunciado> 
+			<texto> 
+				Ler o valor do raio de um círculo e calcular a área do círculo correspondente. 
+				A área do círculo é pi * raio2, considere pi = 3.141592.
+			</texto> 
+		</enunciado>
+		
+		<resposta>
+			<codigo>
+				int main(){
+					float r;
+					float pi = 3.141592;
+					float a;
+				    printf("Entre com a temperatura em celsius: ");
+				    scanf("%f", r); 
+				    a = pi * (r*r);
+					printf("\nA area do circulo eh: %f", a);
+					return 0;
+				}
+			</codigo>
+		</resposta>
+
+		<entradaCodigo />
+		
+
+</exercicio>

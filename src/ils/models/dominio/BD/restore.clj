@@ -326,6 +326,13 @@
         
     (println "Inserindo exercicios da disciplina...")                
                         
+ 	(inserir-exercicio "src/dominio/Cursos/IntroducaoProgramacao/introducao/exercicios/a001.xml")
+ 	(inserir-exercicio "src/dominio/Cursos/IntroducaoProgramacao/introducao/exercicios/a002.xml")
+ 	(inserir-exercicio "src/dominio/Cursos/IntroducaoProgramacao/introducao/exercicios/a003.xml")
+ 	(inserir-exercicio "src/dominio/Cursos/IntroducaoProgramacao/introducao/exercicios/a004.xml")
+ 	(inserir-exercicio "src/dominio/Cursos/IntroducaoProgramacao/introducao/exercicios/a005.xml")
+ 	(inserir-exercicio "src/dominio/Cursos/IntroducaoProgramacao/introducao/exercicios/a006.xml")
+ 	(inserir-exercicio "src/dominio/Cursos/IntroducaoProgramacao/introducao/exercicios/a007.xml")
  	
 	(inserir-exercicio "src/dominio/Cursos/IntroducaoProgramacao/vetor/exercicios/v001.xml")
 	(inserir-exercicio "src/dominio/Cursos/IntroducaoProgramacao/vetor/exercicios/v002.xml")

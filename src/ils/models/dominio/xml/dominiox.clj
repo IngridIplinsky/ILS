@@ -7,8 +7,7 @@
   		[dominio.BD.restore]
   		[dominio.BD.atualizacao]
   		[dominio.xml.manipulacao]
-  		[dominio.xml.geracao]
-  		[pedagogico])
+  		[dominio.xml.geracao])
 )    
 
  
