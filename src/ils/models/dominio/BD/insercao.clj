@@ -1,6 +1,6 @@
-(ns ils.models.dominio.BD.insercao
-    (:use [ils.models.dominio.BD.persistence]
-          [ils.models.dominio.BD.busca])
+(ns dominio.BD.insercao
+    (:use [dominio.BD.persistence]
+          [dominio.BD.busca])
     (:require [clojure.xml :as xml]
   			[clojure.zip :as zip] 
 			[clojure.contrib.zip-filter.xml :as zf]

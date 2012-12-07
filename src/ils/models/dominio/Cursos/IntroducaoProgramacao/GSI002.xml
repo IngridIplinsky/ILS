@@ -8,46 +8,34 @@
 <nome>Introdução à Programação de Computadores</nome>
 
 <conteudo>
-	<raiz nome="Lista">
-		<filho>Fila</filho>
-		<filho>Pilha</filho>
-		<filho>MetPesq</filho>
-		<filho>Vetor</filho>
-		<filho>AlocDin</filho>
+	<raiz nome="introducao">
 	</raiz>
 
-	<raiz nome="Fila">
-		<filho>EstruturasDados</filho>
+	<raiz nome="estruturasCond">
 	</raiz>
 
-	<raiz nome="Pilha">
-		<filho>EstruturasDados</filho>
+	<raiz nome="laco">
 	</raiz>
 
-	<raiz nome="MetPesq">
-		<filho>EstruturasDados</filho>
+	<raiz nome="vetor">
 	</raiz>
 
-	<raiz nome="Arvore">
-		<filho>Vetor</filho>
-		<filho>Recursiv</filho>
-		<filho>EstruturasDados</filho>
+	<raiz nome="string">
 	</raiz>
 
-	<raiz nome="EstruturasDados">
+	<raiz nome="estruturas">
 	</raiz>
 
-	<raiz nome="Vetor">
+	<raiz nome="funcao">
 	</raiz>
 
-	<raiz nome="AlocDin">
+	<raiz nome="recursao">
 	</raiz>
 
-	<raiz nome="Fila">
-		<filho>Lista</filho>
+	<raiz nome="alocDin">
 	</raiz>
 
-	<raiz nome="Recursiv">
+	<raiz nome="arquivo">
 	</raiz>
 </conteudo>
 

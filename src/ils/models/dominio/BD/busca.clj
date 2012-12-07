@@ -1,5 +1,5 @@
-(ns ils.models.dominio.BD.busca
-    (:use ils.models.dominio.BD.persistence)
+(ns dominio.BD.busca
+    (:use dominio.BD.persistence)
     (:require [clojure.java.jdbc :as sql]))
     
 ;Uma funcao auxiliar de descompressão de CLOBS, usada nas buscas...

@@ -1,6 +1,6 @@
-(ns ils.models.dominio.xml.geracao
+(ns dominio.xml.geracao
 	(:use [clojure.data.xml]
-	      [ils.models.dominio.BD.insercao]))
+	      [dominio.BD.insercao]))
 
 
 (defn gerar-bug 
@@ -52,8 +52,8 @@
                     :else "tipo de apresentacao ou dados passados de maneira incorreta!"
                  ))]
        (with-open [out-file (java.io.FileWriter. nomearq)]
-       (emit tags out-file))))
-       ;(inserir-apresentacao nomearq)) 
+       (emit tags out-file)))
+       (inserir-apresentacao nomearq))
      ([nomearq idAp conteudo tipo selecao organizacao utilizacao tipod dado legenda]
 	  (let [tags (element :apresentacao {:xmlns "apresentacao" :xmlns:xsi "apresentacao" :xsi:schemaLocation "src/dominio/apresentacao.xsd"}
                  (element :idAp {} idAp)
@@ -73,7 +73,7 @@
                     :else "tipo de apresentacao ou dados passados de maneira incorreta!"
                  ))]
        (with-open [out-file (java.io.FileWriter. nomearq)]
-       (emit tags out-file)))))
-       ;(inserir-catalogoBug nomearq))
+       (emit tags out-file)))
+       (inserir-apresentacao nomearq)))
 
 

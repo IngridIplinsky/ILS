@@ -1,5 +1,5 @@
-(ns ils.models.dominio.BD.remocao
-    (:use ils.models.dominio.BD.persistence)
+(ns dominio.BD.remocao
+    (:use dominio.BD.persistence)
     (:require [clojure.java.jdbc :as sql])
 )
 

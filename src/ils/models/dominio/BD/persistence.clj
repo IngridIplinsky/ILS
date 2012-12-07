@@ -1,4 +1,4 @@
-(ns ils.models.dominio.BD.persistence
+(ns dominio.BD.persistence
  (:require [clojure.java.jdbc :as sql])
 )
  
