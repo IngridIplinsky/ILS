@@ -5,10 +5,11 @@
 
 (defn gerar-bug 
  "Gera um arquivo xml de erro e o grava no banco."
-    ([nomearq idBug matricula conteudo idEx tipo dado]
+    ([nomearq idBug matricula disciplina conteudo idEx tipo dado]
 	  (let [tags (element :erro {:xmlns "bug" :xmlns:xsi "bug" :xsi:schemaLocation "src/dominio/bug.xsd"}
                  (element :idBug {} idBug)
                  (element :matricula {} matricula)
+                 (element :disciplina {} disciplina)
                  (element :conteudo {} conteudo)
                  (element :idEx {} idEx)
                  (element :tipo {} tipo)
@@ -20,10 +21,11 @@
        (with-open [out-file (java.io.FileWriter. nomearq)]
        (emit tags out-file)))
        (inserir-catalogoBug nomearq))
-    ([nomearq idBug matricula conteudo idEx tipo correta marcada]
+    ([nomearq idBug matricula disciplina conteudo idEx tipo correta marcada]
 	   (let [tags (element :erro {:xmlns "bug" :xmlns:xsi "bug" :xsi:schemaLocation "src/dominio/bug.xsd"}
                  (element :idBug {} idBug)
                  (element :matricula {} matricula)
+                 (element :disciplina {} disciplina)
                  (element :conteudo {} conteudo)
                  (element :idEx {} idEx)
                  (element :tipo {} tipo)
@@ -38,9 +40,10 @@
           
 (defn gerar-apresentacao
  "Gera um arquivo xml de apresentacao e o grava no banco."
-     ([nomearq idAp conteudo tipo selecao organizacao utilizacao dado]
+     ([nomearq idAp disciplina conteudo tipo selecao organizacao utilizacao dado]
 	  (let [tags (element :apresentacao {:xmlns "apresentacao" :xmlns:xsi "apresentacao" :xsi:schemaLocation "src/dominio/apresentacao.xsd"}
                  (element :idAp {} idAp)
+                 (element :disciplina {} disciplina)
                  (element :conteudo {} conteudo)
                  (element :tipo {} tipo)
                  (element :selecao {} selecao)
@@ -54,9 +57,10 @@
        (with-open [out-file (java.io.FileWriter. nomearq)]
        (emit tags out-file)))
        (inserir-apresentacao nomearq))
-     ([nomearq idAp conteudo tipo selecao organizacao utilizacao tipod dado legenda]
+     ([nomearq idAp disciplina conteudo tipo selecao organizacao utilizacao tipod dado legenda]
 	  (let [tags (element :apresentacao {:xmlns "apresentacao" :xmlns:xsi "apresentacao" :xsi:schemaLocation "src/dominio/apresentacao.xsd"}
                  (element :idAp {} idAp)
+                 (element :disciplina {} disciplina)
                  (element :conteudo {} conteudo)
                  (element :tipo {} tipo)
                  (element :selecao {} selecao)

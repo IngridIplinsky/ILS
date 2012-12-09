@@ -4,6 +4,7 @@
  xmlns:xsi="exercicio"
  xsi:schemaLocation="/src/dominio/exercicio.xsd">
 	
+	<disciplina>GSI002</disciplina>
 	<conteudo>recursao</conteudo>	
 	<idEx>r001</idEx>
 	<nivel>facil</nivel>

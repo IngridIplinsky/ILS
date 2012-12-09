@@ -6,14 +6,15 @@
 	
 	<idBug>e001</idBug>
 	<matricula>98713</matricula>
-	<disciplina>INF41</disciplina>
-	<conteudo>vetor</conteudo>
-	<idEx>v001</idEx>
-	<tipo>me</tipo>
+	<disciplina>GSI002</disciplina>
+	<conteudo>introducao</conteudo>
+	<idEx>a001</idEx>
+	<tipo>programacao</tipo>
 	
-	<alternativa>
-		<correta>c</correta>
-		<marcada>d</marcada>
-	</alternativa>
-	
+	<codigo>
+		int main(){
+		int a=0 
+		a=a+1; 
+		printf(a);
+	</codigo>
 </erro>

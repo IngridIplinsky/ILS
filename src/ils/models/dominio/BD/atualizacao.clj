@@ -1,5 +1,5 @@
-(ns dominio.BD.atualizacao
-    (:use dominio.BD.persistence)
+(ns ils.models.dominio.BD.atualizacao
+    (:use ils.models.dominio.BD.persistence)
     (:require [clojure.java.jdbc :as sql]))
 
 (defn atualizar-aluno 
