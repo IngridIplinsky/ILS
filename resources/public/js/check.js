@@ -197,6 +197,9 @@ function mudaVideo(){
 }
 
 
+function mudaVideoIntroducao(){
+  parent.document.getElementById('ativ-exerc').innerHTML = "Vídeos de Introdução"; 
+}
 
 
 

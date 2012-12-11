@@ -1503,7 +1503,8 @@ de operações que seja adequado a todas aplicações."]
          [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
          [:span {:class "caret"}]]
          [:ul {:class "dropdown-menu"}
-         [:li [:a {:href "/videos/introdução " :target "principal" :role "button" :data-toggle "modal" :name "backes001.xml"} 
+         [:li [:a {:href "/videos/introdução " :onclick "mudaVideoIntroducao()" :target "principal" 
+               :role "button" :data-toggle "modal" :name "backes001.xml"} 
                                                 [:i {:class "icon-pencil"}] "Esqueleto de um programa C"]]
          [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Declaração de variáveis"]]
          [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Printf/Scanf"]]
