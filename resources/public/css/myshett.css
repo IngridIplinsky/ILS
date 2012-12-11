@@ -23,6 +23,195 @@ h3
  
 }
 
+#borda_slide
+{
+border-style:solid;
+border:1px;
+}
+
+#inputCurso{
+left:1px;
+}
+
+#inputDisciplina{
+left:1px;
+}
+.cop-principal
+{
+  position:relative;
+  top:120px;
+  left:400px;
+}
+#ILS
+{
+  height:70px;
+}
+#logo
+{
+  position:relative;
+  top:10px;
+}
+
+#end
+{
+  background-color:#999999;
+
+}
+
+#prev,#next
+{
+
+color:#FFFFFF;
+ 
+}
+
+#corConsole
+{
+  background-color:#FFFFFF;
+
+}
+
+.fundo_index
+{
+ background-color:#E6E8FA;
+}
+
+a:hover {
+text-decoration:underline;
+}
+
+a:link, a:visited, a:hover {
+  color: blue;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#fundo_container
+{
+  background-color:#ffffff;
+}
+
+
+.cop
+{
+ position:relative;
+ left:350px;
+}
+
+.Atividades
+{
+  width:150px;
+  height:110px;
+  background-color:#CCCCCC;
+}
+
+#menu_videos
+{
+   width:200px;
+   height:300px;
+     
+ 
+}
+
+#menu_video
+{
+   width:400px;  
+ 
+}
+
+
+
+#menu_links
+{
+ width:100px;
+ height:10px; 
+   
+}
+
+#menu_iframe
+{
+  height:550px;
+}
+
+#last_inform
+{
+ height:50px;
+ background-color:#333333;
+ }
+.EstDados
+{
+  background-color:#CCCCCC;
+}
+
+#inputUsuario
+{
+  position:relative;
+  left:400px;
+  top:3px; 
+
+}
+
+#inputSenha
+{
+  position:relative;
+  left:500px;
+  top:3px;
+}
+
+
+#botaoConfirma
+{
+position:relative;
+left:550px;
+}
+
+#botaoCancel
+{
+position:relative;
+left:25px;
+}
+
+.slide
+{
+
+top:100px;
+
+ 
+}
+
+a.links_slide
+{
+  background-color:#FFFFFF;
+  color:#FFFFFF;
+  
+}
+
+
+
+ 
+
+
+a.links_slide.visited:{color: purple;}
+
+#links_slide_barra
+{
+  background-color:#D9D9F3;
+  }
+
+#config
+{
+
+ float:right;
+}
+
+.Iframe
+{
+  width:750px;
+  height:500px;
+  background-color:#999999;
+  border-style:solid; 
+  color:white;
+}
 
 #sidebar{
  float:right;
@@ -64,8 +253,8 @@ body.auto
 
 #back_header
 {
-    width:100%;
-    height:10%;
+    width:1500px;
+    height:70px;
     background-color:#008B8B;
     position: fixed;
     top: 5%;
@@ -103,10 +292,7 @@ body.auto
 
 #ativ-exerc
 {
-  position: absolute;
-  top: 85%;
-  left:10%;
-  color:#333333;
+   color:#006600;
   
 
 }
@@ -125,93 +311,33 @@ body.auto
 
 }
 
-.botaoConfirma
-{
-position:fixed;
-top:8%;
-left:87%;
-margin:0px;
-padding:0px;
-cursor:pointer;
-text-decoration: none;
-text-align:center;	
-color:#ffffff;
-background: #999999 url('botao_link.gif')no-repeat center center;	
-width:10%;  
-height:6%;
-border:0px;
-display:block;	
-font: bold 19px/24px arial, helvetica, sans-aerif;
-color:#FFFFFF;
-border-width:0px;
-border-color:#999999;
--webkit-border-radius: 0.4em;
--moz-border-radius: 0.4em;
 
 
-}
 
-.inputStyle1
+
+#inputStyle1
 {
         position: fixed;
         top:8.2%;
         left:47%;
-	width:12%;
-	height:4%;
-	border:solid;
-	border-width:0%;
-	border-color:#999999;
-	-webkit-border-radius: 0.4em;
-	-moz-border-radius: 0.4em;
+	
 }
 
-.inputStyle2
+#inputStyle2
 {
         position: fixed;
         top:8.2%;
         left:71%;
-	width:12%;
-	height:4%;
-	border:solid;
-	border-width:0%;
-	border-color:#999999;
-	-webkit-border-radius: 0.4em;
-	-moz-border-radius: 0.4em;
 }
 
-
-ul
-{
-    text-decoration: none;
-    list-style-type: none;
-    position:fixed;
-    left:120px;
-}
-
-li
-{
-    display: inline;
-    font-family: Purisa, helvetica, serif;
-    font-size:20px;
-    color:#000000;
-    margin-right: 3em;
-    text-decoration: none;
-}
-
-nav
-{
-    position:fixed;
-    top:13px;
-}
 
 
 #menu
 {
     cursor:pointer;
     position: fixed;
-    top: 6%;
+    top: 8%;
     left:1%;
-    font: bold 19px/24px arial, helvetica, sans-aerif;
     color:#FFFFFF;
 }
 
@@ -221,8 +347,7 @@ nav
 {
     
     position: fixed;
-    top: 6%;
-    font: bold 19px/24px arial, helvetica, sans-aerif;
+    top: 8%;
     color:#FFFFFF;
     left:40%
 }
@@ -232,9 +357,8 @@ nav
 {
     
     position: fixed;
-    top: 6%;
+    top: 8%;
     left:65%;
-    font: bold 19px/24px arial, helvetica, sans-aerif;
     color:#FFFFFF; 
 }
 
@@ -358,50 +482,6 @@ nav
 
 
 
-a
-{
-	text-decoration: none;	
-        color:#000000;
-	
-}
-
-a.menuLinks:visited
-{
-	color:#000000; 
-}
-
-a.botaoCancelaCadastro:visited
-{
-	color:#000000; 
-}
-
-
-a:hover 
-{
-	color:#E0EEEE;
-}
-
-a.ex
-{
-	text-decoration: none;	
-        color:#000000;
-	
-}
-
-
-a.ex:hover
-{
-  text-decoration: underline;
-  color: #f00;
-  size:10%;  
-}
-
-a.ex:active
-{
-  text-decoration: underline;
-  color: #f00;
-}
-
 
 
 
@@ -437,7 +517,7 @@ a.ex:active
 .inputStyleCadastro
 {
         position: absolute;
-	width:320px;
+	width:300px;
         left:70%;
 	height:25px;
 	border:solid;
@@ -450,7 +530,7 @@ a.ex:active
 #cadastrar
 {
 	font-family: Purisa, helvetica, serif;
-        font-size:150%; 
+        font-size:200%; 
 	
 }
 
@@ -570,7 +650,7 @@ border-color:#999999;
 #h2 
 {
 	font-family: Purisa, helvetica, serif;
-        font-size:200%;	
+        font-size:300%;	
 }
 
 
@@ -1060,7 +1140,7 @@ border-color:#999999;
 
 #fundoiframe
 {
-    background-color:#FFFFFF;
+    background-color:#E6E8FA;
     color:black;    
 }
 

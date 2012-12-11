@@ -4,7 +4,6 @@
  xmlns:xsi="exercicio"
  xsi:schemaLocation="/src/dominio/exercicio.xsd">
 		
-		<disciplina>GSI002</disciplina>
 		<conteudo>vetor</conteudo>	
 		<idEx>v009</idEx>
 		<nivel>facil</nivel>

@@ -5,7 +5,6 @@
  xsi:schemaLocation="src/dominio/apresentacao.xsd">
 	
 	<idAp>v002</idAp>
-	<disciplina>INF41</disciplina>
 	<conteudo>vetor</conteudo>
 	<tipo>video</tipo>
 	

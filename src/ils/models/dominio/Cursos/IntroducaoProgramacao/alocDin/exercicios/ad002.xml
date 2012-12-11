@@ -4,7 +4,6 @@
  xmlns:xsi="exercicio"
  xsi:schemaLocation="/src/dominio/exercicio.xsd">
 		
-		<disciplina>GSI002</disciplina>
 		<conteudo>alocDin</conteudo>	
 		<idEx>ad002</idEx>
 		<nivel>facil</nivel>

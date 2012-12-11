@@ -4,7 +4,6 @@
  xmlns:xsi="exercicio"
  xsi:schemaLocation="/src/dominio/exercicio.xsd">
 	
-	<disciplina>INF41</disciplina>
 	<conteudo>recursiv</conteudo>	
 	<idEx>r002</idEx>
 	<nivel>medio</nivel>

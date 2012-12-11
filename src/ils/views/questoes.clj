@@ -2,11 +2,11 @@
   (:require [ils.views.common :as common]
             [noir.content.getting-started]
             [noir.session :as session])
-  (:use [ils.models.estudante.corygil estudante]
-        [ils.models.pedagogico pedagogico]
-        [ils.models.dominio dominio]  
+  (:use [ils.models.pedagogico pedagogico]
+        [ils.models.dominio.xml dominiox]  
         [noir.core :only [defpage]]
         [hiccup.core :only [html]]
+        [clojure.java.shell :only [sh]]
         [noir.core :only [defpartial]]
         [hiccup.page-helpers :only [include-css html5 include-js html5]]))
         
@@ -20,11 +20,15 @@
 (defpage "/login/ola" []
       (common/layout   
          [:body {:id "fundoiframe" :onclick "alteraPosicionamento();"} 
-         [:center [:h5 "Questões"]]
-         [:h3 "Antes de começarmos as lições eu gostaria de saber um pouquinho sobre seus 
-              conhecimentos de Programação de Computadores e Estrutura de Dados. Depois posso 
+         [:center [:h3 "Observação"]]
+         [:p  " Antes de começarmos as lições eu gostaria de saber um pouquinho sobre seus 
+              conhecimentos de Programação de Computadores e/ou Estrutura de Dados. Depois posso 
               lhe dar alguma sugestão para que você possa se sair melhor durante os estudos destas 
-              duas disciplinas."]]))
+              duas disciplinas."]
+         [:p " Para isto temos os links referentes as disciplinas, nelas você vai enfrentar vários
+         tipos de exercícios, como multipla escolha, questão abertas, V ou F . Caso
+         você esteja preso em um exercício, você pode desistir do mesmo e tentar depois."]
+         [:h3 [:center " Boa sorte pra você e vamos em frente."]]]))
 
 
 
@@ -44,74 +48,91 @@
              conforme a necessidade do programa. Dessa forma evita-se o desperdício de memória.
              A alocação dinâmica é muito utilizada em problemas de estrutura de dados, por exemplo, 
             listas encadeadas, pilhas, filas, arvores binárias e grafos."]
-         [:button {:class "botaoQuestoes" :onclick "testeAlocacao();"} "Avançar para questões"]
-         [:a {:class "videoAulas" :href "/videos/vetor" } "Vídeos aulas"]
-         [:a {:class "textosExplicativos" :href "/videos/vetor"} "Textos"]
+         [:div {:class "btn-group" }
+         [:button {:class "btn btn-info" :onclick "testeAlocacao();" } "Avançar para questões"]] 
+         [:div {:class "btn-group" }  
+         [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white"}] "Vídeo Aulas"]
+         [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
+         [:span {:class "caret"}]]
+         [:ul {:class "dropdown-menu"}
+         [:li [:a {:href "#" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Ordenação"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
+         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         ]] 
+         [:div {:class "btn-group" }  
+         [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white"}] "Textos Explicativos"]
+         [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
+         [:span {:class "caret"}]]
+         [:ul {:class "dropdown-menu"}
+         [:li [:a {:href "#" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Ordenação"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
+         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         ]] 
          ]]))
 
 
 
 (defpage [:post "/login/alocacao/1"] []
      (common/layout
-         (formata-pergunta  "1" "ad001" "Alocação Dinâmica" "/login/alocacao/2")))
+         (formata-pergunta   "ad001" "1" "/login/alocacao/2")))
 
 (defpage [:post "/login/alocacao/2"] {:keys [op]}
-(pedagogico-corretor "alocDin" "ex1" op)
+;(pedagogico-corretor "alocDin" "ex1" op)
      (common/layout
-         (formata-pergunta  "2" "ad002" "Alocação Dinâmica" "/login/alocacao/3")))
+         (formata-pergunta "ad002" "2"  "/login/alocacao/3")))
 
 (defpage [:post "/login/alocacao/3"] {:keys [op]}
-(pedagogico-corretor "alocDin" "ex2" op)
+;(pedagogico-corretor "alocDin" "ex2" op)
      (common/layout
-         (formata-pergunta  "3" "ad003" "Alocação Dinâmica" "/login/alocacao/4")))
+         (formata-pergunta "ad003" "3"   "/login/alocacao/4")))
 
 (defpage [:post "/login/alocacao/4"] {:keys [op]}
-(pedagogico-corretor "alocDin" "ex3" op)
+;(pedagogico-corretor "alocDin" "ex3" op)
      (common/layout
-         (formata-pergunta  "4" "ad004" "Alocação Dinâmica" "/login/alocacao/5")))
+         (formata-pergunta "ad004" "4"  "/login/alocacao/5")))
 
 (defpage [:post "/login/alocacao/5"] {:keys [op]}
-(pedagogico-corretor "alocDin" "ex4" op)
+;(pedagogico-corretor "alocDin" "ex4" op)
      (common/layout
-         (formata-pergunta  "5" "ad005" "Alocação Dinâmica" "/login/alocacao/6")))
+         (formata-pergunta "ad005" "5"  "/login/alocacao/6")))
 
 
 (defpage [:post "/login/alocacao/6"] {:keys [op]}
-(pedagogico-corretor "alocDin" "ex5" op)
+;(pedagogico-corretor "alocDin" "ex5" op)
         (common/layout 
-        (formata-pergunta  "6" "ad006" "Alocação Dinâmica" "/login/alocacao/7")))
+        (formata-pergunta  "ad006" "6"  "/login/alocacao/7")))
 
 
 (defpage [:post "/login/alocacao/7"] {:keys [op]}
-(pedagogico-corretor "alocDin" "ex6" op)
+;(pedagogico-corretor "alocDin" "ex6" op)
      (common/layout
-         (formata-pergunta  "7" "ad007" "Alocação Dinâmica" "/login/alocacao/8")))
+         (formata-pergunta   "ad007" "7" "/login/alocacao/8")))
 
 
 (defpage [:post "/login/alocacao/8"] {:keys [op]}
-(pedagogico-corretor "alocDin" "ex7" op)
+;(pedagogico-corretor "alocDin" "ex7" op)
      (common/layout
-        (formata-pergunta  "8" "ad008" "Alocação Dinâmica" "/login/alocacao/9")))
+        (formata-pergunta   "ad008" "8" "/login/alocacao/9")))
 
 
 
 (defpage [:post "/login/alocacao/9"] {:keys [op]}
-(pedagogico-corretor "alocDin" "ex8" op)
+;(pedagogico-corretor "alocDin" "ex8" op)
      (common/layout
-         (formata-pergunta  "9" "ad009" "Alocação Dinâmica" "/login/alocacao/10")))
+         (formata-pergunta  "ad009" "9" "/login/alocacao/10")))
 
 
 (defpage [:post "/login/alocacao/10"] {:keys [op]}
-(pedagogico-corretor "alocDin" "ex9" op)
+;(pedagogico-corretor "alocDin" "ex9" op)
      (common/layout
-         (formata-pergunta  "10" "ad010" "Alocação Dinâmica" "/login/alocacao/fim")))
+         (formata-pergunta   "ad010" "10" "/login/alocacao/fim")))
 
 
 (defpage [:post "/login/alocacao/fim"] {:keys [op]}
-(pedagogico-corretor "alocDin" "ex10" op)
+;(pedagogico-corretor "alocDin" "ex10" op)
   
-(atualiza-todo-dominio (recupera-id (session/get :senhaUsuario)) "alocDin")   
-(cond (> (get (nth (retorna-exercicio-certos-dominio (recupera-id (session/get :senhaUsuario)) "alocDin") 0) :bom) 0.5)
+;(atualiza-todo-dominio (recupera-id (session/get :senhaUsuario)) "alocDin")   
+;(cond (> (get (nth (retorna-exercicio-certos-dominio (recupera-id (session/get :senhaUsuario)) "alocDin") 0) :bom) 0.5)
   (common/layout
          [:body {:id "fundoiframe" :onload "alteraVisibilidadeAlocacaoInvisivel(); alteraVisibilidadeVetor1(); alteraVisibilidadeVetorInvisivel(); alteraVisibilidadeListaInvisivel(); alteraVisibilidadeFilaInvisivel(); alteraVisibilidadePilhaInvisivel(); alteraVisibilidadeArvoreInvisivel();"} 
          [:center [:h5 "Alocação Dinâmica"]]
@@ -125,7 +146,7 @@
          [:center [:h2 "Você terminou as atividades de alocação dinâmica! "]]
          [:center [:h4 "Fico triste, pois você não se saiu bem, sendo assim te indico um vídeo explicativo que está abaixo"]]
          [:center [:h4 [:iframe {:width "560" :height "315" :src "http://www.youtube.com/embed/sTYLxyPszWQ" :frameborder "0" }]]]]  
-         )))
+         ))
 
 
 ;/********************************************************************/
@@ -135,125 +156,100 @@
 
 (defpage "/login/vetor" []
       (common/layout
+         [:head [:script {:type "text/javascript" :src "/js/bootstrap.min.js"}]]
          [:body {:id "fundoiframe"} 
-         [:form {:action "/login/vetor/1" :method "post"}
+         [:form {:action "/login/vetor/1" :method "post" }
          [:center [:h5 "VETOR"]]
-         [:p "Um array ou vetor é uma série de objetos de dados, todos 
+         [:p "  Um array ou vetor é uma série de objetos de dados, todos 
               eles possuindo o mesmo tipo, estes objetos de dados são 
               chamados de elementos do vetor. Um vetor é declarado fornecendo-se 
              o tipo dos seus elementos, o nome do vetor e o número de elementos. 
              Um vetor nada mais é do que uma matriz unidimensional."]
-         [:button {:class "botaoQuestoes" :onclick "testeVetor();" } "Avançar para questões"]
-         [:a {:class "videoAulas" :href "/videos/vetor" } "Vídeos aulas"]
-         [:a {:class "textosExplicativos" :href "/videos/vetor"} "Textos"]
+         [:div {:class "btn-group" }
+         [:button {:class "btn btn-info" :onclick "testeVetor();" } "Avançar para questões"]] 
+         [:div {:class "btn-group" }  
+         [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white"}] "Vídeo Aulas"]
+         [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
+         [:span {:class "caret"}]]
+         [:ul {:class "dropdown-menu"}
+         [:li [:a {:href "#" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Ordenação"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
+         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         ]] 
+         [:div {:class "btn-group" }  
+         [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white"}] "Textos Explicativos"]
+         [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
+         [:span {:class "caret"}]]
+         [:ul {:class "dropdown-menu"}
+         [:li [:a {:href "#" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Ordenação"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
+         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         ]]        
          ]]))
 
 
 
-(defpage [:post "/login/vetor/11"] []
-    (common/layout
-      ;(formata-pergunta  "1" "v001" "VETOR" "/login/vetor/2")))
-     [:head
-              (include-css "/css/codemirror.css")
-              (include-js "/js/codemirror.js")
-              (include-css "/css/docs.css")
-              (include-js "/js/clike.js")]             
   
-       [:body {:onload "chama();"}     
-       [:p "11) Escreva um código em C, que imprime um vetor de 10 posições"] 
-       [:form {:action "/login/vetor/fim" :method "post"}
-       [:textarea {:id "code" :name "code"}
-       "    /* Escreva seu código aqui*/   \n\n"
-       "#include <stdio.h>\n"
-       "#include <stdlib.h>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
- 
-]
-
-  [:button {:class "botaoAnterior"} "anterior"]
-  [:button {:class "botaoTestar"} "testar"]
-  [:button {:class "botaoProximo"} "próximo"]
-  [:div {:id "console"} ">" [:p {:id "cons"} ""]]]]))
-    
-
 (defpage [:post "/login/vetor/1"] {:keys [op]}
      (common/layout
-        (formata-pergunta "1" "v001" "VETOR" "/login/vetor/2"))) 
+        (formata-pergunta "v001" "1" "/login/vetor/2"))) 
 
 
 (defpage [:post "/login/vetor/2"] {:keys [op]}
-(pedagogico-corretor "vetor" "ex1" op)
+;(pedagogico-corretor "vetor" "ex1" op)
      (common/layout
-        (formata-pergunta "2" "v002" "VETOR" "/login/vetor/3"))) 
+        (formata-pergunta  "v002" "2" "/login/vetor/3"))) 
          
 
 (defpage [:post "/login/vetor/3"] {:keys [op]}
-(pedagogico-corretor "vetor" "ex2" op)
+;(pedagogico-corretor "vetor" "ex2" op)
      (common/layout
-       (formata-pergunta  "3" "v003" "VETOR" "/login/vetor/4")))
+       (formata-pergunta  "v003" "3" "/login/vetor/4")))
         
 
 (defpage [:post "/login/vetor/4"] {:keys [op]}
-(pedagogico-corretor "vetor" "ex3" op)
+;(pedagogico-corretor "vetor" "ex3" op)
      (common/layout
-       (formata-pergunta  "4" "v004" "VETOR" "/login/vetor/5")))  
+       (formata-pergunta "v004" 4 "/login/vetor/5")))  
 
 (defpage [:post "/login/vetor/5"] {:keys [op]}   
-(pedagogico-corretor "vetor" "ex4" op)
+;(pedagogico-corretor "vetor" "ex4" op)
     (common/layout
-       (formata-pergunta  "5" "v005" "VETOR" "/login/vetor/6")))  
+       (formata-pergunta "v005" 5  "/login/vetor/6")))  
 
-       ;  [:body {:id "fundoiframe"} 
-        ; [:form {:action "/login/vetor/6" :method "post"}
-        ; [:center [:h5 "VETOR"]]
-        ; [:p "5) Tenho o seguinte código: for(i=0; i&lt;5; i++) Vetor[i] = i+2 ."] 
-        ; [:p "O que esse código faz?"] 
-        ; [:input {:type "radio" :name "op" :value "a" }]  " (A)  Preenche o Vetor com o número 1." [:br]
-        ; [:input {:type "radio" :name "op" :value "b" }]  " (B)  Preenche o Vetor de 1 à 5. " [:br]
-        ; [:input {:type "radio" :name "op" :value "c" }]  " (C)  Preenche o Vetor com número 0." [:br]
-        ; [:input {:type "radio" :name "op" :value "d" }]  " (D)  Nenhuma das alternativas anteriores." [:br] [:br][:br]
-        ; [:button {:class "botaoQuestoes"} "Avançar"]]]))
         
 (defpage [:post "/login/vetor/6"] {:keys [op]}
-(pedagogico-corretor "vetor" "ex5" op)
+;(pedagogico-corretor "vetor" "ex5" op)
      (common/layout
-        (formata-pergunta  "6" "v006" "VETOR" "/login/vetor/7")))  
+        (formata-pergunta  "v006" 6 "/login/vetor/7")))  
 
-        ; [:body {:id "fundoiframe"} 
-        ; [:form {:action "/login/vetor/7" :method "post"}
-        ; [:center [:h5 "VETOR"]]
-        ; [:p "6) Indique qual das variáveis a seguir representa um vetor de números reais:"] 
-        ; [:input {:type "radio" :name "op" :value "a" }]  " (A)  int A[5]" [:br]
-        ; [:input {:type "radio" :name "op" :value "b" }]  " (B)  float A[5]" [:br]
-        ; [:input {:type "radio" :name "op" :value "c" }]  " (C)  char A[5]" [:br]
-        ; [:input {:type "radio" :name "op" :value "d" }]  " (D)  void A[5]" [:br] [:br][:br]
-        ; [:button {:class "botaoQuestoes"} "Avançar"]]]))
         
          
 (defpage [:post "/login/vetor/7"] {:keys [op]}
-(pedagogico-corretor "vetor" "ex6" op)
+;(pedagogico-corretor "vetor" "ex6" op)
      (common/layout
-        (formata-pergunta  "7" "v007" "VETOR" "/login/vetor/8")))
+        (formata-pergunta "v007" "7"  "/login/vetor/8")))
          
 (defpage [:post "/login/vetor/8"] {:keys [op]}
-(pedagogico-corretor "vetor" "ex7" op)
+;(pedagogico-corretor "vetor" "ex7" op)
      (common/layout
-       (formata-pergunta  "8" "v008" "VETOR" "/login/vetor/9")))
+       (formata-pergunta  "v008"  "8"  "/login/vetor/9")))
          
 
 (defpage [:post "/login/vetor/9"] {:keys [op]}
-(pedagogico-corretor "vetor" "ex8" op)
+;(pedagogico-corretor "vetor" "ex8" op)
      (common/layout
-       (formata-pergunta  "9" "v009" "VETOR" "/login/vetor/10"))) 
+       (formata-pergunta "v009"  "9"  "/login/vetor/10"))) 
          
 
 (defpage [:post "/login/vetor/10"] {:keys [op]}
-(pedagogico-corretor "vetor" "ex9" op)
+;(pedagogico-corretor "vetor" "ex9" op)
      (common/layout
-       (formata-pergunta  "10" "v010" "VETOR" "/login/vetor/11")))   
+       (formata-pergunta  "v010" "10" "/login/vetor/11")))   
 
 
 (defpage [:post "/login/vetor/11"] {:keys [op]}
-(pedagogico-corretor "vetor" "ex9" op)
+;(pedagogico-corretor "vetor" "ex9" op)
      (common/layout
        [:head
               (include-css "/css/codemirror.css")
@@ -261,28 +257,43 @@
               (include-css "/css/docs.css")
               (include-js "/js/clike.js")]             
   
-       [:body {:onload "chama();"}
+       [:body {:id "fundoiframe" :onload "chama();"}
        [:p "11) Escreva um código em C, que imprime um vetor de 10 posições"] 
-       [:form {:action "/login/vetor/fim" :method "post"}
+       [:form {:id "corConsole" :action "/login/vetor/fim" :method "post"}
        [:textarea {:id "code" :name "code"}
        "    /* Escreva seu código aqui*/   \n\n"
-       "#include <stdio.h>\n"
-       "#include <stdlib.h>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+       "#include <stdio.h> \n"
+       "#include <stdlib.h> \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
  
-]
+       ]
 
-  [:button {:class "botaoAnterior"} "anterior"]
-  [:button {:class "botaoTestar"} "testar"]
-  [:button {:class "botaoProximo"} "próximo"]
-  [:div {:id "console"} ">" [:p {:id "cons"} ""]]
-    
-  ]]
-))
+       [:div {:class "btn-group" }
+       [:button {:class "bnt btn-info"} "anterior"]]
+       [:div {:class "btn-group" }
+       [:button {:class "bnt btn-success" :href "#testar" :role "button" :data-toggle "modal"} "testar"]]
+       [:div {:class "btn-group" }
+       [:button {:class "bnt btn-primary"} "próximo"]]
+       [:div {:class "btn-group" }
+       [:button {:class "bnt btn-danger"} "desistir"]]] 
+       
+       [:div {:id "testar" :class "modal hide fade" :tabindex "-1" :role "dialog" :aria-labelledby "testarLabel" :aria-hidden "true"}
+       [:div {:class "modal-header"}
+       [:button {:type "button" :class "close" :data-dismiss "modal" :aria-hidden "true"}"×"]
+       [:h3 {:id "testarLabel"} "História"]
+       ]
+       [:div {:class "modal-body"}
+       [:p "O ILS é um projeto que se iniciou em 2012, voltado para o ensino ..."]
+       ]
+       [:div {:class "modal-footer"}
+       [:button {:class "btn btn-danger" :data-dismiss "modal" :arial-hidden "true"} "Close"]]
+       ]        
+]))
 
 (defpage [:post "/login/vetor/fim"] {:keys [code]}
-(pedagogico-corretor "vetor" "ex10" code)
-(atualiza-todo-dominio (recupera-id (session/get :senhaUsuario)) "vetor")   
-(cond (> (get (nth (retorna-exercicio-certos-dominio (recupera-id (session/get :senhaUsuario)) "vetor") 0) :bom) 0.5)
+;(pedagogico-corretor "vetor" "ex10" code)
+;(atualiza-todo-dominio (recupera-id (session/get :senhaUsuario)) "vetor")   
+;(cond (> (get (nth (retorna-exercicio-certos-dominio (recupera-id (session/get :senhaUsuario)) "vetor") 0) :bom) 0.5)
+ (cond (= code "hi")
   (common/layout
          [:body {:id "fundoiframe" :onload ""} 
          [:center [:h5 "VETOR"]]
@@ -294,7 +305,9 @@
      (common/layout
          [:body {:id "fundoiframe" :onload "CorVermelhaAloc();"} 
          [:center [:h5 "VETOR" ]]
-         [:p code]
+         [:p code]   
+         [:p "Saída do código: " (:out (sh "gcc" code))]
+         [:p "Error: " (:err (sh "gcc" code))]
          [:center [:h2 "Você terminou as atividades de vetores! "]]
          [:center [:h4 "Fico triste, pois você não se saiu bem"]]
          [:center [:h4 "Sendo assim, não pode prosseguir."]]
@@ -331,7 +344,27 @@
              execução deve passar por cada um dos passos restantes. O que isso quer dizer é que, 
              mesmo a salada sendo ela própria uma refeição inteira de quatro pratos, você ainda 
              deverá comer o prato principal e a sobremesa."]
-         [:button {:class "botaoQuestoes" :onclick "testeRecursividade();"} "Avançar para questões"]]]))
+         [:div {:class "btn-group" }
+         [:button {:class "btn btn-info" :onclick "testeRecursividade();" } "Avançar para questões"]] 
+         [:div {:class "btn-group" }  
+         [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white"}] "Vídeo Aulas"]
+         [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
+         [:span {:class "caret"}]]
+         [:ul {:class "dropdown-menu"}
+         [:li [:a {:href "#" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Ordenação"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
+         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         ]] 
+         [:div {:class "btn-group" }  
+         [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white"}] "Textos Explicativos"]
+         [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
+         [:span {:class "caret"}]]
+         [:ul {:class "dropdown-menu"}
+         [:li [:a {:href "#" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Ordenação"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
+         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         ]] 
+         ]]))
 
 
 
@@ -452,7 +485,27 @@ e localizar são definidas. Para criarmos uma Lista, faz-se necessário a
 definição de um conjunto de operações sobre os objetos do tipo Lista. 
 Estas operações dependerão de cada aplicação, não existindo um conjunto 
 de operações que seja adequado a todas aplicações."]
-         [:button {:class "botaoQuestoes" :onclick "testeLista();"} "Avançar para questões"]]]))
+         [:div {:class "btn-group" }
+         [:button {:class "btn btn-info" :onclick "testeVetor();" } "Avançar para questões"]] 
+         [:div {:class "btn-group" }  
+         [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white"}] "Vídeo Aulas"]
+         [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
+         [:span {:class "caret"}]]
+         [:ul {:class "dropdown-menu"}
+         [:li [:a {:href "#" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Ordenação"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
+         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         ]] 
+         [:div {:class "btn-group" }  
+         [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white"}] "Textos Explicativos"]
+         [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
+         [:span {:class "caret"}]]
+         [:ul {:class "dropdown-menu"}
+         [:li [:a {:href "#" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Ordenação"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
+         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         ]] 
+         ]]))
 
 
 
@@ -597,8 +650,8 @@ de operações que seja adequado a todas aplicações."]
 
 (defpage [:post "/login/lista/fim"] {:keys [op]}
 (pedagogico-corretor "lista" "ex10" op)
-(atualiza-todo-dominio (recupera-id (session/get :senhaUsuario)) "lista")   
-(cond (> (get (nth (retorna-exercicio-certos-dominio (recupera-id (session/get :senhaUsuario)) "lista") 0) :bom) 0.5)
+;(atualiza-todo-dominio (recupera-id (session/get :senhaUsuario)) "lista")   
+;(cond (> (get (nth (retorna-exercicio-certos-dominio (recupera-id (session/get :senhaUsuario)) "lista") 0) :bom) 0.5)
   (common/layout
          [:body {:id "fundoiframe" :onload "alteraVisibilidadeFila1(); mudaCorPretoLista(); mudaCorAzulFila()"} 
          [:center [:h5 "Lista"]]
@@ -614,7 +667,7 @@ de operações que seja adequado a todas aplicações."]
          [:center [:h4 "Fico triste, pois você não se saiu bem"]]
          [:center [:h4 "Sendo assim, não pode prosseguir."]]
          [:center [:h4 "Te indico o conteúdo de alocação dinâmica novamente, apareceu o link ao lado."]]]  
-         )))
+         ))
 
 
 ;/*******************************************************************/
@@ -634,7 +687,27 @@ de operações que seja adequado a todas aplicações."]
 	ser atendida e assim por diante.Quando manipulamos dados através de arranjos, os 
         itens inseridos são armazenados em posições contíguas de memória. E esta estrutura 
         deve ser utilizada quando desejamos processar dados de acordo com a ordem de chegada."]
-         [:button {:class "botaoQuestoes" :onclick "testeFila();"} "Avançar para questões"]]]))
+         [:div {:class "btn-group" }
+         [:button {:class "btn btn-info" :onclick "testeVetor();" } "Avançar para questões"]] 
+         [:div {:class "btn-group" }  
+         [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white"}] "Vídeo Aulas"]
+         [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
+         [:span {:class "caret"}]]
+         [:ul {:class "dropdown-menu"}
+         [:li [:a {:href "#" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Ordenação"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
+         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         ]] 
+         [:div {:class "btn-group" }  
+         [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white"}] "Textos Explicativos"]
+         [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
+         [:span {:class "caret"}]]
+         [:ul {:class "dropdown-menu"}
+         [:li [:a {:href "#" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Ordenação"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
+         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         ]]
+         ]]))
 
 
 
@@ -803,7 +876,27 @@ de operações que seja adequado a todas aplicações."]
               da estrutura Pilha, é o de uma pilha de pratos.Numa pilha de pratos, nunca retiramos 
               o primeiro prato (de baixo para cima) e tampouco qualquer posição do meio da pilha. 
               A retirada ou inserção pratos se dá sempre no topo da pilha."]
-         [:button {:class "botaoQuestoes" :onclick "testePilha();"} "Avançar para questões"]]]))
+         [:div {:class "btn-group" }
+         [:button {:class "btn btn-info" :onclick "testeVetor();" } "Avançar para questões"]] 
+         [:div {:class "btn-group" }  
+         [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white"}] "Vídeo Aulas"]
+         [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
+         [:span {:class "caret"}]]
+         [:ul {:class "dropdown-menu"}
+         [:li [:a {:href "#" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Ordenação"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
+         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         ]] 
+         [:div {:class "btn-group" }  
+         [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white"}] "Textos Explicativos"]
+         [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
+         [:span {:class "caret"}]]
+         [:ul {:class "dropdown-menu"}
+         [:li [:a {:href "#" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Ordenação"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
+         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         ]]
+         ]]))
 
 
 
@@ -964,7 +1057,27 @@ de operações que seja adequado a todas aplicações."]
              O nível do nodo raiz é 0 (zero). Se um nodo está no nível i, então a raiz de
              suas subárvores estão no nível i + 1. A altura de um nodo é o comprimento do caminho 
              mais longo deste nodo até um nodo folha. A altura de uma árvore é a altura do nodo raiz."]
-         [:button {:class "botaoQuestoes" :onclick "testeArvore()"} "Avançar para questões"]]]))
+         [:div {:class "btn-group" }
+         [:button {:class "btn btn-info" :onclick "testeVetor();" } "Avançar para questões"]] 
+         [:div {:class "btn-group" }  
+         [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white"}] "Vídeo Aulas"]
+         [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
+         [:span {:class "caret"}]]
+         [:ul {:class "dropdown-menu"}
+         [:li [:a {:href "#" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Ordenação"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
+         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         ]] 
+         [:div {:class "btn-group" }  
+         [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white"}] "Textos Explicativos"]
+         [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
+         [:span {:class "caret"}]]
+         [:ul {:class "dropdown-menu"}
+         [:li [:a {:href "#" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Ordenação"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
+         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         ]]
+         ]]))
 
 
 
@@ -1088,7 +1201,27 @@ de operações que seja adequado a todas aplicações."]
               sendo vi e v j elementos de V. Como exemplo de um grafo direcionado, 
               podemos considerar a malha aérea de uma região, de forma que os vértices 
               do grafo representem os aeroportos, que são conectados por vôos."]
-         [:button {:class "botaoQuestoes" :onclick "testeMetOrd();"} "Avançar para questões"]]]))
+         [:div {:class "btn-group" }
+         [:button {:class "btn btn-info" :onclick "testeVetor();" } "Avançar para questões"]] 
+         [:div {:class "btn-group" }  
+         [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white"}] "Vídeo Aulas"]
+         [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
+         [:span {:class "caret"}]]
+         [:ul {:class "dropdown-menu"}
+         [:li [:a {:href "#" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Ordenação"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
+         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         ]] 
+         [:div {:class "btn-group" }  
+         [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white"}] "Textos Explicativos"]
+         [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
+         [:span {:class "caret"}]]
+         [:ul {:class "dropdown-menu"}
+         [:li [:a {:href "#" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Ordenação"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
+         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         ]]
+         ]]))
 
 
 
@@ -1213,7 +1346,27 @@ de operações que seja adequado a todas aplicações."]
              elimina os bits redundantes de informações, de modo a diminuir seu tamanho nos 
              ficheiros. Por exemplo, a sequência AAAAAA que ocupa 6 bytes, poderia ser representada 
              pela sequência 6A, que ocupa 2 bytes, economizando 67% de espaço."]
-         [:button {:class "botaoQuestoes" :onclick "testeMetPesq();"} "Avançar para questões"]]]))
+         [:div {:class "btn-group" }
+         [:button {:class "btn btn-info" :onclick "testeVetor();" } "Avançar para questões"]] 
+         [:div {:class "btn-group" }  
+         [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white"}] "Vídeo Aulas"]
+         [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
+         [:span {:class "caret"}]]
+         [:ul {:class "dropdown-menu"}
+         [:li [:a {:href "#" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Ordenação"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
+         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         ]] 
+         [:div {:class "btn-group" }  
+         [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white"}] "Textos Explicativos"]
+         [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
+         [:span {:class "caret"}]]
+         [:ul {:class "dropdown-menu"}
+         [:li [:a {:href "#" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Ordenação"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
+         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         ]]
+         ]]))
 
 
 
@@ -1315,4 +1468,1032 @@ de operações que seja adequado a todas aplicações."]
          ]))
 
 
+;#################################################################################
+;######################## Abaixo algumas questões sobre Introdução ###############
+;#################################################################################
+
+
+
+
+;/******************************************************************************/
+;/**************************** Introdução **************************************/
+;/******************************************************************************/
+
+
+
+
+(defpage "/login/introdução" []
+      (common/layout
+         [:head [:script {:type "text/javascript" :src "/js/bootstrap.min.js"}]]
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/introdução/1" :method "post"}
+         [:center [:h5 "Introdução"]] 
+         [:p " Programação é o processo de escrita, teste e manutenção de um programa de computador. 
+               O programa é escrito em uma linguagem de programação, embora seja possível, com alguma 
+               dificuldade, escrevê-lo diretamente em linguagem de máquina. Diferentes partes de um programa 
+               podem ser escritas em diferentes linguagens."]
+         [:p "Diferentes linguagens de programação funcionam de diferentes modos. Por esse motivo, os programadores 
+             podem criar programas muito diferentes para diferentes linguagens; muito embora, teoricamente, a maioria 
+             das linguagens possa ser usada para criar qualquer programa."]
+         [:p "A seguir temos alguns exercícios de para a introdução, boa sorte."]
+         [:div {:class "btn-group" }
+         [:button {:class "btn btn-info" :onclick "testeIntroducao();" } "Avançar para questões"]] 
+         [:div {:class "btn-group" }  
+         [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white"}] "Vídeo Aulas"]
+         [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
+         [:span {:class "caret"}]]
+         [:ul {:class "dropdown-menu"}
+         [:li [:a {:href "/videos/introdução " :target "principal" :role "button" :data-toggle "modal" :name "backes001.xml"} 
+                                                [:i {:class "icon-pencil"}] "Esqueleto de um programa C"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Declaração de variáveis"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Printf/Scanf"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Operador de atribuição"]] 
+         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         ]] 
+         [:div {:class "btn-group" }  
+         [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white"}] "Textos Explicativos"]
+         [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
+         [:span {:class "caret"}]]
+         [:ul {:class "dropdown-menu"}
+         [:li [:a {:href "#" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Esqueleto de um programa em C"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Declaração de variáveis"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Printf/Scanf"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Operador de atribuição"]]  
+         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         ]]
+         ]]))
+
+
+
+(defpage [:post "/login/introdução/1"] []
+     (common/layout
+         (formata-pergunta "a001" "1" "/login/introdução/2")))
+
+(defpage [:post "/login/introdução/2"] []
+     (common/layout
+          (formata-pergunta "a002" "2" "/login/introdução/3")))
+
+(defpage [:post "/login/introdução/3"] []
+     (common/layout
+          (formata-pergunta "a003" "3" "/login/introdução/4")))
+
+(defpage [:post "/login/introdução/4"] []
+     (common/layout
+          (formata-pergunta "a004" "4" "/login/introdução/5")))
+
+(defpage [:post "/login/introdução/5"] []
+     (common/layout
+          (formata-pergunta "a005" "5" "/login/introdução/6")))
+
+
+(defpage [:post "/login/introdução/6"] []
+     (common/layout
+          (formata-pergunta "a006" "6" "/login/introdução/7")))
+
+
+(defpage [:post "/login/introdução/7"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/introdução/8" :method "post"}
+         [:center [:h5 "Introdução"]]
+         [:p "Questão 7 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+(defpage [:post "/login/introdução/8"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/introdução/9" :method "post"}
+         [:center [:h5 "Introdução"]]
+         [:p "Questão 8 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/introdução/9"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/introdução/10" :method "post"}
+         [:center [:h5 "Introdução"]]
+         [:p "Questão 9 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/introdução/10"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/introdução/fim" :method "post"}
+         [:center [:h5 "Introdução"]]
+         [:p "Questão 10 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+(defpage [:post "/login/introdução/fim"] []
+     (common/layout
+         [:body {:id "fundoiframe" :onclick "mudaCorPretoMetPesq();"} 
+         [:center [:h5 "Introdução"]]
+         [:center [:h4 "Você terminou as atividades de Introdução! "]]
+         ]))
+
+
+
+
+;:::::::::::::::::::::::::::::::: vídeos ::::::::::::::::::::::::::::::
+
+(defpage "/videos/introdução" []
+ ;(carregar-apresentacao xml)
+ (common/layout
+         [:body {:id "fundoiframe" } 
+         [:div {:class "container-fluid"}
+         [:div {:class "row-fluid"}
+         [:div {:class "span2"  :id "menu_video"}
+         [:center [:h5  "Esqueleto de Um programa C"]]
+         [:h4 [:iframe {:width "400" :height "450" :src  "http://www.youtube.com/embed/GiCt0Cwcp-U" :frameborder "1" :id "fp"}]]
+         [:h4 "Créditos a Andre Backes."] ]  
+         [:div {:class "span10" :id "menu_videos"}
+         [:h5 "Mais vídeos"]
+         [:h4  [:iframe {:width "250" :height "150" :src  "http://www.youtube.com/embed/GiCt0Cwcp-U" :frameborder "1"
+               :onclick "mudaVideo();"}]]
+         [:h4 [:iframe {:width "250" :height "150" :src  "http://www.youtube.com/embed/q51cHsgRHU4" :frameborder "1"}]]
+         [:h4 [:iframe {:width "250" :height "150" :src  "http://www.youtube.com/embed/q51cHsgRHU4" :frameborder "1"}]]]
+         ]]]
+))
+
+
+
+
+
+;/*******************************************************************/
+;/*************************** Estruturas de Repetição ****************/
+;/*******************************************************************/
+
+
+
+(defpage "/login/EstruturaRepetição" []
+      (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/EstruturaRepetição/1" :method "post"}
+         [:center [:h5 "Estrutura Repetição"]] 
+         [:p " A compressão de dados é o ato de reduzir o espaço ocupado 
+              por dados num determinado dispositivo. Essa operação é realizada 
+              através de diversos algoritmos de compressão, reduzindo a quantidade 
+              de Bytes para representar um dado, sendo esse dado uma imagem, um texto, 
+              ou um arquivo (ficheiro) qualquer. Comprimir dados destina-se também a 
+              retirar a redundância, baseando-se que muitos dados contêm informações 
+              redundantes que podem ou precisam ser eliminadas de alguma forma. Essa forma 
+              é através de uma regra, chamada de código ou protocolo, que, quando seguida, 
+             elimina os bits redundantes de informações, de modo a diminuir seu tamanho nos 
+             ficheiros. Por exemplo, a sequência AAAAAA que ocupa 6 bytes, poderia ser representada 
+             pela sequência 6A, que ocupa 2 bytes, economizando 67% de espaço."]
+         [:div {:class "btn-group" }
+         [:button {:class "btn btn-info" :onclick "testeEstRep();" } "Avançar para questões"]] 
+         [:div {:class "btn-group" }  
+         [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white"}] "Vídeo Aulas"]
+         [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
+         [:span {:class "caret"}]]
+         [:ul {:class "dropdown-menu"}
+         [:li [:a {:href "#" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Ordenação"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
+         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         ]] 
+         [:div {:class "btn-group" }  
+         [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white"}] "Textos Explicativos"]
+         [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
+         [:span {:class "caret"}]]
+         [:ul {:class "dropdown-menu"}
+         [:li [:a {:href "#" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Ordenação"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
+         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         ]]
+         ]]))
+
+
+
+(defpage [:post "/login/EstruturaRepetição/1"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/EstruturaRepetição/2" :method "post"}
+         [:center [:h5 "Estrutura Repetição"]]
+         [:p "1) O algoritmo de huffman utiliza como estrutura principal: "]
+         [:input {:type "radio" :name "c1" :value "c1a" }]  " (A) Uma fila."  [:br]
+         [:input {:type "radio" :name "c1" :value "c1b" }]  " (b) Uma pilha."  [:br]
+         [:input {:type "radio" :name "c1" :value "c1c" }]  " (C) Uma árvore."   [:br]
+         [:input {:type "radio" :name "c1" :value "c1d" }]  " (D) Uma lista."    [:br] [:br][:br]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/EstruturaRepetição/2"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/EstruturaRepetição/3" :method "post"}
+         [:center [:h5 "Estrutura Repetição"]]
+         [:p "Questão 2 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/EstruturaRepetição/3"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/EstruturaRepetição/4" :method "post"}
+         [:center [:h5 "Estrutura Repetição"]]
+         [:p "Questão 3 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/EstruturaRepetição/4"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/EstruturaRepetição/5" :method "post"}
+         [:center [:h5 "Estrutura Repetição"]]
+         [:p "Questão 4 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/EstruturaRepetição/5"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/EstruturaRepetição/6" :method "post"}
+         [:center [:h5 "Estrutura Repetição"]]
+         [:p "Questão 5 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+(defpage [:post "/login/EstruturaRepetição/6"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/EstruturaRepetição/7" :method "post"}
+         [:center [:h5 "Estrutura Repetição"]]  
+         [:p "Questão 6 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+(defpage [:post "/login/EstruturaRepetição/7"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/EstruturaRepetição/8" :method "post"}
+         [:center [:h5 "Estrutura Repetição"]]
+         [:p "Questão 7 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+(defpage [:post "/login/EstruturaCondição/8"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/EstruturaRepetição/9" :method "post"}
+         [:center [:h5 "Estrutura Repetição"]]
+         [:p "Questão 8 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/EstruturaCondição/9"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/EstruturaRepetição/10" :method "post"}
+         [:center [:h5 "Estrutura Repetição"]]
+         [:p "Questão 9 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/EstruturaCondição/10"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/EstruturaRepetição/fim" :method "post"}
+         [:center [:h5 "Estrutura Repetição"]]
+         [:p "Questão 10 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+(defpage [:post "/login/EstruturaRepetição/fim"] []
+     (common/layout
+         [:body {:id "fundoiframe" :onclick "mudaCorPretoMetPesq();"} 
+         [:center [:h5 "Estrutura Repetição"]]
+         [:center [:h2 "Você terminou as atividades de Métodos de Pesquisa! "]]
+         ]))
+
+
+
+
+
+
+;/*******************************************************************/
+;/*************************** Estruturas de Condição ****************/
+;/*******************************************************************/
+
+
+
+(defpage "/login/EstruturaCondição" []
+      (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/EstruturaCondição/1" :method "post"}
+         [:center [:h5 "EstruturaCondição"]] 
+         [:p " A compressão de dados é o ato de reduzir o espaço ocupado 
+              por dados num determinado dispositivo. Essa operação é realizada 
+              através de diversos algoritmos de compressão, reduzindo a quantidade 
+              de Bytes para representar um dado, sendo esse dado uma imagem, um texto, 
+              ou um arquivo (ficheiro) qualquer. Comprimir dados destina-se também a 
+              retirar a redundância, baseando-se que muitos dados contêm informações 
+              redundantes que podem ou precisam ser eliminadas de alguma forma. Essa forma 
+              é através de uma regra, chamada de código ou protocolo, que, quando seguida, 
+             elimina os bits redundantes de informações, de modo a diminuir seu tamanho nos 
+             ficheiros. Por exemplo, a sequência AAAAAA que ocupa 6 bytes, poderia ser representada 
+             pela sequência 6A, que ocupa 2 bytes, economizando 67% de espaço."]
+         [:div {:class "btn-group" }
+         [:button {:class "btn btn-info" :onclick "testeEstCond();" } "Avançar para questões"]] 
+         [:div {:class "btn-group" }  
+         [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white"}] "Vídeo Aulas"]
+         [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
+         [:span {:class "caret"}]]
+         [:ul {:class "dropdown-menu"}
+         [:li [:a {:href "#" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Ordenação"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
+         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         ]] 
+         [:div {:class "btn-group" }  
+         [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white"}] "Textos Explicativos"]
+         [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
+         [:span {:class "caret"}]]
+         [:ul {:class "dropdown-menu"}
+         [:li [:a {:href "#" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Ordenação"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
+         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         ]]
+         ]]))
+
+
+
+(defpage [:post "/login/EstruturaCondição/1"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/EstruturaCondição/2" :method "post"}
+         [:center [:h5 "Metodos de Pesquisa"]]
+         [:p "1) O algoritmo de huffman utiliza como estrutura principal: "]
+         [:input {:type "radio" :name "c1" :value "c1a" }]  " (A) Uma fila."  [:br]
+         [:input {:type "radio" :name "c1" :value "c1b" }]  " (b) Uma pilha."  [:br]
+         [:input {:type "radio" :name "c1" :value "c1c" }]  " (C) Uma árvore."   [:br]
+         [:input {:type "radio" :name "c1" :value "c1d" }]  " (D) Uma lista."    [:br] [:br][:br]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/EstruturaCondição/2"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/metPesq/3" :method "post"}
+         [:center [:h5 "Metodos de Pesquisa"]]
+         [:p "Questão 2 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/EstruturaCondição/3"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/metPesq/4" :method "post"}
+         [:center [:h5 "Metodos de Pesquisa"]]
+         [:p "Questão 3 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/EstruturaCondição/4"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/EstruturaCondição/5" :method "post"}
+         [:center [:h5 "Metodos de Pesquisa"]]
+         [:p "Questão 4 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/EstruturaCondição/5"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/EstruturaCondição/6" :method "post"}
+         [:center [:h5 "Metodos de Pesquisa"]]
+         [:p "Questão 5 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+(defpage [:post "/login/EstruturaCondição/6"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/EstruturaCondição/7" :method "post"}
+         [:center [:h5 "Metodos de Pesquisa"]]  
+         [:p "Questão 6 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+(defpage [:post "/login/EstruturaCondição/7"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/EstruturaCondição/8" :method "post"}
+         [:center [:h5 "Metodos de Pesquisa"]]
+         [:p "Questão 7 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+(defpage [:post "/login/EstruturaCondição/8"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/EstruturaCondição/9" :method "post"}
+         [:center [:h5 "Metodos de Pesquisa"]]
+         [:p "Questão 8 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/EstruturaCondição/9"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/EstruturaCondição/10" :method "post"}
+         [:center [:h5 "Metodos de Pesquisa"]]
+         [:p "Questão 9 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/EstruturaCondição/10"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/EstruturaCondição/fim" :method "post"}
+         [:center [:h5 "Metodos de Pesquisa"]]
+         [:p "Questão 10 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+(defpage [:post "/login/EstruturaCondição/fim"] []
+     (common/layout
+         [:body {:id "fundoiframe" :onclick "mudaCorPretoMetPesq();"} 
+         [:center [:h5 "Metodos de Pesquisa"]]
+         [:center [:h2 "Você terminou as atividades de Métodos de Pesquisa! "]]
+         ]))
+
+
+
+;******************************************************************************
+;******************************* String ***************************************
+;******************************************************************************
+
+
+(defpage "/login/string" []
+      (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/string/1" :method "post"}
+         [:center [:h5 "String"]] 
+         [:p " Em programação e em linguagens formais, uma cadeia de caracteres 
+              (também conhecida como samblagem ou string) é uma seqüência ordenada 
+              de caracteres (símbolos) escolhidos a partir de um conjunto pré-determinado."]
+         [:p " Em programação, cada símbolo armazenado na memória é representado por um valor 
+               numérico. Uma variável declarada com tipo de dado cadeia geralmente armazena um 
+               número pré-determinado de caracteres."]
+         [:div {:class "btn-group" }
+         [:button {:class "btn btn-info" :onclick "testeString();" } "Avançar para questões"]] 
+         [:div {:class "btn-group" }  
+         [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white"}] "Vídeo Aulas"]
+         [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
+         [:span {:class "caret"}]]
+         [:ul {:class "dropdown-menu"}
+         [:li [:a {:href "#" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Ordenação"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
+         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         ]] 
+         [:div {:class "btn-group" }  
+         [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white"}] "Textos Explicativos"]
+         [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
+         [:span {:class "caret"}]]
+         [:ul {:class "dropdown-menu"}
+         [:li [:a {:href "#" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Ordenação"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
+         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         ]]
+         ]]))
+
+
+
+(defpage [:post "/login/string/1"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/string/2" :method "post"}
+         [:center [:h5 "String"]]
+         [:p "1) O algoritmo de huffman utiliza como estrutura principal: "]
+         [:input {:type "radio" :name "c1" :value "c1a" }]  " (A) Uma fila."  [:br]
+         [:input {:type "radio" :name "c1" :value "c1b" }]  " (b) Uma pilha."  [:br]
+         [:input {:type "radio" :name "c1" :value "c1c" }]  " (C) Uma árvore."   [:br]
+         [:input {:type "radio" :name "c1" :value "c1d" }]  " (D) Uma lista."    [:br] [:br][:br]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/string/2"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/string/3" :method "post"}
+         [:center [:h5 "String"]]
+         [:p "Questão 2 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/string/3"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/string/4" :method "post"}
+         [:center [:h5 "String"]]
+         [:p "Questão 3 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/string/4"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/string/5" :method "post"}
+         [:center [:h5 "String"]]
+         [:p "Questão 4 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/string/5"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/string/6" :method "post"}
+         [:center [:h5 "String"]]
+         [:p "Questão 5 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+(defpage [:post "/login/string/6"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/string/7" :method "post"}
+         [:center [:h5 "String"]]  
+         [:p "Questão 6 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+(defpage [:post "/login/string/7"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/string/8" :method "post"}
+         [:center [:h5 "String"]]
+         [:p "Questão 7 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+(defpage [:post "/login/string/8"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/string/9" :method "post"}
+         [:center [:h5 "String"]]
+         [:p "Questão 8 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/string/9"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/string/10" :method "post"}
+         [:center [:h5 "String"]]
+         [:p "Questão 9 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/string/10"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/string/fim" :method "post"}
+         [:center [:h5 "String"]]
+         [:p "Questão 10 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+(defpage [:post "/login/string/fim"] []
+     (common/layout
+         [:body {:id "fundoiframe" :onclick "mudaCorPretoMetPesq();"} 
+         [:center [:h5 "String"]]
+         [:center [:h2 "Você terminou as atividades de Métodos de Pesquisa! "]]
+         ]))
+
+
+;******************************************************************************
+;******************************* Função ***************************************
+;******************************************************************************
+
+
+(defpage "/login/função" []
+      (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/função/1" :method "post"}
+         [:center [:h5 "Funções"]] 
+         [:p " A compressão de dados é o ato de reduzir o espaço ocupado 
+              por dados num determinado dispositivo. Essa operação é realizada 
+              através de diversos algoritmos de compressão, reduzindo a quantidade 
+              de Bytes para representar um dado, sendo esse dado uma imagem, um texto, 
+              ou um arquivo (ficheiro) qualquer. Comprimir dados destina-se também a 
+              retirar a redundância, baseando-se que muitos dados contêm informações 
+              redundantes que podem ou precisam ser eliminadas de alguma forma. Essa forma 
+              é através de uma regra, chamada de código ou protocolo, que, quando seguida, 
+             elimina os bits redundantes de informações, de modo a diminuir seu tamanho nos 
+             ficheiros. Por exemplo, a sequência AAAAAA que ocupa 6 bytes, poderia ser representada 
+             pela sequência 6A, que ocupa 2 bytes, economizando 67% de espaço."]
+         [:div {:class "btn-group" }
+         [:button {:class "btn btn-info" :onclick "testeFuncao();" } "Avançar para questões"]] 
+         [:div {:class "btn-group" }  
+         [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white"}] "Vídeo Aulas"]
+         [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
+         [:span {:class "caret"}]]
+         [:ul {:class "dropdown-menu"}
+         [:li [:a {:href "#" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Ordenação"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
+         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         ]] 
+         [:div {:class "btn-group" }  
+         [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white"}] "Textos Explicativos"]
+         [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
+         [:span {:class "caret"}]]
+         [:ul {:class "dropdown-menu"}
+         [:li [:a {:href "#" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Ordenação"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
+         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         ]]
+         ]]))
+
+
+
+(defpage [:post "/login/função/1"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/função/2" :method "post"}
+         [:center [:h5 "Funções"]]
+         [:p "1) O algoritmo de huffman utiliza como estrutura principal: "]
+         [:input {:type "radio" :name "c1" :value "c1a" }]  " (A) Uma fila."  [:br]
+         [:input {:type "radio" :name "c1" :value "c1b" }]  " (b) Uma pilha."  [:br]
+         [:input {:type "radio" :name "c1" :value "c1c" }]  " (C) Uma árvore."   [:br]
+         [:input {:type "radio" :name "c1" :value "c1d" }]  " (D) Uma lista."    [:br] [:br][:br]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/função/2"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/função/3" :method "post"}
+         [:center [:h5 "Funções"]]
+         [:p "Questão 2 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/função/3"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/função/4" :method "post"}
+         [:center [:h5 "Funções"]]
+         [:p "Questão 3 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/função/4"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/função/5" :method "post"}
+         [:center [:h5 "Funções"]]
+         [:p "Questão 4 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/função/5"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/função/6" :method "post"}
+         [:center [:h5 "Funções"]]
+         [:p "Questão 5 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+(defpage [:post "/login/função/6"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/função/7" :method "post"}
+         [:center [:h5 "Funções"]]  
+         [:p "Questão 6 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+(defpage [:post "/login/função/7"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/função/8" :method "post"}
+         [:center [:h5 "Funções"]]
+         [:p "Questão 7 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+(defpage [:post "/login/função/8"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/função/9" :method "post"}
+         [:center [:h5 "Funções"]]
+         [:p "Questão 8 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/função/9"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/função/10" :method "post"}
+         [:center [:h5 "Funções"]]
+         [:p "Questão 9 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/função/10"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/função/fim" :method "post"}
+         [:center [:h5 "Funções"]]
+         [:p "Questão 10 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+(defpage [:post "/login/função/fim"] []
+     (common/layout
+         [:body {:id "fundoiframe" :onclick "mudaCorPretoMetPesq();"} 
+         [:center [:h5 "Funções"]]
+         [:center [:h2 "Você terminou as atividades de Métodos de Pesquisa! "]]
+         ]))
+
+
+
+
+;******************************************************************************
+;******************************* Arquivo ***************************************
+;******************************************************************************
+
+
+(defpage "/login/struct" []
+      (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/struct/1" :method "post"}
+         [:center [:h5 "Struct"]] 
+         [:p " A compressão de dados é o ato de reduzir o espaço ocupado 
+              por dados num determinado dispositivo. Essa operação é realizada 
+              através de diversos algoritmos de compressão, reduzindo a quantidade 
+              de Bytes para representar um dado, sendo esse dado uma imagem, um texto, 
+              ou um arquivo (ficheiro) qualquer. Comprimir dados destina-se também a 
+              retirar a redundância, baseando-se que muitos dados contêm informações 
+              redundantes que podem ou precisam ser eliminadas de alguma forma. Essa forma 
+              é através de uma regra, chamada de código ou protocolo, que, quando seguida, 
+             elimina os bits redundantes de informações, de modo a diminuir seu tamanho nos 
+             ficheiros. Por exemplo, a sequência AAAAAA que ocupa 6 bytes, poderia ser representada 
+             pela sequência 6A, que ocupa 2 bytes, economizando 67% de espaço."]
+         [:div {:class "btn-group" }
+         [:button {:class "btn btn-info" :onclick "testeStruct();" } "Avançar para questões"]] 
+         [:div {:class "btn-group" }  
+         [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white"}] "Vídeo Aulas"]
+         [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
+         [:span {:class "caret"}]]
+         [:ul {:class "dropdown-menu"}
+         [:li [:a {:href "#" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Ordenação"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
+         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         ]] 
+         [:div {:class "btn-group" }  
+         [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white"}] "Textos Explicativos"]
+         [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
+         [:span {:class "caret"}]]
+         [:ul {:class "dropdown-menu"}
+         [:li [:a {:href "#" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Ordenação"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
+         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         ]]
+         ]]))
+
+
+
+(defpage [:post "/login/struct/1"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/struct/2" :method "post"}
+         [:center [:h5 "Struct"]]
+         [:p "1) O algoritmo de huffman utiliza como estrutura principal: "]
+         [:input {:type "radio" :name "c1" :value "c1a" }]  " (A) Uma fila."  [:br]
+         [:input {:type "radio" :name "c1" :value "c1b" }]  " (b) Uma pilha."  [:br]
+         [:input {:type "radio" :name "c1" :value "c1c" }]  " (C) Uma árvore."   [:br]
+         [:input {:type "radio" :name "c1" :value "c1d" }]  " (D) Uma lista."    [:br] [:br][:br]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/struct/2"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/struct/3" :method "post"}
+         [:center [:h5 "Arquivo"]]
+         [:p "Questão 2 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/struct/3"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/struct/4" :method "post"}
+         [:center [:h5 "Struct"]]
+         [:p "Questão 3 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/struct/4"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/struct/5" :method "post"}
+         [:center [:h5 "Struct"]]
+         [:p "Questão 4 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/struct/5"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/struct/6" :method "post"}
+         [:center [:h5 "Struct"]]
+         [:p "Questão 5 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+(defpage [:post "/login/struct/6"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/struct/7" :method "post"}
+         [:center [:h5 "Struct"]]  
+         [:p "Questão 6 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+(defpage [:post "/login/struct/7"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/struct/8" :method "post"}
+         [:center [:h5 "Struct"]]
+         [:p "Questão 7 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+(defpage [:post "/login/Struct/8"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/struct/9" :method "post"}
+         [:center [:h5 "Struct"]]
+         [:p "Questão 8 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/struct/9"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/struct/10" :method "post"}
+         [:center [:h5 "Struct"]]
+         [:p "Questão 9 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/struct/10"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/struct/fim" :method "post"}
+         [:center [:h5 "Struct"]]
+         [:p "Questão 10 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+(defpage [:post "/login/struct/fim"] []
+     (common/layout
+         [:body {:id "fundoiframe" :onclick "mudaCorPretoMetPesq();"} 
+         [:center [:h5 "Struct"]]
+         [:center [:h2 "Você terminou as atividades de Métodos de Pesquisa! "]]
+         ]))
+
+
+;******************************************************************************
+;******************************* Arquivo ***************************************
+;******************************************************************************
+
+
+(defpage "/login/arquivo" []
+      (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/arquivo/1" :method "post"}
+         [:center [:h5 "Arquivo"]] 
+         [:p " A compressão de dados é o ato de reduzir o espaço ocupado 
+              por dados num determinado dispositivo. Essa operação é realizada 
+              através de diversos algoritmos de compressão, reduzindo a quantidade 
+              de Bytes para representar um dado, sendo esse dado uma imagem, um texto, 
+              ou um arquivo (ficheiro) qualquer. Comprimir dados destina-se também a 
+              retirar a redundância, baseando-se que muitos dados contêm informações 
+              redundantes que podem ou precisam ser eliminadas de alguma forma. Essa forma 
+              é através de uma regra, chamada de código ou protocolo, que, quando seguida, 
+             elimina os bits redundantes de informações, de modo a diminuir seu tamanho nos 
+             ficheiros. Por exemplo, a sequência AAAAAA que ocupa 6 bytes, poderia ser representada 
+             pela sequência 6A, que ocupa 2 bytes, economizando 67% de espaço."]
+         [:div {:class "btn-group" }
+         [:button {:class "btn btn-info" :onclick "testeArquivo();" } "Avançar para questões"]] 
+         [:div {:class "btn-group" }  
+         [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white"}] "Vídeo Aulas"]
+         [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
+         [:span {:class "caret"}]]
+         [:ul {:class "dropdown-menu"}
+         [:li [:a {:href "#" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Ordenação"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
+         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         ]] 
+         [:div {:class "btn-group" }  
+         [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white"}] "Textos Explicativos"]
+         [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
+         [:span {:class "caret"}]]
+         [:ul {:class "dropdown-menu"}
+         [:li [:a {:href "#" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Ordenação"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
+         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         ]]
+         ]]))
+
+
+
+(defpage [:post "/login/arquivo/1"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/arquivo/2" :method "post"}
+         [:center [:h5 "Arquivo"]]
+         [:p "1) O algoritmo de huffman utiliza como estrutura principal: "]
+         [:input {:type "radio" :name "c1" :value "c1a" }]  " (A) Uma fila."  [:br]
+         [:input {:type "radio" :name "c1" :value "c1b" }]  " (b) Uma pilha."  [:br]
+         [:input {:type "radio" :name "c1" :value "c1c" }]  " (C) Uma árvore."   [:br]
+         [:input {:type "radio" :name "c1" :value "c1d" }]  " (D) Uma lista."    [:br] [:br][:br]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/arquivo/2"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/arquivo/3" :method "post"}
+         [:center [:h5 "Arquivo"]]
+         [:p "Questão 2 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/arquivo/3"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/arquivo/4" :method "post"}
+         [:center [:h5 "Arquivo"]]
+         [:p "Questão 3 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/arquivo/4"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/arquivo/5" :method "post"}
+         [:center [:h5 "Arquivo"]]
+         [:p "Questão 4 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/arquivo/5"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/arquivo/6" :method "post"}
+         [:center [:h5 "Arquivo"]]
+         [:p "Questão 5 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+(defpage [:post "/login/arquivo/6"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/arquivo/7" :method "post"}
+         [:center [:h5 "Arquivo"]]  
+         [:p "Questão 6 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+(defpage [:post "/login/arquivo/7"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/arquivo/8" :method "post"}
+         [:center [:h5 "Arquivo"]]
+         [:p "Questão 7 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+(defpage [:post "/login/arquivo/8"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/arquivo/9" :method "post"}
+         [:center [:h5 "Arquivo"]]
+         [:p "Questão 8 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/arquivo/9"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/arquivo/10" :method "post"}
+         [:center [:h5 "Arquivo"]]
+         [:p "Questão 9 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+
+(defpage [:post "/login/arquivo/10"] []
+     (common/layout
+         [:body {:id "fundoiframe"} 
+         [:form {:action "/login/arquivo/fim" :method "post"}
+         [:center [:h5 "Arquivo"]]
+         [:p "Questão 10 "]
+         [:button {:class "botaoQuestoes"} "Avançar"]]]))
+
+(defpage [:post "/login/arquivo/fim"] []
+     (common/layout
+         [:body {:id "fundoiframe" :onclick "mudaCorPretoMetPesq();"} 
+         [:center [:h5 "Arquivo"]]
+         [:center [:h2 "Você terminou as atividades de Métodos de Pesquisa! "]]
+         ]))
+
+
+
+
 ;*************************** FIM DAS QUESTÕES *********************************
+
+
+;###############################################################################
+
+
+(defn monta-videos [embebed xml]
+    (common/layout
+      [:body]))
+       
+
+
+

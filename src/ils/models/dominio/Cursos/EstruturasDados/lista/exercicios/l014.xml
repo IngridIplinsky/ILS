@@ -4,7 +4,6 @@
  xmlns:xsi="exercicio"
  xsi:schemaLocation="/src/dominio/exercicio.xsd">
 		
-		<disciplina>INF41</disciplina>
 		<conteudo>lista</conteudo>	
 		<idEx>l014</idEx>
 		<nivel>dificil</nivel>

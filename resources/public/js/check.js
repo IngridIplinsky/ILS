@@ -6,8 +6,6 @@ function teste()
  }
 
 
-
-
 function CorVermelhaAloc()
 {
    
@@ -192,15 +190,57 @@ if(!(a.length == 0 || b.length == 0|| c.length == 0 || d.length == 0 || e.length
  
  }
 
+function mudaVideo(){
+  /*document.getElementById('fp').src = "http://www.youtube.com/embed/GiCt0Cwcp-U";*/
+  alert("hi");
+ 
+}
+
+
+
 
 
 function testeVetor(){
   parent.document.getElementById('ativ-exerc').innerHTML = "Teste de Vetor"; 
 }
 
-function testeAlocacao(){
-  parent.document.getElementById('ativ-exerc').innerHTML = "Teste Alocação Dinâmica";
+
+
+function testeFuncao(){
+  parent.document.getElementById('ativ-exerc').innerHTML = "Teste de Função"; 
 }
+
+function testeEstCond(){
+  parent.document.getElementById('ativ-exerc').innerHTML = "Teste de Est. Condição"; 
+}
+
+function testeEstRep(){
+  parent.document.getElementById('ativ-exerc').innerHTML = "Teste de Est. Repetição"; 
+}
+
+function testeArquivo(){
+  parent.document.getElementById('ativ-exerc').innerHTML = "Teste de Arquivo"; 
+}
+
+
+
+function testeAlocacao(){
+  parent.document.getElementById('ativ-exerc').innerHTML = "Teste Aloc. Dinâmica";
+}
+
+function testeStruct(){
+  parent.document.getElementById('ativ-exerc').innerHTML = "Teste de Structs"; 
+}
+
+
+function testeString(){
+  parent.document.getElementById('ativ-exerc').innerHTML = "Teste Strings";
+}
+
+function testeIntroducao(){
+  parent.document.getElementById('ativ-exerc').innerHTML = "Teste Introdução";
+}
+
 
 function testeLista(){
   parent.document.getElementById('ativ-exerc').innerHTML = "Teste Lista";

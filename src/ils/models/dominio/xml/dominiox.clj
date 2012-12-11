@@ -1,5 +1,6 @@
 (ns ils.models.dominio.xml.dominiox
-  (:use	[ils.models.dominio.BD.persistence]
+  (:use	[ils.models.estudante.corygil.estudante]
+  		[ils.models.dominio.BD.persistence]
   		[ils.models.dominio.BD.busca]
   		[ils.models.dominio.BD.insercao]
   		[ils.models.dominio.BD.remocao]
