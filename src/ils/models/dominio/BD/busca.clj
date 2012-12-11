@@ -18,11 +18,17 @@
         [(str "SELECT exercicio.xmlexercicio FROM exercicio WHERE exercicio.idEx = '"id"'")]
            (clob-to-string (:xmlexercicio (first res))) ))))
   ([retorno coluna valor]
-	"Busca outros campos da tabela exercicio, através da coluna e valor contido nela."
-	(sql/with-connection ILS-DB
- 	 	(sql/with-query-results res 
-    		[(str "SELECT exercicio."retorno" FROM exercicio WHERE exercicio."coluna" = '"valor"'")]
-    		(doall res)))))
+  "Busca outros campos da tabela exercicio, através da coluna e valor contido nela."
+  (sql/with-connection ILS-DB
+    (sql/with-query-results res 
+        [(str "SELECT exercicio."retorno" FROM exercicio WHERE exercicio."coluna" = '"valor"'")]
+        (doall res))))
+  ([retorno coluna valor materia]
+  "Busca outros campos da tabela exercicio, através da coluna e valor contido nela."
+  (sql/with-connection ILS-DB
+    (sql/with-query-results res 
+        [(str "SELECT exercicio."retorno" FROM exercicio WHERE exercicio."coluna" = '"valor"' AND exercicio.conteudo='"materia"'")]
+        (doall res)))))
                
 (defn buscar-apresentacao 
  ([id]

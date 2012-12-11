@@ -3,23 +3,12 @@
             [noir.content.getting-started]
             [noir.session :as session])
  (:use [ils.models.estudante.corygil estudante]
-       [ils.models.dominio.xml manipulacao]
-       [ils.models.dominio.xml dominiox ]
+       [ils.models.dominio.BD.busca]
+       [ils.models.dominio.xml.manipulacao]
+       [clojure.java.shell :only [sh]]
        [hiccup.page-helpers :only [include-css html5 include-js html5]]))
 
-;;;;
-;;;;
-;;;;
-;;;;
-;;;; O que fazer? 
-;;;; Verificar a funcao pedagogico-gera-exercicio 
-;;;; e as funcoes de conteudo-*
-;;;;
-;;;;
-;;;;
-
-
-
+;(use '[clojure.java.shell :only [sh]])
 
 ; (def mapaRespostas
 ; {
@@ -47,20 +36,19 @@
          (str "/login/" conteudo "/fim")
       :else
          (str "/login/" conteudo "/" (+ n 1))
-))
-
-
+   )
+)
 
 ;;###########################################################################################
-;;######################################-FORMATA PERGUNTA-###################################
+;;#################################-USADO SOMENTE PARA TESTES-###############################
 ;;###########################################################################################
 
 
-(defn formata-pergunta [n ex post ]
+(defn formata-pergunta [n]
 ; Primeira coisa a ser feita e carregar o xml desejado sendo assim a 
 ;performance melhora de forma signifcativa pois não será preciso buscar 
 ;no banco de dados, o xml estará agora em uma estrututura
-         (carregar-exercicio n)
+         (carregar-exercicio (first exercicioAtual))
 ; Condição para verificar se o exercício é de Multipla Escolha
 ; Note que usamos a função "get-value-exercicio "
 ; Ela trabalha na forma de lista, ou seja a tag que trata
@@ -71,14 +59,14 @@
             :nome (.toUpperCase (get-tag-exercicio :conteudo)) 
             :tipo (get-tag-exercicio :tipo) 
             :enunciado (get-tag-exercicio :enunciado) 
-            ;:post (formata-post (get-tag-exercicio :idEx) n)
+            :post (formata-post (get-tag-exercicio :idEx) n)
             })
          (cond (= "me" (get xmap :tipo))
 ; Abaixo temos o formato genêrico de html para exercicios de multipla escolha         
          [:body {:id "fundoiframe"} 
-         [:form {:action post :method "post" :name "form"}
+         [:form {:action (get xmap :post) :method "post" :name "form"}
          [:center [:h5 (get xmap :nome)]]    
-         [:p (str ex ") " (get xmap :enunciado))]
+         [:p (str n ") " (get xmap :enunciado))]
          [:input {:type "radio" :name "op" :value "a" }]
          (get-tag-exercicio :alternativa 0) [:br]
          [:input {:type "radio" :name "op" :value "b" }] 
@@ -119,8 +107,8 @@
               (include-js "/js/clike.js")]             
   
        [:body {:id "fundoiframe" :onload "chama();"}
-       [:p ex ") " (get xmap :enunciado) ] 
-       [:form {:id "corConsole" :action post :method "post"}
+       [:p n ") " (get xmap :enunciado) ] 
+       [:form {:id "corConsole" :action (get xmap :post):method "post"}
        [:textarea {:id "code" :name "code"}
        "    /* Escreva seu código aqui*/   \n\n"
        "#include <stdio.h> \n"
@@ -157,9 +145,9 @@
 (defn conteudo-dificil []
    (cond
       (empty? exerciciosDificeis)
-         nil
+         (get (first exerciciosFaceis) :idex)
       :else
-         (get (first exerciciosDificeis) :id)
+         (get (first exerciciosDificeis) :idex)
    )
 )
 
@@ -169,7 +157,7 @@
       (empty? exerciciosMedios)
          (conteudo-dificil)
       :else
-         (get (first exerciciosMedios) :id)
+         (get (first exerciciosMedios) :idex)
    )
 )
 
@@ -179,7 +167,7 @@
       (empty? exerciciosFaceis)
          (conteudo-medio)
       :else
-         (get (first exerciciosFaceis) :id)
+         (get (first exerciciosFaceis) :idex)
    )
 )
 
@@ -207,7 +195,7 @@
             :else
                (cond
                   (= "true" resposta) (def exercicioAtual [ (conteudo-dificil) ])
-                     :else (def exercicioAtual [ (conteudo-medio) ])
+                  :else (def exercicioAtual [ (conteudo-medio) ])
                )
          )
    )
@@ -217,26 +205,39 @@
 
 
 
+(defn pedagogico-compiler-interpreter [exit]
+   (cond
+      (= (get (sh "gcc" "-o" "executeFile" "NotCompiled") :err) "")
+         "true"
+      :else
+         "false"
+   )
+)
+
+
+
+(def score 0)
+
 (defn pedagogico-corretor [n respostaDoAluno]
    (def xmlmap {
-      :conteudo (.toLowerCase (get-tag-exercicio "conteudo")) 
-      :exercicio (get-tag-exercicio "idEx") 
-      :nivel (get-tag-exercicio "nivel") 
-      :tipo (get-tag-exercicio "tipo")
+      :conteudo (.toLowerCase (get-tag-exercicio :conteudo)) 
+      :exercicio (get-tag-exercicio :idEx) 
+      :nivel (get-tag-exercicio :nivel) 
+      :tipo (get-tag-exercicio :tipo)
       })
 
    (cond
       ;; verifica os tipos dos exercicios e escolhe uma forma de checar a questao.
-      (= (get xmlmap :tipo) "me") (def xmlmap (conj {:resposta (get-attr-exercicio "alternativa" respostaDoAluno)} xmlmap))
-      (= (get xmlmap :tipo) "vf") (def xmlmap (conj {:resposta (get-attr-exercicio "alternativa" "enum" respostaDoAluno)} xmlmap))
-      (= (get xmlmap :tipo) "aa") (def xmlmap (conj {:resposta (get-attr-exercicio "alternativa" "enum" respostaDoAluno)} xmlmap))
+      (= (get xmlmap :tipo) "me") (def xmlmap (conj {:resposta (get-attr-exercicio :alternativa :valor respostaDoAluno)} xmlmap))
+      (= (get xmlmap :tipo) "vf") (def xmlmap (conj {:resposta (get-attr-exercicio :alternativa :valor respostaDoAluno)} xmlmap))
+      (= (get xmlmap :tipo) "aa") (def xmlmap (conj {:resposta (get-attr-exercicio :alternativa :valor respostaDoAluno)} xmlmap))
       ;
       ; Os tipos "aberta" e "programacao" devera chamar uma funcao do compilador
       ; para que este verifique a corretude do exercicio.
       ;
-      (= (get xmlmap :tipo) "aberta") (def xmlmap (conj {:resposta (get-attr-exercicio "alternativa" "enum" respostaDoAluno)} xmlmap))
+      (= (get xmlmap :tipo) "programacao") (def xmlmap (conj {:resposta (pedagogico-compiler-interpreter respostaDoAluno)} xmlmap))
       ;; a linha abaixo (else) refere-se a programacao
-      :else (def xmlmap (conj {:resposta (get-attr-exercicio "alternativa" "enum" respostaDoAluno)} xmlmap))
+      :else (def xmlmap (conj {:resposta (get-attr-exercicio :alternativa :valor respostaDoAluno)} xmlmap))
    )
 
    ; As funcoes de atualizar-probs-exercicio devera ser verificada. Nao esta funcionando.
@@ -245,6 +246,13 @@
    ;       (atualizar-probs-exercicio (recupera-id (session/get :senhaUsuario))  (get xmlmap :conteudo) (get xmlmap :exercicio) 1.0 0.0 0.0)
    ;    (atualizar-probs-exercicio (recupera-id (session/get :senhaUsuario))  (get xmlmap :conteudo) (get xmlmap :exercicio) 0.0 0.0 1.0)
    ; )
+
+    (if
+      (= (get xmlmap :resposta) "true")
+        (def score (+ score 10))
+      (def score (- score 10))
+    )
+
    (pedagogico-gera-exercicio n (get xmlmap :nivel) (get xmlmap :resposta))
 )
 
@@ -253,13 +261,24 @@
 ;;aa -> analise de afirmativas
 ;;me -> multipla escolha
 ;;vf -> verdadeiro falso)
+(def auxVet [nil])
+(defn geraVetor [mapa]
+   (cond
+      (nil? mapa) 
+         (auxVet)
+      :else
+         (def auxVet (conj [(get (first mapa) :idex)] auxVet))
+   )
+   (geraVetor (rest mapa))
+)
 
+;(def xmlmap (conj {:resposta (get-attr-exercicio :alternativa :valor respostaDoAluno)} xmlmap))
 
 ;; Modificar para pegar o XML inteiro! Ver uma estrategia para isso.
-;(defn pedagogico-main [materia]
-   ;(def exerciciosFaceis (buscar-id-nivel materia "facil"))
-   ;(def exerciciosMedios (buscar-id-nivel materia "medio"))
-   ;(def exerciciosDificeis (buscar-id-nivel materia "dificil"))
-   ;( def exercicioAtual [(get (first exerciciosFaceis) :id)] )
-   ;(formata-pergunta 1)
-;)
+(defn pedagogico-main [materia]
+   (def exerciciosFaceis (buscar-exercicio "idEx" "nivel" "facil" materia))
+   (def exerciciosMedios (buscar-exercicio "idEx" "nivel" "medio" materia))
+   (def exerciciosDificeis (buscar-exercicio "idEx" "nivel" "dificil" materia))
+   (def exercicioAtual [(get (first exerciciosFaceis) :idex)] )
+   (formata-pergunta 1)
+)
