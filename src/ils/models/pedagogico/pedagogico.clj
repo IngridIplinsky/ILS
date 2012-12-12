@@ -174,9 +174,9 @@
 
 (defn pedagogico-gera-exercicio [n nivelExercicio resposta]
    (cond
-      (= nivelExercicio "facil") (def exerciciosFaceis (rest exerciciosFaceis))
-      (= nivelExercicio "dificil") (def exerciciosDificeis (rest exerciciosDificeis))
-      :else (def exerciciosMedios (rest exerciciosMedios))
+      (= nivelExercicio "facil") (def exerciciosFaceis (conj (vec (rest exerciciosFaceis)) (first exerciciosFaceis)))
+      (= nivelExercicio "medio") (def exerciciosMedios (conj (vec (rest exerciciosMedios)) (first exerciciosMedios)))
+      :else (def exerciciosDificeis (conj (vec (rest exerciciosDificeis)) (first exerciciosDificeis)))
    )
 
    (cond
@@ -278,9 +278,9 @@
 
 ;; Modificar para pegar o XML inteiro! Ver uma estrategia para isso.
 (defn pedagogico-main [materia]
-   (def exerciciosFaceis (buscar-exercicio "idEx" "nivel" "facil" "conteudo" materia))
-   (def exerciciosMedios (buscar-exercicio "idEx" "nivel" "medio" "conteudo" materia))
-   (def exerciciosDificeis (buscar-exercicio "idEx" "nivel" "dificil" "conteudo" materia))
+   (def exerciciosFaceis (vec (buscar-exercicio "idEx" "nivel" "facil" "conteudo" materia)))
+   (def exerciciosMedios (vec (buscar-exercicio "idEx" "nivel" "medio" "conteudo" materia)))
+   (def exerciciosDificeis (vec (buscar-exercicio "idEx" "nivel" "dificil" "conteudo" materia)))
    (def exercicioAtual [(get (first exerciciosFaceis) :idex)] )
    (formata-pergunta 1)
 )
