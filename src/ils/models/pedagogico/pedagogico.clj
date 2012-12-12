@@ -59,7 +59,7 @@
             :nome (.toUpperCase (get-tag-exercicio :conteudo)) 
             :tipo (get-tag-exercicio :tipo) 
             :enunciado (get-tag-exercicio :enunciado) 
-            :post (formata-post (get-tag-exercicio :idEx) n)
+            :post (formata-post (get-tag-exercicio :conteudo) n)
             })
          (cond (= "me" (get xmap :tipo))
 ; Abaixo temos o formato genêrico de html para exercicios de multipla escolha         
@@ -276,9 +276,9 @@
 
 ;; Modificar para pegar o XML inteiro! Ver uma estrategia para isso.
 (defn pedagogico-main [materia]
-   (def exerciciosFaceis (buscar-exercicio "idEx" "nivel" "facil" materia))
-   (def exerciciosMedios (buscar-exercicio "idEx" "nivel" "medio" materia))
-   (def exerciciosDificeis (buscar-exercicio "idEx" "nivel" "dificil" materia))
+   (def exerciciosFaceis (buscar-exercicio "idEx" "nivel" "facil" "conteudo" materia))
+   (def exerciciosMedios (buscar-exercicio "idEx" "nivel" "medio" "conteudo" materia))
+   (def exerciciosDificeis (buscar-exercicio "idEx" "nivel" "dificil" "conteudo" materia))
    (def exercicioAtual [(get (first exerciciosFaceis) :idex)] )
    (formata-pergunta 1)
 )
