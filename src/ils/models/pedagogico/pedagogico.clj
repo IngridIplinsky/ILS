@@ -205,9 +205,11 @@
 
 
 
-(defn pedagogico-compiler-interpreter [exit]
+(defn pedagogico-gcc [exit]
+  (def path "/home/pablo/Documents/CLOJUREE/teste")
+  (spit (str path ".c") exit) ; crio o arquivo.
    (cond
-      (= (get (sh "gcc" "-o" "executeFile" "NotCompiled") :err) "")
+      (= (get (sh "gcc" "-o" (str path ".o") (str path ".c")) :err) "")
          "true"
       :else
          "false"
@@ -235,7 +237,7 @@
       ; Os tipos "aberta" e "programacao" devera chamar uma funcao do compilador
       ; para que este verifique a corretude do exercicio.
       ;
-      (= (get xmlmap :tipo) "programacao") (def xmlmap (conj {:resposta (pedagogico-compiler-interpreter (get mapaRespostas respostaDoAluno))} xmlmap))
+      (= (get xmlmap :tipo) "programacao") (def xmlmap (conj {:resposta (pedagogico-gcc respostaDoAluno)} xmlmap))
       ;; a linha abaixo (else) refere-se a programacao
       :else (def xmlmap (conj {:resposta (get-attr-exercicio :alternativa :valor (get mapaRespostas respostaDoAluno))} xmlmap))
    )
