@@ -10,13 +10,13 @@
 
 ;(use '[clojure.java.shell :only [sh]])
 
-; (def mapaRespostas
-; {
-;    "a"   5
-;    "b"   6
-;    "c"   7
-;    "d"   8
-; })
+ (def mapaRespostas
+ {
+    "a"   0
+    "b"   1
+    "c"   2
+    "d"   3
+ })
 
 (def exerciciosFaceis)
 (def exerciciosMedios)
@@ -228,16 +228,16 @@
 
    (cond
       ;; verifica os tipos dos exercicios e escolhe uma forma de checar a questao.
-      (= (get xmlmap :tipo) "me") (def xmlmap (conj {:resposta (get-attr-exercicio :alternativa :valor respostaDoAluno)} xmlmap))
-      (= (get xmlmap :tipo) "vf") (def xmlmap (conj {:resposta (get-attr-exercicio :alternativa :valor respostaDoAluno)} xmlmap))
-      (= (get xmlmap :tipo) "aa") (def xmlmap (conj {:resposta (get-attr-exercicio :alternativa :valor respostaDoAluno)} xmlmap))
+      (= (get xmlmap :tipo) "me") (def xmlmap (conj {:resposta (get-attr-exercicio :alternativa :valor (get mapaRespostas respostaDoAluno))} xmlmap))
+      (= (get xmlmap :tipo) "vf") (def xmlmap (conj {:resposta (get-attr-exercicio :alternativa :valor (get mapaRespostas respostaDoAluno))} xmlmap))
+      (= (get xmlmap :tipo) "aa") (def xmlmap (conj {:resposta (get-attr-exercicio :alternativa :valor (get mapaRespostas respostaDoAluno))} xmlmap))
       ;
       ; Os tipos "aberta" e "programacao" devera chamar uma funcao do compilador
       ; para que este verifique a corretude do exercicio.
       ;
-      (= (get xmlmap :tipo) "programacao") (def xmlmap (conj {:resposta (pedagogico-compiler-interpreter respostaDoAluno)} xmlmap))
+      (= (get xmlmap :tipo) "programacao") (def xmlmap (conj {:resposta (pedagogico-compiler-interpreter (get mapaRespostas respostaDoAluno))} xmlmap))
       ;; a linha abaixo (else) refere-se a programacao
-      :else (def xmlmap (conj {:resposta (get-attr-exercicio :alternativa :valor respostaDoAluno)} xmlmap))
+      :else (def xmlmap (conj {:resposta (get-attr-exercicio :alternativa :valor (get mapaRespostas respostaDoAluno))} xmlmap))
    )
 
    ; As funcoes de atualizar-probs-exercicio devera ser verificada. Nao esta funcionando.
