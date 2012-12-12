@@ -1,5 +1,5 @@
-(ns ils.models.dominio.BD.busca
-    (:use ils.models.dominio.BD.persistence)
+(ns dominio.BD.busca
+    (:use dominio.BD.persistence)
     (:require [clojure.java.jdbc :as sql]))
     
 ;Uma funcao auxiliar de descompressão de CLOBS, usada nas buscas...
@@ -18,17 +18,17 @@
         [(str "SELECT exercicio.xmlexercicio FROM exercicio WHERE exercicio.idEx = '"id"'")]
            (clob-to-string (:xmlexercicio (first res))) ))))
   ([retorno coluna valor]
-  "Busca outros campos da tabela exercicio, através da coluna e valor contido nela."
-  (sql/with-connection ILS-DB
-    (sql/with-query-results res 
-        [(str "SELECT exercicio."retorno" FROM exercicio WHERE exercicio."coluna" = '"valor"'")]
-        (doall res))))
-  ([retorno coluna valor materia]
-  "Busca outros campos da tabela exercicio, através da coluna e valor contido nela."
-  (sql/with-connection ILS-DB
-    (sql/with-query-results res 
-        [(str "SELECT exercicio."retorno" FROM exercicio WHERE exercicio."coluna" = '"valor"' AND exercicio.conteudo='"materia"'")]
-        (doall res)))))
+	"Busca outros campos da tabela exercicio, através da coluna e valor contido nela."
+	(sql/with-connection ILS-DB
+ 	 	(sql/with-query-results res 
+    		[(str "SELECT exercicio."retorno" FROM exercicio WHERE exercicio."coluna" = '"valor"'")]
+    		(doall res))))
+   ([retorno coluna1 valor1 coluna2 valor2]
+	"Busca outros campos da tabela exercicio, através da coluna e valor contido nela."
+	(sql/with-connection ILS-DB
+ 	 	(sql/with-query-results res 
+    		[(str "SELECT exercicio."retorno" FROM exercicio WHERE exercicio."coluna1" = '"valor1"' AND exercicio."coluna2" = '"valor2"'")]
+    		(doall res)))))
                
 (defn buscar-apresentacao 
  ([id]
@@ -49,10 +49,12 @@
     (sql/with-connection ILS-DB
    	 (sql/transaction
   	  (sql/with-query-results res 
-        [(str "SELECT apresentacao."retorno" FROM apresentacao, estilo WHERE estilo.selecao = '"selecao"' 
-               AND estilo.organizacao = '"organizacao"' AND estilo.utilizacao = '"utilizacao"'
-               AND estilo.idEst = apresentacao.idEst")]
-           )))))  
+        [(str "SELECT apresentacao."retorno" 
+        	   FROM apresentacao, estilo 
+        	   WHERE estilo.idEst = apresentacao.idEst AND 
+        	   estilo.selecao = '"selecao"' AND estilo.organizacao = '"organizacao"' AND estilo.utilizacao = '"utilizacao"' 
+              ")]
+           (doall res))))))  
      
 (defn buscar-catalogoBug
  ([id]
@@ -67,7 +69,14 @@
 	(sql/with-connection ILS-DB
   	  (sql/with-query-results res 
         [(str "SELECT catalogoBug."retorno" FROM catalogoBug WHERE catalogoBug."coluna" = '"valor"'")]
-        (doall res)))))   
+        (doall res))))
+   ([retorno coluna1 valor1 coluna2 valor2]
+	"Busca outros campos da tabela catalogoBug, através da coluna e valor contido nela."
+	(sql/with-connection ILS-DB
+  	  (sql/with-query-results res 
+        [(str "SELECT catalogoBug."retorno" FROM catalogoBug WHERE catalogoBug."coluna1" = '"valor1"'
+               AND catalogoBug."coluna2" = '"valor2"'")]
+        (doall res)))))     
                 
 (defn buscar-disciplina 
   ([id]
@@ -98,12 +107,20 @@
         [(str "SELECT aluno."retorno" FROM aluno WHERE aluno."coluna" = '"valor"'")]
           (doall res))))  
           
-(defn buscar-conteudo [retorno coluna valor]
+(defn buscar-conteudo 
+   ([retorno coluna valor]
 	"Busca campos da tabela conteudo, através de uma coluna e valor contido nela."
 	(sql/with-connection ILS-DB
   	  (sql/with-query-results res 
         [(str "SELECT conteudo."retorno" FROM conteudo WHERE conteudo."coluna" = '"valor"'")]
-          (doall res))))  
+          (doall res))))
+    ([retorno coluna1 valor1 coluna2 valor2]
+	 "Busca campos da tabela conteudo, através de uma coluna e valor contido nela."
+	 (sql/with-connection ILS-DB
+  	  (sql/with-query-results res 
+        [(str "SELECT conteudo."retorno" FROM conteudo WHERE conteudo."coluna1" = '"valor1"' AND 
+               conteudo."coluna2" = '"valor2"'")]
+          (doall res)))))        
           
 (defn buscar-ministra [retorno coluna valor]
 	"Busca campos da tabela ministra, através de uma coluna e valor contido nela."
