@@ -76,16 +76,16 @@
         -webkit-box-sizing:  border-box;  }
     .m-center:not(.m-fluid)  >  .m-carousel-inner  {
         display:  inline-block;
-        margin-right:  -20000px  !important;
+        margin-right:  10px  !important;
         margin-left:  0  !important;  }
         .m-center:not(.m-fluid)  >  .m-carousel-inner  >  *  {
             position:  relative;
             left:  -20000px;  }
         .m-center:not(.m-fluid)  >  .m-carousel-inner  >  *:first-child  {
             float:  left;
-            margin-right:  20000px;
+            margin-right:  10px;
             left:  0;  }
             .m-center:not(.m-fluid)  >  .m-carousel-inner  >  *:first-child:last-child  {
                 margin-right:  0;  }
         .m-center:not(.m-fluid)  >  .m-carousel-inner  >  *:last-child  {
-            margin-right:  -30000px;  }
+            margin-right:  10px;  }

@@ -23,10 +23,84 @@ h3
  
 }
 
-#borda_slide
+#modal_footer
 {
-border-style:solid;
-border:1px;
+
+  height:600px;
+
+}
+
+#fundoiframe
+{
+    background-color:#E6E8FA;
+    color:black;    
+    height:auto;
+
+}
+
+*{
+margin:0;padding:0;
+}
+#corpo
+{
+height:auto;
+}
+
+
+
+#container_slide
+{
+    height:600px;
+
+}
+
+#last_index
+{
+   height:100px;
+   
+}
+
+.home 
+{
+   padding-top: 80px;
+   padding-bottom: 40px;
+}
+.sidebar-nav 
+{
+   padding: 9px 0;
+}
+
+
+#footer 
+{
+   background-color: #f5f5f5;
+}
+
+
+#botoes
+{
+  position:relative;
+  left:10px;
+
+}
+.console
+{
+    width:700px;
+    height:100px;
+    background-color:#B0C4DE;
+}
+
+
+#myModal
+{
+   width:500px;
+   height:500px;
+}
+
+#cadastro_body
+{
+ height:700px;
+
 }
 
 #inputCurso{
@@ -50,6 +124,7 @@ left:1px;
 {
   position:relative;
   top:10px;
+
 }
 
 #end
@@ -195,7 +270,7 @@ a.links_slide.visited:{color: purple;}
 
 #links_slide_barra
 {
-  background-color:#D9D9F3;
+  background-color:#CCCCCC;
   }
 
 #config
@@ -212,6 +287,17 @@ a.links_slide.visited:{color: purple;}
   border-style:solid; 
   color:white;
 }
+
+.Iframe2
+{
+  width:800px;
+  height:500px;
+  background-color:#999999;
+  border-style:solid; 
+  color:white;
+}
+
+
 
 #sidebar{
  float:right;
@@ -261,15 +347,6 @@ body.auto
     left:0%;
 }
 
-#console
-{
-    width:97%;
-    height:8%;
-    background-color:#B0C4DE;
-    position: fixed;
-    top: 80%;
-    left:2%;
-}
 
 #back_index
 {
@@ -292,7 +369,7 @@ body.auto
 
 #ativ-exerc
 {
-   color:#006600;
+   color:#696969;
   
 
 }
@@ -1138,11 +1215,7 @@ border-color:#999999;
 }
 
 
-#fundoiframe
-{
-    background-color:#E6E8FA;
-    color:black;    
-}
+
 
 #fundoAdmin
 {

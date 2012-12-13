@@ -12,10 +12,10 @@
 
  (def mapaRespostas
  {
-    "a"   0
-    "b"   1
-    "c"   2
-    "d"   3
+    "a" 0
+    "b" 1
+    "c" 2
+    "d" 3
  })
 
 (def exerciciosFaceis)
@@ -43,12 +43,11 @@
 ;;#################################-USADO SOMENTE PARA TESTES-###############################
 ;;###########################################################################################
 
-
 (defn formata-pergunta [n]
 ; Primeira coisa a ser feita e carregar o xml desejado sendo assim a 
 ;performance melhora de forma signifcativa pois não será preciso buscar 
 ;no banco de dados, o xml estará agora em uma estrututura
-         (carregar-exercicio (first exercicioAtual))
+           (carregar-exercicio (first exercicioAtual))
 ; Condição para verificar se o exercício é de Multipla Escolha
 ; Note que usamos a função "get-value-exercicio "
 ; Ela trabalha na forma de lista, ou seja a tag que trata
@@ -59,23 +58,33 @@
             :nome (.toUpperCase (get-tag-exercicio :conteudo)) 
             :tipo (get-tag-exercicio :tipo) 
             :enunciado (get-tag-exercicio :enunciado) 
+            :nivel (get-tag-exercicio :nivel) 
             :post (formata-post (get-tag-exercicio :conteudo) n)
             })
          (cond (= "me" (get xmap :tipo))
 ; Abaixo temos o formato genêrico de html para exercicios de multipla escolha         
-         [:body {:id "fundoiframe"} 
+         [:body {:id "fundoiframe" :onload "ResizeWH();"} 
+         [:form {:action "/ola"}] 
          [:form {:action (get xmap :post) :method "post" :name "form"}
-         [:center [:h5 (get xmap :nome)]]    
-         [:p (str n ") " (get xmap :enunciado))]
-         [:input {:type "radio" :name "op" :value "a" }]
+         [:div {:class "modal-header"}
+         [:center [:h5 (get xmap :nome)]]  
+         [:p "Nível : " (get xmap :nivel)]   
+         [:p (str n ") " (get xmap :enunciado))]]
+         [:div {:class "modal-body"} 
+         [:input {:type "radio" :name "op" :value "a" } " "]
          (get-tag-exercicio :alternativa 0) [:br]
-         [:input {:type "radio" :name "op" :value "b" }] 
+         [:input {:type "radio" :name "op" :value "b" } " "] 
          (get-tag-exercicio :alternativa 1) [:br]
-         [:input {:type "radio" :name "op" :value "c" }]  
+         [:input {:type "radio" :name "op" :value "c" } " "]  
          (get-tag-exercicio :alternativa 2) [:br]
-         [:input {:type "radio" :name "op" :value "d" }]  
+         [:input {:type "radio" :name "op" :value "d" } " "]  
          (get-tag-exercicio :alternativa 3) [:br] [:br][:br]
-         [:button {:class "botaoQuestoes" :onclick "return verificaRadio();"} "Avançar"]]]
+         ] ;end modal-body  
+         [:div {:class "modal-footer"}
+         [:div   {:class "control-group"}
+         [:button {:class "btn btn-large btn-success" :onclick "return verificaRadio()"} "avançar"]
+         [:button {:class "btn btn-large btn-warning" :formaction "/ola"} "desistir"]
+         ]]]]
          :else
 ;Abaixo temos o formato genêrico de html para exercicios de "aa"
          (cond (= "aa" (get xmap :tipo))
@@ -106,41 +115,37 @@
               (include-css "/css/docs.css")
               (include-js "/js/clike.js")]             
   
-       [:body {:id "fundoiframe" :onload "chama();"}
-       [:p n ") " (get xmap :enunciado) ] 
-       [:form {:id "corConsole" :action (get xmap :post):method "post"}
+       [:body {:id "fundoiframe" :onload "chama(),ResizeWH();"}
+       [:center [:p (get xmap :nome)]]
+       [:p "Nível : " (get xmap :nivel)]  
+       [:p n ") " (get xmap :enunciado)] 
+       [:form {:action "/ola"}]
+       [:form {:action ""}]
+       [:div {:class "modal-body"}
+       [:form {:id "corConsole" :action (get xmap :post) :method "post"}
        [:textarea {:id "code" :name "code"}
        "    /* Escreva seu código aqui*/   \n\n"
        "#include <stdio.h> \n"
        "#include <stdlib.h> \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
  
        ]
-
        [:div {:class "btn-group" }
-       [:button {:class "bnt btn-info"} "anterior"]]
+       [:button {:class "bnt btn-info" :formaction ""} "anterior"]]
        [:div {:class "btn-group" }
-       [:button {:class "bnt btn-success" :href "#testar" :role "button" :data-toggle "modal"} "testar"]]
+       [:button {:class "bnt btn-success" :href "#testar" :role "button" :data-toggle "modal" } "testar"]]
        [:div {:class "btn-group" }
-       [:button {:class "bnt btn-primary"} "próximo"]]
+       [:button {:class "bnt btn-primary" :formaction ""} "próximo"]]
        [:div {:class "btn-group" }
-       [:button {:class "bnt btn-danger"} "desistir"]]] 
-       
-       [:div {:id "testar" :class "modal hide fade" :tabindex "-1" :role "dialog" :aria-labelledby "testarLabel" :aria-hidden "true"}
-       [:div {:class "modal-header"}
-       [:button {:type "button" :class "close" :data-dismiss "modal" :aria-hidden "true"}"×"]
-       [:h3 {:id "testarLabel"} "História"]
-       ]
-       [:div {:class "modal-body"}
-       [:p "O ILS é um projeto que se iniciou em 2012, voltado para o ensino ..."]
-       ]
+       [:button {:class "bnt btn-danger" :formaction  "/ola"} "desistir"]]
+       ]]
        [:div {:class "modal-footer"}
-       [:button {:class "btn btn-danger" :data-dismiss "modal" :arial-hidden "true"} "Close"]]
-       ]]]
+       [:textarea {:class  "console"} ">>>"]]]]
        )))
 
 
+
 ;##########################################################################
-;----------------------------                  ---------------------------
+;---------------------------- ---------------------------
 ;##########################################################################
 (defn conteudo-dificil []
    (cond
@@ -180,15 +185,15 @@
    )
 
    (cond
-      (= "facil" nivelExercicio) 
-         (cond 
+      (= "facil" nivelExercicio)
+         (cond
             (= "true" resposta) (def exercicioAtual [ (conteudo-medio) ])
             :else (def exercicioAtual [ (conteudo-facil) ])
          )
       :else
          (cond
-            (= "medio" nivelExercicio) 
-               (cond 
+            (= "medio" nivelExercicio)
+               (cond
                   (= "true" resposta) (resposta exercicioAtual [ (conteudo-dificil) ])
                   :else (def exercicioAtual [ (conteudo-medio) ])
                )
@@ -206,7 +211,7 @@
 
 
 (defn pedagogico-gcc [exit]
-  (def path "/home/pablo/Documents/CLOJUREE/teste")
+  (def path "/home/marcosmoresco/Desktop/ILS/src/ils/views/codigo.c")
   (spit (str path ".c") exit) ; crio o arquivo.
    (cond
       (= (get (sh "gcc" "-o" (str path ".o") (str path ".c")) :err) "")
@@ -222,9 +227,9 @@
 
 (defn pedagogico-corretor [n respostaDoAluno]
    (def xmlmap {
-      :conteudo (.toLowerCase (get-tag-exercicio :conteudo)) 
-      :exercicio (get-tag-exercicio :idEx) 
-      :nivel (get-tag-exercicio :nivel) 
+      :conteudo (.toLowerCase (get-tag-exercicio :conteudo))
+      :exercicio (get-tag-exercicio :idEx)
+      :nivel (get-tag-exercicio :nivel)
       :tipo (get-tag-exercicio :tipo)
       })
 
@@ -244,9 +249,9 @@
 
    ; As funcoes de atualizar-probs-exercicio devera ser verificada. Nao esta funcionando.
    ; (if
-   ;    (= (get xmlmap :resposta) "true")
-   ;       (atualizar-probs-exercicio (recupera-id (session/get :senhaUsuario))  (get xmlmap :conteudo) (get xmlmap :exercicio) 1.0 0.0 0.0)
-   ;    (atualizar-probs-exercicio (recupera-id (session/get :senhaUsuario))  (get xmlmap :conteudo) (get xmlmap :exercicio) 0.0 0.0 1.0)
+   ; (= (get xmlmap :resposta) "true")
+   ; (atualizar-probs-exercicio (recupera-id (session/get :senhaUsuario)) (get xmlmap :conteudo) (get xmlmap :exercicio) 1.0 0.0 0.0)
+   ; (atualizar-probs-exercicio (recupera-id (session/get :senhaUsuario)) (get xmlmap :conteudo) (get xmlmap :exercicio) 0.0 0.0 1.0)
    ; )
 
     (if
@@ -266,7 +271,7 @@
 (def auxVet [nil])
 (defn geraVetor [mapa]
    (cond
-      (nil? mapa) 
+      (nil? mapa)
          (auxVet)
       :else
          (def auxVet (conj [(get (first mapa) :idex)] auxVet))

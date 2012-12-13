@@ -1,10 +1,5 @@
 
 
-function teste()
- {
-  alert("Error/Usúario já cadastrado!");
- }
-
 
 function CorVermelhaAloc()
 {
@@ -197,8 +192,16 @@ function mudaVideo(){
 }
 
 
+
+
 function mudaVideoIntroducao(){
   parent.document.getElementById('ativ-exerc').innerHTML = "Vídeos de Introdução"; 
+}
+
+
+
+function testeVazio(){
+  parent.document.getElementById('ativ-exerc').innerHTML = ""; 
 }
 
 
@@ -618,6 +621,307 @@ function mudaCor()
   parent.document.getElementById('vet').style.color = "cadetblue";
 
 }
+
+
+
+/*************** CorVerdeIntrodução ****************************/
+
+
+
+function corVerdeIntroducao()
+{
+   
+  parent.document.getElementById('intro').style.color = "green";
+
+}
+
+function corVerdeString()
+{
+   
+  parent.document.getElementById('string').style.color = "green";
+
+}
+
+
+function corVerdeAlocacao()
+{
+   
+  parent.document.getElementById('aloc').style.color = "green";
+
+}
+
+
+function corVerdeRecusividade()
+{
+   
+  parent.document.getElementById('recursiv').style.color = "green";
+
+}
+
+
+function corVerdeVetor()
+{
+   
+  parent.document.getElementById('vetor').style.color = "green";
+
+}
+
+
+function corVerdeFuncao()
+{
+   
+  parent.document.getElementById('func').style.color = "green";
+
+}
+
+
+
+function corVerdeStruct()
+{
+   
+  parent.document.getElementById('struct').style.color = "green";
+
+}
+
+function corVerdeEC()
+{
+   
+  parent.document.getElementById('EC').style.color = "green";
+
+}
+
+
+function corVerdeER()
+{
+   
+  parent.document.getElementById('ER').style.color = "green";
+
+}
+
+function corVerdeArquivo()
+{
+   
+  parent.document.getElementById('arquivo').style.color = "green";
+
+}
+
+/*************************** CorAzulIntrodução *********************/
+
+
+
+function corAzulIntroducao()
+{
+   
+  parent.document.getElementById('intro').style.color = "blue";
+
+}
+
+function corAzulString()
+{
+   
+  parent.document.getElementById('string').style.color = "blue";
+
+}
+
+
+function corAzulAlocacao()
+{
+   
+  parent.document.getElementById('aloc').style.color = "blue";
+
+}
+
+
+function corAzulRecusividade()
+{
+   
+  parent.document.getElementById('recursiv').style.color = "blue";
+
+}
+
+
+function corAzulVetor()
+{
+   
+  parent.document.getElementById('vetor').style.color = "blue";
+
+}
+
+
+function corAzulFuncao()
+{
+   
+  parent.document.getElementById('func').style.color = "blue";
+
+}
+
+
+
+function corAzulStruct()
+{
+   
+  parent.document.getElementById('struct').style.color = "blue";
+
+}
+
+function corAzulEC()
+{
+   
+  parent.document.getElementById('EC').style.color = "blue";
+
+}
+
+
+function corAzulER()
+{
+   
+  parent.document.getElementById('ER').style.color = "blue";
+
+}
+
+function corAzulArquivo()
+{
+   
+  parent.document.getElementById('arquivo').style.color = "blue";
+
+}
+
+
+
+/************************ CorVermelhaIntrodução ***************************/
+
+
+function corVermelhaIntroducao()
+{
+   
+  parent.document.getElementById('intro').style.color = "red";
+
+}
+
+function corVermelhaString()
+{
+   
+  parent.document.getElementById('string').style.color = "red";
+
+}
+
+
+function corVermelhaAlocacao()
+{
+   
+  parent.document.getElementById('aloc').style.color = "red";
+
+}
+
+
+function corVermelhaRecusividade()
+{
+   
+  parent.document.getElementById('recursiv').style.color = "red";
+
+}
+
+
+function corVermelhaVetor()
+{
+   
+  parent.document.getElementById('vetor').style.color = "red";
+
+}
+
+
+function corVermelhaFuncao()
+{
+   
+  parent.document.getElementById('func').style.color = "red";
+
+}
+
+
+
+function corVermelhaStruct()
+{
+   
+  parent.document.getElementById('struct').style.color = "red";
+
+}
+
+function corVermelhaEC()
+{
+   
+  parent.document.getElementById('EC').style.color = "red";
+
+}
+
+
+function corVermelhaER()
+{
+   
+  parent.document.getElementById('ER').style.color = "red";
+
+}
+
+function corVermelhaArquivo()
+{
+   
+  parent.document.getElementById('arquivo').style.color = "red";
+
+}
+
+
+
+
+function tam() 
+{
+document.getElementById("page").height = page.document.getElementById("contLoja").scrollHeight + 40; 
+//40: Margem Superior e Inferior, somadas
+}
+
+function ResizeWH(){
+var w;
+var h;
+
+w = document.getElementById("fundoiframe").clientWidth;
+h = document.getElementById("fundoiframe").clientHeight;
+parent.WHFRAME(w,h);
+}
+
+function ResizeWHE(){
+var w;
+var h;
+
+w = document.getElementById("fundoiframe").clientWidth;
+h = document.getElementById("fundoiframe").clientHeight;
+
+parent.WHEFRAME(w,h);
+}
+
+
+function WHFRAME(w,h){
+var FrameWH = parent.document.getElementById("iframe");
+FrameWH.style.height = h+50+"px";
+FrameWH.style.overflow = "hidden";
+
+}
+
+function WHEFRAME(w,h){
+var FrameWH = parent.document.getElementById("iframe");
+FrameWH.style.height = h-10+"px";
+}
+
+
+
+function videoScroll(){
+var FrameWH = parent.document.getElementById("iframe");
+FrameWH.style.overflow = "auto";
+return true;
+
+}
+
+
+
+
+
 
 
  

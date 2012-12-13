@@ -26,11 +26,11 @@
     text-indent: -999px;
     overflow: hidden;
     display: inline-block;
-    padding: 6px;
+    padding: 7px;
     width: 0;
     height: 0;
-    margin: 0 3px;
-    color: #333;
+    margin: 0 4px;
+    color: #ffffff;
     background-color: rgba(255,255,255,0.3);
     -webkit-transition: background-color 0.1s ease-in;
     -moz-transition: background-color 0.1s ease-in;
@@ -64,8 +64,8 @@
     text-decoration: none;
     display: inline-block;
     padding: 3px 10px;
-    margin: 1px 0;
-    color: #333;
+    margin: 0 0;
+    color: #fff;
     background-color: rgba(255,255,255,0.3);
     -webkit-transition: background-color 0.1s ease-in;
     -moz-transition: background-color 0.1s ease-in;
@@ -95,7 +95,7 @@
     top: 50%;
     width: 50px;
     height: 50px;
-    margin: -25px 0 0 0;
+    margin: -25px;
     padding: 0;
     text-decoration: none;
     text-indent: -999px;
@@ -191,21 +191,24 @@
 
 /* Default Themes/Sytles for Slider */
 
-.m-fluid .m-item {
-    margin-right: 20px;
+.m-fluid, .m-item {
+    margin-right: 20px; 
+    background-color:#ffffff;
 }
+
 
 /* Fluid Width Photo Carousel
  * .m-carousel.m-fluid.m-carousel-photos
  */
 
 .m-carousel-photos {
-    margin: 0 -10px;
-    padding: 0 10px;
+    margin:  0 0px;
+    padding: 0 0px;
+    background-color:#ffffff;
 }
 
 .m-carousel-photos .m-item  > img {
-    margin: 0;
+    margin: 0px;
     padding: 0;
     max-width: none;
     width: 100%;

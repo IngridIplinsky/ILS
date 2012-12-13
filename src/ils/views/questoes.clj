@@ -19,8 +19,10 @@
 
 (defpage "/login/ola" []
       (common/layout   
-         [:body {:id "fundoiframe" :onclick "alteraPosicionamento();"} 
+         [:body {:id "fundoiframe" :onload "ResizeWH()"} 
+         [:script {:type "text/javascript" :src "/js/bootstrap.min.js"}] 
          [:center [:h3 "Observação"]]
+         [:div {:class "modal-header"}
          [:p  " Antes de começarmos as lições eu gostaria de saber um pouquinho sobre seus 
               conhecimentos de Programação de Computadores e/ou Estrutura de Dados. Depois posso 
               lhe dar alguma sugestão para que você possa se sair melhor durante os estudos destas 
@@ -28,7 +30,24 @@
          [:p " Para isto temos os links referentes as disciplinas, nelas você vai enfrentar vários
          tipos de exercícios, como multipla escolha, questão abertas, V ou F . Caso
          você esteja preso em um exercício, você pode desistir do mesmo e tentar depois."]
-         [:h3 [:center " Boa sorte pra você e vamos em frente."]]]))
+         [:h3 [:center " Boa sorte pra você e vamos em frente."]]]]))
+
+
+(defpage [:post "/ola"] []
+      (common/layout   
+         [:body {:id "fundoiframe" :onload "corAzulAlocacao(), corAzulVetor(),corAzulString(),corAzulRecusividade(),
+                                    corAzulFuncao(),corAzulStruct(),corAzulEC(),corAzulER(),corAzulArquivo(),
+                                    corAzulIntroducao(),testeVazio(),ResizeWH();"} 
+         [:center [:h3 "Observação"]]
+         [:div {:class "modal-header"}
+         [:p  " Antes de começarmos as lições eu gostaria de saber um pouquinho sobre seus 
+              conhecimentos de Programação de Computadores e/ou Estrutura de Dados. Depois posso 
+              lhe dar alguma sugestão para que você possa se sair melhor durante os estudos destas 
+              duas disciplinas."]
+         [:p " Para isto temos os links referentes as disciplinas, nelas você vai enfrentar vários
+         tipos de exercícios, como multipla escolha, questão abertas, V ou F . Caso
+         você esteja preso em um exercício, você pode desistir do mesmo e tentar depois."]
+         [:h3 [:center " Boa sorte pra você e vamos em frente."]]]]))
 
 
 
@@ -39,8 +58,10 @@
 
 (defpage "/login/alocacao" []
       (common/layout
-         [:body {:id "fundoiframe"} 
-         [:form {:action "/login/alocacao/1" :method "post"}
+         [:body {:id "fundoiframe" :onload "corVerdeAlocacao(), corAzulVetor(),corAzulString(),corAzulRecusividade(),
+                                    corAzulFuncao(),corAzulStruct(),corAzulEC(),corAzulER(),corAzulArquivo(),
+                                    corAzulIntroducao(),testeVazio(),ResizeWH();"} 
+         [:form {:action "/login/alocDin/1" :method "post"}
          [:center [:h5 "Alocação Dinâmica"]]
          [:p "A alocação dinâmica é o processo que aloca memória em tempo de execução. 
              Ela é utilizada quando não se sabe ao certo quanto de memória será necessário 
@@ -68,73 +89,70 @@
          [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
          [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
          ]] 
-         ]]))
+         ]
+         [:div {:class "modal-footer"}
+         [:h3 "Escolha uma opção"]]]))
 
 
 
-(defpage [:post "/login/alocacao/1"] []
-     (common/layout
-         (formata-pergunta   "ad001" "1" "/login/alocacao/2")))
+(defpage [:post "/login/alocDin/1"] []
+  (common/layout
+        (pedagogico-main "alocDin")))    
 
-(defpage [:post "/login/alocacao/2"] {:keys [op]}
-;(pedagogico-corretor "alocDin" "ex1" op)
-     (common/layout
-         (formata-pergunta "ad002" "2"  "/login/alocacao/3")))
+(defpage [:post "/login/alocDin/2"] {:keys [op]}
+  (common/layout
+    (pedagogico-corretor 1 op)))
 
-(defpage [:post "/login/alocacao/3"] {:keys [op]}
-;(pedagogico-corretor "alocDin" "ex2" op)
-     (common/layout
-         (formata-pergunta "ad003" "3"   "/login/alocacao/4")))
-
-(defpage [:post "/login/alocacao/4"] {:keys [op]}
-;(pedagogico-corretor "alocDin" "ex3" op)
-     (common/layout
-         (formata-pergunta "ad004" "4"  "/login/alocacao/5")))
-
-(defpage [:post "/login/alocacao/5"] {:keys [op]}
-;(pedagogico-corretor "alocDin" "ex4" op)
-     (common/layout
-         (formata-pergunta "ad005" "5"  "/login/alocacao/6")))
+         
+(defpage [:post "/login/alocDin/3"] {:keys [op]}
+(common/layout
+    (pedagogico-corretor 2 op)))
 
 
-(defpage [:post "/login/alocacao/6"] {:keys [op]}
-;(pedagogico-corretor "alocDin" "ex5" op)
-        (common/layout 
-        (formata-pergunta  "ad006" "6"  "/login/alocacao/7")))
+(defpage [:post "/login/alocDin/4"] {:keys [op]}
+(common/layout
+    (pedagogico-corretor 3 op)))
 
 
-(defpage [:post "/login/alocacao/7"] {:keys [op]}
-;(pedagogico-corretor "alocDin" "ex6" op)
-     (common/layout
-         (formata-pergunta   "ad007" "7" "/login/alocacao/8")))
+(defpage [:post "/login/alocDin/5"] {:keys [op]}
+(common/layout
+    (pedagogico-corretor 4 op)))
 
 
-(defpage [:post "/login/alocacao/8"] {:keys [op]}
-;(pedagogico-corretor "alocDin" "ex7" op)
-     (common/layout
-        (formata-pergunta   "ad008" "8" "/login/alocacao/9")))
+(defpage [:post "/login/alocDin/6"] {:keys [op]}
+(common/layout
+    (pedagogico-corretor 5 op)))
+
+
+(defpage [:post "/login/alocDin/7"] {:keys [op]}
+(common/layout
+    (pedagogico-corretor 6 op)))
+
+
+(defpage [:post "/login/alocDin/8"] {:keys [op]}
+(common/layout
+    (pedagogico-corretor 7 op)))
 
 
 
-(defpage [:post "/login/alocacao/9"] {:keys [op]}
-;(pedagogico-corretor "alocDin" "ex8" op)
-     (common/layout
-         (formata-pergunta  "ad009" "9" "/login/alocacao/10")))
+(defpage [:post "/login/alocDin/9"] {:keys [op]}
+(common/layout
+    (pedagogico-corretor 8 op)))
 
 
-(defpage [:post "/login/alocacao/10"] {:keys [op]}
-;(pedagogico-corretor "alocDin" "ex9" op)
-     (common/layout
-         (formata-pergunta   "ad010" "10" "/login/alocacao/fim")))
+(defpage [:post "/login/alocDin/10"] {:keys [op]}
+(common/layout
+    (pedagogico-corretor 9 op)))
 
 
-(defpage [:post "/login/alocacao/fim"] {:keys [op]}
+
+(defpage [:post "/login/alocDin/fim"] {:keys [op]}
 ;(pedagogico-corretor "alocDin" "ex10" op)
   
 ;(atualiza-todo-dominio (recupera-id (session/get :senhaUsuario)) "alocDin")   
 ;(cond (> (get (nth (retorna-exercicio-certos-dominio (recupera-id (session/get :senhaUsuario)) "alocDin") 0) :bom) 0.5)
   (common/layout
-         [:body {:id "fundoiframe" :onload "alteraVisibilidadeAlocacaoInvisivel(); alteraVisibilidadeVetor1(); alteraVisibilidadeVetorInvisivel(); alteraVisibilidadeListaInvisivel(); alteraVisibilidadeFilaInvisivel(); alteraVisibilidadePilhaInvisivel(); alteraVisibilidadeArvoreInvisivel();"} 
+         [:body {:id "fundoiframe"} 
          [:center [:h5 "Alocação Dinâmica"]]
          [:center [:h2 "Você terminou as atividades de Alocação Dinâmica! "]]
          [:center [:h4 "Fico feliz, pois você teve um conhecimento acima de 50%"]]
@@ -144,8 +162,9 @@
          [:body {:id "fundoiframe" } 
          [:center [:h5 "Alocação Dinâmica" ]]
          [:center [:h2 "Você terminou as atividades de alocação dinâmica! "]]
-         [:center [:h4 "Fico triste, pois você não se saiu bem, sendo assim te indico um vídeo explicativo que está abaixo"]]
-         [:center [:h4 [:iframe {:width "560" :height "315" :src "http://www.youtube.com/embed/sTYLxyPszWQ" :frameborder "0" }]]]]  
+         [:center [:h4 "Fico triste, pois você não se saiu bem, sendo assim te indico os vídeo explicativos 
+                        de alocação"]]
+         ]  
          ))
 
 
@@ -157,14 +176,17 @@
 (defpage "/login/vetor" []
       (common/layout
          [:head [:script {:type "text/javascript" :src "/js/bootstrap.min.js"}]]
-         [:body {:id "fundoiframe"} 
-         [:form {:action "/login/vetor/1" :method "post" }
+         [:body {:id "fundoiframe" :onload "corVerdeVetor(),corAzulAlocacao(),corAzulString(),corAzulRecusividade(),
+                                    corAzulFuncao(),corAzulStruct(),corAzulEC(),corAzulER(),
+                                    corAzulArquivo(),corAzulIntroducao(),testeVazio(),ResizeWH();"} 
+         [:div {:class "modal-header"}
          [:center [:h5 "VETOR"]]
          [:p "  Um array ou vetor é uma série de objetos de dados, todos 
               eles possuindo o mesmo tipo, estes objetos de dados são 
               chamados de elementos do vetor. Um vetor é declarado fornecendo-se 
              o tipo dos seus elementos, o nome do vetor e o número de elementos. 
-             Um vetor nada mais é do que uma matriz unidimensional."]
+             Um vetor nada mais é do que uma matriz unidimensional."]]
+         [:form {:action "/login/vetor/1" :method "post" }
          [:div {:class "btn-group" }
          [:button {:class "btn btn-info" :onclick "testeVetor();" } "Avançar para questões"]] 
          [:div {:class "btn-group" }  
@@ -185,109 +207,76 @@
          [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
          [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
          ]]        
-         ]]))
+         ]
+         [:div {:class "modal-footer"}
+         [:h3 "Escolha uma opção"]]]))
 
 
 
   
 (defpage [:post "/login/vetor/1"] {:keys [op]}
      (common/layout
-        (formata-pergunta "v001" "1" "/login/vetor/2"))) 
+        (pedagogico-main "vetor")))
+         ;(formata-pergunta "v001" "1" "/login/vetor/2"))) 
 
 
 (defpage [:post "/login/vetor/2"] {:keys [op]}
-;(pedagogico-corretor "vetor" "ex1" op)
-     (common/layout
-        (formata-pergunta  "v002" "2" "/login/vetor/3"))) 
+ (common/layout
+  (pedagogico-corretor 1 op)))
+     ;(common/layout
+      ;  (formata-pergunta  "v002" "2" "/login/vetor/3"))) 
          
 
 (defpage [:post "/login/vetor/3"] {:keys [op]}
-;(pedagogico-corretor "vetor" "ex2" op)
-     (common/layout
-       (formata-pergunta  "v003" "3" "/login/vetor/4")))
+  (common/layout
+     (pedagogico-corretor 2 op)))
+        ;(formata-pergunta  "v003" "3" "/login/vetor/4")))
         
 
 (defpage [:post "/login/vetor/4"] {:keys [op]}
-;(pedagogico-corretor "vetor" "ex3" op)
-     (common/layout
-       (formata-pergunta "v004" 4 "/login/vetor/5")))  
-
+  (common/layout
+     (pedagogico-corretor 3 op)))   
+      
 (defpage [:post "/login/vetor/5"] {:keys [op]}   
-;(pedagogico-corretor "vetor" "ex4" op)
-    (common/layout
-       (formata-pergunta "v005" 5  "/login/vetor/6")))  
+  (common/layout
+     (pedagogico-corretor 4 op)))   
 
         
 (defpage [:post "/login/vetor/6"] {:keys [op]}
-;(pedagogico-corretor "vetor" "ex5" op)
-     (common/layout
-        (formata-pergunta  "v006" 6 "/login/vetor/7")))  
+  (common/layout
+     (pedagogico-corretor 5 op)))   
 
         
          
 (defpage [:post "/login/vetor/7"] {:keys [op]}
-;(pedagogico-corretor "vetor" "ex6" op)
-     (common/layout
-        (formata-pergunta "v007" "7"  "/login/vetor/8")))
-         
+  (common/layout
+     (pedagogico-corretor 6 op)))   
+
+
 (defpage [:post "/login/vetor/8"] {:keys [op]}
-;(pedagogico-corretor "vetor" "ex7" op)
-     (common/layout
-       (formata-pergunta  "v008"  "8"  "/login/vetor/9")))
+(common/layout
+     (pedagogico-corretor 7 op)))   
          
 
 (defpage [:post "/login/vetor/9"] {:keys [op]}
-;(pedagogico-corretor "vetor" "ex8" op)
-     (common/layout
-       (formata-pergunta "v009"  "9"  "/login/vetor/10"))) 
+(common/layout
+     (pedagogico-corretor 8 op)))   
          
 
 (defpage [:post "/login/vetor/10"] {:keys [op]}
-;(pedagogico-corretor "vetor" "ex9" op)
-     (common/layout
-       (formata-pergunta  "v010" "10" "/login/vetor/11")))   
-
+(common/layout
+     (pedagogico-corretor 9 op)))   
 
 (defpage [:post "/login/vetor/11"] {:keys [op]}
-;(pedagogico-corretor "vetor" "ex9" op)
-     (common/layout
-       [:head
-              (include-css "/css/codemirror.css")
-              (include-js "/js/codemirror.js")
-              (include-css "/css/docs.css")
-              (include-js "/js/clike.js")]             
-  
-       [:body {:id "fundoiframe" :onload "chama();"}
-       [:p "11) Escreva um código em C, que imprime um vetor de 10 posições"] 
-       [:form {:id "corConsole" :action "/login/vetor/fim" :method "post"}
-       [:textarea {:id "code" :name "code"}
-       "    /* Escreva seu código aqui*/   \n\n"
-       "#include <stdio.h> \n"
-       "#include <stdlib.h> \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
- 
-       ]
+(common/layout
+     (pedagogico-corretor 10 op)))   
 
-       [:div {:class "btn-group" }
-       [:button {:class "bnt btn-info"} "anterior"]]
-       [:div {:class "btn-group" }
-       [:button {:class "bnt btn-success" :href "#testar" :role "button" :data-toggle "modal"} "testar"]]
-       [:div {:class "btn-group" }
-       [:button {:class "bnt btn-primary"} "próximo"]]
-       [:div {:class "btn-group" }
-       [:button {:class "bnt btn-danger"} "desistir"]]] 
-       
-       [:div {:id "testar" :class "modal hide fade" :tabindex "-1" :role "dialog" :aria-labelledby "testarLabel" :aria-hidden "true"}
-       [:div {:class "modal-header"}
-       [:button {:type "button" :class "close" :data-dismiss "modal" :aria-hidden "true"}"×"]
-       [:h3 {:id "testarLabel"} "História"]
-       ]
-       [:div {:class "modal-body"}
-       [:p "O ILS é um projeto que se iniciou em 2012, voltado para o ensino ..."]
-       ]
-       [:div {:class "modal-footer"}
-       [:button {:class "btn btn-danger" :data-dismiss "modal" :arial-hidden "true"} "Close"]]
-       ]        
-]))
+(defpage [:post "/login/vetor/12"] {:keys [op]}
+(common/layout
+     (pedagogico-corretor 11 op)))   
+               
+
+
 
 (defpage [:post "/login/vetor/fim"] {:keys [code]}
 ;(pedagogico-corretor "vetor" "ex10" code)
@@ -303,15 +292,13 @@
          [:center [:h4 "Vamos para o centeúdo de Lista, o link apareceu ao lado"]]])
    :else 
      (common/layout
-         [:body {:id "fundoiframe" :onload "CorVermelhaAloc();"} 
+         [:body {:id "fundoiframe" :onload "CorVermelhaAloc(),ResizeWH();"} 
          [:center [:h5 "VETOR" ]]
-         [:p code]   
-         [:p "Saída do código: " (:out (sh "gcc" code))]
-         [:p "Error: " (:err (sh "gcc" code))]
+         [:p "Numero de exercícios resolvidos : 10"]
          [:center [:h2 "Você terminou as atividades de vetores! "]]
          [:center [:h4 "Fico triste, pois você não se saiu bem"]]
          [:center [:h4 "Sendo assim, não pode prosseguir."]]
-         [:center [:h4 "Te indico o conteúdo de alocação dinâmica, que apareceu o link ao lado."]]]  
+         [:center [:h4 "Te indico o conteúdo de alocação dinâmica, que apareceu o link em vermelho ao lado."]]]  
          )))
 
 
@@ -333,7 +320,9 @@
 
 (defpage "/login/recursividade" []
       (common/layout
-         [:body {:id "fundoiframe"} 
+         [:body {:id "fundoiframe" :onload "corVerdeRecusividade(), corAzulVetor(),corAzulString(),corAzulIntroducao(),
+                                    corAzulFuncao(),corAzulStruct(),corAzulEC(),corAzulER(),
+                                    corAzulArquivo(),corAzulAlocacao(),testeVazio(),ResizeWH();;"} 
          [:form {:action "/login/recursividade/1" :method "post"}
          [:center [:h5 "RECURSIVIDADE"]]
          [:p "Recursividade é um termo usado de maneira mais geral para descrever 
@@ -364,7 +353,9 @@
          [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
          [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
          ]] 
-         ]]))
+         ]
+         [:div {:class "modal-footer"}
+         [:h3 "Escolha uma opção"]]]))
 
 
 
@@ -1485,7 +1476,8 @@ de operações que seja adequado a todas aplicações."]
 (defpage "/login/introdução" []
       (common/layout
          [:head [:script {:type "text/javascript" :src "/js/bootstrap.min.js"}]]
-         [:body {:id "fundoiframe"} 
+         [:body {:id "fundoiframe" :onload "corVerdeIntroducao(), corAzulVetor(),corAzulAlocacao(),corAzulString(),corAzulRecusividade(),
+                                    corAzulFuncao(),corAzulStruct(),corAzulEC(),corAzulER(),corAzulArquivo(),testeVazio(),ResizeWH();;"} 
          [:form {:action "/login/introdução/1" :method "post"}
          [:center [:h5 "Introdução"]] 
          [:p " Programação é o processo de escrita, teste e manutenção de um programa de computador. 
@@ -1496,6 +1488,7 @@ de operações que seja adequado a todas aplicações."]
              podem criar programas muito diferentes para diferentes linguagens; muito embora, teoricamente, a maioria 
              das linguagens possa ser usada para criar qualquer programa."]
          [:p "A seguir temos alguns exercícios de para a introdução, boa sorte."]
+        
          [:div {:class "btn-group" }
          [:button {:class "btn btn-info" :onclick "testeIntroducao();" } "Avançar para questões"]] 
          [:div {:class "btn-group" }  
@@ -1503,56 +1496,64 @@ de operações que seja adequado a todas aplicações."]
          [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
          [:span {:class "caret"}]]
          [:ul {:class "dropdown-menu"}
-         [:li [:a {:href "/videos/introdução " :onclick "mudaVideoIntroducao()" :target "principal" 
+         [:li [:a {:href "/videos/introdução/esqueleto " :onclick "mudaVideoIntroducao();" :target "principal" 
                :role "button" :data-toggle "modal" :name "backes001.xml"} 
                                                 [:i {:class "icon-pencil"}] "Esqueleto de um programa C"]]
          [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Declaração de variáveis"]]
          [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Printf/Scanf"]]
          [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Operador de atribuição"]] 
-         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         [:li [:a {:href "/videos/introdução " :onclick "mudaVideoIntroducao(),videoScroll();" :target "principal" }
+                                             [:i {:class "icon-ban-circle"}] "Todos"]]
          ]] 
          [:div {:class "btn-group" }  
-         [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white"}] "Textos Explicativos"]
+         [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white" }] "Textos Explicativos"]
          [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
          [:span {:class "caret"}]]
          [:ul {:class "dropdown-menu"}
-         [:li [:a {:href "#" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Esqueleto de um programa em C"]]
+         [:li [:a {:href "#" :role "button" :data-toggle "modal" } [:i {:class "icon-pencil"}] "Esqueleto de um programa em C"]]
          [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Declaração de variáveis"]]
          [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Printf/Scanf"]]
          [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Operador de atribuição"]]  
-         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Todos"]]
          ]]
-         ]]))
+         ]
+         [:div {:class "modal-footer"}
+         [:h3  "Escolha uma opção"]]]))
 
 
 
 (defpage [:post "/login/introdução/1"] []
      (common/layout
-         (formata-pergunta "a001" "1" "/login/introdução/2")))
+       (pedagogico-main "introducao")))
+        ; (formata-pergunta "a001" "1" "/login/introdução/2")))
 
-(defpage [:post "/login/introdução/2"] []
+(defpage [:post "/login/introdução/2"] [op]
      (common/layout
-          (formata-pergunta "a002" "2" "/login/introdução/3")))
+        (pedagogico-corretor 1 op)))   
+       ;(formata-pergunta "a002" "2" "/login/introdução/3")))
 
-(defpage [:post "/login/introdução/3"] []
+(defpage [:post "/login/introdução/3"] [op]
      (common/layout
-          (formata-pergunta "a003" "3" "/login/introdução/4")))
+          (pedagogico-corretor 2 op)))
 
-(defpage [:post "/login/introdução/4"] []
+
+(defpage [:post "/login/introdução/4"] [op]
      (common/layout
-          (formata-pergunta "a004" "4" "/login/introdução/5")))
+          (pedagogico-corretor 3 op)))
 
-(defpage [:post "/login/introdução/5"] []
+
+(defpage [:post "/login/introdução/5"] [op]
      (common/layout
-          (formata-pergunta "a005" "5" "/login/introdução/6")))
+          (pedagogico-corretor 4 op)))
 
 
-(defpage [:post "/login/introdução/6"] []
+(defpage [:post "/login/introdução/6"] [op]
      (common/layout
-          (formata-pergunta "a006" "6" "/login/introdução/7")))
+          (pedagogico-corretor 5 op)))
 
 
-(defpage [:post "/login/introdução/7"] []
+
+(defpage [:post "/login/introdução/7"] [op]
      (common/layout
          [:body {:id "fundoiframe"} 
          [:form {:action "/login/introdução/8" :method "post"}
@@ -1560,7 +1561,7 @@ de operações que seja adequado a todas aplicações."]
          [:p "Questão 7 "]
          [:button {:class "botaoQuestoes"} "Avançar"]]]))
 
-(defpage [:post "/login/introdução/8"] []
+(defpage [:post "/login/introdução/8"] [op]
      (common/layout
          [:body {:id "fundoiframe"} 
          [:form {:action "/login/introdução/9" :method "post"}
@@ -1569,7 +1570,7 @@ de operações que seja adequado a todas aplicações."]
          [:button {:class "botaoQuestoes"} "Avançar"]]]))
 
 
-(defpage [:post "/login/introdução/9"] []
+(defpage [:post "/login/introdução/9"] [op]
      (common/layout
          [:body {:id "fundoiframe"} 
          [:form {:action "/login/introdução/10" :method "post"}
@@ -1578,7 +1579,7 @@ de operações que seja adequado a todas aplicações."]
          [:button {:class "botaoQuestoes"} "Avançar"]]]))
 
 
-(defpage [:post "/login/introdução/10"] []
+(defpage [:post "/login/introdução/10"] [op]
      (common/layout
          [:body {:id "fundoiframe"} 
          [:form {:action "/login/introdução/fim" :method "post"}
@@ -1586,7 +1587,7 @@ de operações que seja adequado a todas aplicações."]
          [:p "Questão 10 "]
          [:button {:class "botaoQuestoes"} "Avançar"]]]))
 
-(defpage [:post "/login/introdução/fim"] []
+(defpage [:post "/login/introdução/fim"] [op]
      (common/layout
          [:body {:id "fundoiframe" :onclick "mudaCorPretoMetPesq();"} 
          [:center [:h5 "Introdução"]]
@@ -1601,22 +1602,38 @@ de operações que seja adequado a todas aplicações."]
 (defpage "/videos/introdução" []
  ;(carregar-apresentacao xml)
  (common/layout
-         [:body {:id "fundoiframe" } 
+         [:body {:id "fundoiframe" :onload "ResizeWH(),videoScroll()"}
+         [:div {:class "modal-footer"}  
          [:div {:class "container-fluid"}
          [:div {:class "row-fluid"}
          [:div {:class "span2"  :id "menu_video"}
          [:center [:h5  "Esqueleto de Um programa C"]]
-         [:h4 [:iframe {:width "400" :height "450" :src  "http://www.youtube.com/embed/GiCt0Cwcp-U" :frameborder "1" :id "fp"}]]
+         [:h4 [:iframe {:width "400" :height "400" :src  "http://www.youtube.com/embed/GiCt0Cwcp-U" :frameborder "1" }]]
          [:h4 "Créditos a Andre Backes."] ]  
          [:div {:class "span10" :id "menu_videos"}
          [:h5 "Mais vídeos"]
          [:h4  [:iframe {:width "250" :height "150" :src  "http://www.youtube.com/embed/GiCt0Cwcp-U" :frameborder "1"
                :onclick "mudaVideo();"}]]
          [:h4 [:iframe {:width "250" :height "150" :src  "http://www.youtube.com/embed/q51cHsgRHU4" :frameborder "1"}]]
-         [:h4 [:iframe {:width "250" :height "150" :src  "http://www.youtube.com/embed/q51cHsgRHU4" :frameborder "1"}]]]
-         ]]]
+         [:h4 [:iframe {:width "250" :height "150" :src  "http://www.youtube.com/embed/07YPObbEpU8" :frameborder "1"}]]
+         [:h4 [:iframe {:width "250" :height "150" :src  "http://www.youtube.com/embed/tQhnuVR2gc4" :frameborder "1"}]]
+         [:h4 [:iframe {:width "250" :height "150" :src  "http://www.youtube.com/embed/GdjGrVjRgTI" :frameborder "1"}]]
+         [:h4 [:iframe {:width "250" :height "150" :src  "http://www.youtube.com/embed/NsRwpFNZhJs" :frameborder "1"}]]
+         [:h4 [:iframe {:width "250" :height "150" :src  "http://www.youtube.com/embed/8PAWmHdreoc" :frameborder "1"}]]
+         [:h4 [:iframe {:width "250" :height "150" :src  "http://www.youtube.com/embed/YbVmQKTuajY" :frameborder "1"}]]
+         [:h4 [:iframe {:width "250" :height "150" :src  "http://www.youtube.com/embed/x0uEgxYtW-E" :frameborder "1"}]]]
+         ]]]]
 ))
 
+(defpage "/videos/introdução/esqueleto" []
+ ;(carregar-apresentacao xml)
+ (common/layout
+         [:body {:id "fundoiframe" :onload "ResizeWH()"}
+         [:div {:class "modal-header"}  
+         [:center [:h5  "Esqueleto de Um programa C - Créditos a Andre Backes."]]
+         [:h4 [:iframe {:width "700" :height "400" :src  "http://www.youtube.com/embed/GiCt0Cwcp-U" :frameborder "1" }]]
+         ]]
+))
 
 
 
@@ -1629,7 +1646,8 @@ de operações que seja adequado a todas aplicações."]
 
 (defpage "/login/EstruturaRepetição" []
       (common/layout
-         [:body {:id "fundoiframe"} 
+         [:body {:id "fundoiframe" :onload "corVerdeER(),corAzulVetor(),corAzulAlocacao(),corAzulString(),corAzulRecusividade(),
+                                  corAzulFuncao(),corAzulStruct(),corAzulEC(),corAzulIntroducao(),corAzulArquivo(),testeVazio(),ResizeWH();"} 
          [:form {:action "/login/EstruturaRepetição/1" :method "post"}
          [:center [:h5 "Estrutura Repetição"]] 
          [:p " A compressão de dados é o ato de reduzir o espaço ocupado 
@@ -1663,7 +1681,9 @@ de operações que seja adequado a todas aplicações."]
          [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
          [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
          ]]
-         ]]))
+         ]
+         [:div {:class "modal-footer"}
+         [:h3 "Escolha uma opção"]]]))
 
 
 
@@ -1777,7 +1797,8 @@ de operações que seja adequado a todas aplicações."]
 
 (defpage "/login/EstruturaCondição" []
       (common/layout
-         [:body {:id "fundoiframe"} 
+         [:body {:id "fundoiframe" :onload "corVerdeEC(),corAzulVetor(),corAzulAlocacao(),corAzulString(),corAzulRecusividade(),
+                                corAzulFuncao(),corAzulStruct(),corAzulIntroducao(),corAzulER(),corAzulArquivo(),testeVazio(),ResizeWH();;"} 
          [:form {:action "/login/EstruturaCondição/1" :method "post"}
          [:center [:h5 "EstruturaCondição"]] 
          [:p " A compressão de dados é o ato de reduzir o espaço ocupado 
@@ -1811,7 +1832,9 @@ de operações que seja adequado a todas aplicações."]
          [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
          [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
          ]]
-         ]]))
+         ]
+         [:div {:class "modal-footer"}
+         [:h3 "Escolha uma opção"]]]))
 
 
 
@@ -1921,7 +1944,8 @@ de operações que seja adequado a todas aplicações."]
 
 (defpage "/login/string" []
       (common/layout
-         [:body {:id "fundoiframe"} 
+         [:body {:id "fundoiframe" :onload "corVerdeString(),corAzulVetor(),corAzulAlocacao(),corAzulIntroducao(),corAzulRecusividade(),
+                                    corAzulFuncao(),corAzulStruct(),corAzulEC(),corAzulER(),corAzulArquivo(),testeVazio(),ResizeWH();"} 
          [:form {:action "/login/string/1" :method "post"}
          [:center [:h5 "String"]] 
          [:p " Em programação e em linguagens formais, uma cadeia de caracteres 
@@ -1950,7 +1974,9 @@ de operações que seja adequado a todas aplicações."]
          [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
          [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
          ]]
-         ]]))
+         ]
+         [:div {:class "modal-footer"}
+         [:h3 "Escolha uma opção"]]]))
 
 
 
@@ -2059,7 +2085,8 @@ de operações que seja adequado a todas aplicações."]
 
 (defpage "/login/função" []
       (common/layout
-         [:body {:id "fundoiframe"} 
+         [:body {:id "fundoiframe" :onload "corVerdeFuncao(),corAzulVetor(),corAzulAlocacao(),corAzulString(),corAzulRecusividade(),
+                                    corAzulIntroducao(),corAzulStruct(),corAzulEC(),corAzulER(),corAzulArquivo(),testeVazio(),ResizeWH();"} 
          [:form {:action "/login/função/1" :method "post"}
          [:center [:h5 "Funções"]] 
          [:p " A compressão de dados é o ato de reduzir o espaço ocupado 
@@ -2093,7 +2120,9 @@ de operações que seja adequado a todas aplicações."]
          [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
          [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
          ]]
-         ]]))
+         ]
+         [:div {:class "modal-footer"}
+         [:h3 "Escolha uma opção"]]]))
 
 
 
@@ -2198,13 +2227,14 @@ de operações que seja adequado a todas aplicações."]
 
 
 ;******************************************************************************
-;******************************* Arquivo ***************************************
+;******************************* Struct ***************************************
 ;******************************************************************************
 
 
 (defpage "/login/struct" []
       (common/layout
-         [:body {:id "fundoiframe"} 
+         [:body {:id "fundoiframe" :onload "corVerdeStruct(),corAzulVetor(),corAzulAlocacao(),corAzulString(),corAzulRecusividade(),
+                                    corAzulFuncao(),corAzul(),corAzulEC(),corAzulER(),corAzulArquivo(),testeVazio(),ResizeWH();"} 
          [:form {:action "/login/struct/1" :method "post"}
          [:center [:h5 "Struct"]] 
          [:p " A compressão de dados é o ato de reduzir o espaço ocupado 
@@ -2238,7 +2268,9 @@ de operações que seja adequado a todas aplicações."]
          [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
          [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
          ]]
-         ]]))
+         ]
+         [:div {:class "modal-footer"}
+         [:h3 "Escolha uma opção"]]]))
 
 
 
@@ -2347,7 +2379,8 @@ de operações que seja adequado a todas aplicações."]
 
 (defpage "/login/arquivo" []
       (common/layout
-         [:body {:id "fundoiframe"} 
+         [:body {:id "fundoiframe" :onload "corVerdeArquivo(),corAzulVetor(),corAzulAlocacao(),corAzulString(),corAzulRecusividade(),
+                                    corAzulFuncao(),corAzulStruct(),corAzulEC(),corAzulER(),corAzulIntroducao(),testeVazio(),ResizeWH();"} 
          [:form {:action "/login/arquivo/1" :method "post"}
          [:center [:h5 "Arquivo"]] 
          [:p " A compressão de dados é o ato de reduzir o espaço ocupado 
@@ -2381,7 +2414,9 @@ de operações que seja adequado a todas aplicações."]
          [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
          [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
          ]]
-         ]]))
+         ]
+         [:div {:class "modal-footer"}
+         [:h3 "Escolha uma opção"]]]))
 
 
 

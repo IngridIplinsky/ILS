@@ -12,10 +12,7 @@
         [hiccup.page-helpers :only [include-css html5 include-js html5]]
  ))
 
-(defpage "/welcome" []
-         (common/layout
-           [:p "Welcome to tanara"]
-           [:button {:onclick "teste();"} "teste"]))
+
 
 ; definindo a pagina / , está é a pagina inicial do site 
 ; aqui o usuario pode fazer o login ou se cadastrar
@@ -28,7 +25,11 @@
          [:head [:script {:type "text/javascript" :src "/js/bootstrap.min.js"}]
                 [:link {:rel "stylesheet" :href "/css/carousel.css"}]
                 [:link {:rel "stylesheet" :href "/css/carousel-style.css"}]]
-         [:body 
+         [:body  
+         [:div {:id "footer"}
+         [:div {:class "container"}
+         [:div   {:class "control-group"} 
+         ]]]
          [:div {:class "navbar navbar-inverse"}
          [:div {:class "navbar-inner"}
          [:form {:action "/index" :method "post" :name "form" :class "form-inline"}
@@ -41,34 +42,34 @@
          [:button {:class "btn btn-info" :id "botaoConfirma" :onclick "return verificaLogin()"} "Entrar"]
          ]]]]
 
-         [:div {:class "container"  } 
+
+;<div id="myCarousel" class="carousel slide">
+;<!-- Carousel items -->
+;<div class="carousel-inner">
+;<div class="active item">…</div>
+;<div class="item">…</div>
+;<div class="item">…</div>
+;</div>
+;<!-- Carousel nav -->
+;<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+;<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+;</div
+         [:div {:class "container" :id "container_slide" } 
          [:div {:id "myCarousel" :class "carousel slide"}
-   [:div {:class "carousel-inner"}
-   [:div {:class "m-carousel m-fluid m-carousel-photos" }
-   [:div {:class "m-carousel-inner"}
-   [:div {:class "m-item" :id "links_slide_barra"}
-      [:img {:src "/img/ils.jpg" :width "600" :height "350" }]
-   ]
-   [:div {:class "m-item"}
-      [:img {:src"/img/Untitled-1.jpg" :width "600" :height "350" }]
-   ]
-   [:div {:class "m-item"}
-      [:img {:src "/img/Untitled-2.jpg" :width "600" :height "350" }]
-   ]]
-   [:div {:class "m-carousel-controls m-carousel-bulleted" :id "links_slide_barra"}
-    [:a {:href "#" :data-slide "1" :id "links_slide"}"1"]
-    [:a {:href "#" :data-slide "2" :id "links_slide"}"2"]
-    [:a {:href "#" :data-slide "3" :id "links_slide"}"3"] 
-    ]]
-     [:a {:id "next" :class "carousel-control right" :href "#myCarousel" :data-slide "next"}"&rsaquo;"]  
-     [:a {:id "prev" :class "carousel-control left"  :href "#myCarousel" :data-slide "prev"}"&lsaquo;"]
-     ]]
-     
-    [:script {:type "text/javascript" :src "/js/carousel.js"}]
-    [:script "$('.m-carousel').carousel()"]
-    [:script "$('.carousel').carousel({
-              interval: 2000 })"]
-         ];end Div "Container"
+   	 [:div {:class "carousel-inner"}
+         [:div {:class "active item"}
+      	 [:img {:src "/img/ils.jpg" :width "900" :height "600" }]]
+         [:div {:class "item"}
+      	 [:img {:src"/img/Untitled-1.jpg" :width "900" :height "600" }]]
+         [:div {:class "item"}
+         [:img {:src "/img/Untitled-2.jpg" :width "900" :height "600" }]
+         ]]
+         [:a {:id "next" :class "carousel-control right" :href "#myCarousel" :data-slide "next"}"&rsaquo;"]  
+         [:a {:id "prev" :class "carousel-control left"  :href "#myCarousel" :data-slide "prev"}"&lsaquo;"]
+         ]] ;end Div "Container"
+          [:script "$('.carousel').carousel({
+          interval: 7000 })"]
+          
 
  
          ; Definindo o modal do cadastro
@@ -79,8 +80,8 @@
          [:button {:type "button" :class "close" :data-dismiss "modal" :aria-hidden "true"}"×"]
          [:h3 {:id "myModalLabel"} "Cadastro de Usuários"]
          ]
-         [:div {:class "modal-body"}  
          [:form  {:class "form-horizontal" :method "post" :name "cad" :action "/login/cadastro/welcome"}
+         [:div {:class "modal-body" :id "cadastro_body"}  
          [:div   {:class "control-group"}
          [:label {:class "control-label" :for "inputName"} "Nome:"]
          [:div   {:class "controls"}
@@ -124,12 +125,12 @@
          [:select {:id "inputDisciplina" :name "disciplina"}
          [:option {:value "Estrutura de Dados"} "Estrutura de Dados"]
          [:option {:value "Introdução a Programação"} "Introdução a Programação"]]
-         ]] 
-         [:div   {:class "control-group"}
+         ]]]
          [:div {:class "modal-footer"}
+         [:div   {:class "control-group"}
          [:button {:class "btn btn-danger" :data-dismiss "modal" :arial-hidden "true"} "Cancelar"]
-         [:button {:class "btn btn-primary" :onclick "return cadastra();"} "Confirmar"]
-         ]]]]]
+         [:button {:class "btn btn-primary" :onclick "return cadastra();" :formaction "/login/cadastro/welcome"} "Confirmar"]
+         ]]]]
          ;End modal cadastro
          
          ;Definindo modal da hitória do ILS
@@ -145,6 +146,12 @@
          [:button {:class "btn btn-danger" :data-dismiss "modal" :arial-hidden "true"} "Close"]]
          ]
          ;End modal história do ILS
+         [:div {:class "modal-footer"}
+         [:div {:class "container"}
+         [:div   {:class "control-group"} 
+         [:a {:href "http://martinbean.co.uk"} "Help "] 
+         [:a {:href "#" } " Política de Privacidade"]
+         [:center [:h5  "&#169; Copyright 2013 - ILS"]] ]]]
          ]))
 
 
@@ -157,10 +164,10 @@
    [:div {:class "container"}
    [:div {:id "myCarousel" :class "carousel slide"}
    [:div {:class "carousel-inner"}
-   [:div {:class "m-carousel m-fluid m-carousel-photos"}
+   ;[:div {:class "m-carousel m-fluid m-carousel-photos"}
    [:div {:class "m-carousel-inner"}
    [:div {:class "m-item"}
-      [:img {:src "/img/ils.jpg" :width "600" :height "350"}]
+      [:img {:src "/img/ils.jpg" :width "900" :height "600"}]
    ]
    [:div {:class "m-item"}
       [:img {:src"/img/Untitled-1.jpg" :width "900" :height "600"}]
@@ -174,7 +181,7 @@
     [:a {:href "#" :data-slide "3" :id "links_slide"}"3"] 
     ]]
      [:a {:id "prev" :class "carousel-control left"  :href "#myCarousel" :data-slide "prev"}"&lsaquo;"]
-         [:a {:id "next" :class "carousel-control right" :href "#myCarousel" :data-slide "next"}"&rsaquo;"]]]
+         [:a {:id "next" :class "carousel-control right" :href "#myCarousel" :data-slide "next"}"&rsaquo;"]]
      
     [:script {:type "text/javascript" :src "/js/carousel.js"}]
     [:script "$('.m-carousel').carousel()"]
@@ -191,6 +198,121 @@
 
 
 (defpage [:post "/index"] {:keys [usuario senha]}
+;(session/remove! :senhaUsuario)
+;(session/put! :senhaUsuario senha)
+;(cond (= 1 (compara-usuario usuario senha) 1) 
+        (common/layout
+         [:head [:script {:type "text/javascript" :src "/js/bootstrap.min.js"}]]
+         [:body {:class "home"} 
+         [:div {:class "navbar navbar-inverse navbar-fixed-top"}
+         [:div {:class "navbar-inner"}
+         [:div {:class "container-fluid"}
+         [:h3 "ILS"] 
+         ]]]
+         [:div {:class "navbar"}
+         [:div {:class "navbar-inner"}  
+         [:ul {:class "nav"}
+         [:li [:h5 "Olá, " usuario]]]
+         [:div {:class "btn-group" :id "config"}  
+         [:p {:class "btn btn-primary" :href "#"}[:i {:class "icon-user icon-white"}] "Configurações"]
+         [:a {:class "btn btn-primary dropdown-toggle" :data-toggle "dropdown" :href "#"}
+         [:span {:class "caret"}]]
+         [:ul {:class "dropdown-menu"}
+         [:li [:a {:href "#Editar" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Editar"]]
+         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Excluir"]]
+         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Mensagem"]]
+         [:li {:class "divider"}]
+         [:li [:a {:href "/"} [:i {:class "i"}] "Logout"]]
+         ]]]]
+         
+      
+         [:div {:class "container-fluid"}
+         [:div {:class "row-fluid"}
+         [:div {:class "span3"}
+         [:div {:class "well sidebar-nav"}
+         [:ul  {:class "nav nav-list"}
+         [:li  {:class "nav-header"}""] 
+         (cond (= "Introdução a Programação" (get (first (buscar-aluno "disciplina" "usuario" usuario)) :disciplina))
+         [:div
+         [:h5  "Introdução a Programação"]
+         [:p {:id "" } [:a {:href "/login/introdução" :target "principal" :style "text-decoration:none" :id "intro"} "Introdução"]] 
+         [:p {:id "" } [:a {:href "/login/string" :target "principal" :style "text-decoration:none" :id "string"} "String"]] 
+         [:p {:id "" } [:a {:href "/login/alocacao" :target "principal" :style "text-decoration:none" :id "aloc"} "Alocação Dinâmica"]]
+         [:p {:id "" } [:a {:href "/login/recursividade" :target "principal" :style "text-decoration:none" :id "recursiv"} "Recursividade"]] 
+         [:p {:id "" } [:a {:href "/login/vetor" :target "principal" :style "text-decoration:none" :id "vetor"} "Vetor"]]        
+         [:p {:id "" } [:a {:href "/login/função" :target "principal" :style "text-decoration:none" :id "func"} "Funções"]]
+         [:p {:id "" } [:a {:href "/login/struct" :target "principal" :style "text-decoration:none" :id "struct"} "Struct"]] 
+         [:p {:id "" }[:a {:href "/login/EstruturaCondição" :target "principal" :style "text-decoration:none" :id "EC"}"Estruturas Condição"]]
+         [:p {:id "" }[:a {:href "/login/EstruturaRepetição" :target "principal" :style "text-decoration:none" 
+                                                                                :id "ER"}"Estruturas Repetição"]]
+         [:p {:id "" } [:a {:href "/login/arquivo" :target "principal" :style "text-decoration:none" :id "arquivo"} "Arquivos"]]
+         ]
+         :else 
+         [:div
+         [:h5  "Estrutura de Dados"]
+         [:p {:id "" } [:a {:href "/login/alocacao" :target "principal" :id "aloc" :style "text-decoration:none"} "Alocação Dinâmica"]]
+         [:p {:id ""  } [:a {:href "/login/recursividade" :target "principal" :style "text-decoration:none"} "Recursividade"]] 
+         [:p {:id ""    } [:a {:href "/login/vetor" :target "principal" :style "text-decoration:none"} "Vetor"]]
+         [:p {:id ""    } [:a {:href "/login/matriz" :target "principal" :style "text-decoration:none"} "Matrizes"]]        
+         [:p {:id ""    } [:a {:href "/login/lista" :target "principal" :style "text-decoration:none"} "Lista"]]
+         [:p {:id ""     } [:a {:href "/login/fila" :target "principal" :style "text-decoration:none"} "Fila"]]
+         [:p {:id ""    } [:a {:href "/login/pilha" :target "principal" :style "text-decoration:none"} "Pilha"]]
+         [:p {:id ""   } [:a {:href "/login/arvore" :target "principal" :style "text-decoration:none"} "Árvore"]] 
+         [:p {:id ""   } [:a {:href "/login/metOrd" :target "principal" :style "text-decoration:none"} "Métodos Ordenação"]] 
+         [:p {:id ""  } [:a {:href "/login/metPesq" :target "principal" :style "text-decoration:none"} "Métodos Pesquisa"]]
+         ])          
+         [:h4 "Atividades"]
+         [:ul {:class "nav"}
+         [:li [:p {:id "ativ-exerc"}""]]]     
+         ]]]
+         [:div {:class "span9" }
+         [:div {:class "hero-unit"}
+
+         
+ 
+         [:iframe {:class "Iframe2" :id "iframe" :src "/login/ola" :name "principal"}]
+         ]]]]
+         [:div {:class "modal-footer" :id "last_index"}
+         [:div {:class "container"}
+         [:div   {:class "control-group"} 
+         [:center [:h5  "&#169; Copyright 2013 - ILS"]] ]]]
+         
+         ;modal editar
+
+         [:div {:id "Editar" :class "modal hide fade" :tabindex "-1" :role "dialog" :aria-labelledby "EditarLabel" :aria-hidden "true"}
+         [:div {:class "modal-header"}
+         [:button {:type "button" :class "close" :data-dismiss "modal" :aria-hidden "true"}"×"]
+         [:h3 {:id "EditarLabel"} "Editar Usuário"]
+         ]
+         [:div {:class "modal-body"}
+         [:div   {:class "control-group"}
+         [:label {:class "control-label" :for "inputUsuarioAtual" } "Usuário Atual:"] 
+         [:div {:class "controls"}
+         [:input {:type "text" :id "usuarioAtual" :name "usuarioatual"}]
+         ]]
+         [:div  {:class "control-group"}
+         [:label{:class "control-label" :for "novoUsuario" } "Novo Usuário:"] 
+         [:div {:class "controls"}[:input {:type "text" :id "novoUsuario"}]
+         ]] 
+         [:div  {:class "control-group"}
+         [:label{:class "control-label" :for "senhaAtual" } "Senha Atual:"] 
+         [:div {:class "controls"}[:input {:type "text" :id "senhaAtual"}]
+         ]]
+         [:div  {:class "control-group"}
+         [:label{:class "control-label" :for "novoNome" } "Nova Senha:"] 
+         [:div {:class "controls"}[:input {:type "text" :id "novaSenha"}]
+         ]]
+         ]
+         [:div {:class "modal-footer"}
+         [:button {:class "btn btn-success" :data-dismiss "modal" :arial-hidden "true"} "Confirmar"]
+         [:button {:class "btn btn-danger" :data-dismiss "modal" :arial-hidden "true"} "Close"]]
+         ] ; end modal    
+         ]))
+
+
+
+
+(defpage [:post "/index/estavel"] {:keys [usuario senha]}
 (session/remove! :senhaUsuario)
 (session/put! :senhaUsuario senha)
         (common/layout
@@ -202,7 +324,7 @@
          [:div {:class "navbar-inner" :id "ILS"}
          [:ul {:class "nav"}
          [:li
-         [:h5 {:id "logo"} "ILS"]]
+         [:h4 {:id "logo"} "ILS"]]
          ]]]
          [:div {:class "container" :id "fundo_container"}
          [:div {:class "navbar"}
@@ -230,16 +352,16 @@
          (cond (= "Introdução a Programação" (get (first (buscar-aluno "disciplina" "usuario" usuario)) :disciplina))
          [:div
          [:h5  "Introdução a Programação"]
-         [:p {:id ""   } [:a {:href "/login/introdução" :target "principal" :style "text-decoration:none"} "Introdução"]] 
-         [:p {:id ""   } [:a {:href "/login/string" :target "principal" :style "text-decoration:none"} "String"]] 
-         [:p {:id "" } [:a {:href "/login/alocacao" :target "principal" :id "aloc" :style "text-decoration:none"} "Alocação Dinâmica"]]
-         [:p {:id "" } [:a {:href "/login/recursividade" :target "principal" :style "text-decoration:none"} "Recursividade"]] 
-         [:p {:id "" } [:a {:href "/login/vetor" :target "principal" :style "text-decoration:none"} "Vetor"]]        
-         [:p {:id ""    } [:a {:href "/login/função" :target "principal" :style "text-decoration:none"} "Funções"]]
-         [:p {:id ""   } [:a {:href "/login/struct" :target "principal" :style "text-decoration:none"} "Struct"]] 
-         [:p {:id "" } [:a {:href "/login/EstruturaCondição" :target "principal" :style "text-decoration:none"}"Estruturas Condição"]]
-         [:p {:id "" } [:a {:href "/login/EstruturaRepetição" :target "principal" :style "text-decoration:none"}"Estruturas Repetição"]]
-         [:p {:id "" } [:a {:href "/login/arquivo" :target "principal" :style "text-decoration:none"} "Arquivos"]]
+         [:p {:id "" } [:a {:href "/login/introdução" :target "principal" :style "text-decoration:none" :id "intro"} "Introdução"]] 
+         [:p {:id "" } [:a {:href "/login/string" :target "principal" :style "text-decoration:none" :id "string"} "String"]] 
+         [:p {:id "" } [:a {:href "/login/alocacao" :target "principal" :style "text-decoration:none" :id "aloc"} "Alocação Dinâmica"]]
+         [:p {:id "" } [:a {:href "/login/recursividade" :target "principal" :style "text-decoration:none" :id "recursiv"} "Recursividade"]] 
+         [:p {:id "" } [:a {:href "/login/vetor" :target "principal" :style "text-decoration:none" :id "vetor"} "Vetor"]]        
+         [:p {:id "" } [:a {:href "/login/função" :target "principal" :style "text-decoration:none" :id "func"} "Funções"]]
+         [:p {:id "" } [:a {:href "/login/struct" :target "principal" :style "text-decoration:none" :id "struct"} "Struct"]] 
+         [:p {:id "" }[:a {:href "/login/EstruturaCondição" :target "principal" :style "text-decoration:none" :id "EC"}"Estruturas Condição"]]
+         [:p {:id "" }[:a {:href "/login/EstruturaRepetição" :target "principal" :style "text-decoration:none" :id "ER"}"Estruturas Repetição"]]
+         [:p {:id "" } [:a {:href "/login/arquivo" :target "principal" :style "text-decoration:none" :id "arquivo"} "Arquivos"]]
          ]
          :else 
          [:div
@@ -263,10 +385,10 @@
          [:div {:class "span10" :id "menu_iframe"}
          [:iframe {:class "Iframe" :src "/login/ola" :name "principal"}]
          ]]]]  
-         [:div {:class "navbar navbar-inverse"}
-         [:div {:class "navbar-inner"}
-         [:center [:h5  "&#169; Copyright 2013 - ILS"]]
-         ]]
+         [:div {:class "modal-footer"}
+         [:div {:class "container"}
+         [:div   {:class "control-group"} 
+         [:center [:h5  "&#169; Copyright 2013 - ILS"]] ]]]
          ;modal editar
 
          [:div {:id "Editar" :class "modal hide fade" :tabindex "-1" :role "dialog" :aria-labelledby "EditarLabel" :aria-hidden "true"}
@@ -301,44 +423,6 @@
 
 
     
-(defpage "/login/index" []
-;(session/remove! :senhaUsuario)
-;(session/put! :senhaUsuario senha)
-;(cond (= 1 (compara-usuario usuario senha) 1) 
-        (common/layout
-         [:head 
-          (include-css "/css/drop.css")]
-         [:body {:class "auto"} 
-         [:div {:id "back_recem"}]
-         [:div {:id "fundo"}]
-         [:div {:id "fundo2"}]
-         [:div {:id "back_index"}]
-         [:div {:id "back_mini"}]
-         [:div {:id "links"} 
-         [:iframe {:id "perguntas" :src "/login/ola" :name "principal"}]
-         [:h4 {:id "est-dados"} "Estrutura de Dados"]
-         [:p {:id "menuAlocacao" } [:a {:href "/login/alocacao" :target "principal" :id "aloc"} "Alocação Dinâmica"]]
-         [:p {:id "menuRecursi"  } [:a {:href "/login/recursividade" :target "principal"} "Recursividade"]] 
-         [:p {:id "menuVetor"    } [:a {:href "/login/vetor" :target "principal"} "Vetor"]]        
-         [:p {:id "menuLista"    } [:a {:href "/login/lista" :target "principal"} "Lista"]]
-         [:p {:id "menuFila"     } [:a {:href "/login/fila" :target "principal"} "Fila"]]
-         [:p {:id "menuPilha"    } [:a {:href "/login/pilha" :target "principal"} "Pilha"]]
-         [:p {:id "menuArvore"   } [:a {:href "/login/arvore" :target "principal"} "Árvore"]] 
-         [:p {:id "menuMetOrd"   } [:a {:href "/login/metOrd" :target "principal"} "Métodos Ordenação"]] 
-         [:p {:id "menuMetPesq"  } [:a {:href "/login/metPesq" :target "principal"} "Métodos Pesquisa"]]]    
-         [:p {:class "logocadastro"} "ILS"]
-         [:h4 {:id "ativ"} "Atividades"]
-         [:h5 {:id "ativ-exerc"} ""]
-         [:p {:class "ilscadastro"} "Olá, " "Eduardo Gonçalves"  " | " [:a {:href "/" :id "logout"} "Logout"]]
-         [:a {:href "/videos/vetor" :id "apresentacao" :target "principal"} "| Configurações"]
-         ]))
-         
-  ;:else
-  ; (common/layout
-   ;  [:body
-    ; [:center [:h1 "Login e/ou senha errados"]]]))
-
-
 
  ;(defpage "/login" []
   ;       (session/put! :admin true)
@@ -358,25 +442,18 @@
 ;(povoar-tabelas numeromatricula)
   (session/remove! :senhaUsuario)    
   (session/put! :senhaUsuario senha) 
-         (common/layout
+          (common/layout
          [:head [:script {:type "text/javascript" :src "/js/bootstrap.min.js"}]]
-         [:body {:class "fundo_index"}
-         [:div {:class "container"}
-         [:p ""]
-         [:div {:class "navbar navbar-inverse"}
-         [:div {:class "navbar-inner" :id "ILS"}
-         [:ul {:class "nav"}
-         [:li
-         [:h5 {:id "logo"} "ILS"]]
+         [:body {:class "home"} 
+         [:div {:class "navbar navbar-inverse navbar-fixed-top"}
+         [:div {:class "navbar-inner"}
+         [:div {:class "container-fluid"}
+         [:h3 "ILS"] 
          ]]]
-         [:div {:class "container" :id "fundo_container"}
          [:div {:class "navbar"}
          [:div {:class "navbar-inner"}  
          [:ul {:class "nav"}
-         [:li [:h5 "Olá, " nomeUsuario]]]
- 
-
-   
+         [:li [:h5 "Seja bem-vindo , " nomeUsuario]]]
          [:div {:class "btn-group" :id "config"}  
          [:p {:class "btn btn-primary" :href "#"}[:i {:class "icon-user icon-white"}] "Configurações"]
          [:a {:class "btn btn-primary dropdown-toggle" :data-toggle "dropdown" :href "#"}
@@ -388,26 +465,31 @@
          [:li {:class "divider"}]
          [:li [:a {:href "/"} [:i {:class "i"}] "Logout"]]
          ]]]]
+         
+      
          [:div {:class "container-fluid"}
          [:div {:class "row-fluid"}
-         [:div {:class "span2"}
-         [:div {:id "menu_links"}
+         [:div {:class "span3"}
+         [:div {:class "well sidebar-nav"}
+         [:ul  {:class "nav nav-list"}
+         [:li  {:class "nav-header"}""] 
          (cond (= "Introdução a Programação" (get (first (buscar-aluno "disciplina" "usuario" nomeUsuario)) :disciplina))
-         (common/layout
+         [:div
          [:h5  "Introdução a Programação"]
-         [:p {:id ""   } [:a {:href "/login/introdução" :target "principal" :style "text-decoration:none"} "Introdução"]] 
-         [:p {:id ""   } [:a {:href "/login/string" :target "principal" :style "text-decoration:none"} "String"]] 
-         [:p {:id "" } [:a {:href "/login/alocacao" :target "principal" :id "aloc" :style "text-decoration:none"} "Alocação Dinâmica"]]
-         [:p {:id "" } [:a {:href "/login/recursividade" :target "principal" :style "text-decoration:none"} "Recursividade"]] 
-         [:p {:id "" } [:a {:href "/login/vetor" :target "principal" :style "text-decoration:none"} "Vetor"]]        
-         [:p {:id ""    } [:a {:href "/login/função" :target "principal" :style "text-decoration:none"} "Funções"]]
-         [:p {:id ""   } [:a {:href "/login/struct" :target "principal" :style "text-decoration:none"} "Struct"]] 
-         [:p {:id "" } [:a {:href "/login/EstruturaCondição" :target "principal" :style "text-decoration:none"}"Estruturas Condição"]]
-         [:p {:id "" } [:a {:href "/login/EstruturaRepetição" :target "principal" :style "text-decoration:none"}"Estruturas Repetição"]]
-         [:p {:id "" } [:a {:href "/login/arquivo" :target "principal" :style "text-decoration:none"} "Arquivos"]]
-         )
+         [:p {:id "" } [:a {:href "/login/introdução" :target "principal" :style "text-decoration:none" :id "intro"} "Introdução"]] 
+         [:p {:id "" } [:a {:href "/login/string" :target "principal" :style "text-decoration:none" :id "string"} "String"]] 
+         [:p {:id "" } [:a {:href "/login/alocacao" :target "principal" :style "text-decoration:none" :id "aloc"} "Alocação Dinâmica"]]
+         [:p {:id "" } [:a {:href "/login/recursividade" :target "principal" :style "text-decoration:none" :id "recursiv"} "Recursividade"]] 
+         [:p {:id "" } [:a {:href "/login/vetor" :target "principal" :style "text-decoration:none" :id "vetor"} "Vetor"]]        
+         [:p {:id "" } [:a {:href "/login/função" :target "principal" :style "text-decoration:none" :id "func"} "Funções"]]
+         [:p {:id "" } [:a {:href "/login/struct" :target "principal" :style "text-decoration:none" :id "struct"} "Struct"]] 
+         [:p {:id "" }[:a {:href "/login/EstruturaCondição" :target "principal" :style "text-decoration:none" :id "EC"}"Estruturas Condição"]]
+         [:p {:id "" }[:a {:href "/login/EstruturaRepetição" :target "principal" :style "text-decoration:none" 
+                                                                                :id "ER"}"Estruturas Repetição"]]
+         [:p {:id "" } [:a {:href "/login/arquivo" :target "principal" :style "text-decoration:none" :id "arquivo"} "Arquivos"]]
+         ]
          :else 
-         (common/layout
+         [:div
          [:h5  "Estrutura de Dados"]
          [:p {:id "" } [:a {:href "/login/alocacao" :target "principal" :id "aloc" :style "text-decoration:none"} "Alocação Dinâmica"]]
          [:p {:id ""  } [:a {:href "/login/recursividade" :target "principal" :style "text-decoration:none"} "Recursividade"]] 
@@ -419,20 +501,28 @@
          [:p {:id ""   } [:a {:href "/login/arvore" :target "principal" :style "text-decoration:none"} "Árvore"]] 
          [:p {:id ""   } [:a {:href "/login/metOrd" :target "principal" :style "text-decoration:none"} "Métodos Ordenação"]] 
          [:p {:id ""  } [:a {:href "/login/metPesq" :target "principal" :style "text-decoration:none"} "Métodos Pesquisa"]]
-         ))          
-
+         ])          
          [:h4 "Atividades"]
          [:ul {:class "nav"}
          [:li [:p {:id "ativ-exerc"}""]]]     
-         ]]
-         [:div {:class "span10" :id "menu_iframe"}
-         [:iframe {:class "Iframe" :src "/login/ola" :name "principal"}]
-         ]]]]  
-         [:div {:class "navbar navbar-inverse"}
-         [:div {:class "navbar-inner"}
-         [:center [:h5  "&#169; Copyright 2013 - ILS"]]
-         ]]
+         ]]]
+         [:div {:class "span9" :onload "tam()"}
+         [:div {:class "hero-unit"}
+
+         
+ 
+         [:iframe {:class "Iframe2" :id "iframe" :src "/login/ola" :name "principal"}]
+         [:center [:h1 "Bons Estudos!"]]
+         [:p "This is a template for a simple marketing or informational website.
+          Use it as a starting point to create something more unique."]
+         ]]]]
+         [:div {:class "modal-footer" :id "last_index"}
+         [:div {:class "container"}
+         [:div   {:class "control-group"} 
+         [:center [:h5  "&#169; Copyright 2013 - ILS"]] ]]]
+         
          ;modal editar
+
          [:div {:id "Editar" :class "modal hide fade" :tabindex "-1" :role "dialog" :aria-labelledby "EditarLabel" :aria-hidden "true"}
          [:div {:class "modal-header"}
          [:button {:type "button" :class "close" :data-dismiss "modal" :aria-hidden "true"}"×"]
@@ -460,8 +550,8 @@
          [:div {:class "modal-footer"}
          [:button {:class "btn btn-success" :data-dismiss "modal" :arial-hidden "true"} "Confirmar"]
          [:button {:class "btn btn-danger" :data-dismiss "modal" :arial-hidden "true"} "Close"]]
-         ]    
-         ]]))
+         ] ; end modal    
+         ]))
 
  
 
