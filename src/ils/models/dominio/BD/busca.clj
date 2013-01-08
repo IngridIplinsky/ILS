@@ -139,22 +139,34 @@ conteudo."coluna2" = '"valor2"'")]
           
 (defn buscar-exercicioAluno
   ([retorno coluna valor]
-"Busca campos da tabela exercicioAluno, através de uma coluna e valor contido nela."
-(sql/with-connection ILS-DB
-   (sql/with-query-results res
+	"Busca campos da tabela exercicioAluno, através de uma coluna e valor contido nela."
+	(sql/with-connection ILS-DB
+   	(sql/with-query-results res
         (if-not (string? valor) [(str "SELECT exercicioAluno."retorno" FROM exercicioAluno WHERE exercicioAluno."coluna" = "valor)]
-         [(str "SELECT exercicioAluno."retorno" FROM exercicioAluno WHERE exercicioAluno."coluna" = '"valor"'")])
-          (doall res))))
-   ([retorno col1 valor1 col2 valor2]
-    "Útil para saber exercicios errados, certos. Mais uma coluna e mais um valor na condicao."
+         [(str "SELECT exercicioAluno."retorno" FROM exercicioAluno WHERE exercicioAluno."coluna" = '"valor"'")]))))
+   
+	([retorno col1 valor1 col2 valor2]
+     "Útil para saber exercicios errados, certos. Mais uma coluna e mais um valor na condicao."
      (sql/with-connection ILS-DB
-   (sql/with-query-results res
+   	 (sql/with-query-results res
         (cond
            (and (string? valor1) (string? valor2)) [(str "SELECT exercicioAluno."retorno" FROM exercicioAluno WHERE exercicioAluno."col1" = '"valor1"' AND exercicioAluno."col2" = '"valor2"'")]
            (and (not (string? valor1)) (string? valor2)) [(str "SELECT exercicioAluno."retorno" FROM exercicioAluno WHERE exercicioAluno."col1" = "valor1" AND exercicioAluno."col2" = '"valor2"'")]
            (and (string? valor1) (not (string? valor2))) [(str "SELECT exercicioAluno."retorno" FROM exercicioAluno WHERE exercicioAluno."col1" = '"valor1"' AND exercicioAluno."col2" = "valor2)]
            :else [(str "SELECT exercicioAluno."retorno" FROM exercicioAluno WHERE exercicioAluno."col1" = "valor1" AND exercicioAluno."col2" = "valor2)])
-          (doall res)))))
+          (doall res))))
+	
+	([retorno1 retorno2 retorno3 col1 valor1 col2 valor2]
+      "Útil para o modelo do estudante, onde se quer recuperar os valores bom, medio, ruim. Mais uma coluna e mais um valor na condicao."
+      (sql/with-connection ILS-DB
+   	  (sql/with-query-results res
+        (cond
+           (and (string? valor1) (string? valor2)) [(str "SELECT exercicioAluno."retorno1", exercicioAluno."retorno2", exercicioAluno."retorno3" FROM exercicioAluno WHERE exercicioAluno."col1" = '"valor1"' AND exercicioAluno."col2" = '"valor2"'")]
+           (and (not (string? valor1)) (string? valor2)) [(str "SELECT exercicioAluno."retorno1", exercicioAluno."retorno2", exercicioAluno."retorno3" FROM exercicioAluno WHERE exercicioAluno."col1" = "valor1" AND exercicioAluno."col2" = '"valor2"'")]
+           (and (string? valor1) (not (string? valor2))) [(str "SELECT exercicioAluno."retorno1", exercicioAluno."retorno2", exercicioAluno."retorno3" FROM exercicioAluno WHERE exercicioAluno."col1" = '"valor1"' AND exercicioAluno."col2" = "valor2)]
+           :else [(str "SELECT exercicioAluno."retorno1", exercicioAluno."retorno2", exercicioAluno."retorno3" FROM exercicioAluno WHERE exercicioAluno."col1" = "valor1" AND exercicioAluno."col2" = "valor2)])
+          (doall res))))
+)
           
 (defn buscar-conteudoAluno
   ([retorno coluna valor]

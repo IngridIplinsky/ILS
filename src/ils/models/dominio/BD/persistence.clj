@@ -59,9 +59,10 @@
 []
   (sql/with-connection ILS-DB
     (sql/create-table :conteudo
+        [:idCont "VARCHAR(20) NOT NULL"]
     	[:sigla "VARCHAR(20) NOT NULL"]
     	[:conteudo "VARCHAR(50) NOT NULL"]
-    	["CONSTRAINT PK_CONTEUDO PRIMARY KEY(sigla, conteudo)"]
+    	["CONSTRAINT PK_CONTEUDO PRIMARY KEY(idCont)"]
     	["CONSTRAINT FK_CONTEUDO FOREIGN KEY(sigla)
     	  REFERENCES disciplina(sigla)"])))
     	
@@ -84,13 +85,13 @@
   (sql/with-connection ILS-DB
     (sql/create-table :exercicio
            [:idEx "VARCHAR(20) NOT NULL"]
-           [:conteudo "VARCHAR(50) NOT NULL"]
+           [:idCont "VARCHAR(50) NOT NULL"]
            [:nivel "VARCHAR(20) NOT NULL"]
            [:tipo "VARCHAR(20) NOT NULL"]
            [:xmlexercicio "CLOB(10000) NOT NULL"]
            ["CONSTRAINT PK_EXERCICIO PRIMARY KEY(idEx)"]
-           ["CONSTRAINT FK_EXERCICIO FOREIGN KEY(conteudo)
-             REFERENCES conteudo(conteudo)"])))
+           ["CONSTRAINT FK_EXERCICIO FOREIGN KEY(idCont)
+             REFERENCES conteudo(idCont)"])))
              
 (defn criar-tabela-estiloEstudante
 "Cria a tabela estiloEstudante." 
@@ -124,13 +125,15 @@
   (sql/with-connection ILS-DB
     (sql/create-table :apresentacao
            [:idAp "VARCHAR(20) NOT NULL"]
-           [:conteudo "VARCHAR(50) NOT NULL"]
+           [:idCont "VARCHAR(50) NOT NULL"]
            [:tipo "VARCHAR(20) NOT NULL"]
            [:idEst "VARCHAR(20) NOT NULL"]
            [:xmlapresentacao "CLOB(10000) NOT NULL"]
            ["CONSTRAINT PK_APRESENTACAO PRIMARY KEY(idAp)"]
            ["CONSTRAINT FK_APRESENTACAO FOREIGN KEY(idEst)
              REFERENCES estilo(idEst)"]
+		   ["CONSTRAINT FK_APRESENTACAOCONT FOREIGN KEY(idCont)
+             REFERENCES conteudo(idCont)"]
            )))
 
 (defn criar-tabela-conteudoAluno
@@ -139,15 +142,15 @@
   (sql/with-connection ILS-DB
     (sql/create-table :conteudoAluno
            [:matricula "varchar(20) NOT NULL"]
-           [:conteudo "varchar(50) NOT NULL"]
+           [:idCont "varchar(50) NOT NULL"]
            [:bom "float NOT NULL"]
 	       [:medio "float NOT NULL"]
 	       [:ruim "float NOT NULL"]
-           ["CONSTRAINT PK_CONTEUDO_ALUNO PRIMARY KEY(matricula, conteudo)"]
+           ["CONSTRAINT PK_CONTEUDO_ALUNO PRIMARY KEY(matricula, idCont)"]
            ["CONSTRAINT FK_CONTAL_AL 
   	    FOREIGN KEY (matricula) REFERENCES aluno(matricula)"]
   	       ["CONSTRAINT FK_CONTAL_CONT 
-  	    FOREIGN KEY(conteudo) REFERENCES conteudo(conteudo)"])))
+  	    FOREIGN KEY(idCont) REFERENCES conteudo(idCont)"])))
 
 (defn criar-tabela-exercicioAluno
 "Cria a tabela exercicioAluno." 
@@ -155,18 +158,16 @@
   (sql/with-connection ILS-DB
     (sql/create-table :exercicioAluno
      	[:matricula "varchar(20) NOT NULL"]
-      	[:conteudo "varchar(50) NOT NULL"]
+      	[:idCont "varchar(50) NOT NULL"]
      	[:idEx "varchar(20) NOT NULL"]
        	[:bom "float NOT NULL"]
 	   	[:medio "float NOT NULL"]
 	   	[:ruim "float NOT NULL"]
-      	["CONSTRAINT PK_EXALUNO PRIMARY KEY(matricula, conteudo, idEx)"]
+      	["CONSTRAINT PK_EXALUNO PRIMARY KEY(matricula, idCont, idEx)"]
 	   	["CONSTRAINT FK_EXALUNO_A 
   	    FOREIGN KEY (matricula) REFERENCES aluno(matricula)"]
-  	    ["CONSTRAINT FK_EXALUNO_C 
-  	    FOREIGN KEY (conteudo) REFERENCES conteudo(conteudo)"]
-  	    ["CONSTRAINT FK_EXALUNO_EX 
-  	    FOREIGN KEY (idEx) REFERENCES  exercicio(idEx)"]))) 
+  	    ["CONSTRAINT FK_EXALUNO_E 
+  	    FOREIGN KEY (idCont, idEx) REFERENCES exercicio(idCont, idEx)"]))) 
   	    
   	    
 (defn criar-tabela-catalogoBug
@@ -176,16 +177,14 @@
     (sql/create-table :catalogoBug
     	[:idBug "VARCHAR(20) NOT NULL"]
     	[:matricula "VARCHAR(20) NOT NULL"]
-    	[:conteudo "VARCHAR(50) NOT NULL"]
+    	[:idCont "VARCHAR(50) NOT NULL"]
     	[:idEx "VARCHAR(20) NOT NULL"]
     	[:xmlbug "CLOB(10000) NOT NULL"]
     	["CONSTRAINT PK_CATALOGOBUG PRIMARY KEY(idBug)"]
 	   	["CONSTRAINT FK_CB_A 
   	    FOREIGN KEY (matricula) REFERENCES aluno(matricula)"]
   	    ["CONSTRAINT FK_CB_C 
-  	    FOREIGN KEY (conteudo) REFERENCES conteudo(conteudo)"]
-  	    ["CONSTRAINT FK_CB_EX 
-  	    FOREIGN KEY (idEx) REFERENCES  exercicio(idEx)"])))
+  	    FOREIGN KEY (idCont, idEx) REFERENCES exercicio(idCont, idEx)"])))
 
 (defn destroi-tabelas 
 "Destroi todas as tabelas do banco. (Não use isto)"

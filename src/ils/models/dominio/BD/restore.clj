@@ -17,7 +17,7 @@
     
     (println "Destruindo o banco...")
     
- 	;(destroi-tabelas)
+ 	(destroi-tabelas)
  	
  	(println "Recriando as tabelas...")
  	
@@ -44,37 +44,39 @@
 	
 	(inserir-disciplina "src/ils/models/dominio/Cursos/IntroducaoProgramacao/GSI002.xml")	
     
-    (inserir-conteudo "GSI002" "introducao")
-    (inserir-conteudo "GSI002" "estruturasCond")
-    (inserir-conteudo "GSI002" "laco")
-    (inserir-conteudo "GSI002" "vetor")
-    (inserir-conteudo "GSI002" "struct")
-    (inserir-conteudo "GSI002" "funcao")
-    (inserir-conteudo "GSI002" "recursao")
-    (inserir-conteudo "GSI002" "alocDin")
+    (inserir-conteudo "cont001" "GSI002" "introducao")
+    (inserir-conteudo "cont002" "GSI002" "estruturasCond")
+    (inserir-conteudo "cont003" "GSI002" "laco")
+    (inserir-conteudo "cont004" "GSI002" "vetor")
+    (inserir-conteudo "cont005" "GSI002" "struct")
+    (inserir-conteudo "cont006" "GSI002" "funcao")
+    (inserir-conteudo "cont007" "GSI002" "recursao")
+    (inserir-conteudo "cont008" "GSI002" "alocDin")
+    (inserir-conteudo "cont018" "GSI002" "strings")
+    (inserir-conteudo "cont019" "GSI002" "arquivo")
     
  	
-   ; (inserir-disciplina "src/ils/models/dominio/Cursos/EstruturasDados/inf41.xml")
- 	;(inserir-conteudo "INF41" "vetor") ;estudando uma maneira de fazer isso mais automatizado...
- 	;(inserir-conteudo "INF41" "pilha")
- ;	(inserir-conteudo "INF41" "metPesq")
- ;	(inserir-conteudo "INF41" "metOrd")
- ;	(inserir-conteudo "INF41" "fila")
- ;	(inserir-conteudo "INF41" "lista")
- ;	(inserir-conteudo "INF41" "arvore")
- ;	(inserir-conteudo "INF41" "alocDin")
- ;	(inserir-conteudo "INF41" "recursiv")
+    (inserir-disciplina "src/ils/models/dominio/Cursos/EstruturasDados/inf41.xml")
+ 	(inserir-conteudo "cont009" "INF41" "vetor") ;estudando uma maneira de fazer isso mais automatizado...
+ 	(inserir-conteudo "cont010" "INF41" "pilha")
+ 	(inserir-conteudo "cont011" "INF41" "metPesq")
+ 	(inserir-conteudo "cont012" "INF41" "metOrd")
+ 	(inserir-conteudo "cont013" "INF41" "fila")
+ 	(inserir-conteudo "cont014" "INF41" "lista")
+ 	(inserir-conteudo "cont015" "INF41" "arvore")
+ 	(inserir-conteudo "cont016" "INF41" "alocDin")
+ 	(inserir-conteudo "cont017" "INF41" "recursiv")
  	
 
 	
 	(inserir-estilo "est01" "visual" "global" "teorico")
 	
-	;(inserir-apresentacao "src/ils/models/dominio/Cursos/EstruturasDados/vetor/apresentacao/v001.xml")
-	;(inserir-apresentacao "src/ils/models/dominio/Cursos/EstruturasDados/vetor/apresentacao/v002.xml")
+	(inserir-apresentacao "src/ils/models/dominio/Cursos/EstruturasDados/vetor/apresentacao/v001.xml")
+	(inserir-apresentacao "src/ils/models/dominio/Cursos/EstruturasDados/vetor/apresentacao/v002.xml")
 	
 	(inserir-estiloEstudante "98713" "GSI002" "visual" "global" "teorico")
 	
-	;(inserir-conteudoAluno "98713" "vetor" 0.33 0.33 0.34)
+	;(inserir-conteudoAluno "98713" "GSI002" "vetor" 0.33 0.33 0.34)
 	;(inserir-conteudoAluno "98713" "fila" 0.33 0.33 0.34)
 	
 	;(inserir-exercicioAluno "98713" "vetor" "v001" 0.33 0.33 0.34)
@@ -157,38 +159,38 @@
                         "Comando switch - Créditos a André Backes")
                         
       (gerar-apresentacao "src/ils/models/dominio/Cursos/IntroducaoProgramacao/estruturasRepet/apresentacao/backes018.xml" "backes018"                 
-                          "estruturasRepet" "video" "visual" "global" "teorico" "embedded"
+                          "laco" "video" "visual" "global" "teorico" "embedded"
                         "&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/3pftIJjsk30&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;"
                         "Comando while - Créditos a André Backes")
                         
       
       (gerar-apresentacao "src/ils/models/dominio/Cursos/IntroducaoProgramacao/estruturasRepet/apresentacao/backes019.xml" "backes019"                 
-                          "estruturasRepet" "video" "visual" "global" "teorico" "embedded"
+                          "laco" "video" "visual" "global" "teorico" "embedded"
                         "&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/tlagnwiiIqE&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;"
                         "Comando for - Créditos a André Backes")
 	
 	(gerar-apresentacao "src/ils/models/dominio/Cursos/IntroducaoProgramacao/estruturasRepet/apresentacao/backes020.xml" "backes020"                 
-                          "estruturasRepet" "video" "visual" "global" "teorico" "embedded"
+                          "laco" "video" "visual" "global" "teorico" "embedded"
                         "&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/VH6AycSgjN0&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;"
                         "Comando do-while - Créditos a André Backes")
                         
     (gerar-apresentacao "src/ils/models/dominio/Cursos/IntroducaoProgramacao/estruturasRepet/apresentacao/backes021.xml" "backes021"                 
-                          "estruturasRepet" "video" "visual" "global" "teorico" "embedded"
+                          "laco" "video" "visual" "global" "teorico" "embedded"
                         "&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/LXg3HtMbP8E&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;"
                         "Aninhamentos de repetições - Créditos a André Backes")
                         
     (gerar-apresentacao "src/ils/models/dominio/Cursos/IntroducaoProgramacao/estruturasRepet/apresentacao/backes022.xml" "backes022"                 
-                          "estruturasRepet" "video" "visual" "global" "teorico" "embedded"
+                          "laco" "video" "visual" "global" "teorico" "embedded"
                         "&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/QKzIyC5wBxU&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;"
                         "Comando break - Créditos a André Backes")
                        
     (gerar-apresentacao "src/ils/models/dominio/Cursos/IntroducaoProgramacao/estruturasRepet/apresentacao/backes023.xml" "backes023"                 
-                          "estruturasRepet" "video" "visual" "global" "teorico" "embedded"
+                          "laco" "video" "visual" "global" "teorico" "embedded"
                         "&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/LK8DbKnImQI&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;"
                         "Comando continue - Créditos a André Backes")
                         
     (gerar-apresentacao "src/ils/models/dominio/Cursos/IntroducaoProgramacao/estruturasRepet/apresentacao/backes024.xml" "backes024"                 
-                          "estruturasRepet" "video" "visual" "global" "teorico" "embedded"
+                          "laco" "video" "visual" "global" "teorico" "embedded"
                         "&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/eTwXo5i-Ygc&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;"
                         "Comando goto - Créditos a André Backes")
                         
@@ -224,23 +226,23 @@
                         "Maior valor de um array - Créditos a André Backes")
     
     (gerar-apresentacao "src/ils/models/dominio/Cursos/IntroducaoProgramacao/string/apresentacao/backes031.xml" "backes031"              
-                        "string" "video" "visual" "global" "teorico" "embedded"
+                        "strings" "video" "visual" "global" "teorico" "embedded"
                         "&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/5mJZh_ikDaQ&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;"
                         "String pt1 - Créditos a André Backes")
                         
     (gerar-apresentacao "src/ils/models/dominio/Cursos/IntroducaoProgramacao/string/apresentacao/backes032.xml" "backes032"              
-                        "string" "video" "visual" "global" "teorico" "embedded"
+                        "strings" "video" "visual" "global" "teorico" "embedded"
                         "&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/MEkrf1O_CIU&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;"
                         "String pt2 - Créditos a André Backes")   
                         
     (gerar-apresentacao "src/ils/models/dominio/Cursos/IntroducaoProgramacao/string/apresentacao/backes033.xml" "backes033"              
-                        "string" "video" "visual" "global" "teorico" "embedded"
+                        "strings" "video" "visual" "global" "teorico" "embedded"
                         "&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/jNQUEpwMd_M&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;"
                         "String pt3 - Créditos a André Backes")   
                         
                         
     (gerar-apresentacao "src/ils/models/dominio/Cursos/IntroducaoProgramacao/string/apresentacao/backes034.xml" "backes034"              
-                        "string" "video" "visual" "global" "teorico" "embedded"
+                        "strings" "video" "visual" "global" "teorico" "embedded"
                         "&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/s_V_LZX1eD0&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;"
                         "String pt4 - Créditos a André Backes")                       
     
