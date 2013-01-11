@@ -125,21 +125,23 @@
        [:form {:id "corConsole" :action (get xmap :post) :method "post"}
        [:textarea {:id "code" :name "code"}
        "    /* Escreva seu código aqui*/   \n\n"
-       "#include <stdio.h> \n"
-       "#include <stdlib.h> \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+       ;"#include <stdio.h> \n"
+       ;"#include <stdlib.h>
+       "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
  
        ]
        [:div {:class "btn-group" }
        [:button {:class "bnt btn-info" :formaction ""} "anterior"]]
        [:div {:class "btn-group" }
-       [:button {:class "bnt btn-success" :href "#testar" :role "button" :data-toggle "modal" } "testar"]]
+       [:button {:class "bnt btn-success" :onclick "return resultado();" :role "button" :data-toggle "modal" } "testar"]]
        [:div {:class "btn-group" }
        [:button {:class "bnt btn-primary" :formaction ""} "próximo"]]
        [:div {:class "btn-group" }
        [:button {:class "bnt btn-danger" :formaction  "/ola"} "desistir"]]
        ]]
        [:div {:class "modal-footer"}
-       [:textarea {:class  "console"} ">>>"]]]]
+       [:textarea {:class  "console" :name "console" :id "console"}" >>>"] 
+       ]]]
        )))
 
 
@@ -211,8 +213,8 @@
 
 
 (defn pedagogico-gcc [exit]
-  (def path "/home/marcosmoresco/Desktop/ILS/src/ils/views/codigo.c")
-  (spit (str path ".c") exit) ; crio o arquivo.
+  (def path "/home/marcosmoresco/Desktop/ILS/src/ils/views/codigo")
+  (spit (str path ".c") (str "\n #include<stdio.h> \n #include<stdlib.h> \n" exit)) ; crio o arquivo.
    (cond
       (= (get (sh "gcc" "-o" (str path ".o") (str path ".c")) :err) "")
          "true"
@@ -254,9 +256,10 @@
    ; (atualizar-probs-exercicio (recupera-id (session/get :senhaUsuario)) (get xmlmap :conteudo) (get xmlmap :exercicio) 0.0 0.0 1.0)
    ; )
 
-    (if
+    (cond
       (= (get xmlmap :resposta) "true")
         (def score (+ score 10))
+     :else
       (def score (- score 10))
     )
 

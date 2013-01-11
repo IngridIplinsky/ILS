@@ -30,6 +30,12 @@ h3
 
 }
 
+#link_error
+{
+ 
+  color:#FFFFFF;
+}
+
 #fundoiframe
 {
     background-color:#E6E8FA;
@@ -88,6 +94,19 @@ height:auto;
     width:700px;
     height:100px;
     background-color:#B0C4DE;
+}
+
+.consoleTextArea
+{
+    width:670px;
+    height:80px;
+    background-color:#B0C4DE;
+
+}
+
+#fundoConsole
+{
+   background-color:#B0C4DE;
 }
 
 
@@ -278,6 +297,8 @@ a.links_slide.visited:{color: purple;}
 
  float:right;
 }
+
+
 
 .Iframe
 {
