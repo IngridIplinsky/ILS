@@ -1,6 +1,6 @@
 (ns ils.models.dominio.BD.insercao
-    (:use [ils.models.dominio.BD.persistence]
-          [ils.models.dominio.BD.busca])
+    (:use [ils.models.dominio.BD persistence]
+          [ils.models.dominio.BD busca])
     (:require [clojure.xml :as xml]
   			[clojure.zip :as zip] 
 			[clojure.contrib.zip-filter.xml :as zf]
@@ -45,10 +45,10 @@
     
 (defn inserir-conteudo
   "Insere um novo conteudo de alguma disciplina no banco."
-   [idCont sigla conteudo]
+   [sigla conteudo]
    (sql/with-connection ILS-DB
     (sql/insert-records :conteudo
-      {:idCont idCont :sigla sigla :conteudo conteudo}
+      {:sigla sigla :conteudo conteudo}
     )))  
     
 (defn inserir-ministra
@@ -66,7 +66,7 @@
    (sql/with-connection ILS-DB
     (sql/insert-records :exercicio
       {:idEx (get-value xml :idEx) 
-       :idCont (first (vals (first (buscar-conteudo "idCont" "conteudo" (get-value xml :conteudo))))) 
+       :conteudo (get-value xml :conteudo) 
        :nivel (get-value xml :nivel) 
        :tipo (get-value xml :tipo) 
        :xmlexercicio (slurp xml)}
@@ -79,7 +79,7 @@
    (sql/with-connection ILS-DB
     (sql/insert-records :apresentacao
       {:idAp (get-value xml :idAp) 
-       :idCont (first (vals (first (buscar-conteudo "idCont" "conteudo" (get-value xml :conteudo)))))  
+       :conteudo (get-value xml :conteudo) 
        :tipo (get-value xml :tipo)
        :idEst (first (vals (first (buscar-estilo "idEst" (get-value xml :selecao) (get-value xml :organizacao) (get-value xml :utilizacao)))))
        :xmlapresentacao (slurp xml)}
@@ -87,27 +87,18 @@
 
 (defn inserir-conteudoAluno 
   "Insere um novo aproveitamento de um aluno em determinado conteudo."
-   [matricula sigla conteudo qbom qmedio qruim]
+   [matricula nconteudo qbom qmedio qruim]
    (sql/with-connection ILS-DB
     (sql/insert-records :conteudoAluno
-      {:matricula matricula 
-       :idCont (first (vals (first (buscar-conteudo "idCont" "conteudo" conteudo "sigla" sigla))))  
-	   :bom qbom 
-	   :medio qmedio 
-	   :ruim qruim}
+      {:matricula matricula :conteudo nconteudo :bom qbom :medio qmedio :ruim qruim}
     )))	
 
 (defn inserir-exercicioAluno
   "Insere um novo aproveitamento de um aluno em determinado exercicio."
-   [matricula sigla conteudo idEx qbom qmedio qruim]
+   [matricula conteudo idEx qbom qmedio qruim]
    (sql/with-connection ILS-DB
     (sql/insert-records :exercicioAluno
-      {:matricula matricula 
-  	   :idCont (first (vals (first (buscar-conteudo "idCont" "conteudo" conteudo "sigla" sigla)))) 
-	   :idEx idEx 
-	   :bom qbom 
-	   :medio qmedio 
-	   :ruim qruim}
+      {:matricula matricula :conteudo conteudo :idEx idEx :bom qbom :medio qmedio :ruim qruim}
     )))  
   
 (defn inserir-estilo
@@ -137,9 +128,11 @@
     (sql/insert-records :catalogoBug
       {:idBug (get-value xml :idBug)
        :matricula (get-value xml :matricula)
-       :idCont (first (vals (first (buscar-conteudo "idCont" "conteudo" (get-value xml :conteudo)))))
+       :conteudo (get-value xml :conteudo) 
        :idEx (get-value xml :idEx) 
        :xmlbug (slurp xml)}
     ))) 
     
+
+   
 

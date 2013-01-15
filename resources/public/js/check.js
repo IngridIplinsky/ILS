@@ -869,6 +869,11 @@ function corVermelhaArquivo()
 }
 
 
+function resultado(){
+  document.getElementById('console').value =  ">>> Valor";
+  return false;  
+}
+
 
 
 function tam() 
@@ -899,7 +904,7 @@ parent.WHEFRAME(w,h);
 
 function WHFRAME(w,h){
 var FrameWH = parent.document.getElementById("iframe");
-FrameWH.style.height = h+50+"px";
+FrameWH.style.height = h+60+"px";
 FrameWH.style.overflow = "hidden";
 
 }

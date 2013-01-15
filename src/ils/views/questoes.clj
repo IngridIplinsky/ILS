@@ -58,10 +58,12 @@
 
 (defpage "/login/alocacao" []
       (common/layout
+         [:head [:script {:type "text/javascript" :src "/js/bootstrap.min.js"}]]  
          [:body {:id "fundoiframe" :onload "corVerdeAlocacao(), corAzulVetor(),corAzulString(),corAzulRecusividade(),
                                     corAzulFuncao(),corAzulStruct(),corAzulEC(),corAzulER(),corAzulArquivo(),
                                     corAzulIntroducao(),testeVazio(),ResizeWH();"} 
-         [:form {:action "/login/alocDin/1" :method "post"}
+         
+         [:div {:class "modal-header"}
          [:center [:h5 "Alocação Dinâmica"]]
          [:p "A alocação dinâmica é o processo que aloca memória em tempo de execução. 
              Ela é utilizada quando não se sabe ao certo quanto de memória será necessário 
@@ -69,6 +71,7 @@
              conforme a necessidade do programa. Dessa forma evita-se o desperdício de memória.
              A alocação dinâmica é muito utilizada em problemas de estrutura de dados, por exemplo, 
             listas encadeadas, pilhas, filas, arvores binárias e grafos."]
+         [:form {:action "/login/alocDin/1" :method "post"}
          [:div {:class "btn-group" }
          [:button {:class "btn btn-info" :onclick "testeAlocacao();" } "Avançar para questões"]] 
          [:div {:class "btn-group" }  
@@ -76,9 +79,10 @@
          [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
          [:span {:class "caret"}]]
          [:ul {:class "dropdown-menu"}
-         [:li [:a {:href "#" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Ordenação"]]
-         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
-         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
+         [:li [:a {:href "/videos/alocacao/introducao" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Introdução"]]
+         [:li [:a {:href "/videos/alocacao/sizeof"}[:i {:class "icon-trash"}]  "Sizeof"]]
+         [:li [:a {:href "/videos/alocacao/malloc"}[:i {:class "icon-ban-circle"}] "Malloc"]]
+         [:li [:a {:href "/videos/alocacao"}[:i {:class "icon-ban-circle"}] "Todos"]]
          ]] 
          [:div {:class "btn-group" }  
          [:p {:class "btn btn-info" :href "#"}[:i {:class "icon-user icon-white"}] "Textos Explicativos"]
@@ -88,10 +92,13 @@
          [:li [:a {:href "#" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Ordenação"]]
          [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Alocação de vetor"]]
          [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Maior Elemento"]]
-         ]] 
+         ]]        
          ]
          [:div {:class "modal-footer"}
-         [:h3 "Escolha uma opção"]]]))
+         [:h3 "Escolha uma opção"]]] 
+         ]))
+
+
 
 
 
@@ -168,6 +175,70 @@
          ))
 
 
+;:::::::::::::::::::::::::::::::: vídeos ::::::::::::::::::::::::::::::
+
+(defpage "/videos/alocacao" []
+ ;(carregar-apresentacao xml)
+ (common/layout
+         [:body {:id "fundoiframe" :onload "ResizeWH(),videoScroll()"}
+         [:div {:class "modal-footer"}  
+         [:div {:class "container-fluid"}
+         [:div {:class "row-fluid"}
+         [:div {:class "span2"  :id "menu_video"}
+         [:center [:h5  "Alocação Introdução"]]
+         [:h4 [:iframe {:width "400" :height "400" :src  "http://www.youtube.com/embed/ErOmueylikM" :frameborder "1" }]]
+         [:h4 "Créditos a Andre Backes."] ]  
+         [:div {:class "span10" :id "menu_videos"}
+         [:h5 "Mais vídeos"]
+         [:h4  [:iframe {:width "250" :height "150" :src  "http://www.youtube.com/embed/ErOmueylikM" :frameborder "1"
+               :onclick "mudaVideo();"}]]
+         [:h4 [:iframe {:width "250" :height "150" :src  "http://www.youtube.com/embed/p2ihD9uDZs4" :frameborder "1"}]]
+         [:h4 [:iframe {:width "250" :height "150" :src  "http://www.youtube.com/embed/07YPObbEpU8" :frameborder "1"}]]
+         [:h4 [:iframe {:width "250" :height "150" :src  "http://www.youtube.com/embed/iU9CL5d-P5U" :frameborder "1"}]]
+         [:h4 [:iframe {:width "250" :height "150" :src  "http://www.youtube.com/embed/GdjGrVjRgTI" :frameborder "1"}]]
+         [:h4 [:iframe {:width "250" :height "150" :src  "http://www.youtube.com/embed/NsRwpFNZhJs" :frameborder "1"}]]
+         [:h4 [:iframe {:width "250" :height "150" :src  "http://www.youtube.com/embed/8PAWmHdreoc" :frameborder "1"}]]
+         [:h4 [:iframe {:width "250" :height "150" :src  "http://www.youtube.com/embed/YbVmQKTuajY" :frameborder "1"}]]
+         [:h4 [:iframe {:width "250" :height "150" :src  "http://www.youtube.com/embed/x0uEgxYtW-E" :frameborder "1"}]]]
+         ]]]]
+))
+
+(defpage "/videos/alocacao/introducao" []
+ ;(carregar-apresentacao xml)
+ (common/layout
+         [:body {:id "fundoiframe" :onload "ResizeWH()"}
+         [:div {:class "modal-header"}  
+         [:center [:h5  "Alocação Introdução - Créditos a Andre Backes."]]
+         [:h4 [:iframe {:width "700" :height "400" :src "http://www.youtube.com/embed/ErOmueylikM" :feature "player_detailpage" :frameborder "1" }]]
+         ]]
+))
+
+
+
+
+(defpage "/videos/alocacao/sizeof" []
+ ;(carregar-apresentacao xml)
+ (common/layout
+         [:body {:id "fundoiframe" :onload "ResizeWH()"}
+         [:div {:class "modal-header"}  
+         [:center [:h5  "Esqueleto de Um programa C - Créditos a Andre Backes."]]
+         [:h4 [:iframe {:width "700" :height "400" :src "http://www.youtube.com/embed/p2ihD9uDZs4" :feature "player_detailpage" :frameborder "1" }]]
+         ]]
+))
+
+(defpage "/videos/alocacao/malloc" []
+ ;(carregar-apresentacao xml)
+ (common/layout
+         [:body {:id "fundoiframe" :onload "ResizeWH()"}
+         [:div {:class "modal-header"}  
+         [:center [:h5  "Esqueleto de Um programa C - Créditos a Andre Backes."]]
+         [:h4 [:iframe {:width "700" :height "400" :src "http://www.youtube.com/embed/iU9CL5d-P5U" :feature "player_detailpage" :frameborder "1" }]]
+         ]]
+))
+
+
+
+
 ;/********************************************************************/
 ;/****************************** VETOR ********************/
 ;/********************************************************************/
@@ -222,54 +293,54 @@
 
 (defpage [:post "/login/vetor/2"] {:keys [op]}
  (common/layout
-  (pedagogico-corretor 1 op)))
+  (pedagogico-corretor 1 (str " " op))))
      ;(common/layout
       ;  (formata-pergunta  "v002" "2" "/login/vetor/3"))) 
          
 
 (defpage [:post "/login/vetor/3"] {:keys [op]}
   (common/layout
-     (pedagogico-corretor 2 op)))
+     (pedagogico-corretor 2 (str " " op))))
         ;(formata-pergunta  "v003" "3" "/login/vetor/4")))
         
 
 (defpage [:post "/login/vetor/4"] {:keys [op]}
   (common/layout
-     (pedagogico-corretor 3 op)))   
+     (pedagogico-corretor 3 (str " " op))))   
       
 (defpage [:post "/login/vetor/5"] {:keys [op]}   
   (common/layout
-     (pedagogico-corretor 4 op)))   
+     (pedagogico-corretor 4 (str " "op))))   
 
         
 (defpage [:post "/login/vetor/6"] {:keys [op]}
   (common/layout
-     (pedagogico-corretor 5 op)))   
+     (pedagogico-corretor 5 (str " " op))))   
 
         
          
 (defpage [:post "/login/vetor/7"] {:keys [op]}
   (common/layout
-     (pedagogico-corretor 6 op)))   
+     (pedagogico-corretor 6 (str " " op))))   
 
 
 (defpage [:post "/login/vetor/8"] {:keys [op]}
 (common/layout
-     (pedagogico-corretor 7 op)))   
+     (pedagogico-corretor 7 (str " " op))))   
          
 
 (defpage [:post "/login/vetor/9"] {:keys [op]}
 (common/layout
-     (pedagogico-corretor 8 op)))   
+     (pedagogico-corretor 8 (str " " op))))   
          
 
 (defpage [:post "/login/vetor/10"] {:keys [op]}
 (common/layout
-     (pedagogico-corretor 9 op)))   
+     (pedagogico-corretor 9 (str " " op))))   
 
 (defpage [:post "/login/vetor/11"] {:keys [op]}
 (common/layout
-     (pedagogico-corretor 10 op)))   
+     (pedagogico-corretor 10 (str " " op))))   
 
 (defpage [:post "/login/vetor/12"] {:keys [op]}
 (common/layout
@@ -282,7 +353,7 @@
 ;(pedagogico-corretor "vetor" "ex10" code)
 ;(atualiza-todo-dominio (recupera-id (session/get :senhaUsuario)) "vetor")   
 ;(cond (> (get (nth (retorna-exercicio-certos-dominio (recupera-id (session/get :senhaUsuario)) "vetor") 0) :bom) 0.5)
- (cond (= code "hi")
+ (cond (> score 50)
   (common/layout
          [:body {:id "fundoiframe" :onload ""} 
          [:center [:h5 "VETOR"]]
@@ -294,6 +365,7 @@
      (common/layout
          [:body {:id "fundoiframe" :onload "CorVermelhaAloc(),ResizeWH();"} 
          [:center [:h5 "VETOR" ]]
+         [:p score] 
          [:p "Numero de exercícios resolvidos : 10"]
          [:center [:h2 "Você terminou as atividades de vetores! "]]
          [:center [:h4 "Fico triste, pois você não se saiu bem"]]
@@ -1478,7 +1550,7 @@ de operações que seja adequado a todas aplicações."]
          [:head [:script {:type "text/javascript" :src "/js/bootstrap.min.js"}]]
          [:body {:id "fundoiframe" :onload "corVerdeIntroducao(), corAzulVetor(),corAzulAlocacao(),corAzulString(),corAzulRecusividade(),
                                     corAzulFuncao(),corAzulStruct(),corAzulEC(),corAzulER(),corAzulArquivo(),testeVazio(),ResizeWH();;"} 
-         [:form {:action "/login/introdução/1" :method "post"}
+         [:form {:action "/login/introducao/1" :method "post"}
          [:center [:h5 "Introdução"]] 
          [:p " Programação é o processo de escrita, teste e manutenção de um programa de computador. 
                O programa é escrito em uma linguagem de programação, embora seja possível, com alguma 
@@ -1496,13 +1568,13 @@ de operações que seja adequado a todas aplicações."]
          [:a {:class "btn btn-info dropdown-toggle" :data-toggle "dropdown" :href "#"}
          [:span {:class "caret"}]]
          [:ul {:class "dropdown-menu"}
-         [:li [:a {:href "/videos/introdução/esqueleto " :onclick "mudaVideoIntroducao();" :target "principal" 
+         [:li [:a {:href "/videos/introducao/esqueleto " :onclick "mudaVideoIntroducao();" :target "principal" 
                :role "button" :data-toggle "modal" :name "backes001.xml"} 
                                                 [:i {:class "icon-pencil"}] "Esqueleto de um programa C"]]
          [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Declaração de variáveis"]]
          [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Printf/Scanf"]]
          [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Operador de atribuição"]] 
-         [:li [:a {:href "/videos/introdução " :onclick "mudaVideoIntroducao(),videoScroll();" :target "principal" }
+         [:li [:a {:href "/videos/introducao " :onclick "mudaVideoIntroducao(),videoScroll();" :target "principal" }
                                              [:i {:class "icon-ban-circle"}] "Todos"]]
          ]] 
          [:div {:class "btn-group" }  
@@ -1522,58 +1594,58 @@ de operações que seja adequado a todas aplicações."]
 
 
 
-(defpage [:post "/login/introdução/1"] []
+(defpage [:post "/login/introducao/1"] []
      (common/layout
        (pedagogico-main "introducao")))
         ; (formata-pergunta "a001" "1" "/login/introdução/2")))
 
-(defpage [:post "/login/introdução/2"] [op]
+(defpage [:post "/login/introducao/2"] [op]
      (common/layout
         (pedagogico-corretor 1 op)))   
        ;(formata-pergunta "a002" "2" "/login/introdução/3")))
 
-(defpage [:post "/login/introdução/3"] [op]
+(defpage [:post "/login/introducao/3"] [op]
      (common/layout
           (pedagogico-corretor 2 op)))
 
 
-(defpage [:post "/login/introdução/4"] [op]
+(defpage [:post "/login/introducao/4"] [op]
      (common/layout
           (pedagogico-corretor 3 op)))
 
 
-(defpage [:post "/login/introdução/5"] [op]
+(defpage [:post "/login/introducao/5"] [op]
      (common/layout
           (pedagogico-corretor 4 op)))
 
 
-(defpage [:post "/login/introdução/6"] [op]
+(defpage [:post "/login/introducao/6"] [op]
      (common/layout
           (pedagogico-corretor 5 op)))
 
 
 
-(defpage [:post "/login/introdução/7"] [op]
+(defpage [:post "/login/introducao/7"] [op]
      (common/layout
          [:body {:id "fundoiframe"} 
-         [:form {:action "/login/introdução/8" :method "post"}
+         [:form {:action "/login/introducao/8" :method "post"}
          [:center [:h5 "Introdução"]]
          [:p "Questão 7 "]
          [:button {:class "botaoQuestoes"} "Avançar"]]]))
 
-(defpage [:post "/login/introdução/8"] [op]
+(defpage [:post "/login/introducao/8"] [op]
      (common/layout
          [:body {:id "fundoiframe"} 
-         [:form {:action "/login/introdução/9" :method "post"}
+         [:form {:action "/login/introducao/9" :method "post"}
          [:center [:h5 "Introdução"]]
          [:p "Questão 8 "]
          [:button {:class "botaoQuestoes"} "Avançar"]]]))
 
 
-(defpage [:post "/login/introdução/9"] [op]
+(defpage [:post "/login/introducao/9"] [op]
      (common/layout
          [:body {:id "fundoiframe"} 
-         [:form {:action "/login/introdução/10" :method "post"}
+         [:form {:action "/login/introducao/10" :method "post"}
          [:center [:h5 "Introdução"]]
          [:p "Questão 9 "]
          [:button {:class "botaoQuestoes"} "Avançar"]]]))
@@ -1582,12 +1654,12 @@ de operações que seja adequado a todas aplicações."]
 (defpage [:post "/login/introdução/10"] [op]
      (common/layout
          [:body {:id "fundoiframe"} 
-         [:form {:action "/login/introdução/fim" :method "post"}
+         [:form {:action "/login/introducao/fim" :method "post"}
          [:center [:h5 "Introdução"]]
          [:p "Questão 10 "]
          [:button {:class "botaoQuestoes"} "Avançar"]]]))
 
-(defpage [:post "/login/introdução/fim"] [op]
+(defpage [:post "/login/introducao/fim"] [op]
      (common/layout
          [:body {:id "fundoiframe" :onclick "mudaCorPretoMetPesq();"} 
          [:center [:h5 "Introdução"]]
@@ -1599,7 +1671,7 @@ de operações que seja adequado a todas aplicações."]
 
 ;:::::::::::::::::::::::::::::::: vídeos ::::::::::::::::::::::::::::::
 
-(defpage "/videos/introdução" []
+(defpage "/videos/introducao" []
  ;(carregar-apresentacao xml)
  (common/layout
          [:body {:id "fundoiframe" :onload "ResizeWH(),videoScroll()"}
@@ -1625,7 +1697,7 @@ de operações que seja adequado a todas aplicações."]
          ]]]]
 ))
 
-(defpage "/videos/introdução/esqueleto" []
+(defpage "/videos/introducao/esqueleto" []
  ;(carregar-apresentacao xml)
  (common/layout
          [:body {:id "fundoiframe" :onload "ResizeWH()"}

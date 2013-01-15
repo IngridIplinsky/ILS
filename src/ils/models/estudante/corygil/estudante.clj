@@ -3,7 +3,8 @@
       [ils.models.estudante.corygil.factor-graph]
       [ils.models.estudante.corygil.factor-graph.bayes]
       [ils.models.dominio.BD.atualizacao]
-      [ils.models.dominio.BD.busca]
+      [ils.models.dominio.BD busca]
+      
       ))
 
 ;Árvore de junção do modelo do domínio do artigo:

@@ -1,6 +1,6 @@
 (ns ils.models.dominio.BD.atualizacao
-    (:use [ils.models.dominio.BD.persistence]
-          [ils.models.dominio.BD.busca])
+    (:use [ils.models.dominio.BD persistence]
+          [ils.models.dominio.BD busca])
     (:require [clojure.java.jdbc :as sql]))
 
 (defn atualizar-aluno 
@@ -26,7 +26,7 @@
  uma coluna (formato :exemplo) e o valor novo (entre aspas)."
   [matricula sigla coluna novo]
     (sql/with-connection ILS-DB
-      (sql/update-or-insert-values :estiloEstudante
+      (sql/update-values :estiloEstudante
         [(str "estiloEstudante.matricula ='"matricula"' AND estiloEstudante.sigla = '"sigla"'")]
         {coluna novo})))
         
@@ -38,17 +38,14 @@
       (sql/update-values :exercicioAluno
         [(str "exercicioAluno.matricula ='"matricula"' AND exercicioAluno.conteudo = '"conteudo"' AND exercicioAluno.idEx = '"idEx"'")]
         {coluna novo})))
-   ([matricula sigla conteudo idEx bom medio ruim]
+   ([matricula conteudo idEx bom medio ruim]
     "Para atualizar as probabilidades nas tabelas."
      (sql/with-connection ILS-DB
-       (sql/update-or-insert-values :exercicioAluno
-         [(str "exercicioAluno.matricula ='"matricula"' AND exercicioAluno.idCont = '"(first (vals (first (buscar-conteudo "idCont" "conteudo" conteudo "sigla" sigla))))"' AND exercicioAluno.idEx = '"idEx"'")]
-        {:matricula matricula 
-         :idCont (first (vals (first (buscar-conteudo "idCont" "conteudo" conteudo "sigla" sigla))))
-         :idEx idEx 
-         :bom bom 
-         :medio medio 
-         :ruim ruim}))))
+       (sql/update-values :exercicioAluno
+         [(str "exercicioAluno.matricula ='"matricula"' AND exercicioAluno.conteudo = '"conteudo"' AND exercicioAluno.idEx = '"idEx"'")]
+        {:bom bom :medio medio :ruim ruim}))))
+
+
 
 (defn atualizar-conteudoAluno
 "Atualiza os dados pessoais de um aluno a partir da matricula, passando matricula, 
@@ -58,18 +55,16 @@
       (sql/update-values :conteudoAluno
         [(str "conteudoAluno.matricula ='"matricula"' AND conteudoAluno.conteudo = '"conteudo"'")]
         {coluna novo})))
-   ([matricula sigla conteudo bom medio ruim]
+   ([matricula conteudo bom medio ruim]
      (sql/with-connection ILS-DB
-       (sql/update-or-insert-values :conteudoAluno
-         [(str "conteudoAluno.matricula ='"matricula"' AND conteudoAluno.idCont = '"(first (vals (first (buscar-conteudo "idCont" "conteudo" conteudo "sigla" sigla))))"'")]
-        {:matricula matricula 
-         :idCont (first (vals (first (buscar-conteudo "idCont" "conteudo" conteudo "sigla" sigla)))) 
-         :bom bom 
-         :medio medio 
-         :ruim ruim}))))
+       (sql/update-values :conteudoAluno
+         [(str "exercicioAluno.matricula ='"matricula"' AND exercicioAluno.conteudo = '"conteudo"'")]
+        {:bom bom :medio medio :ruim ruim}))))
 
 
-;(defn atualiza-todo-dominio [alunokey conteudo]
-;    (cond (> ( / (count(retorna-exercicio-certos alunokey conteudo)) 10) 1/2) (atualizar-probs-conteudo alunokey conteudo 1.0 0.0 0.0)
-;     :else (atualizar-probs-conteudo alunokey conteudo 0.0 0.0 1.0))) 
+
+
+;(defn atualiza-todo-dominio [matricula conteudo]
+;    (cond (> ( / (count(retorna-exercicio-certos matricula conteudo)) 10) 1/2) (atualizar-conteudoAluno matricula conteudo 1.0 0.0 0.0)
+;     :else (atualizar-conteudoAluno matricula conteudo 0.0 0.0 1.0))) 
 

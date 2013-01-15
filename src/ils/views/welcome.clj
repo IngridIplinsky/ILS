@@ -1,14 +1,16 @@
 (ns ils.views.welcome
   (:require [ils.views.common :as common]
             [noir.content.getting-started]
-            [noir.session :as session])
+            [noir.session :as session]
+            )
   (:use [ils.models.estudante.corygil estudante]
-        [ils.models.dominio.BD insercao]
         [ils.models.dominio.BD busca]
+        [ils.models.dominio.BD insercao]
         [ils.models.dominio.xml manipulacao] 
         [noir.core :only [defpage]]
         [hiccup.core :only [html]]
         [noir.core :only [defpartial]]
+        ;[noir.response :only [redirect]]
         [hiccup.page-helpers :only [include-css html5 include-js html5]]
  ))
 
@@ -43,17 +45,7 @@
          ]]]]
 
 
-;<div id="myCarousel" class="carousel slide">
-;<!-- Carousel items -->
-;<div class="carousel-inner">
-;<div class="active item">…</div>
-;<div class="item">…</div>
-;<div class="item">…</div>
-;</div>
-;<!-- Carousel nav -->
-;<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-;<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-;</div
+
          [:div {:class "container" :id "container_slide" } 
          [:div {:id "myCarousel" :class "carousel slide"}
    	 [:div {:class "carousel-inner"}
@@ -188,7 +180,42 @@
     ]]))   
 
 
-  
+
+; Página de erro, ela é invocada se o login não estiver correto
+
+
+(defpage "/login/erro" []
+    (common/layout
+     [:body {:class "hero-unit"}
+     [:div {:class "container"}
+     [:h1 ""]
+     [:div {:class "modal-body"}
+     [:center [:h1 "Error!"]]
+     [:center [:h4 "Úsuario e/ou senha incorreto(s)"]]
+     [:center [:h4 "Certifique suas entradas"]]
+     [:center [:a {:class "btn btn-large  btn-primary" :id "link_error" :href "/"} "Voltar"]]
+     ]]]))   
+
+
+
+; Testando o redirect
+        
+;(defpage "/teste" []
+;     (redirect "/login/erro"))   
+
+      
+
+(defpage [:post "/testarConsole"] {:keys [op]}
+   (common/layout
+     [:body {:id "fundoConsole"}
+     [:textarea {:class "consoleTextArea" :id "consoleTextArea"} (str ">>> " op)]]))
+
+(defpage "/testar" []
+   (common/layout
+     [:body {:id "fundoConsole"}
+     [:textarea {:class "consoleTextArea" :id "consoleTextArea"} ">>> "]]))
+
+
 
 ; pagina que recebe parametros e retorna uma resposta ao usuario 
 ; foi definidos os parametros vindo de um post o endereço da pagina é /login/index 
@@ -198,9 +225,11 @@
 
 
 (defpage [:post "/index"] {:keys [usuario senha]}
-;(session/remove! :senhaUsuario)
-;(session/put! :senhaUsuario senha)
-;(cond (= 1 (compara-usuario usuario senha) 1) 
+(session/remove! :senhaUsuario)
+(session/remove! :Usuario)
+(session/put! :senhaUsuario senha)
+(session/put! :Usuario usuario)
+(cond (= 1 (compara-usuario usuario senha) 1) 
         (common/layout
          [:head [:script {:type "text/javascript" :src "/js/bootstrap.min.js"}]]
          [:body {:class "home"} 
@@ -212,7 +241,7 @@
          [:div {:class "navbar"}
          [:div {:class "navbar-inner"}  
          [:ul {:class "nav"}
-         [:li [:h5 "Olá, " usuario]]]
+         [:li [:h5 "Olá, " (session/get :Usuario)]]]
          [:div {:class "btn-group" :id "config"}  
          [:p {:class "btn btn-primary" :href "#"}[:i {:class "icon-user icon-white"}] "Configurações"]
          [:a {:class "btn btn-primary dropdown-toggle" :data-toggle "dropdown" :href "#"}
@@ -307,7 +336,20 @@
          [:button {:class "btn btn-success" :data-dismiss "modal" :arial-hidden "true"} "Confirmar"]
          [:button {:class "btn btn-danger" :data-dismiss "modal" :arial-hidden "true"} "Close"]]
          ] ; end modal    
-         ]))
+         ])
+         :else
+         (common/layout
+     	[:body {:class "hero-unit"}
+        [:div {:class "container"}
+        [:h1 ""]
+        [:div {:class "modal-body"}
+        [:center [:h1 "Error!"]]
+        [:center [:h4 "Úsuario e/ou senha incorreto(s)"]]
+        [:center [:h4 "Certifique suas entradas"]]
+        [:center [:a {:class "btn btn-large  btn-primary" :id "link_error" :href "/"} "Voltar"]]
+        ]]]))
+         ) 
+         
 
 
 
@@ -438,11 +480,11 @@
 
 (defpage [:post "/login/cadastro/welcome"] {:keys [nome numeromatricula  sobrenome curso email nomeUsuario senha disciplina]}
 (inserir-aluno numeromatricula nome sobrenome curso email nomeUsuario senha disciplina)
-;(insere-tabela-aluno 
-;(povoar-tabelas numeromatricula)
-  (session/remove! :senhaUsuario)    
-  (session/put! :senhaUsuario senha) 
-          (common/layout
+(session/remove! :senhaUsuario)
+(session/remove! :Usuario)
+(session/put! :senhaUsuario senha)
+(session/put! :Usuario nomeUsuario)
+        (common/layout
          [:head [:script {:type "text/javascript" :src "/js/bootstrap.min.js"}]]
          [:body {:class "home"} 
          [:div {:class "navbar navbar-inverse navbar-fixed-top"}
@@ -453,7 +495,7 @@
          [:div {:class "navbar"}
          [:div {:class "navbar-inner"}  
          [:ul {:class "nav"}
-         [:li [:h5 "Seja bem-vindo , " nomeUsuario]]]
+         [:li [:h5 "Olá, " (session/get :Usuario)]]]
          [:div {:class "btn-group" :id "config"}  
          [:p {:class "btn btn-primary" :href "#"}[:i {:class "icon-user icon-white"}] "Configurações"]
          [:a {:class "btn btn-primary dropdown-toggle" :data-toggle "dropdown" :href "#"}
@@ -506,15 +548,12 @@
          [:ul {:class "nav"}
          [:li [:p {:id "ativ-exerc"}""]]]     
          ]]]
-         [:div {:class "span9" :onload "tam()"}
+         [:div {:class "span9" }
          [:div {:class "hero-unit"}
 
          
  
          [:iframe {:class "Iframe2" :id "iframe" :src "/login/ola" :name "principal"}]
-         [:center [:h1 "Bons Estudos!"]]
-         [:p "This is a template for a simple marketing or informational website.
-          Use it as a starting point to create something more unique."]
          ]]]]
          [:div {:class "modal-footer" :id "last_index"}
          [:div {:class "container"}
@@ -552,6 +591,8 @@
          [:button {:class "btn btn-danger" :data-dismiss "modal" :arial-hidden "true"} "Close"]]
          ] ; end modal    
          ]))
+         
+
 
  
 
@@ -668,7 +709,7 @@
  (common/layout
    [:body
    [:video {:id "video" :controls "controls"}
-   [:source {:src "/videos/aula35.mp4" :type "video/mp4"}]]]))    
+   [:source {:src "http://www.youtube.com/embed/GiCt0Cwcp-U"}]]]))    
 
 
 (defpage "/codigo" []
