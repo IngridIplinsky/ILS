@@ -2,13 +2,14 @@
   (:require [ils.views.common :as common]
             [noir.content.getting-started]
             [noir.session :as session])
- (:use [ils.models.estudante.corygil estudante]
+ (:use 
        [ils.models.dominio.BD.busca]
        [ils.models.dominio.xml.manipulacao]
        [clojure.java.shell :only [sh]]
        [hiccup.page-helpers :only [include-css html5 include-js html5]]))
 
 ;(use '[clojure.java.shell :only [sh]])
+;[ils.models.estudante.corygil estudante]
 
  (def mapaRespostas
  {

@@ -2,7 +2,7 @@
   (:require [ils.views.common :as common]
             [noir.content.getting-started]
             [noir.session :as session])
- (:use [ils.models.estudante.corygil estudante]
+ (:use 
        [ils.models.dominio.BD.busca]
        [ils.models.dominio.xml.manipulacao]
        [clojure.java.shell :only [sh]]

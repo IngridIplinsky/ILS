@@ -43,11 +43,6 @@
    )
 )
 
-(defn retornaExercicio [mensagem n]
-  (println mensagem)
-  (formata-pergunta (first exercicioAtual) n)
-)
-
 (defn pedagogico-gera-exercicio [n nivelExercicio resposta]
    (cond
       (= nivelExercicio "facil") (def exerciciosFaceis (conj (vec (rest exerciciosFaceis)) (first exerciciosFaceis)))
