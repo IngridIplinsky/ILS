@@ -99,4 +99,12 @@
    (sql/with-connection ILS-DB
     (sql/delete-rows :catalogoBug
       [(str "selecao = '"selecao"' AND organizacao = '"organizacao"' AND utilizacao = '"utilizacao"'")]
+    )))
+
+(defn remover-logAluno
+  "Remove o log de última sessão de um aluno, através do id."
+   [idLog]
+   (sql/with-connection ILS-DB
+    (sql/delete-rows :logAluno
+      [(str "idLog = '"idLog"'")]
     )))   

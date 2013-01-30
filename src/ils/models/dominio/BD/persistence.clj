@@ -187,6 +187,27 @@
   	    ["CONSTRAINT FK_CB_EX 
   	    FOREIGN KEY (idEx) REFERENCES  exercicio(idEx)"])))
 
+(defn criar-tabela-logAluno
+"Cria a tabela logAluno."
+[]
+  (sql/with-connection ILS-DB
+    (sql/create-table :logAluno
+           [:idLog "VARCHAR(20) NOT NULL"]
+	   [:matricula "VARCHAR(20) NOT NULL"]
+	   [:sigla "VARCHAR(20) NOT NULL"]
+	   [:idCont "VARCHAR(20) NOT NULL"]
+	   [:idEx "VARCHAR(20) NOT NULL"]
+	   ["CONSTRAINT PK_LOGALUNO PRIMARY KEY(idLog, matricula)"]
+	   ["CONSTRAINT FK_LOGALUNO FOREIGN KEY(matricula)
+	     REFERENCES aluno(matricula)"]
+	   ["CONSTRAINT FK_LOGALUNOSigla FOREIGN KEY(sigla)
+	     REFERENCES disciplina(sigla)"]
+	   ["CONSTRAINT FK_LOGALUNOCont FOREIGN KEY(idCont)
+             REFERENCES conteudo(idCont)"]
+;	   ["CONSTRAINT FK_LOGALUNOEx FOREIGN KEY(idEx)
+;	     REFERENCES exercicio(idEx)"]
+	   )))
+
 (defn destroi-tabelas 
 "Destroi todas as tabelas do banco. (Não use isto)"
 []
@@ -214,5 +235,7 @@
     (sql/drop-table :aluno))
    (sql/with-connection ILS-DB
     (sql/drop-table :estilo))
+   (sql/with-connection ILS-DB
+    (sql/drop-table :logAluno))
  )
 

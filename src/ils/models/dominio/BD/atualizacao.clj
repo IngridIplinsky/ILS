@@ -61,7 +61,16 @@
          [(str "exercicioAluno.matricula ='"matricula"' AND exercicioAluno.conteudo = '"conteudo"'")]
         {:bom bom :medio medio :ruim ruim}))))
 
-
+(defn atualizar-logAluno
+"Atualiza os dados da tabela logAluno pela passagem da matrícula para a qual os dados serão atualizados, a nova sigla de
+ disciplina, o id de conteúdo e o id do exercício, todos entre aspas."
+  [matricula sigla idCont idEx]
+    (sql/with-connection ILS-DB
+      (sql/update-values :logAluno
+	[(str "logAluno.matricula = '"matricula"'")]
+	{:sigla sigla 
+	 :idCont idCont 
+	 :idEx idEx})))
 
 
 ;(defn atualiza-todo-dominio [matricula conteudo]

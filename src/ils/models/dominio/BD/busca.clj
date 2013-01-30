@@ -199,8 +199,7 @@ conteudo."coluna2" = '"valor2"'")]
    (sql/with-query-results res
     [(str "SELECT estilo."retorno" FROM estilo WHERE estilo.selecao = '"selecao"' AND
 estilo.organizacao = '"organizacao"' AND estilo.utilizacao = '"utilizacao"'")]
-      (doall res)))))
-  
+      (doall res)))))  
  
 (defn buscar-todos-ex [id]
 (sql/with-connection ILS-DB
@@ -208,6 +207,20 @@ estilo.organizacao = '"organizacao"' AND estilo.utilizacao = '"utilizacao"'")]
   (sql/with-query-results res
     [(str "SELECT exercicio.xmlexercicio FROM exercicio WHERE exercicio.idEx = '"id"'")]
        (clob-to-string (:xmlexercicio (first res))) ))))
+
+(defn buscar-logAluno
+ ([matricula]
+  "Busca os campos 'sigla', 'conteúdo' e 'idEx' da tabela logAluno através do número de matrícula do estudante."
+  (sql/with-connection ILS-DB
+   (sql/with-query-results res
+    [(str "SELECT logAluno.sigla, logAluno.idCont, logAluno.idEx FROM logAluno WHERE logAluno.matricula = '"matricula"'")]
+      (doall res))))
+ ([retorno coluna valor]
+  "Busca campos na tabela logAluno através de uma coluna e valor contidos nela."
+  (sql/with-connection ILS-DB
+   (sql/with-query-results res
+    [(str "SELECT "retorno" FROM logAluno WHERE logAluno."coluna" = '"valor"'")]
+      (doall res)))))
        
  
 (defn buscar-id-aluno-senha [senha]
