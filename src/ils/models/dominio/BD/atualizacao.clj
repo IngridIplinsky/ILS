@@ -1,6 +1,5 @@
 (ns ils.models.dominio.BD.atualizacao
-    (:use [ils.models.dominio.BD persistence]
-          [ils.models.dominio.BD busca])
+    (:use ils.models.dominio.BD.persistence)
     (:require [clojure.java.jdbc :as sql]))
 
 (defn atualizar-aluno 
@@ -45,8 +44,6 @@
          [(str "exercicioAluno.matricula ='"matricula"' AND exercicioAluno.conteudo = '"conteudo"' AND exercicioAluno.idEx = '"idEx"'")]
         {:bom bom :medio medio :ruim ruim}))))
 
-
-
 (defn atualizar-conteudoAluno
 "Atualiza os dados pessoais de um aluno a partir da matricula, passando matricula, 
  uma coluna (formato :exemplo) e o valor novo (entre aspas)."
@@ -61,19 +58,8 @@
          [(str "exercicioAluno.matricula ='"matricula"' AND exercicioAluno.conteudo = '"conteudo"'")]
         {:bom bom :medio medio :ruim ruim}))))
 
-(defn atualizar-logAluno
-"Atualiza os dados da tabela logAluno pela passagem da matrícula para a qual os dados serão atualizados, a nova sigla de
- disciplina, o id de conteúdo e o id do exercício, todos entre aspas."
-  [matricula sigla idCont idEx]
-    (sql/with-connection ILS-DB
-      (sql/update-values :logAluno
-	[(str "logAluno.matricula = '"matricula"'")]
-	{:sigla sigla 
-	 :idCont idCont 
-	 :idEx idEx})))
 
-
-;(defn atualiza-todo-dominio [matricula conteudo]
-;    (cond (> ( / (count(retorna-exercicio-certos matricula conteudo)) 10) 1/2) (atualizar-conteudoAluno matricula conteudo 1.0 0.0 0.0)
-;     :else (atualizar-conteudoAluno matricula conteudo 0.0 0.0 1.0))) 
+;(defn atualiza-todo-dominio [alunokey conteudo]
+;    (cond (> ( / (count(retorna-exercicio-certos alunokey conteudo)) 10) 1/2) (atualizar-probs-conteudo alunokey conteudo 1.0 0.0 0.0)
+;     :else (atualizar-probs-conteudo alunokey conteudo 0.0 0.0 1.0))) 
 

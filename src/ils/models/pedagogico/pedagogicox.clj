@@ -6,3 +6,11 @@
 		[ils.models.pedagogico.corretor]
 	)
 )
+
+(defn iniciarPedagogico [materia]
+	(main materia)
+)
+
+(defn corrigirExercicio [n op]
+	(corretor n op)
+)

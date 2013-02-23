@@ -1,6 +1,6 @@
 (ns ils.models.dominio.BD.insercao
-    (:use [ils.models.dominio.BD persistence]
-          [ils.models.dominio.BD busca])
+    (:use [ils.models.dominio.BD.persistence]
+          [ils.models.dominio.BD.busca])
     (:require [clojure.xml :as xml]
   			[clojure.zip :as zip] 
 			[clojure.contrib.zip-filter.xml :as zf]
@@ -133,16 +133,4 @@
        :xmlbug (slurp xml)}
     ))) 
     
-(defn inserir-logAluno
-  "Insere um novo log de aluno no banco. Este log serve para que seja armazenada a disciplina, o conteúdo e o exercício
-   onde o estudante parou em sua última sessão no sistema."
-   [idLog matricula sigla idCont idEx]
-   (sql/with-connection ILS-DB
-    (sql/insert-records :logAluno
-      {:idLog idLog
-       :matricula matricula
-       :sigla sigla
-       :idCont idCont
-       :idEx idEx}
-    )))   
 

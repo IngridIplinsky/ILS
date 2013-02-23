@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bayes>
+
+
+<node nome="introducao">
+	<value>["bom" "medio" "ruim"]</value>
+	<prob>
+		<nome>p1</nome>
+		<pai>[]</pai>
+		<table>[0.33 0.33 0.34]<table>
+	</prob>
+</node>
+
+<node nome="estruturasCond">
+</node>
+
+<node nome="laco">
+</node>
+
+<node nome="vetor">
+</node>
+
+<node nome="string">
+</node>
+
+<node nome="estruturas">
+</node>
+
+<node nome="funcao">
+</node>
+
+<node nome="recursao">
+</node>
+
+<node nome="alocDin">
+</node>
+
+<node nome="arquivo">
+</node>
+
+</bayes>

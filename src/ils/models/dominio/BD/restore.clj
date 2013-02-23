@@ -32,8 +32,7 @@
  	(criar-tabela-conteudoAluno)
  	(criar-tabela-exercicioAluno)
  	(criar-tabela-estiloEstudante)
- 	(criar-tabela-catalogoBug)
-	(criar-tabela-logAluno) 	
+ 	(criar-tabela-catalogoBug) 	
  	
  ;	(println "Inserindo o curso de Estruras de Dados no ILS. Por favor, aguarde...")
  	

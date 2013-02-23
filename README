@@ -1,0 +1,20 @@
+# dominio
+
+Bem-vindo à base de dados do ILS em XML! [Under Construction]
+
+## Usage
+
+-> Entre na pasta dominio.
+-> digite lein repl.
+-> Um exemplo de uso para a funcao: (get-value "src/dominio/vetor/exercicios/v001.xml" :conteudo)
+-> Não use a tag exercicio, ele nao pega tudo, use um a um.
+
+FIXME:
+
+-> nenhum bug encontrado até agora :D
+
+## License
+
+Copyright (C) 2012 dominio - ILS
+
+Distributed under the Eclipse Public License, the same as Clojure.

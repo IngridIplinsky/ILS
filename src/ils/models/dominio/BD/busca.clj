@@ -1,8 +1,6 @@
 (ns ils.models.dominio.BD.busca
-    (:use [ils.models.dominio.BD persistence])
+    (:use ils.models.dominio.BD.persistence)
     (:require [clojure.java.jdbc :as sql]))
-
-
     
 ;Uma funcao auxiliar de descompressão de CLOBS, usada nas buscas...
 (defn clob-to-string [clob]
@@ -108,15 +106,6 @@ AND catalogoBug."coluna2" = '"valor2"'")]
    (sql/with-query-results res
         [(str "SELECT aluno."retorno" FROM aluno WHERE aluno."coluna" = '"valor"'")]
           (doall res))))
-
-
-(defn buscar-todos-alunos []
-"Busca campos da tabela aluno, através de uma coluna e valor contido nela."
-(sql/with-connection ILS-DB
-   (sql/with-query-results res
-        [(str "SELECT * FROM aluno")]
-          (doall res))))
-
           
 (defn buscar-conteudo
    ([retorno coluna valor]
@@ -199,7 +188,8 @@ conteudo."coluna2" = '"valor2"'")]
    (sql/with-query-results res
     [(str "SELECT estilo."retorno" FROM estilo WHERE estilo.selecao = '"selecao"' AND
 estilo.organizacao = '"organizacao"' AND estilo.utilizacao = '"utilizacao"'")]
-      (doall res)))))  
+      (doall res)))))
+  
  
 (defn buscar-todos-ex [id]
 (sql/with-connection ILS-DB
@@ -207,42 +197,8 @@ estilo.organizacao = '"organizacao"' AND estilo.utilizacao = '"utilizacao"'")]
   (sql/with-query-results res
     [(str "SELECT exercicio.xmlexercicio FROM exercicio WHERE exercicio.idEx = '"id"'")]
        (clob-to-string (:xmlexercicio (first res))) ))))
-
-(defn buscar-logAluno
- ([matricula]
-  "Busca os campos 'sigla', 'conteúdo' e 'idEx' da tabela logAluno através do número de matrícula do estudante."
-  (sql/with-connection ILS-DB
-   (sql/with-query-results res
-    [(str "SELECT logAluno.sigla, logAluno.idCont, logAluno.idEx FROM logAluno WHERE logAluno.matricula = '"matricula"'")]
-      (doall res))))
- ([retorno coluna valor]
-  "Busca campos na tabela logAluno através de uma coluna e valor contidos nela."
-  (sql/with-connection ILS-DB
-   (sql/with-query-results res
-    [(str "SELECT "retorno" FROM logAluno WHERE logAluno."coluna" = '"valor"'")]
-      (doall res)))))
        
  
-(defn buscar-id-aluno-senha [senha]
- (sql/with-connection ILS-DB
-  (sql/with-query-results res [(str "SELECT ALUNO.matricula FROM ALUNO WHERE ALUNO.senha = '" senha"'")]
-    (doall res))))
-   
-(defn buscar-id-aluno-usuario-senha [usuario senha]
- (sql/with-connection ILS-DB
-  (sql/with-query-results res [(str "SELECT ALUNO.matricula FROM ALUNO WHERE ALUNO.usuario ='" usuario "' AND ALUNO.senha = '" senha"'")]
-    (doall res))))
-
-(defn buscar-id-aluno-usuario [usuario]
- (sql/with-connection ILS-DB
-  (sql/with-query-results res [(str "SELECT ALUNO.matricula FROM ALUNO WHERE ALUNO.usuario = '" usuario"'")]
-    (doall res))))
-
-
-
-(defn compara-usuario [usuario senha]
-(cond (= nil (buscar-id-aluno-usuario-senha usuario senha)) 0
-  :else 1))
 
 
 

@@ -31,15 +31,16 @@
 ; Note que usamos a função "get-value-exercicio "
 ; Ela trabalha na forma de lista, ou seja a tag que trata
 ; o tipo de exercicio está na posição 3 
-         (def xmap 
-            {
+         (let [
+          xmap
+          {
             :conteudo (get-tag-exercicio :idEx)
             :nome (.toUpperCase (get-tag-exercicio :conteudo)) 
             :tipo (get-tag-exercicio :tipo) 
             :enunciado (get-tag-exercicio :enunciado) 
             :nivel (get-tag-exercicio :nivel) 
             :post (formata-post (get-tag-exercicio :conteudo) n)
-            })
+          }]
          (cond (= "me" (get xmap :tipo))
 ; Abaixo temos o formato genêrico de html para exercicios de multipla escolha         
          [:body {:id "fundoiframe" :onload "ResizeWH();"} 
@@ -119,4 +120,4 @@
        ]]
        [:div {:class "modal-footer"}
        [:textarea {:class  "console"} ">>>"]]]]
-       )))
+       ))))
