@@ -104,52 +104,62 @@
 
 (defpage [:post "/login/alocDin/1"] []
   (common/layout
-        (pedagogico-main "alocDin")))    
+        ;(pedagogico-main "alocDin")
+))    
 
 (defpage [:post "/login/alocDin/2"] {:keys [op]}
   (common/layout
-    (pedagogico-corretor 1 op)))
+    ;(pedagogico-corretor 1 op)
+))
 
          
 (defpage [:post "/login/alocDin/3"] {:keys [op]}
 (common/layout
-    (pedagogico-corretor 2 op)))
+    ;(pedagogico-corretor 2 op)
+))
 
 
 (defpage [:post "/login/alocDin/4"] {:keys [op]}
 (common/layout
-    (pedagogico-corretor 3 op)))
+    ;(pedagogico-corretor 3 op)
+))
 
 
 (defpage [:post "/login/alocDin/5"] {:keys [op]}
 (common/layout
-    (pedagogico-corretor 4 op)))
+    ;(pedagogico-corretor 4 op)
+))
 
 
 (defpage [:post "/login/alocDin/6"] {:keys [op]}
 (common/layout
-    (pedagogico-corretor 5 op)))
+    ;(pedagogico-corretor 5 op)
+))
 
 
 (defpage [:post "/login/alocDin/7"] {:keys [op]}
 (common/layout
-    (pedagogico-corretor 6 op)))
+    ;(pedagogico-corretor 6 op)
+))
 
 
 (defpage [:post "/login/alocDin/8"] {:keys [op]}
 (common/layout
-    (pedagogico-corretor 7 op)))
+    ;(pedagogico-corretor 7 op)
+))
 
 
 
 (defpage [:post "/login/alocDin/9"] {:keys [op]}
 (common/layout
-    (pedagogico-corretor 8 op)))
+    ;(pedagogico-corretor 8 op)
+))
 
 
 (defpage [:post "/login/alocDin/10"] {:keys [op]}
 (common/layout
-    (pedagogico-corretor 9 op)))
+    ;(pedagogico-corretor 9 op)
+))
 
 
 
@@ -287,91 +297,104 @@
   
 (defpage [:post "/login/vetor/1"] {:keys [op]}
      (common/layout
-        (pedagogico-main "vetor")))
+        ;(pedagogico-main "vetor")
+))
          ;(formata-pergunta "v001" "1" "/login/vetor/2"))) 
 
 
 (defpage [:post "/login/vetor/2"] {:keys [op]}
  (common/layout
-  (pedagogico-corretor 1 (str " " op))))
+  ;(pedagogico-corretor 1 op)
+))
      ;(common/layout
       ;  (formata-pergunta  "v002" "2" "/login/vetor/3"))) 
          
 
 (defpage [:post "/login/vetor/3"] {:keys [op]}
   (common/layout
-     (pedagogico-corretor 2 (str " " op))))
+     ;(pedagogico-corretor 2 op)
+))
         ;(formata-pergunta  "v003" "3" "/login/vetor/4")))
         
 
 (defpage [:post "/login/vetor/4"] {:keys [op]}
   (common/layout
-     (pedagogico-corretor 3 (str " " op))))   
+     ;(pedagogico-corretor 3 op)
+))
       
 (defpage [:post "/login/vetor/5"] {:keys [op]}   
   (common/layout
-     (pedagogico-corretor 4 (str " "op))))   
+     ;(pedagogico-corretor 4 op)
+))
 
         
 (defpage [:post "/login/vetor/6"] {:keys [op]}
   (common/layout
-     (pedagogico-corretor 5 (str " " op))))   
+    ;(pedagogico-corretor 5 op)
+))   
 
         
          
 (defpage [:post "/login/vetor/7"] {:keys [op]}
   (common/layout
-     (pedagogico-corretor 6 (str " " op))))   
+     ;(pedagogico-corretor 6 op)
+))
 
 
 (defpage [:post "/login/vetor/8"] {:keys [op]}
 (common/layout
-     (pedagogico-corretor 7 (str " " op))))   
+     ;(pedagogico-corretor 7 op)
+))   
          
 
 (defpage [:post "/login/vetor/9"] {:keys [op]}
 (common/layout
-     (pedagogico-corretor 8 (str " " op))))   
+     ;(pedagogico-corretor 8 op)
+))   
          
 
 (defpage [:post "/login/vetor/10"] {:keys [op]}
 (common/layout
-     (pedagogico-corretor 9 (str " " op))))   
+     ;(pedagogico-corretor 9 op)
+))
 
 (defpage [:post "/login/vetor/11"] {:keys [op]}
 (common/layout
-     (pedagogico-corretor 10 (str " " op))))   
+     ;(pedagogico-corretor 10 op)
+))
 
 (defpage [:post "/login/vetor/12"] {:keys [op]}
 (common/layout
-     (pedagogico-corretor 11 op)))   
+     ;(pedagogico-corretor 11 op)
+))
                
 
 
 
 (defpage [:post "/login/vetor/fim"] {:keys [code]}
-;(pedagogico-corretor "vetor" "ex10" code)
 ;(atualiza-todo-dominio (recupera-id (session/get :senhaUsuario)) "vetor")   
 ;(cond (> (get (nth (retorna-exercicio-certos-dominio (recupera-id (session/get :senhaUsuario)) "vetor") 0) :bom) 0.5)
- (cond (> score 50)
-  (common/layout
-         [:body {:id "fundoiframe" :onload ""} 
-         [:center [:h5 "VETOR"]]
-         [:center [:h2 "Você terminou as atividades de vetores! "]]
-         [:center [:h4 "Fico feliz, pois você teve um conhecimento acima de 50%"]]
-         [:center [:h4 "Sendo assim, pode proseguir a responder as questões."]]
-         [:center [:h4 "Vamos para o centeúdo de Lista, o link apareceu ao lado"]]])
-   :else 
-     (common/layout
-         [:body {:id "fundoiframe" :onload "CorVermelhaAloc(),ResizeWH();"} 
-         [:center [:h5 "VETOR" ]]
-         [:p score] 
-         [:p "Numero de exercícios resolvidos : 10"]
-         [:center [:h2 "Você terminou as atividades de vetores! "]]
-         [:center [:h4 "Fico triste, pois você não se saiu bem"]]
-         [:center [:h4 "Sendo assim, não pode prosseguir."]]
-         [:center [:h4 "Te indico o conteúdo de alocação dinâmica, que apareceu o link em vermelho ao lado."]]]  
-         )))
+; (cond
+    (common/layout
+        [:body {:id "fundoiframe" :onload ""} 
+        [:center [:h5 "VETOR"]]
+        [:center [:h2 "Você terminou as atividades de vetores! "]]
+        [:center [:h4 "Fico feliz, pois você teve um conhecimento acima de 50%"]]
+        [:center [:h4 "Sendo assim, pode proseguir a responder as questões."]]
+        [:center [:h4 "Vamos para o centeúdo de Lista, o link apareceu ao lado"]]]
+    )
+;   :else
+;     (common/layout
+;         [:body {:id "fundoiframe" :onload "CorVermelhaAloc(),ResizeWH();"} 
+;         [:center [:h5 "VETOR" ]]
+;         ;[:p score] 
+;         [:p "Numero de exercícios resolvidos : 10"]
+;         [:center [:h2 "Você terminou as atividades de vetores! "]]
+;         [:center [:h4 "Fico triste, pois você não se saiu bem"]]
+;         [:center [:h4 "Sendo assim, não pode prosseguir."]]
+;         [:center [:h4 "Te indico o conteúdo de alocação dinâmica, que apareceu o link em vermelho ao lado."]]]  
+;         )
+)
 
 
 (defpage "/videos/vetor" []
@@ -586,7 +609,7 @@ de operações que seja adequado a todas aplicações."]
 
 
 (defpage [:post "/login/lista/2"] {:keys [op]}
-(pedagogico-corretor "lista" "ex1" op)
+;(pedagogico-corretor "lista" "ex1" op)
      (common/layout
          [:body {:id "fundoiframe"} 
          [:form {:action "/login/lista/3" :method "post" :name "form"}
@@ -600,7 +623,7 @@ de operações que seja adequado a todas aplicações."]
 
 
 (defpage [:post "/login/lista/3"] {:keys [op]}
-(pedagogico-corretor "lista" "ex2" op)
+;(pedagogico-corretor "lista" "ex2" op)
      (common/layout
          [:body {:id "fundoiframe"} 
          [:form {:action "/login/lista/4" :method "post" :name "form"}
@@ -614,7 +637,7 @@ de operações que seja adequado a todas aplicações."]
 
 
 (defpage [:post "/login/lista/4"] {:keys [op]}
-(pedagogico-corretor "lista" "ex3" op)
+;(pedagogico-corretor "lista" "ex3" op)
      (common/layout
          [:body {:id "fundoiframe"} 
          [:form {:action "/login/lista/5" :method "post" :name "form"}
@@ -628,7 +651,7 @@ de operações que seja adequado a todas aplicações."]
 
 
 (defpage [:post "/login/lista/5"] {:keys [op]}
-(pedagogico-corretor "lista" "ex2" op)
+;(pedagogico-corretor "lista" "ex2" op)
      (common/layout
          [:body {:id "fundoiframe"} 
          [:form {:action "/login/lista/6" :method "post" :name "form"}
@@ -641,7 +664,7 @@ de operações que seja adequado a todas aplicações."]
          [:button {:class "botaoQuestoes" :onclick "return verificaRadio();"} "Avançar"]]]))
 
 (defpage [:post "/login/lista/6"] {:keys [op]}
-(pedagogico-corretor "lista" "ex5" op)
+;(pedagogico-corretor "lista" "ex5" op)
      (common/layout
          [:body {:id "fundoiframe"} 
          [:form {:action "/login/lista/7" :method "post" :name "form"}
@@ -655,7 +678,7 @@ de operações que seja adequado a todas aplicações."]
          [:button {:class "botaoQuestoes" :onclick "return verificaRadio();"} "Avançar"]]]))
 
 (defpage [:post "/login/lista/7"] {:keys [op]}
-(pedagogico-corretor "lista" "ex6" op)
+;(pedagogico-corretor "lista" "ex6" op)
      (common/layout
          [:body {:id "fundoiframe"} 
          [:form {:action "/login/lista/8" :method "post" :name "form"}
@@ -669,7 +692,7 @@ de operações que seja adequado a todas aplicações."]
          [:button {:class "botaoQuestoes" :onclick "return verificaRadio();"} "Avançar"]]]))
 
 (defpage [:post "/login/lista/8"] {:keys [op]}
-(pedagogico-corretor "lista" "ex7" op)
+;(pedagogico-corretor "lista" "ex7" op)
      (common/layout
          [:body {:id "fundoiframe"} 
          [:form {:action "/login/lista/9" :method "post" :name "form"}
@@ -684,7 +707,7 @@ de operações que seja adequado a todas aplicações."]
 
 
 (defpage [:post "/login/lista/9"] {:keys [op]}
-(pedagogico-corretor "lista" "ex8" op)
+;(pedagogico-corretor "lista" "ex8" op)
      (common/layout
          [:body {:id "fundoiframe"} 
          [:form {:action "/login/lista/10" :method "post" :name "form"}
@@ -698,7 +721,7 @@ de operações que seja adequado a todas aplicações."]
 
 
 (defpage [:post "/login/lista/10"] {:keys [op]}
-(pedagogico-corretor "lista" "ex9" op)
+;(pedagogico-corretor "lista" "ex9" op)
      (common/layout
          [:body {:id "fundoiframe"} 
          [:form {:action "/login/lista/fim" :method "post" :name "form"}
@@ -712,7 +735,6 @@ de operações que seja adequado a todas aplicações."]
 
 
 (defpage [:post "/login/lista/fim"] {:keys [op]}
-(pedagogico-corretor "lista" "ex10" op)
 ;(atualiza-todo-dominio (recupera-id (session/get :senhaUsuario)) "lista")   
 ;(cond (> (get (nth (retorna-exercicio-certos-dominio (recupera-id (session/get :senhaUsuario)) "lista") 0) :bom) 0.5)
   (common/layout
@@ -1596,32 +1618,38 @@ de operações que seja adequado a todas aplicações."]
 
 (defpage [:post "/login/introducao/1"] []
      (common/layout
-       (pedagogico-main "introducao")))
+       ;(pedagogico-main "introducao")
+))
         ; (formata-pergunta "a001" "1" "/login/introdução/2")))
 
 (defpage [:post "/login/introducao/2"] [op]
      (common/layout
-        (pedagogico-corretor 1 op)))   
+        ;(pedagogico-corretor 1 op)
+))   
        ;(formata-pergunta "a002" "2" "/login/introdução/3")))
 
 (defpage [:post "/login/introducao/3"] [op]
      (common/layout
-          (pedagogico-corretor 2 op)))
+          ;(pedagogico-corretor 2 op)
+))
 
 
 (defpage [:post "/login/introducao/4"] [op]
      (common/layout
-          (pedagogico-corretor 3 op)))
+          ;(pedagogico-corretor 3 op)
+))
 
 
 (defpage [:post "/login/introducao/5"] [op]
      (common/layout
-          (pedagogico-corretor 4 op)))
+          ;(pedagogico-corretor 4 op)
+))
 
 
 (defpage [:post "/login/introducao/6"] [op]
      (common/layout
-          (pedagogico-corretor 5 op)))
+          ;(pedagogico-corretor 5 op)
+))
 
 
 
@@ -2600,8 +2628,6 @@ de operações que seja adequado a todas aplicações."]
 
 (defn monta-videos [embebed xml]
     (common/layout
-      [:body]))
-       
-
-
-
+      [:body]
+    )
+)

@@ -3,8 +3,7 @@
             [noir.content.getting-started]
             [noir.session :as session]
             )
-  (:use [ils.models.estudante.corygil estudante]
-        [ils.models.dominio.BD busca]
+  (:use [ils.models.dominio.BD busca]
         [ils.models.dominio.BD insercao]
         [ils.models.dominio.xml manipulacao] 
         [noir.core :only [defpage]]
@@ -13,7 +12,7 @@
         ;[noir.response :only [redirect]]
         [hiccup.page-helpers :only [include-css html5 include-js html5]]
  ))
-
+;[ils.models.estudante.corygil estudante]
 
 
 ; definindo a pagina / , está é a pagina inicial do site 
@@ -224,131 +223,132 @@
 ;::::::::::::::::::::::: /index/ ::::::::::::::::::::::::::
 
 
-(defpage [:post "/index"] {:keys [usuario senha]}
-(session/remove! :senhaUsuario)
-(session/remove! :Usuario)
-(session/put! :senhaUsuario senha)
-(session/put! :Usuario usuario)
-(cond (= 1 (compara-usuario usuario senha) 1) 
-        (common/layout
-         [:head [:script {:type "text/javascript" :src "/js/bootstrap.min.js"}]]
-         [:body {:class "home"} 
-         [:div {:class "navbar navbar-inverse navbar-fixed-top"}
-         [:div {:class "navbar-inner"}
-         [:div {:class "container-fluid"}
-         [:h3 "ILS"] 
-         ]]]
-         [:div {:class "navbar"}
-         [:div {:class "navbar-inner"}  
-         [:ul {:class "nav"}
-         [:li [:h5 "Olá, " (session/get :Usuario)]]]
-         [:div {:class "btn-group" :id "config"}  
-         [:p {:class "btn btn-primary" :href "#"}[:i {:class "icon-user icon-white"}] "Configurações"]
-         [:a {:class "btn btn-primary dropdown-toggle" :data-toggle "dropdown" :href "#"}
-         [:span {:class "caret"}]]
-         [:ul {:class "dropdown-menu"}
-         [:li [:a {:href "#Editar" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Editar"]]
-         [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Excluir"]]
-         [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Mensagem"]]
-         [:li {:class "divider"}]
-         [:li [:a {:href "/"} [:i {:class "i"}] "Logout"]]
-         ]]]]
-         
-      
-         [:div {:class "container-fluid"}
-         [:div {:class "row-fluid"}
-         [:div {:class "span3"}
-         [:div {:class "well sidebar-nav"}
-         [:ul  {:class "nav nav-list"}
-         [:li  {:class "nav-header"}""] 
-         (cond (= "Introdução a Programação" (get (first (buscar-aluno "disciplina" "usuario" usuario)) :disciplina))
-         [:div
-         [:h5  "Introdução a Programação"]
-         [:p {:id "" } [:a {:href "/login/introdução" :target "principal" :style "text-decoration:none" :id "intro"} "Introdução"]] 
-         [:p {:id "" } [:a {:href "/login/string" :target "principal" :style "text-decoration:none" :id "string"} "String"]] 
-         [:p {:id "" } [:a {:href "/login/alocacao" :target "principal" :style "text-decoration:none" :id "aloc"} "Alocação Dinâmica"]]
-         [:p {:id "" } [:a {:href "/login/recursividade" :target "principal" :style "text-decoration:none" :id "recursiv"} "Recursividade"]] 
-         [:p {:id "" } [:a {:href "/login/vetor" :target "principal" :style "text-decoration:none" :id "vetor"} "Vetor"]]        
-         [:p {:id "" } [:a {:href "/login/função" :target "principal" :style "text-decoration:none" :id "func"} "Funções"]]
-         [:p {:id "" } [:a {:href "/login/struct" :target "principal" :style "text-decoration:none" :id "struct"} "Struct"]] 
-         [:p {:id "" }[:a {:href "/login/EstruturaCondição" :target "principal" :style "text-decoration:none" :id "EC"}"Estruturas Condição"]]
-         [:p {:id "" }[:a {:href "/login/EstruturaRepetição" :target "principal" :style "text-decoration:none" 
-                                                                                :id "ER"}"Estruturas Repetição"]]
-         [:p {:id "" } [:a {:href "/login/arquivo" :target "principal" :style "text-decoration:none" :id "arquivo"} "Arquivos"]]
-         ]
-         :else 
-         [:div
-         [:h5  "Estrutura de Dados"]
-         [:p {:id "" } [:a {:href "/login/alocacao" :target "principal" :id "aloc" :style "text-decoration:none"} "Alocação Dinâmica"]]
-         [:p {:id ""  } [:a {:href "/login/recursividade" :target "principal" :style "text-decoration:none"} "Recursividade"]] 
-         [:p {:id ""    } [:a {:href "/login/vetor" :target "principal" :style "text-decoration:none"} "Vetor"]]
-         [:p {:id ""    } [:a {:href "/login/matriz" :target "principal" :style "text-decoration:none"} "Matrizes"]]        
-         [:p {:id ""    } [:a {:href "/login/lista" :target "principal" :style "text-decoration:none"} "Lista"]]
-         [:p {:id ""     } [:a {:href "/login/fila" :target "principal" :style "text-decoration:none"} "Fila"]]
-         [:p {:id ""    } [:a {:href "/login/pilha" :target "principal" :style "text-decoration:none"} "Pilha"]]
-         [:p {:id ""   } [:a {:href "/login/arvore" :target "principal" :style "text-decoration:none"} "Árvore"]] 
-         [:p {:id ""   } [:a {:href "/login/metOrd" :target "principal" :style "text-decoration:none"} "Métodos Ordenação"]] 
-         [:p {:id ""  } [:a {:href "/login/metPesq" :target "principal" :style "text-decoration:none"} "Métodos Pesquisa"]]
-         ])          
-         [:h4 "Atividades"]
-         [:ul {:class "nav"}
-         [:li [:p {:id "ativ-exerc"}""]]]     
-         ]]]
-         [:div {:class "span9" }
-         [:div {:class "hero-unit"}
+; (defpage [:post "/index"] {:keys [usuario senha]}
+; (session/remove! :senhaUsuario)
+; (session/remove! :Usuario)
+; (session/put! :senhaUsuario senha)
+; (session/put! :Usuario usuario)
+; (cond
+; (common/layout
+; [:head [:script {:type "text/javascript" :src "/js/bootstrap.min.js"}]]
+; [:body {:class "home"} 
+; [:div {:class "navbar navbar-inverse navbar-fixed-top"}
+; [:div {:class "navbar-inner"}
+; [:div {:class "container-fluid"}
+; [:h3 "ILS"] 
+; ]]]
+; [:div {:class "navbar"}
+; [:div {:class "navbar-inner"}  
+; [:ul {:class "nav"}
+; [:li [:h5 "Olá, " (session/get :Usuario)]]]
+; [:div {:class "btn-group" :id "config"}  
+; [:p {:class "btn btn-primary" :href "#"}[:i {:class "icon-user icon-white"}] "Configurações"]
+; [:a {:class "btn btn-primary dropdown-toggle" :data-toggle "dropdown" :href "#"}
+; [:span {:class "caret"}]]
+; [:ul {:class "dropdown-menu"}
+; [:li [:a {:href "#Editar" :role "button" :data-toggle "modal"} [:i {:class "icon-pencil"}] "Editar"]]
+; [:li [:a {:href "#"}[:i {:class "icon-trash"}]  "Excluir"]]
+; [:li [:a {:href "#"}[:i {:class "icon-ban-circle"}] "Mensagem"]]
+; [:li {:class "divider"}]
+; [:li [:a {:href "/"} [:i {:class "i"}] "Logout"]]
+; ]]]]
 
-         
- 
-         [:iframe {:class "Iframe2" :id "iframe" :src "/login/ola" :name "principal"}]
-         ]]]]
-         [:div {:class "modal-footer" :id "last_index"}
-         [:div {:class "container"}
-         [:div   {:class "control-group"} 
-         [:center [:h5  "&#169; Copyright 2013 - ILS"]] ]]]
-         
-         ;modal editar
 
-         [:div {:id "Editar" :class "modal hide fade" :tabindex "-1" :role "dialog" :aria-labelledby "EditarLabel" :aria-hidden "true"}
-         [:div {:class "modal-header"}
-         [:button {:type "button" :class "close" :data-dismiss "modal" :aria-hidden "true"}"×"]
-         [:h3 {:id "EditarLabel"} "Editar Usuário"]
-         ]
-         [:div {:class "modal-body"}
-         [:div   {:class "control-group"}
-         [:label {:class "control-label" :for "inputUsuarioAtual" } "Usuário Atual:"] 
-         [:div {:class "controls"}
-         [:input {:type "text" :id "usuarioAtual" :name "usuarioatual"}]
-         ]]
-         [:div  {:class "control-group"}
-         [:label{:class "control-label" :for "novoUsuario" } "Novo Usuário:"] 
-         [:div {:class "controls"}[:input {:type "text" :id "novoUsuario"}]
-         ]] 
-         [:div  {:class "control-group"}
-         [:label{:class "control-label" :for "senhaAtual" } "Senha Atual:"] 
-         [:div {:class "controls"}[:input {:type "text" :id "senhaAtual"}]
-         ]]
-         [:div  {:class "control-group"}
-         [:label{:class "control-label" :for "novoNome" } "Nova Senha:"] 
-         [:div {:class "controls"}[:input {:type "text" :id "novaSenha"}]
-         ]]
-         ]
-         [:div {:class "modal-footer"}
-         [:button {:class "btn btn-success" :data-dismiss "modal" :arial-hidden "true"} "Confirmar"]
-         [:button {:class "btn btn-danger" :data-dismiss "modal" :arial-hidden "true"} "Close"]]
-         ] ; end modal    
-         ])
-         :else
-         (common/layout
-     	[:body {:class "hero-unit"}
-        [:div {:class "container"}
-        [:h1 ""]
-        [:div {:class "modal-body"}
-        [:center [:h1 "Error!"]]
-        [:center [:h4 "Úsuario e/ou senha incorreto(s)"]]
-        [:center [:h4 "Certifique suas entradas"]]
-        [:center [:a {:class "btn btn-large  btn-primary" :id "link_error" :href "/"} "Voltar"]]
-        ]]]))
-         ) 
+; [:div {:class "container-fluid"}
+; [:div {:class "row-fluid"}
+; [:div {:class "span3"}
+; [:div {:class "well sidebar-nav"}
+; [:ul  {:class "nav nav-list"}
+; [:li  {:class "nav-header"}""]
+; (cond (= "Introdução a Programação" (get (first (buscar-aluno "disciplina" "usuario" usuario)) :disciplina))
+; [:div
+; [:h5  "Introdução a Programação"]
+; [:p {:id "" } [:a {:href "/login/introdução" :target "principal" :style "text-decoration:none" :id "intro"} "Introdução"]] 
+; [:p {:id "" } [:a {:href "/login/string" :target "principal" :style "text-decoration:none" :id "string"} "String"]] 
+; [:p {:id "" } [:a {:href "/login/alocacao" :target "principal" :style "text-decoration:none" :id "aloc"} "Alocação Dinâmica"]]
+; [:p {:id "" } [:a {:href "/login/recursividade" :target "principal" :style "text-decoration:none" :id "recursiv"} "Recursividade"]] 
+; [:p {:id "" } [:a {:href "/login/vetor" :target "principal" :style "text-decoration:none" :id "vetor"} "Vetor"]]        
+; [:p {:id "" } [:a {:href "/login/função" :target "principal" :style "text-decoration:none" :id "func"} "Funções"]]
+; [:p {:id "" } [:a {:href "/login/struct" :target "principal" :style "text-decoration:none" :id "struct"} "Struct"]] 
+; [:p {:id "" }[:a {:href "/login/EstruturaCondição" :target "principal" :style "text-decoration:none" :id "EC"}"Estruturas Condição"]]
+; [:p {:id "" }[:a {:href "/login/EstruturaRepetição" :target "principal" :style "text-decoration:none" 
+;                                                             :id "ER"}"Estruturas Repetição"]]
+; [:p {:id "" } [:a {:href "/login/arquivo" :target "principal" :style "text-decoration:none" :id "arquivo"} "Arquivos"]]
+; ]
+
+; :else 
+; [:div
+; [:h5  "Estrutura de Dados"]
+; [:p {:id "" } [:a {:href "/login/alocacao" :target "principal" :id "aloc" :style "text-decoration:none"} "Alocação Dinâmica"]]
+; [:p {:id ""  } [:a {:href "/login/recursividade" :target "principal" :style "text-decoration:none"} "Recursividade"]] 
+; [:p {:id ""    } [:a {:href "/login/vetor" :target "principal" :style "text-decoration:none"} "Vetor"]]
+; [:p {:id ""    } [:a {:href "/login/matriz" :target "principal" :style "text-decoration:none"} "Matrizes"]]        
+; [:p {:id ""    } [:a {:href "/login/lista" :target "principal" :style "text-decoration:none"} "Lista"]]
+; [:p {:id ""     } [:a {:href "/login/fila" :target "principal" :style "text-decoration:none"} "Fila"]]
+; [:p {:id ""    } [:a {:href "/login/pilha" :target "principal" :style "text-decoration:none"} "Pilha"]]
+; [:p {:id ""   } [:a {:href "/login/arvore" :target "principal" :style "text-decoration:none"} "Árvore"]] 
+; [:p {:id ""   } [:a {:href "/login/metOrd" :target "principal" :style "text-decoration:none"} "Métodos Ordenação"]] 
+; [:p {:id ""  } [:a {:href "/login/metPesq" :target "principal" :style "text-decoration:none"} "Métodos Pesquisa"]]
+; ])          
+; [:h4 "Atividades"]
+; [:ul {:class "nav"}
+; [:li [:p {:id "ativ-exerc"}""]]]     
+; ]]]
+; [:div {:class "span9" }
+; [:div {:class "hero-unit"}
+
+
+
+; [:iframe {:class "Iframe2" :id "iframe" :src "/login/ola" :name "principal"}]
+; ]]]]
+; [:div {:class "modal-footer" :id "last_index"}
+; [:div {:class "container"}
+; [:div   {:class "control-group"} 
+; [:center [:h5  "&#169; Copyright 2013 - ILS"]] ]]]
+
+; ;modal editar
+
+; [:div {:id "Editar" :class "modal hide fade" :tabindex "-1" :role "dialog" :aria-labelledby "EditarLabel" :aria-hidden "true"}
+; [:div {:class "modal-header"}
+; [:button {:type "button" :class "close" :data-dismiss "modal" :aria-hidden "true"}"×"]
+; [:h3 {:id "EditarLabel"} "Editar Usuário"]
+; ]
+; [:div {:class "modal-body"}
+; [:div   {:class "control-group"}
+; [:label {:class "control-label" :for "inputUsuarioAtual" } "Usuário Atual:"] 
+; [:div {:class "controls"}
+; [:input {:type "text" :id "usuarioAtual" :name "usuarioatual"}]
+; ]]
+; [:div  {:class "control-group"}
+; [:label{:class "control-label" :for "novoUsuario" } "Novo Usuário:"] 
+; [:div {:class "controls"}[:input {:type "text" :id "novoUsuario"}]
+; ]] 
+; [:div  {:class "control-group"}
+; [:label{:class "control-label" :for "senhaAtual" } "Senha Atual:"] 
+; [:div {:class "controls"}[:input {:type "text" :id "senhaAtual"}]
+; ]]
+; [:div  {:class "control-group"}
+; [:label{:class "control-label" :for "novoNome" } "Nova Senha:"] 
+; [:div {:class "controls"}[:input {:type "text" :id "novaSenha"}]
+; ]]
+; ]
+; [:div {:class "modal-footer"}
+; [:button {:class "btn btn-success" :data-dismiss "modal" :arial-hidden "true"} "Confirmar"]
+; [:button {:class "btn btn-danger" :data-dismiss "modal" :arial-hidden "true"} "Close"]]
+; ] ; end modal    
+; ])
+; :else
+; (common/layout
+; [:body {:class "hero-unit"}
+; [:div {:class "container"}
+; [:h1 ""]
+; [:div {:class "modal-body"}
+; [:center [:h1 "Error!"]]
+; [:center [:h4 "Úsuario e/ou senha incorreto(s)"]]
+; [:center [:h4 "Certifique suas entradas"]]
+; [:center [:a {:class "btn btn-large  btn-primary" :id "link_error" :href "/"} "Voltar"]]
+; ]]])
+; )) 
          
 
 

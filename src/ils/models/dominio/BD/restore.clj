@@ -17,24 +17,25 @@
     
     (println "Destruindo o banco...")
     
- 	;(destroi-tabelas)
+ 	(destroi-tabelas)
  	
  	(println "Recriando as tabelas...")
  	
- 	(criar-tabela-disciplina)
- 	(criar-tabela-conteudo)
- 	(criar-tabela-aluno)
- 	(criar-tabela-estilo)
- 	(criar-tabela-apresentacao)
- 	(criar-tabela-exercicio)
- 	(criar-tabela-professor)
- 	(criar-tabela-ministra)
- 	(criar-tabela-conteudoAluno)
- 	(criar-tabela-exercicioAluno)
- 	(criar-tabela-estiloEstudante)
- 	(criar-tabela-catalogoBug) 	
+ 	;(criar-tabela-disciplina)
+ 	;(criar-tabela-conteudo)
+ 	;(criar-tabela-aluno)
+ 	;(criar-tabela-estilo)
+ 	;(criar-tabela-apresentacao)
+ 	;(criar-tabela-exercicio)
+ 	;(criar-tabela-professor)
+ 	;(criar-tabela-ministra)
+ 	;(criar-tabela-conteudoAluno)
+ 	;(criar-tabela-exercicioAluno)
+ 	;(criar-tabela-estiloEstudante)
+ 	;(criar-tabela-catalogoBug) 	
+    (criar-tabelas)
  	
- ;	(println "Inserindo o curso de Estruras de Dados no ILS. Por favor, aguarde...")
+ 	(println "Inserindo o curso de Estruras de Dados no ILS. Por favor, aguarde...")
  	
  	(inserir-aluno "98713" "Eduardo" "Gonçalves Costa" "Ciência da Computação" "dudugoncalvescosta@hotmail.com"
  	               "eduardo" "123" "Introdução a Programação")
