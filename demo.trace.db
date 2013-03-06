@@ -2429,3 +2429,12 @@ SELECT * FROM ALUNOS [42102-160]
 02-23 21:11:23 jdbc[2]: exception
 org.h2.jdbc.JdbcSQLException: Table "ALUNOS" not found; SQL statement:
 SELECT * FROM ALUNOS [42102-160]
+03-04 14:23:31 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALUNO" not found; SQL statement:
+INSERT INTO aluno (matricula,nome,sobrenome,curso,email,usuario,senha,disciplina) VALUES (?,?,?,?,?,?,?,?) [42102-160]
+03-04 14:23:31 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALUNO" not found; SQL statement:
+INSERT INTO aluno (matricula,nome,sobrenome,curso,email,usuario,senha,disciplina) VALUES (?,?,?,?,?,?,?,?) [42102-160]
+03-04 14:23:31 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALUNO" not found; SQL statement:
+INSERT INTO aluno (matricula,nome,sobrenome,curso,email,usuario,senha,disciplina) VALUES (?,?,?,?,?,?,?,?) [42102-160]
