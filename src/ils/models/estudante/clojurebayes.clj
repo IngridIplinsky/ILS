@@ -2,12 +2,11 @@
   (:import [BayesianNetworks DiscreteVariable DiscreteFunction BayesNet]
 		   [BayesianInferences Inference Expectation Explanation]))
 
-;EBayes porting to Clojure
+;API em Clojure para a EBayes
+;Disponível em: http://sites.poli.usp.br/pmr/ltd/Software/EBayes/index.html
 ;Eduardo Gonçalves Costa
 
 
-
-;TODO verificar se está correta.
 (defn carregar-rede [network]
 "Carrega uma rede bayesiana."
 	(use network)

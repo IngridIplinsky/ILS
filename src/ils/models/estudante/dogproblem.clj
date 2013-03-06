@@ -1,6 +1,8 @@
 (ns estudante.dogproblem
 	(:import [BayesianNetworks DiscreteVariable DiscreteFunction BayesNet]))
 
+;Rede-exemplo no site da EBayes.
+
 (def lighton
 	 (new DiscreteVariable "lighton" DiscreteVariable/CHANCE
 		       (into-array String ["true" "false"])))

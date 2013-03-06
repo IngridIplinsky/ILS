@@ -8,6 +8,9 @@
 	  [ils.models.dominio.BD.insercao]
       ))
 
+
+;TODO: organizar a API.
+
 (defn map-function-on-map-vals 
 	"Uma funcao map modificada para maps"
     [m f]
