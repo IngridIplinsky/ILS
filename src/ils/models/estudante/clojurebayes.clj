@@ -6,6 +6,7 @@
 ;Disponível em: http://sites.poli.usp.br/pmr/ltd/Software/EBayes/index.html
 ;Eduardo Gonçalves Costa
 
+;TODO colocar os valores em uma sequencia.
 
 (defn carregar-rede [network]
 "Carrega uma rede bayesiana."
@@ -22,7 +23,8 @@
 					(loop [i 0]
 						(when (< i (.number_values res))
 							(print (str (.get_value res i) " "))
-							(recur (+ i 1))))))))
+							 ;(vector-of :double (.get_value res i))
+							(recur (+ i 1) )))))))
 
 
 (defn observar [network variable value]
