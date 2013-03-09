@@ -58,7 +58,8 @@ SingleLineComment
 /* Whitespace */
 
 _
-  = (WhiteSpace / MultiLineCommentNoLineTerminator / SingleLineComment)*
+  = (WhiteSpace / MultiLineCommentNoLineTerminator 
+    / SingleLineComment)*
 
 __
   = (WhiteSpace / LineTerminatorSequence / Comment)*
@@ -519,13 +520,15 @@ header_name
 // (6.4.7) 
 h_char_sequence = hs:h_char+ { return hs.join(""); }
 
-//(6.4.7) any member of the source character set except the new-line character and >
+//(6.4.7) any member of the source character set except the 
+//        new-line character and >
 h_char = !(new_line / ">") c:SourceCharacter { return c; }
    
 // (6.4.7) 
 q_char_sequence = qs:q_char+  { return qs.join(""); }
 
-// (6.4.7) any member of the source character set except the new-line character and "
+// (6.4.7) any member of the source character set except the 
+//         new-line character and "
 q_char = !(new_line / '"') c:SourceCharacter  { return c; }
 
 new_line = LineTerminatorSequence
