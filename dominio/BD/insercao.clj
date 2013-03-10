@@ -157,3 +157,12 @@
        :idCont idCont ;idCont foi preservado ao invés da busca por ter desempenho melhor
        :idEx idEx}
     )))
+
+(defn inserir-matricula
+  "Matricula um aluno em algum disciplina."
+   [matricula sigla]
+   (sql/with-connection ILS-DB
+    (sql/insert-records :matricula
+      {:matricula matricula
+       :sigla sigla}
+    )))

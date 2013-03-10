@@ -219,6 +219,19 @@
        ["CONSTRAINT FK_REDEBAYES_SIGLA FOREIGN KEY(sigla)
          REFERENCES disciplina(sigla)"]))) 
 
+(defn criar-tabela-matricula
+  "Cria a tabela matricula."
+[]
+  (sql/with-connection ILS-DB
+    (sql/create-table :matricula
+       [:matricula "VARCHAR(20) NOT NULL"]
+       [:sigla "VARCHAR(20) NOT NULL"]
+       ["CONSTRAINT PK_MATRICULA PRIMARY KEY(matricula,sigla)"]
+       ["CONSTRAINT FK_MATRICULAEST FOREIGN KEY(matricula)
+         REFERENCES aluno(matricula)"]
+       ["CONSTRAINT FK_MATRICULADISC FOREIGN KEY(sigla)
+         REFERENCES disciplina(sigla)"])))
+
 (defn destroi-tabelas 
 "Destroi todas as tabelas do banco. (Não use isto)"
 []
@@ -250,5 +263,7 @@
     (sql/drop-table :logAluno))
    (sql/with-connection ILS-DB
     (sql/drop-table :redeBayes))
+   (sql/with-connection ILS-DB
+    (sql/drop-table :matricula))
  )
 

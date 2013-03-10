@@ -113,4 +113,12 @@
     (sql/delete-rows :logAluno
       [(str "idLog = '"idLog"'")]
     )))
+
+(defn remover-matricula
+  "Remove a matricula de um aluno em algum curso."
+   [matricula sigla]
+   (sql/with-connection ILS-DB
+    (sql/delete-rows :matricula
+      [(str "matricula = '"matricula"' AND sigla= '"sigla"'")]
+    )))
    

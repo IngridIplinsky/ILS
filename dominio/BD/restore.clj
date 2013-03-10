@@ -34,12 +34,14 @@
  	(criar-tabela-estiloEstudante)
  	(criar-tabela-catalogoBug)
 	(criar-tabela-logAluno)
-	(criar-tabela-redeBayes) 	 	
+	(criar-tabela-redeBayes)
+    (criar-tabela-matricula) 	 	
  	
  ;	(println "Inserindo o curso de Estruras de Dados no ILS. Por favor, aguarde...")
  	
  	(inserir-aluno "98713" "Eduardo" "Gonçalves Costa" "Ciência da Computação" "dudugoncalvescosta@hotmail.com"
  	               "eduardo" "123" "Introdução a Programação")
+    (inserir-matricula "98713" "GSI002")
 	(inserir-aluno "11021bsi238" "Marcos" "Roberto Moresco" "Sistemas de Informacao" "mascoshoppusmoresco@gmail.com"
  	               "marcos" "123" "Introdução a Programação")
 

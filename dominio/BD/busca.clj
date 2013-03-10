@@ -100,12 +100,20 @@ AND catalogoBug."coluna2" = '"valor2"'")]
         [(str "SELECT professor."retorno" FROM professor WHERE professor."coluna" = '"valor"'")]
           (doall res))))
           
-(defn buscar-aluno [retorno coluna valor]
+(defn buscar-aluno 
+([retorno coluna valor]
 "Busca campos da tabela aluno, através de uma coluna e valor contido nela."
 (sql/with-connection ILS-DB
    (sql/with-query-results res
         [(str "SELECT aluno."retorno" FROM aluno WHERE aluno."coluna" = '"valor"'")]
           (doall res))))
+ ([retorno coluna1 valor1 coluna2 valor2]
+"Busca campos da tabela aluno, através de uma coluna e valor contido nela."
+(sql/with-connection ILS-DB
+   (sql/with-query-results res
+        [(str "SELECT aluno."retorno" FROM aluno WHERE aluno."coluna1" = '"valor1"' AND
+aluno."coluna2" = '"valor2"'")]
+          (doall res)))))
           
 (defn buscar-conteudo
    ([retorno coluna valor]
@@ -211,7 +219,31 @@ estilo.organizacao = '"organizacao"' AND estilo.utilizacao = '"utilizacao"'")]
     [(str "SELECT exercicio.xmlexercicio FROM exercicio WHERE exercicio.idEx = '"id"'")]
        (clob-to-string (:xmlexercicio (first res))) ))))
        
- 
+(defn buscar-matricula [retorno coluna valor]
+"Busca campos da tabela professor, através de uma coluna e valor contido nela."
+(sql/with-connection ILS-DB
+   (sql/with-query-results res
+        [(str "SELECT matricula."retorno" FROM matricula WHERE matricula."coluna" = '"valor"'")]
+          (doall res))))
 
 
+(defn buscar-cursos-matriculados [matricula]
+"Busca campos da tabela ministra, através de uma coluna e valor contido nela."
+(sql/with-connection ILS-DB
+   (sql/with-query-results res
+        [(str "SELECT disciplina.nome FROM matricula, disciplina WHERE disciplina.sigla = matricula.sigla AND matricula.matricula = '"matricula"'")]
+          (doall res))))
+
+(defn buscar-cursos-disponiveis [matricula]
+"Busca campos da tabela ministra, através de uma coluna e valor contido nela."
+(sql/with-connection ILS-DB
+   (sql/with-query-results res
+        [(str "SELECT disciplina.nome FROM disciplina WHERE disciplina.nome NOT IN
+          (SELECT disciplina.nome FROM matricula, disciplina WHERE disciplina.sigla = matricula.sigla AND matricula.matricula = '"matricula"')")]
+          (doall res))))
+
+
+(defn compara-usuario [usuario senha]
+(cond (= nil (buscar-aluno "matricula" "usuario" usuario "senha" senha)) 0
+  :else 1))
 
