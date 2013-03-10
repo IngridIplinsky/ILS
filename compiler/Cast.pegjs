@@ -1128,10 +1128,7 @@ tp:( VOID
         return tp;
    }
    /  es:enum_specifier {
-        return { 
-          tree: {tag: 'type_specifier',
-                 cld: [es.tree] }
-        };
+        return es;
    }
 
 // (6.7.2.1) 
@@ -1181,7 +1178,7 @@ struct_declaration =
 // (6.7.2.1) 
 specifier_qualifier_list =
    sql:(type_specifier / type_qualifier)+ {
-      return sql;
+      return sql.reverse();
    }
 
 // (6.7.2.1)
@@ -1203,30 +1200,29 @@ struct_declarator =
 // (6.7.2.2) 
 enum_specifier =
    ENUM id:identifier? LWING el:enumerator_list COMMA? RWING {
-     return {tree: { tag: "enum_specifier",
-                     cld: [id? id : 'none', el.tree] }
+     return { tag: "ENUMERATION",
+              name: id? id : 'none',
+              val: el? el : []
      };
    }
 /  ENUM id:identifier {
-     return {tree: { tag: "enum_specifier",
-                     cld: [id? id : 'none'] }
+     return { tag: "ENUMERATION",
+              name: id,
+              val: []
      };
    }
 
 // (6.7.2.2) 
 enumerator_list =
    hd:enumerator tl:(COMMA t:enumerator {return t;})* {
-     return { tree: {tag: "enumerator_list",
-                     cld: [hd.tree].concat(tl.map(function(x) { return x.tree;})) }
-     };
+     return [hd].concat(tl);
    }
 
 // (6.7.2.2) 
 enumerator =
    ec:enumeration_constant ce:(ATRIB c:constant_expression {return c;})? {
-    return { tree: {tag: 'enumerator', 
-                    cld: [ec, ce ? ce : 'none']}
-    };
+    return {val: ec, 
+            init: ce ? ce : 'none'};
    }
 
 // (6.7.2.4) 
@@ -1256,7 +1252,7 @@ alignment_specifier =
 // (6.7.6) 
 declarator =
    ptr:pointer? dec:direct_declarator {
-     return dec.concat(ptr? ptr : []);
+     return dec.concat(ptr? ptr.reverse() : []);
 }
 
 
@@ -1316,8 +1312,9 @@ direct_declarator_tail =
 // (6.7.6) 
 pointer = 
    STAR tql:type_qualifier_list? ptr:pointer? {
-     var res = [{ tag: 'POINTER', type: 'none'}].concat(tql? tql: [], 
-                                                        ptr? ptr : []);
+     var res = [{ tag: 'POINTER', type: 'none'}];
+     res = res.concat(tql? tql : [], 
+                      ptr? ptr : []);
      return res;
    }
 
@@ -1325,14 +1322,7 @@ pointer =
 
 // (6.7.6) 
 type_qualifier_list =
-   tql:type_qualifier+ {
-     var res = tql[0];
-     for(var i=1; i < tql.length; i++){
-       tql[i].type = res;
-       res = tql[i];
-     }   
-     return res;
-   }
+   type_qualifier+
 
 // (6.7.6) 
 parameter_type_list =
@@ -1373,9 +1363,7 @@ type_name =
 // (6.7.7) 
 abstract_declarator =
    ptr:pointer? dad:direct_abstract_declarator {
-     return { tree: {tag: "abstract_declarator",
-                     cld: [ptr? ptr.tree : 'none', dad.tree]}
-     };
+     return dad.concat(ptr? ptr.reverse() : []);
    }
 /  pointer
 
@@ -1383,37 +1371,31 @@ abstract_declarator =
 direct_abstract_declarator =
    hd:direct_abstract_declarator_head
    tl:direct_abstract_declarator_tail* {
-      return { tree: {tag: "direct_abstract_declarator",
-                      cld: [hd.tree].concat(tl.map(function(x) { return x.tree;}))}
-      };
+      return [hd].concat(tl);
    }
     
 direct_abstract_declarator_head =
    LPAR ad:abstract_declarator RPAR {
-     return { tree: {tag: "abstract_declarator_head",
-                     num: 1,
-                     cld: [ad.tree]}
-     };
+     return {tag: 'params', 
+             val: ad, 
+             vararg: false};
    }
 /  LBRK tql:type_qualifier_list? e:assignment_expression? RBRK {
-     return { tree: {tag: "abstract_declarator_head",
-                     num: 2,
-                     cld: [tql? tql.tree : 'none',
-                           e? e : 'none']}
-     };
+     return {tag: 'ARRAY',
+             type: tql? tql : [], 
+             size: e? e : 'none'};     
    }
 /  LBRK STATIC tql:type_qualifier_list? e:assignment_expression RBRK {
-     return { tree: {tag: "abstract_declarator_head",
-                     num: 3,
-                     cld: [tql? tql.tree : 'none',
-                           e]}
-     };
+     return {tag: 'ARRAY',
+             subtype: 'STATIC1',
+             type: tql? tql : [], 
+             size: e};     
    }
 /  LBRK tql:type_qualifier_list STATIC e:assignment_expression RBRK {
-     return { tree: {tag: "abstract_declarator_head",
-                     num: 4,
-                     cld: [tql.tree, e]}
-     };
+     return {tag: 'ARRAY',
+             subtype: 'STATIC2',
+             type: tql, 
+             size: e};     
    }
 /  LBRK STAR RBRK {
      return { tree: {tag: "abstract_declarator_head",
@@ -1422,20 +1404,17 @@ direct_abstract_declarator_head =
      };
    }
 /  LPAR ptl:parameter_type_list? RPAR  {
-     return { tree: {tag: "abstract_declarator_head",
-                     num: 6,
-                     cld: [ptl? ptl.tree: 'none']}
-     };
+     return {tag: 'params', 
+             val: ptl.val, 
+             vararg: ptl.vararg};
    }
 
 
 direct_abstract_declarator_tail =
    LBRK tql:type_qualifier_list? e:assignment_expression? RBRK {
-     return { tree: {tag: "abstract_declarator_tail",
-                     num: 1,
-                     cld: [tql? tql.tree : 'none',
-                           e? e : 'none']}
-     };
+     return {tag: 'ARRAY',
+             type: tql? tql : [], 
+             size: e? e : 'none'};     
    }
 /  LBRK STATIC tql:type_qualifier_list? e:assignment_expression RBRK {
      return { tree: {tag: "abstract_declarator_tail",
@@ -1457,10 +1436,9 @@ direct_abstract_declarator_tail =
      };
    }
 /  LPAR ptl:parameter_type_list? RPAR {
-     return { tree: {tag: "abstract_declarator_tail",
-                     num: 5,
-                     cld: [ptl? ptl.tree : 'none']}
-     };
+     return {tag: 'params', 
+             val: ptl.val, 
+             vararg: ptl.vararg};
    }
 
 
@@ -1680,6 +1658,6 @@ define_directive =
 
 
 // TESTE = e:translation_unit __ { return e; }
-TESTE = e:declaration __ { return e; }
-//TESTE = e:direct_declarator __ { return e; }
+// TESTE = e:declaration __ { return e; }
+TESTE = e:parameter_declaration __ { return e; }
 
