@@ -90,8 +90,8 @@
            [:tipo "VARCHAR(20) NOT NULL"]
            [:xmlexercicio "CLOB(10000) NOT NULL"]
            ["CONSTRAINT PK_EXERCICIO PRIMARY KEY(idEx)"]
-           ["CONSTRAINT FK_EXERCICIO FOREIGN KEY(conteudo)
-             REFERENCES conteudo(conteudo)"])))
+           ["CONSTRAINT FK_EXERCICIO FOREIGN KEY(idCont)
+             REFERENCES conteudo(idCont)"])))
              
 (defn criar-tabela-estiloEstudante
 "Cria a tabela estiloEstudante." 
@@ -130,9 +130,9 @@
            [:idEst "VARCHAR(20) NOT NULL"]
            [:xmlapresentacao "CLOB(10000) NOT NULL"]
            ["CONSTRAINT PK_APRESENTACAO PRIMARY KEY(idAp)"]
-           ["CONSTRAINT FK_APRESENTACAO FOREIGN KEY(idEst)
+           ["CONSTRAINT FK_APRESENTACAOEST FOREIGN KEY(idEst)
              REFERENCES estilo(idEst)"]
-		   ["CONSTRAINT FK_APRESENTACAO FOREIGN KEY(idCont)
+		   ["CONSTRAINT FK_APRESENTACAOCONT FOREIGN KEY(idCont)
              REFERENCES conteudo(idCont)"]
            )))
 
