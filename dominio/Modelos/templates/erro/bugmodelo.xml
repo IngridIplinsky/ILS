@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<erro
+ xmlns="bug"
+ xmlns:xsi="bug"
+ xsi:schemaLocation="src/dominio/bug.xsd">
+		
+	<idBug>id001</idBug>
+	<matricula>98713</matricula>
+	<conteudo>vetor</conteudo>
+	<idEx>id001</idEx>
+	<tipo>vf</tipo>
+	<codigo> Erro em codigo, para exercicios de programacao </codigo>
+	<texto> Alguma resposta dada em texto pelo aluno. </texto>
+	<alternativa> <!-- para multipla escolha, coloca-se a alternativa correta e a marcada pelo aluno -->
+		<correta>0</correta>
+		<marcada>1</marcada> 
+	</alternativa>	
+	<vf>Para questoes de v ou f, lista-se a sequencia de verdadeiro/falso feita pelo aluno.</vf>
+</erro>

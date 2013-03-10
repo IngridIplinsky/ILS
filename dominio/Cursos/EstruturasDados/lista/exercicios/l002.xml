@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+ xmlns="exercicio"
+ xmlns:xsi="exercicio"
+ xsi:schemaLocation="/src/dominio/exercicio.xsd">
+		
+		<conteudo>lista</conteudo>	
+		<idEx>l002</idEx>
+		<nivel>facil</nivel>
+		<tipo>me</tipo>
+		<preReq>
+			<req>alocDin</req>
+		</preReq>
+		
+		<enunciado> 
+			<texto>Como inicializar uma lista?</texto> 
+		</enunciado>
+		
+		<resposta> </resposta>
+
+		<alternativa valor="false"> 
+			<codigo highlight="no">Lista %L</codigo>
+		</alternativa>
+		
+		<alternativa valor="false"> 
+			<codigo highlight="no">Lista &amp;L</codigo>
+		</alternativa>
+		
+		<alternativa valor="true"> 
+			<codigo highlight="no">Lista *L</codigo>
+		</alternativa>
+		
+		<alternativa valor="false"> 
+			<codigo highlight="no">Lista #L</codigo>
+		</alternativa>
+
+</exercicio>
+
+

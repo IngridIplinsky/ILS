@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercicio
+ xmlns="exercicio"
+ xmlns:xsi="exercicio"
+ xsi:schemaLocation="/src/dominio/exercicio.xsd">
+		
+		<conteudo>introducao</conteudo>	
+		<idEx>a001</idEx>
+		<nivel>facil</nivel>
+		<tipo>programacao</tipo>
+		<preReq>
+			<req></req>
+		</preReq>
+
+		<enunciado> 
+			<texto> 
+				Efetue a leitura de um número real e apresente o resultado do quadrado desse número. 
+			</texto> 
+		</enunciado>
+		
+		<resposta>
+			<codigo>
+				int main(){
+					float a;
+				    printf("Entre com o numero: ");
+				    scanf("%f", a);
+					a = a*a;
+					printf("\nO resultado eh: %f", a); 
+					return 0;
+				}
+			</codigo>
+		</resposta>
+
+		<entradaCodigo />
+		
+
+</exercicio>

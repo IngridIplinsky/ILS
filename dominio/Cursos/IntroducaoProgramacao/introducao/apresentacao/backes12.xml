@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<apresentacao 
+	xmlns="apresentacao" 
+	xsi:schemaLocation="src/dominio/apresentacao.xsd" 
+	xmlns:xsi="apresentacao">
+	
+	<idAp>backes12</idAp>
+	<conteudo>introducao</conteudo>
+	<tipo>video</tipo>
+	<selecao>visual</selecao>
+	<organizacao>global</organizacao>
+	<utilizacao>teorico</utilizacao>
+	
+	<video>
+		<url>http://www.youtube.com/watch?v=TlIEIMmutQo&amp;feature=plcp</url>
+		<legenda>Operadores lógicos -  André Backes</legenda>
+	</video>
+	
+</apresentacao>

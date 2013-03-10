@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<erro 
+	xmlns="bug" 
+	xsi:schemaLocation="src/dominio/bug.xsd" 
+	xmlns:xsi="bug">
+	
+	<idBug>e001</idBug>
+	<matricula>98713</matricula>
+	<disciplina>GSI002</disciplina>
+	<conteudo>introducao</conteudo>
+	<idEx>a001</idEx>
+	<tipo>programacao</tipo>
+	
+	<codigo>
+		int main(){
+		int a=0 
+		a=a+1; 
+		printf(a);
+	</codigo>
+</erro>
