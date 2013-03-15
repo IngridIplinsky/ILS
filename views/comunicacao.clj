@@ -13,22 +13,33 @@
 
 (defn curso_introducao []
          [:p [:div {:class "btn-group"}  
-         [:button {:class "btn btn-large btn-danger" :href "/index" }[:i {:class "icon-user icon-white"}] "Introdução a Programação"]]]
+         [:button {:class "btn btn-large btn-success" :href "/index" :id "buttonLarge" }[:i {:class "icon-user icon-white"}] "Introdução a Programação"]]]
 )   
 
 (defn curso_estrutura_dados []
          [:p [:div {:class "btn-group"}  
-         [:button {:class "btn btn-large btn-danger" :href "/index"}[:i {:class "icon-user icon-white"}] "Estrutura de Dados"]]]
+         [:button {:class "btn btn-large btn-success" :href "/index" :id "buttonLarge"}[:i {:class "icon-user icon-white"}] "Estrutura de Dados"]]]
 )   
 
 
 (defn curso_introducao_professor []
          [:p [:div {:class "btn-group"}  
-         [:button {:class "btn btn-large btn-danger" :href "/login/admin/home" }[:i {:class "icon-user icon-white"}] "Introdução a Programação"]]]
+         [:a {:class "btn btn-large btn-success" :id "buttonLarge" :href "/admin/home/introducao" }[:i {:class "icon-user icon-white"}] "Introdução a Programação"]]]
 )   
 
 (defn curso_estrutura_dados_professor []
          [:p [:div {:class "btn-group"}  
-         [:button {:class "btn btn-large btn-danger" :href "/login/admin/home"}[:i {:class "icon-user icon-white"}] "Estrutura de Dados"]]]
+         [:a {:class "btn btn-large btn-success" :id "buttonLarge" :href "/admin/home/estruturas"}[:i {:class "icon-user icon-white"}] "Estrutura de Dados"]]]
+         
 )  
+
+(defn add_alternativas []
+         [:p [:div {:class "btn-group"}  
+         [:a {:class "btn btn-large btn-success" :id "buttonLarge" :href "/admin/home/estruturas"}[:i {:class "icon-user icon-white"}] "Estrutura de Dados"]]]
+         
+)  
+
+
+
+
 
