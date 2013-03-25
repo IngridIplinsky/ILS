@@ -1,5 +1,6 @@
 (ns ils.models.dominio.BD.atualizacao
-    (:use ils.models.dominio.BD.persistence)
+    (:use [ils.models.dominio.BD.persistence]
+          [ils.models.dominio.BD.busca])
     (:require [clojure.java.jdbc :as sql]))
 
 (defn atualizar-aluno 
@@ -23,49 +24,52 @@
  (defn atualizar-estiloEstudante 
 "Atualiza os dados da tabela estiloEstudante passando matricula, sigla, 
  uma coluna (formato :exemplo) e o valor novo (entre aspas)."
-  [matricula sigla coluna novo]
+  [matricula sigla selecao organizacao utilizacao]
     (sql/with-connection ILS-DB
-      (sql/update-values :estiloEstudante
+      (sql/update-or-insert-values :estiloEstudante
         [(str "estiloEstudante.matricula ='"matricula"' AND estiloEstudante.sigla = '"sigla"'")]
-        {coluna novo})))
+        {:matricula matricula
+         :sigla sigla
+         :idEst (first (vals (first (buscar-estilo "idEst" selecao organizacao utilizacao))))})))
         
 (defn atualizar-exercicioAluno
 "Atualiza os dados da tabela exercicioAluno passando matricula, conteudo, id do exercicio, 
  uma coluna (formato :exemplo) e o valor novo (entre aspas)."
-  ([matricula conteudo idEx coluna novo]
-    (sql/with-connection ILS-DB
-      (sql/update-values :exercicioAluno
-        [(str "exercicioAluno.matricula ='"matricula"' AND exercicioAluno.conteudo = '"conteudo"' AND exercicioAluno.idEx = '"idEx"'")]
-        {coluna novo})))
-   ([matricula conteudo idEx bom medio ruim]
+   ([matricula sigla conteudo idEx bom medio ruim]
     "Para atualizar as probabilidades nas tabelas."
      (sql/with-connection ILS-DB
-       (sql/update-values :exercicioAluno
+       (sql/update-or-insert-values :exercicioAluno
          [(str "exercicioAluno.matricula ='"matricula"' AND exercicioAluno.conteudo = '"conteudo"' AND exercicioAluno.idEx = '"idEx"'")]
-        {:bom bom :medio medio :ruim ruim}))))
+        {:matricula matricula
+         :idCont (first (vals (first (buscar-conteudo "idCont" "conteudo" conteudo "sigla" sigla))))
+         :idEx idEx
+         :bom bom 
+         :medio medio 
+         :ruim ruim}))))
 
 (defn atualizar-conteudoAluno
 "Atualiza os dados pessoais de um aluno a partir da matricula, passando matricula, 
  uma coluna (formato :exemplo) e o valor novo (entre aspas)."
-  ([matricula conteudo coluna novo]
-    (sql/with-connection ILS-DB
-      (sql/update-values :conteudoAluno
-        [(str "conteudoAluno.matricula ='"matricula"' AND conteudoAluno.conteudo = '"conteudo"'")]
-        {coluna novo})))
-   ([matricula conteudo bom medio ruim]
+   ([matricula sigla conteudo bom medio ruim]
      (sql/with-connection ILS-DB
-       (sql/update-values :conteudoAluno
+       (sql/update-or-insert-values :conteudoAluno
          [(str "exercicioAluno.matricula ='"matricula"' AND exercicioAluno.conteudo = '"conteudo"'")]
-        {:bom bom :medio medio :ruim ruim}))))
+        {:matricula matricula
+         :idCont (first (vals (first (buscar-conteudo "idCont" "conteudo" conteudo "sigla" sigla))))
+         :bom bom 
+         :medio medio 
+         :ruim ruim}))))
 
 (defn atualizar-logAluno
 "Atualiza os dados da tabela logAluno pela passagem da matrícula para a qual os dados serão atualizados, a nova sigla de
  disciplina, o id de conteúdo e o id do exercício, todos entre aspas."
-  [matricula sigla idCont idEx]
+  [idLog matricula sigla idCont idEx]
     (sql/with-connection ILS-DB
-      (sql/update-values :logAluno
+      (sql/update-or-insert-values :logAluno
 	[(str "logAluno.matricula = '"matricula"'")]
-	{:sigla sigla 
+	{:idLog idLog
+   :sigla sigla 
+   :matricula matricula
 	 :idCont idCont 
 	 :idEx idEx})))
 	 
