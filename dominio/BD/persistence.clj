@@ -59,7 +59,7 @@
 []
   (sql/with-connection ILS-DB
     (sql/create-table :conteudo
-        [:idCont "VARCHAR(20) NOT NULL"]
+      [:idCont "VARCHAR(20) NOT NULL"]
     	[:sigla "VARCHAR(20) NOT NULL"]
     	[:conteudo "VARCHAR(50) NOT NULL"]
     	["CONSTRAINT PK_CONTEUDO PRIMARY KEY(idCont)"]
@@ -197,14 +197,6 @@
 	   [:idCont "VARCHAR(20) NOT NULL"]
 	   [:idEx "VARCHAR(20) NOT NULL"]
 	   ["CONSTRAINT PK_LOGALUNO PRIMARY KEY(idLog, matricula)"]
-;	   ["CONSTRAINT FK_LOGALUNO FOREIGN KEY(matricula)
-;	     REFERENCES aluno(matricula)"]
-;	   ["CONSTRAINT FK_LOGALUNOSigla FOREIGN KEY(sigla)
-;	     REFERENCES disciplina(sigla)"]
-;	   ["CONSTRAINT FK_LOGALUNOCont FOREIGN KEY(idCont)
-;             REFERENCES conteudo(idCont)"]
-;	   ["CONSTRAINT FK_LOGALUNOEx FOREIGN KEY(idEx)
-;	     REFERENCES exercicio(idEx)"]
 	   )))
 
 (defn criar-tabela-redeBayes
@@ -232,38 +224,89 @@
        ["CONSTRAINT FK_MATRICULADISC FOREIGN KEY(sigla)
          REFERENCES disciplina(sigla)"])))
 
+
+(defn criar-sequencia-conteudo
+  "Cria uma sequence para o id de conteudo."
+  []
+  (sql/with-connection ILS-DB
+    (sql/do-commands
+      "CREATE SEQUENCE seqconteudo
+        START WITH 1
+        INCREMENT BY 1")))
+
+(defn criar-sequencia-exercicio
+  "Cria uma sequence para o id de exercicio."
+  []
+  (sql/with-connection ILS-DB
+    (sql/do-commands
+      "CREATE SEQUENCE seqexercicio
+        START WITH 1
+        INCREMENT BY 1")))
+
+(defn criar-sequencia-bug
+  "Cria uma sequence para o id de bug."
+  []
+  (sql/with-connection ILS-DB
+    (sql/do-commands
+      "CREATE SEQUENCE seqbug
+        START WITH 1
+        INCREMENT BY 1")))
+
+(defn criar-sequencia-apresentacao
+  "Cria uma sequence para o id de apresentacao."
+  []
+  (sql/with-connection ILS-DB
+    (sql/do-commands
+      "CREATE SEQUENCE seqapresentacao
+        START WITH 1
+        INCREMENT BY 1")))
+
+(defn criar-sequencia-estilo
+  "Cria uma sequence para o id de estilo."
+  []
+  (sql/with-connection ILS-DB
+    (sql/do-commands
+      "CREATE SEQUENCE seqestilo
+        START WITH 1
+        INCREMENT BY 1")))
+
+(defn criar-sequencia-log
+  "Cria uma sequence para o id de logAluno."
+  []
+  (sql/with-connection ILS-DB
+    (sql/do-commands
+      "CREATE SEQUENCE seqlog
+        START WITH 1
+        INCREMENT BY 1")))
+
+
 (defn destroi-tabelas 
 "Destroi todas as tabelas do banco. (Não use isto)"
 []
    (sql/with-connection ILS-DB
-    (sql/drop-table :apresentacao))
-   (sql/with-connection ILS-DB
-    (sql/drop-table :exercicio))
-   (sql/with-connection ILS-DB
-    (sql/drop-table :catalogoBug))
-   (sql/with-connection ILS-DB
-    (sql/drop-table :disciplina))
-   (sql/with-connection ILS-DB
-    (sql/drop-table :conteudoAluno))
-   (sql/with-connection ILS-DB
-    (sql/drop-table :exercicioAluno))
-   (sql/with-connection ILS-DB
-    (sql/drop-table :professor))
-   (sql/with-connection ILS-DB
-    (sql/drop-table :ministra))
-   (sql/with-connection ILS-DB
-    (sql/drop-table :conteudo))
-   (sql/with-connection ILS-DB
-    (sql/drop-table :estiloEstudante))
-   (sql/with-connection ILS-DB
-    (sql/drop-table :aluno))
-   (sql/with-connection ILS-DB
-    (sql/drop-table :estilo))
-   (sql/with-connection ILS-DB
-    (sql/drop-table :logAluno))
-   (sql/with-connection ILS-DB
-    (sql/drop-table :redeBayes))
-   (sql/with-connection ILS-DB
+    (sql/drop-table :apresentacao)
+    (sql/drop-table :exercicio)
+    (sql/drop-table :catalogoBug)
+    (sql/drop-table :disciplina)
+    (sql/drop-table :conteudoAluno)
+    (sql/drop-table :exercicioAluno)
+    (sql/drop-table :professor)
+    (sql/drop-table :ministra)
+    (sql/drop-table :conteudo)
+    (sql/drop-table :estiloEstudante)
+    (sql/drop-table :aluno)
+    (sql/drop-table :estilo)
+    (sql/drop-table :logAluno)
+    (sql/drop-table :redeBayes)
     (sql/drop-table :matricula))
+   (sql/with-connection ILS-DB
+    (sql/do-commands "DROP SEQUENCE seqconteudo"
+                     "DROP SEQUENCE seqexercicio" 
+                     "DROP SEQUENCE seqbug"
+                     "DROP SEQUENCE seqapresentacao"
+                     "DROP SEQUENCE seqestilo"
+                     "DROP SEQUENCE seqlog"))
+    
+
  )
 

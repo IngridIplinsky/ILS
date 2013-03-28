@@ -14,29 +14,30 @@
   "Macro usada para definir enunciados."
   `(element :enunciado {} 
           (for [~i (range (count ~entradas))] 
-              (element (nth ~tipoentry ~i) {} (nth ~entradas ~i)))))
-   
+              (element (nth ~tipoentry ~i) {} (nth ~entradas ~i)))))  
 
 (defn gerar-bug 
  "Gera um arquivo xml de erro e o grava no banco."
-    ([nomearq idBug matricula conteudo idEx tipo dado]
+    ([nomearq matricula conteudo idEx tipo dado]
 	  (let [tags (element :erro {:xmlns "bug" :xmlns:xsi "bug" :xsi:schemaLocation "src/dominio/bug.xsd"}
-                 (element :idBug {} idBug)
+                 (element :idBug {} (str "bug"(first (vals (first (next-val-bug))))))
                  (element :matricula {} matricula)
                  (element :conteudo {} conteudo)
                  (element :idEx {} idEx)
                  (element :tipo {} tipo)
                  (cond
                     (= tipo "programacao") (element :codigo {} dado)
-                    (= tipo "vf") (element :vf {}  dado)                     
+                    (= tipo "vf") (element :marcados {} 
+                                      (for [i (range (count dado))]
+                                          (element :vf {} (nth dado i))))                     
                     :else "tipo de exercicio ou dados passados de maneira incorreta!"
                  ))]
        (with-open [out-file (java.io.FileWriter. nomearq)]
        (emit tags out-file)))
        (inserir-catalogoBug nomearq))
-    ([nomearq idBug matricula conteudo idEx tipo correta marcada]
+    ([nomearq matricula conteudo idEx tipo correta marcada]
 	   (let [tags (element :erro {:xmlns "bug" :xmlns:xsi "bug" :xsi:schemaLocation "src/dominio/bug.xsd"}
-                 (element :idBug {} idBug)
+                 (element :idBug {} (str "bug"(first (vals (first (next-val-bug))))))
                  (element :matricula {} matricula)
                  (element :conteudo {} conteudo)
                  (element :idEx {} idEx)
@@ -52,9 +53,9 @@
           
 (defn gerar-apresentacao
  "Gera um arquivo xml de apresentacao e o grava no banco."
-     ([nomearq idAp conteudo tipo selecao organizacao utilizacao dado]
+     ([nomearq conteudo tipo selecao organizacao utilizacao dado]
 	  (let [tags (element :apresentacao {:xmlns "apresentacao" :xmlns:xsi "apresentacao" :xsi:schemaLocation "src/dominio/apresentacao.xsd"}
-                 (element :idAp {} idAp)
+                 (element :idAp {} (str "ap"(first (vals (first (next-val-apresentacao))))))
                  (element :conteudo {} conteudo)
                  (element :tipo {} tipo)
                  (element :selecao {} selecao)
@@ -68,9 +69,9 @@
        (with-open [out-file (java.io.FileWriter. nomearq)]
        (emit tags out-file)))
        (inserir-apresentacao nomearq))
-     ([nomearq idAp conteudo tipo selecao organizacao utilizacao tipod dado legenda]
+     ([nomearq conteudo tipo selecao organizacao utilizacao tipod dado legenda]
 	  (let [tags (element :apresentacao {:xmlns "apresentacao" :xmlns:xsi "apresentacao" :xsi:schemaLocation "src/dominio/apresentacao.xsd"}
-                 (element :idAp {} idAp)
+                 (element :idAp {} (str "ap"(first (vals (first (next-val-apresentacao))))))
                  (element :conteudo {} conteudo)
                  (element :tipo {} tipo)
                  (element :selecao {} selecao)
@@ -93,10 +94,10 @@
 
 (defn gerar-exercicio
  "Gera um arquivo xml de exercicio e grava no banco."
-    ([nomearq conteudo idEx nivel tipo preReq enunciado tipoenunciado resposta]
+    ([nomearq conteudo nivel tipo preReq enunciado tipoenunciado resposta]
       (let [tags (element :exercicio {:xmlns "exercicio" :xmlns:xsi "exercicio" :xsi:schemaLocation "src/dominio/exercicio.xsd"}
                  (element :conteudo conteudo)
-                 (element :idEx {} idEx)
+                 (element :idEx {} (str "ex"(first (vals (first (next-val-exercicio))))))
                  (element :nivel {} nivel)
                  (element :tipo {} tipo)
                  (element :preReq {} 
@@ -109,10 +110,10 @@
        (emit tags out-file)))
        (inserir-exercicio nomearq)
        )
-    ([nomearq conteudo idEx nivel tipo preReq enunciado tipoenunciado alternativa tipoalt resposta]
+    ([nomearq conteudo nivel tipo preReq enunciado tipoenunciado alternativa tipoalt resposta]
       (let [tags (element :exercicio {:xmlns "exercicio" :xmlns:xsi "exercicio" :xsi:schemaLocation "src/dominio/exercicio.xsd"}
                  (element :conteudo conteudo)
-                 (element :idEx {} idEx)
+                 (element :idEx {} (str "ex"(first (vals (first (next-val-exercicio))))))
                  (element :nivel {} nivel)
                  (element :tipo {} tipo)
                  (element :preReq {} 

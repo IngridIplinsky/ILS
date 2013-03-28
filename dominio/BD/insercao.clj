@@ -7,6 +7,54 @@
 			[clojure.java.jdbc :as sql]))
 
 
+(defn next-val-conteudo 
+  "Executa o comando SQL nextval('sequencia') para a sequencia seqconteudo."
+  []
+  (sql/with-connection ILS-DB
+   (sql/with-query-results res
+        ["SELECT NEXTVAL('seqconteudo');"]
+          (doall res))))
+
+(defn next-val-exercicio
+  "Executa o comando SQL nextval('sequencia') para a sequencia seqexercicio."
+  []
+  (sql/with-connection ILS-DB
+   (sql/with-query-results res
+        ["SELECT NEXTVAL('seqexercicio');"]
+          (doall res))))
+
+(defn next-val-bug
+  "Executa o comando SQL nextval('sequencia') para a sequencia seqexercicio."
+  []
+  (sql/with-connection ILS-DB
+   (sql/with-query-results res
+        ["SELECT NEXTVAL('seqbug');"]
+          (doall res))))
+
+(defn next-val-apresentacao
+  "Executa o comando SQL nextval('sequencia') para a sequencia seqapresentacao."
+  []
+  (sql/with-connection ILS-DB
+   (sql/with-query-results res
+        ["SELECT NEXTVAL('seqapresentacao');"]
+          (doall res))))
+
+(defn next-val-estilo
+  "Executa o comando SQL nextval('sequencia') para a sequencia seqestilo."
+  []
+  (sql/with-connection ILS-DB
+   (sql/with-query-results res
+        ["SELECT NEXTVAL('seqestilo');"]
+          (doall res))))
+
+(defn next-val-log
+  "Executa o comando SQL nextval('sequencia') para a sequencia seqlog."
+  []
+  (sql/with-connection ILS-DB
+   (sql/with-query-results res
+        ["SELECT NEXTVAL('seqlog');"]
+          (doall res))))
+
 (defn get-value [xml & tags]
  "Pega o xml de um arquivo e o guarda em uma estrutura."
   (apply zf/xml1-> (zip/xml-zip (xml/parse xml)) (conj (vec tags) zf/text)))
@@ -45,10 +93,12 @@
     
 (defn inserir-conteudo
   "Insere um novo conteudo de alguma disciplina no banco."
-   [idCont sigla conteudo]
+   [sigla conteudo]
    (sql/with-connection ILS-DB
     (sql/insert-records :conteudo
-      {:idCont idCont :sigla sigla :conteudo conteudo}
+      {:idCont (str "cont"(first (vals (first (next-val-conteudo)))))
+       :sigla sigla 
+       :conteudo conteudo}
     )))  
     
 (defn inserir-ministra
@@ -87,11 +137,11 @@
 
 (defn inserir-conteudoAluno 
   "Insere um novo aproveitamento de um aluno em determinado conteudo."
-   [matricula nconteudo qbom qmedio qruim]
+   [matricula sigla conteudo qbom qmedio qruim]
    (sql/with-connection ILS-DB
     (sql/insert-records :conteudoAluno
       {:matricula matricula 
-       :idCont (first (vals (first (buscar-conteudo "idCont" "conteudo" nconteudo))))  
+       :idCont (first (vals (first (buscar-conteudo "idCont" "sigla" sigla "conteudo" conteudo))))  
        :bom qbom 
        :medio qmedio 
        :ruim qruim}
@@ -99,11 +149,11 @@
 
 (defn inserir-exercicioAluno
   "Insere um novo aproveitamento de um aluno em determinado exercicio."
-   [matricula conteudo idEx qbom qmedio qruim]
+   [matricula sigla conteudo idEx qbom qmedio qruim]
    (sql/with-connection ILS-DB
     (sql/insert-records :exercicioAluno
       {:matricula matricula 
-       :idCont (first (vals (first (buscar-conteudo "idCont" "conteudo" conteudo))))  
+       :idCont (first (vals (first (buscar-conteudo "idCont" "sigla" sigla "conteudo" conteudo))))  
        :idEx idEx 
        :bom qbom 
        :medio qmedio 
@@ -112,10 +162,10 @@
   
 (defn inserir-estilo
   "Insere um novo estilo de aprendizadgem de um aluno, para um curso, no banco. Determinado pelo módulo pedagógico, e pode ser alterado."
-   [idEst selecao organizacao utilizacao]
+   [selecao organizacao utilizacao]
    (sql/with-connection ILS-DB
     (sql/insert-records :estilo
-      {:idEst idEst 
+      {:idEst (str "est"(first (vals (first (next-val-estilo)))))
        :selecao selecao 
        :organizacao organizacao 
        :utilizacao utilizacao}
@@ -148,10 +198,10 @@
 (defn inserir-logAluno
   "Insere um novo log de aluno no banco. Este log serve para que seja armazenada a disciplina, o conteúdo e o exercício
    onde o estudante parou em sua última sessão no sistema."
-   [idLog matricula sigla idCont idEx]
+   [matricula sigla idCont idEx]
    (sql/with-connection ILS-DB
     (sql/insert-records :logAluno
-      {:idLog idLog
+      {:idLog (str "log"(first (vals (first (next-val-log)))))
        :matricula matricula
        :sigla sigla
        :idCont idCont ;idCont foi preservado ao invés da busca por ter desempenho melhor

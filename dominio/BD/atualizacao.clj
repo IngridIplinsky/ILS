@@ -37,15 +37,16 @@
  uma coluna (formato :exemplo) e o valor novo (entre aspas)."
    ([matricula sigla conteudo idEx bom medio ruim]
     "Para atualizar as probabilidades nas tabelas."
+     (let [idCont (first (vals (first (buscar-conteudo "idCont" "conteudo" conteudo "sigla" sigla))))]
      (sql/with-connection ILS-DB
        (sql/update-or-insert-values :exercicioAluno
-         [(str "exercicioAluno.matricula ='"matricula"' AND exercicioAluno.conteudo = '"conteudo"' AND exercicioAluno.idEx = '"idEx"'")]
+         [(str "exercicioAluno.matricula ='"matricula"' AND exercicioAluno.idCont = '"idCont"' AND exercicioAluno.idEx = '"idEx"'")]
         {:matricula matricula
-         :idCont (first (vals (first (buscar-conteudo "idCont" "conteudo" conteudo "sigla" sigla))))
+         :idCont idCont
          :idEx idEx
          :bom bom 
          :medio medio 
-         :ruim ruim}))))
+         :ruim ruim})))))
 
 (defn atualizar-conteudoAluno
 "Atualiza os dados pessoais de um aluno a partir da matricula, passando matricula, 
