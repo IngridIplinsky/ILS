@@ -61,8 +61,10 @@
          [:div {:class "span2" :id "link_prof"}
          [:div {:class "well sidebar-nav"}
          [:h5 "CURSOS"]
-         [:a [:h3 "ED1"]]
-	 [:a [:h3 "IPC"]]
+         [:ul {:class "nav nav-list"}
+         [:li [:a [:h3 "ED1"]]]
+	 [:li [:a [:h3 "IPC"]]]
+         ] 
          
 
          ]]
@@ -197,7 +199,7 @@
          [:head [:script {:type "text/javascript" :src "/js/bootstrap.min.js"}]]
          [:body {:id "fundoiframe" :onload "ResizeWH();"} 
          [:div {:align "center"} 
-         [:h4 "Adicionar Vídeo"]]
+         [:h4 "Adicionar questão aberta"]]
 
          [:form {:class "form-horizontal" :action "/admin/home/recursividade/multimidia/add/preview" :method "post" :name "form" }
          [:div  {:class "control-group"}
@@ -216,73 +218,87 @@
 (defpage "/admin/home/recursividade/multimidia/add" []     
       (common/layout
          [:head [:script {:type "text/javascript" :src "/js/bootstrap.min.js"}]]
-         [:body {:id "fundoiframe" :onload "ResizeWH();"} 
+         [:body {:id "fundoiframe" :onload "ResizeWH();" } 
 
          [:div {:align "center"} 
-         [:h4 "Adicionar Vídeo"]]
+         [:div {:class "page-header"}
+         [:h4 "Adicionar Vídeo"]]]
+         [:br]
 
-         [:form {:class "form-horizontal" :action "/admin/home/recursividade/multimidia/add/preview" :method "post" :name "form" }
-         [:div  {:class "control-group"}
-         [:label {:class "control-label" :for "tipoAp"} "Tipo"]
-         [:div {:class "controls"} 
-         [:input {:type "text":id "tipoAp" :value "Vídeo" :name "tipo" :disabled "disabled"}]]] 
-
-               [:div  {:class "control-group"}
-         [:label {:class "control-label" :for "id"} "ID"]
-         [:div {:class "controls"} 
-         [:input {:type "text" :id "id" :name "id"}]]]  
-
-
-         [:div  {:class "control-group"}
-         [:label {:class "control-label" :for "selecao"} "Seleção"]
-         [:div {:class "controls"} 
-         [:input {:type "text":id "selecao" :name "selecao"}]]] 
-
-         [:div  {:class "control-group"}
-         [:label {:class "control-label" :for "caminho"} "Caminho do Arquivo"]
-         [:div {:class "controls"} 
-         [:input {:type "text":id "caminho" :name "caminho"}]]] 
-
-   
-
-         [:div  {:class "control-group"}
-         [:label {:class "control-label" :for "conteudo"} "Conteudo"]
-         [:div {:class "controls"} 
-         [:input {:type "text":id "conteudo" :name "conteudo" :value "Recursividade" :disabled "disabled"}]]]  
-
-         [:div  {:class "control-group"}
-         [:label {:class "control-label" :for "organizacao"} "Organizaçao"]
-         [:div {:class "controls"} 
-         [:input {:type "text":id "organizacao" :name "organizacao"}]]]  
-
-         [:div  {:class "control-group"}
-         [:label {:class "control-label" :for "utilizacao"} "Utilização"]
-         [:div {:class "controls"} 
-         [:input {:type "text":id "utilizacao" :name "utilizacao"}]]] 
-  
-         [:div  {:class "control-group"}
-         [:label {:class "control-label" :for "tipo-d"} "Tipo- D"]
-         [:div {:class "controls"} 
-         [:input {:type "text":id "tipo-d" :name "tipoD"}]]] 
-
+         [:div {:class "container-fluid" }
+         [:div {:class "row-fluid" }
+         [:div {:class "span6"} 
          
+         [:form {:class "form-horizontal"  :action "/admin/home/recursividade/multimidia/add/preview" :method "post" :name "form" }
+          [:div {:class "modal-body" :id "cadastro_body"}
+         ;[:div  {:class "control-group"}
+         ;[:label {:class "control-label" :for "tipoAp"} "Tipo"]
+         ;[:div {:class "controls"} 
+         ;[:input {:type "text":id "tipoAp" :value "Vídeo" :name "tipo" :disabled "disabled"}]]] 
+
          [:div  {:class "control-group"}
-         [:label {:class "control-label" :for "dado"} "Dado"]
+         [:label {:class "control-label" :for "dado"} "URL :"]
          [:div {:class "controls"} 
          [:input {:type "text":id "dado" :name "dado"}]]] 
 
          [:div  {:class "control-group"}
-         [:label {:class "control-label" :for "legenda"} "Legenda"]
-         [:div {:class "controls"} 
+         [:label {:class "control-label" :for "legenda"} "Legenda :"]
+         [:div {:class "controls"}
          [:input {:type "text":id "legenda" :name "legenda"}]]]  
-          
-          
+ 
 
+         [:div  {:class "control-group"} 
+         [:label {:class "control-label" :for "selecao"} "Seleção :"]
+         [:div {:class "controls"}  
+         [:select {:id "inputDefault" :name "selecao"}
+         [:option {:value "sydney"} "Visual"]
+         [:option {:value "melbourne"}"Melbourne"]
+         ]]
+         ]  
+    
+
+         ;[:div  {:class "control-group"}
+         ;[:label {:class "control-label" :for "conteudo"} "Conteudo"]
+         ;[:div {:class "controls"} 
+         ;[:input {:type "text":id "conteudo" :name "conteudo" :value "Recursividade" :disabled "disabled"}]]]  
+
+         [:div  {:class "control-group"}
+         [:label {:class "control-label" :for "organizacao"} "Organizaçao :"]
+         [:div {:class "controls"}
+         [:select {:id "inputDefault" :name "organizacao"}
+         [:option {:value "sinestesico"} "Sinestesico"]
+         [:option {:value "melbourne"}"Melbourne"]
+         ]]
+         ] 
+
+         [:div  {:class "control-group"}
+         [:label {:class "control-label" :for "inputUtiliza"} "Utilização :"]
+         [:div {:class "controls"} 
+         [:select {:id "inputDefault" :name "utilizacao"}
+         [:option {:value "Teorico"} "Teórico"]
+         [:option {:value "Prático"} "Prático"]]   
+         ]]
+ 
+  
+         ;[:div  {:class "control-group"}
+         ;[:label {:class "control-label" :for "tipo-d"} "Tipo- D"]
+         ;[:div {:class "controls"} 
+         ;[:select {:id "tipo-d" :name "tipoD"}
+         ;[:option {:value "url"} "URL"]
+         ;]         
+         ;]] 
 
          [:div  {:class "control-group"}
          [:div {:class "controls"} 
-         [:button {:class "btn btn-small btn-success" :formaction "/admin/home/recursividade/multimidia/add/preview"} "Enviar"]]]
-  
+         [:button {:class "btn btn-default btn-success" :onclick " return youtube_parser();" :formaction "/admin/home/recursividade/multimidia/add/preview"} "Enviar"]]]
+         ]]] 
+         [:div {:class "row-fluid" }
+         [:div {:class "span5"} 
+         [:p [:button {:class "btn btn-large btn-primary"} "Ver todos vídeos"]]
+         [:br] 
+         [:img {:src "/img/tube.jpg"}]
+         ]]
+         ];end container-fluid
          ]]))
 
 
@@ -296,45 +312,38 @@
 
 
 (defpage [:post "/admin/home/recursividade/multimidia/add/preview"] 
-  {:keys [tipo,id,url,selecao,caminho,conteudo,organizacao,utilizacao,tipoD,dado,legenda]}
+  {:keys [url,selecao,organizacao,utilizacao,dado,legenda]}
 ;(gerar-apresentacao caminho id  conteudo "video" selecao organizacao utilizacao tipoD dado legenda)   
       (common/layout
          [:head [:script {:type "text/javascript" :src "/js/bootstrap.min.js"}]]
-         [:body {:id "fundoiframe"} 
-         [:div {:align "center"} 
-         [:h4 dado] 
-         [:h4 id ]   
-         [:h4  [:iframe {:width "250" :height "150" :src dado :frameborder "1"
-              :onclick "mudaVideo();"}]] 
+         [:body {:id "fundoiframe" :onload "ResizeWH();"} 
+         [:div {:align "center"}
+         [:div {:class "modal-header"} 
+         [:img {:src "/img/youtube.png"}]]  
+         [:h4  [:iframe {:width "840" :height "340" :src (str "http://www.youtube.com/embed/" dado) :frameborder "1"
+              :onclick "mudaVideo();"}]
+        
+         [:p [:div {:class "btn-group"} 
+         [:a {:href (str "/admin/teste?tipo=Vídeo" "&url=" url "&selecao=" selecao "&caminho=src/ils/models/dominio/Cursos/IntroducaoProgramacao/recursao/apresentacao/videos/exemplo3.xml"  "&conteudo=Recursividade" 
+                         "&organizacao=" organizacao "&utilizacao=" utilizacao "&tipoD=url" "&dado=" dado "&legenda=" legenda) 
+                         :rel "tooltip" :title "Confirmar"}[:img {:src "/img/confirm.png"}]]]
+             [:div {:class "btn-group"} [:a {:href "#" :rel "tooltip" :title "Excluir"} [:img {:src "/img/delete.png"}]]]     
+         ]]
          ]]))
 
 
-(defpage "/admin/teste" []     
+
+
+(defpage "/admin/teste" {:keys [tipo,url,selecao,caminho,conteudo,organizacao,utilizacao,tipoD,dado,legenda]}
+;(gerar-apresentacao caminho id  conteudo "video" selecao organizacao utilizacao tipoD dado legenda)  
       (common/layout
          [:head [:script {:type "text/javascript" :src "/js/bootstrap.min.js"}]]
-         [:body {:id "fundoiframe"} 
+         [:body {:id "fundoiframe" :onload "ResizeWH();"} 
          [:div {:align "center"} 
-         [:h4 "Aqui você como professor pode inserir exercicios,multimida e textos"]
-
-  
-         [:h4  [:iframe {:width "450" :allowfullscreen "true" :height "320" :src "http://www.youtube.com/embed/wdFZ_LAiiWE?feature=player_detailpage" :frameborder "1"
-               :onclick "mudaVideo();"}]
-
-
-
-
-  [:object {:data "http://www.youtube.com/watch?v=wdFZ_LAiiWE" :type "application/x-shockwave-flash" :width "425" :height "350"}
-  [:param {:name "quality" :value "high" }]
-  [:param {:name "movie" :value "http://www.youtube.com/watch?v=wdFZ_LAiiWE" }]
-  [:img {:src "/img/video.png" :alt "Vídeo (Objeto multimídia)"}]
-  ]
-
-
- 
-         ]
-
-
-
+         [:h1 [:img {:src "/img/check.png"}] "Inserção de vídeo feita com sucesso !!!"]
+         [:h2 legenda]     
+         [:h4  [:iframe {:width "840" :height "340" :src (str "http://www.youtube.com/embed/" dado) :frameborder "1"
+              :onclick "mudaVideo();"}]]   
          ]]))
 
 
