@@ -14,20 +14,20 @@
 
                            
 (defn carregar-exercicio [id]
-  "Carrega o xml do exercício para a memória. A definição de uma estrutura para tal deixa as operações muito mais rápidas."
+  "Carrega o xml do exercício para a memória."
 	(def xmlEx (zip-str (buscar-exercicio id))))
 
 	
 (defn carregar-apresentacao [id]
-  "Carrega o xml da apresentacao para a memória. A definição de uma estrutura para tal deixa as operações muito mais rápidas."
+  "Carrega o xml da apresentacao para a memória."
 	(def xmlAp (zip-str (buscar-apresentacao id)))) 
 	
 (defn carregar-catalogoBug [id]
-  "Carrega o xml da apresentacao para a memória. A definição de uma estrutura para tal deixa as operações muito mais rápidas."
+  "Carrega o xml da erro para a memória."
 	(def xmlBug (zip-str (buscar-catalogoBug id))))   
 	
 (defn carregar-disciplina [id]
-  "Carrega o xml da apresentacao para a memória. A definição de uma estrutura para tal deixa as operações muito mais rápidas."
+  "Carrega o xml da hierarquia de conteudos de uma disciplina para a memória."
 	(def xmlHie (zip-str (buscar-disciplina id))))  
 
    		
@@ -88,7 +88,7 @@
          (first (:content (nth (zip/children (nth (xml-> xmlHie tag tag2) pos1)) pos))))) 
          
 (defn get-attr-disciplina
-   "Pega atributos de disciplina."
+   "Pega atributos de tags de disciplina."
      ([tag tag2 atrib]
           (first (xml-> xmlHie tag tag2 (attr atrib))))
      ([tag tag2 atrib pos]

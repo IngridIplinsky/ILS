@@ -18,12 +18,13 @@
         [(str "SELECT exercicio.xmlexercicio FROM exercicio WHERE exercicio.idEx = '"id"'")]
            (clob-to-string (:xmlexercicio (first res))) ))))
   ([retorno coluna valor]
-"Busca outros campos da tabela exercicio, especificando o retorno e fornecendo a coluna e valor contido nela."
+"Busca outros campos da tabela exercicio, através da coluna e valor contido nela."
 (sql/with-connection ILS-DB
   (sql/with-query-results res
      [(str "SELECT exercicio."retorno" FROM exercicio WHERE exercicio."coluna" = '"valor"'")]
      (doall res))))
    ([retorno coluna1 valor1 coluna2 valor2]
+"Busca outros campos da tabela exercicio, através da coluna e valor contido nela."
 (sql/with-connection ILS-DB
   (sql/with-query-results res
      [(str "SELECT exercicio."retorno" FROM exercicio WHERE exercicio."coluna1" = '"valor1"' AND exercicio."coluna2" = '"valor2"'")]
@@ -38,13 +39,13 @@
         [(str "SELECT apresentacao.xmlapresentacao FROM apresentacao WHERE apresentacao.idAp = '"id"'")]
            (clob-to-string (:xmlapresentacao (first res))) ))))
   ([retorno coluna valor]
-"Busca outros campos da tabela apresentacao, especificando o retorno e fornecendo a coluna e valor contido nela."
+"Busca outros campos da tabela apresentacao, através da coluna e valor contido nela."
 (sql/with-connection ILS-DB
    (sql/with-query-results res
        [(str "SELECT apresentacao."retorno" FROM apresentacao WHERE apresentacao."coluna" = '"valor"'")]
        (doall res))))
   ([retorno selecao organizacao utilizacao]
-    "Indica apresentacoes de determinado estilo, especificando o retorno e fornecendo os valores de selecao, organizacao e utilizacao."
+    "Indica apresentacoes de determinado estilo."
     (sql/with-connection ILS-DB
     (sql/transaction
    (sql/with-query-results res
@@ -64,12 +65,13 @@ estilo.selecao = '"selecao"' AND estilo.organizacao = '"organizacao"' AND estilo
         [(str "SELECT catalogoBug.xmlbug FROM catalogoBug WHERE catalogoBug.idBug = '"id"'")]
         (clob-to-string (:xmlbug (first rs))) ))))
   ([retorno coluna valor]
-"Busca outros campos da tabela catalogoBug, especificando o retorno e fornecendo a coluna e valor contido nela."
+"Busca outros campos da tabela catalogoBug, através da coluna e valor contido nela."
 (sql/with-connection ILS-DB
    (sql/with-query-results res
         [(str "SELECT catalogoBug."retorno" FROM catalogoBug WHERE catalogoBug."coluna" = '"valor"'")]
         (doall res))))
    ([retorno coluna1 valor1 coluna2 valor2]
+"Busca outros campos da tabela catalogoBug, através da coluna e valor contido nela."
 (sql/with-connection ILS-DB
    (sql/with-query-results res
         [(str "SELECT catalogoBug."retorno" FROM catalogoBug WHERE catalogoBug."coluna1" = '"valor1"'
@@ -85,41 +87,35 @@ AND catalogoBug."coluna2" = '"valor2"'")]
         [(str "SELECT disciplina.xmlhierarquia FROM disciplina WHERE disciplina.sigla = '"id"'")]
         (clob-to-string (:xmlhierarquia (first rs))) ))))
   ([retorno coluna valor]
-"Busca campos da tabela disciplina, especificando o retorno e fornecendo a coluna e valor contido nela."
+"Busca campos da tabela disciplina, através de uma coluna e valor contido nela."
 (sql/with-connection ILS-DB
    (sql/with-query-results res
         [(str "SELECT disciplina."retorno" FROM disciplina WHERE disciplina."coluna" = '"valor"'")]
           (doall res)))))
         
 (defn buscar-professor [retorno coluna valor]
-"Busca campos da tabela professor, especificando o retorno e fornecendo a coluna e valor contido nela."
+"Busca campos da tabela professor, através de uma coluna e valor contido nela."
 (sql/with-connection ILS-DB
    (sql/with-query-results res
         [(str "SELECT professor."retorno" FROM professor WHERE professor."coluna" = '"valor"'")]
           (doall res))))
           
-(defn buscar-aluno 
-([retorno coluna valor]
-"Busca campos da tabela aluno, especificando o retorno e fornecendo a coluna e valor contido nela."
+(defn buscar-aluno [retorno coluna valor]
+"Busca campos da tabela aluno, através de uma coluna e valor contido nela."
 (sql/with-connection ILS-DB
    (sql/with-query-results res
         [(str "SELECT aluno."retorno" FROM aluno WHERE aluno."coluna" = '"valor"'")]
           (doall res))))
- ([retorno coluna1 valor1 coluna2 valor2]
-(sql/with-connection ILS-DB
-   (sql/with-query-results res
-        [(str "SELECT aluno."retorno" FROM aluno WHERE aluno."coluna1" = '"valor1"' AND
-aluno."coluna2" = '"valor2"'")]
-          (doall res)))))
           
 (defn buscar-conteudo
    ([retorno coluna valor]
-"Busca campos da tabela conteudo, especificando o retorno e fornecendo a coluna e valor contido nela."
+"Busca campos da tabela conteudo, através de uma coluna e valor contido nela."
 (sql/with-connection ILS-DB
    (sql/with-query-results res
         [(str "SELECT conteudo."retorno" FROM conteudo WHERE conteudo."coluna" = '"valor"'")]
           (doall res))))
     ([retorno coluna1 valor1 coluna2 valor2]
+"Busca campos da tabela conteudo, através de uma coluna e valor contido nela."
 (sql/with-connection ILS-DB
    (sql/with-query-results res
         [(str "SELECT conteudo."retorno" FROM conteudo WHERE conteudo."coluna1" = '"valor1"' AND
@@ -127,7 +123,7 @@ conteudo."coluna2" = '"valor2"'")]
           (doall res)))))
           
 (defn buscar-ministra [retorno coluna valor]
-"Busca campos da tabela ministra, especificando o retorno e fornecendo a coluna e valor contido nela."
+"Busca campos da tabela ministra, através de uma coluna e valor contido nela."
 (sql/with-connection ILS-DB
    (sql/with-query-results res
         [(str "SELECT ministra."retorno" FROM ministra WHERE ministra."coluna" = '"valor"'")]
@@ -135,7 +131,7 @@ conteudo."coluna2" = '"valor2"'")]
           
           
 (defn buscar-estiloEstudante [retorno coluna valor]
-"Busca campos da tabela estiloEstudante, especificando o retorno e fornecendo a coluna e valor contido nela."
+"Busca campos da tabela estiloEstudante, através de uma coluna e valor contido nela."
 (sql/with-connection ILS-DB
    (sql/with-query-results res
         [(str "SELECT estiloEstudante."retorno" FROM estiloEstudante WHERE estiloEstudante."coluna" = '"valor"'")]
@@ -143,7 +139,7 @@ conteudo."coluna2" = '"valor2"'")]
           
 (defn buscar-exercicioAluno
   ([retorno coluna valor]
-"Busca campos da tabela exercicioAluno, especificando o retorno e fornecendo a coluna e valor contido nela."
+"Busca campos da tabela exercicioAluno, através de uma coluna e valor contido nela."
 (sql/with-connection ILS-DB
    (sql/with-query-results res
         (if-not (string? valor) [(str "SELECT exercicioAluno."retorno" FROM exercicioAluno WHERE exercicioAluno."coluna" = "valor)]
@@ -162,7 +158,7 @@ conteudo."coluna2" = '"valor2"'")]
           
 (defn buscar-conteudoAluno
   ([retorno coluna valor]
-"Busca campos da tabela conteudoAluno, especificando o retorno e fornecendo a coluna e valor contido nela."
+"Busca campos da tabela conteudoAluno, através de uma coluna e valor contido nela."
 (sql/with-connection ILS-DB
    (sql/with-query-results res
         (if-not (string? valor) [(str "SELECT conteudoAluno."retorno" FROM conteudoAluno WHERE conteudoAluno."coluna" = "valor)]
@@ -181,66 +177,28 @@ conteudo."coluna2" = '"valor2"'")]
   
 (defn buscar-estilo
  ([retorno coluna valor]
-  "Busca campos da tabela estilo, especificando o retorno e fornecendo a coluna e valor contido nela."
+  "Busca campos da tabela estilo, através de uma coluna e valor contidos nela."
   (sql/with-connection ILS-DB
    (sql/with-query-results res
     [(str "SELECT estilo."retorno" FROM estilo WHERE estilo."coluna" = '"valor"'")]
       (doall res))))
  ([retorno selecao organizacao utilizacao]
+  "Busca campos da tabela estilo, através de uma coluna e valor contidos nela."
   (sql/with-connection ILS-DB
    (sql/with-query-results res
     [(str "SELECT estilo."retorno" FROM estilo WHERE estilo.selecao = '"selecao"' AND
 estilo.organizacao = '"organizacao"' AND estilo.utilizacao = '"utilizacao"'")]
       (doall res)))))
   
-(defn buscar-logAluno
- ([matricula]
-  "Busca os campos 'sigla', 'conteúdo' e 'idEx' da tabela logAluno através do número de matrícula do estudante."
-  (sql/with-connection ILS-DB
-   (sql/with-query-results res
-    [(str "SELECT logAluno.sigla, logAluno.idCont, logAluno.idEx FROM logAluno WHERE logAluno.matricula = '"matricula"'")]
-      (doall res))))
- ([retorno coluna valor]
-  "Busca campos na tabela logAluno, especificando o retorno e fornecendo a coluna e valor contido nela.."
-  (sql/with-connection ILS-DB
-   (sql/with-query-results res
-    [(str "SELECT "retorno" FROM logAluno WHERE logAluno."coluna" = '"valor"'")]
-      (doall res)))))
  
 (defn buscar-todos-ex [id]
-  "Retorna todos os exercicios da tabela exercicio."
 (sql/with-connection ILS-DB
  (sql/transaction
   (sql/with-query-results res
     [(str "SELECT exercicio.xmlexercicio FROM exercicio WHERE exercicio.idEx = '"id"'")]
        (clob-to-string (:xmlexercicio (first res))) ))))
        
-(defn buscar-matricula [retorno coluna valor]
-"Busca campos da tabela professor, especificando o retorno e fornecendo a coluna e valor contido nela."
-(sql/with-connection ILS-DB
-   (sql/with-query-results res
-        [(str "SELECT matricula."retorno" FROM matricula WHERE matricula."coluna" = '"valor"'")]
-          (doall res))))
+ 
 
 
-(defn buscar-cursos-matriculados [matricula]
-"Busca cursos matriculados por um aluno, passando a matricula deste."
-(sql/with-connection ILS-DB
-   (sql/with-query-results res
-        [(str "SELECT disciplina.nome FROM matricula, disciplina WHERE disciplina.sigla = matricula.sigla AND matricula.matricula = '"matricula"'")]
-          (doall res))))
-
-(defn buscar-cursos-disponiveis [matricula]
-"Busca os cursos disponiveis para um determinado aluno, passando a matricula deste."
-(sql/with-connection ILS-DB
-   (sql/with-query-results res
-        [(str "SELECT disciplina.nome FROM disciplina WHERE disciplina.nome NOT IN
-          (SELECT disciplina.nome FROM matricula, disciplina WHERE disciplina.sigla = matricula.sigla AND matricula.matricula = '"matricula"')")]
-          (doall res))))
-
-
-(defn compara-usuario [usuario senha]
-  "Apenas uma funcao de averiguacao de login."
-(cond (= nil (buscar-aluno "matricula" "usuario" usuario "senha" senha)) 0
-  :else 1))
 

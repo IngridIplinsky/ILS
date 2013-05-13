@@ -4,7 +4,7 @@
     (:require [clojure.java.jdbc :as sql]))
 
 (defn atualizar-aluno 
-"Atualiza os dados pessoais de um aluno a partir da matricula, passando matricula, 
+"Atualiza os dados pessoais de um aluno passando matricula, 
  uma coluna (formato :exemplo) e o valor novo (entre aspas)."
   [matricula coluna novo]
     (sql/with-connection ILS-DB
@@ -13,7 +13,7 @@
         {coluna novo})))
 
 (defn atualizar-professor
-"Atualiza os dados pessoais de um professor a partir da matricula, passando matricula, 
+"Atualiza os dados pessoais de um professor passando matricula, 
  uma coluna (formato :exemplo) e o valor novo (entre aspas)."
   [matricula coluna novo]
     (sql/with-connection ILS-DB
@@ -23,7 +23,7 @@
         
  (defn atualizar-estiloEstudante 
 "Atualiza os dados da tabela estiloEstudante passando matricula, sigla, 
- uma coluna (formato :exemplo) e o valor novo (entre aspas)."
+ uma coluna (formato :exemplo) e o valores de selecao, organizacao e utilizacao."
   [matricula sigla selecao organizacao utilizacao]
     (sql/with-connection ILS-DB
       (sql/update-or-insert-values :estiloEstudante
@@ -33,8 +33,8 @@
          :idEst (first (vals (first (buscar-estilo "idEst" selecao organizacao utilizacao))))})))
         
 (defn atualizar-exercicioAluno
-"Atualiza os dados da tabela exercicioAluno passando matricula, conteudo, id do exercicio, 
- uma coluna (formato :exemplo) e o valor novo (entre aspas)."
+"Atualiza os dados da tabela exercicioAluno passando matricula, sigla, conteudo, id do exercicio e 
+os valores de bom, medio e ruim."
    ([matricula sigla conteudo idEx bom medio ruim]
     "Para atualizar as probabilidades nas tabelas."
      (let [idCont (first (vals (first (buscar-conteudo "idCont" "conteudo" conteudo "sigla" sigla))))]
@@ -49,8 +49,8 @@
          :ruim ruim})))))
 
 (defn atualizar-conteudoAluno
-"Atualiza os dados pessoais de um aluno a partir da matricula, passando matricula, 
- uma coluna (formato :exemplo) e o valor novo (entre aspas)."
+"Atualiza os dados da tabela conteudoAluno passando matricula, sigla, conteudo e 
+os valores de bom, medio e ruim."
    ([matricula sigla conteudo bom medio ruim]
      (sql/with-connection ILS-DB
        (sql/update-or-insert-values :conteudoAluno
@@ -62,7 +62,7 @@
          :ruim ruim}))))
 
 (defn atualizar-logAluno
-"Atualiza os dados da tabela logAluno pela passagem da matrícula para a qual os dados serão atualizados, a nova sigla de
+"Atualiza os dados da tabela logAluno passando o id do log, a matricula para a qual os dados serão atualizados, a nova sigla de
  disciplina, o id de conteúdo e o id do exercício, todos entre aspas."
   [idLog matricula sigla idCont idEx]
     (sql/with-connection ILS-DB
