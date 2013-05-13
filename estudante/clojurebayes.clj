@@ -1,4 +1,4 @@
-(ns estudante.clojurebayes
+(ns ils.models.estudante.clojurebayes
   (:import [BayesianNetworks DiscreteVariable DiscreteFunction BayesNet]
 		   [BayesianInferences Inference Expectation Explanation]))
 

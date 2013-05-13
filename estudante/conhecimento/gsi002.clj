@@ -1,5 +1,5 @@
-(ns estudante.conhecimento.gsi002
-	(:use estudante.createbayes))
+(ns ils.models.estudante.conhecimento.gsi002
+	(:use ils.models.estudante.createbayes))
 
 ;Rede bayesiana para medir o conhecimento de um aluno 
 ;de introdução à programação de computadores (gsi002)

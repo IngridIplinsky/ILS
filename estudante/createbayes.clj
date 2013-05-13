@@ -1,4 +1,4 @@
-(ns estudante.createbayes
+(ns ils.models.estudante.createbayes
 	(:import [BayesianNetworks DiscreteVariable DiscreteFunction BayesNet]))
 
 ;Macros utilizadas na criação de redes bayesianas no módulo do estudante.

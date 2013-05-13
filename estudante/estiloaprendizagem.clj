@@ -1,5 +1,5 @@
-(ns estudante.estiloaprendizagem
-	(use estudante.createbayes))
+(ns ils.models.estudante.estiloaprendizagem
+	(:use ils.models.estudante.createbayes))
 
 ;Rede bayesiana capaz de inferir o estilo de aprendizagem de um aluno.
 ;Esta rede tenta realizar a mesma tarefa do ILS (Index of Learning Styles), de acordo com o modelo de Felder e Brent.

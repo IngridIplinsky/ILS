@@ -1,5 +1,5 @@
-(ns estudante.conhecimento.conteudo
-	(:use estudante.createbayes))
+(ns ils.models.estudante.conhecimento.conteudo
+	(:use ils.models.estudante.createbayes))
 
 ;Rede bayesiana para medir o conhecimento em um conteúdo.
 ;Baseado em uma tecnologia do Khan-academy.
